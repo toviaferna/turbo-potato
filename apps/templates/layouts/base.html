@@ -1,0 +1,43 @@
+{% load menu %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon">
+  <link rel="canonical" href="https://appseed.us/adminlte"/>
+
+  <title>
+    Agro - {% block title %}{% endblock %} 
+  </title> 
+
+  {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body class="hold-transition {% block body_class %}{% endblock body_class %}">
+
+<div class="wrapper">
+
+    {% include 'includes/navigation.html' %}
+   
+    {% generate_menu %}
+    {% include 'includes/sidebar.html' %}
+    
+    {% block content %}{% endblock content %}
+    
+    {% include 'includes/footer.html' %}
+
+
+    <aside class="control-sidebar control-sidebar-dark">
+
+    </aside>
+    
+
+</div>
+<!-- ./wrapper -->
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>
