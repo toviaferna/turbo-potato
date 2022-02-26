@@ -1,8 +1,6 @@
-from django.core.urlresolvers import reverse
 from menu import Menu, MenuItem
+from django.shortcuts import reverse
 
 
 
-
-Menu.add_item("inicio", MenuItem("Inicio", reverse("home.views.index"),icon='fas fa-home', weight=0))
-
+Menu.add_item("inicio", MenuItem("Inicio", reverse("home"),icon='fas fa-home',weight=6))

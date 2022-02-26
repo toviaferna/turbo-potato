@@ -5,10 +5,10 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.urls import path, re_path
 from apps.home.views import index
+from django.conf.urls import url
 
 urlpatterns = [
 
-    # The home page
-    path('', index, name='home'),
+   url(r"^$", index, name="home"),
 
 ]

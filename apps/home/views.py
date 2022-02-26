@@ -11,7 +11,7 @@ from django.template import loader
 from django.shortcuts import render, redirect, reverse
 
 
-@login_required(login_url="/login/")
+@login_required
 def index(request):
     context = {'segment': 'index'}
-    return render(request, "home/page-blank.html", {})
+    return render(request, "home/home.html", {})

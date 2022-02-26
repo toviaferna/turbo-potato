@@ -11,31 +11,35 @@
     Agro - {% block title %}{% endblock %} 
   </title> 
 
+  {% include 'includes/css.html' %}
   {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 <body class="hold-transition {% block body_class %}{% endblock body_class %}">
 
 <div class="wrapper">
-
-    {% include 'includes/navigation.html' %}
-    {% load menu %}{% generate_menu %}
-    {% include 'includes/sidebar.html' %}
-    {% block content %}{% endblock content %}
+    
+    {% block navbar %}
+      {% include 'includes/navigation.html' %}
+    {% endblock %}
+    
+    {% block sidebar %}
+      {% load menu %}
+      {% generate_menu %}
+      {% include 'includes/sidebar.html' %}
+    {% endblock %}
+    
+    {% block content %}
+    
+    {% endblock content %}
     
     {% include 'includes/footer.html' %}
-
-
-    <aside class="control-sidebar control-sidebar-dark">
-
-    </aside>
-    
-
 </div>
-<!-- ./wrapper -->
 
-<!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+
+{% block javascripts %}
+
+{% endblock javascripts %}
 
 </body>
 </html>

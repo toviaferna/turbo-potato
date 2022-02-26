@@ -1,15 +1,15 @@
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-success elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
+    <a href="/" class="brand-link navbar-dark-gray">
       <img src="/static/assets/img/ecologismo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Agroatardecer</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="form-inline mt-1">
+      <div class="form-inline mt-1 d-none">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -19,12 +19,14 @@
           </div>
         </div>
       </div>
+      
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         
-        {% for key, menu in menus.items|dictsort:"1.0.weight" %}
-          {% include  'sidebar-menu-item.html' %}
+        {% for key, menu in menus.items %}
+          {% include  'includes/sidebar_menu_item.html' %}
         {% endfor %}
+        
         </ul>
       </nav>
 

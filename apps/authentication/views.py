@@ -6,7 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 # Create your views here.
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm
 from django.urls import reverse_lazy
 
 def login_view(request):
