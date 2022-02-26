@@ -4,25 +4,10 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 # Create your views here.
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
-from django.contrib.auth.views import LoginView as DjangoLoginView
-
-class LoginView(DjangoLoginView):
-    """
-    Custom login view
-    """
-    form_class = LoginForm
-    redirect_authenticated_user = True
-
-    def post(self, request, *args, **kwargs):
-        #request.session['django_timezone'] = 'America/Asuncion'
-        return super().post(request, *args, **kwargs)
-    
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
-
+from django.urls import reverse_lazy
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -37,7 +22,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                return redirect("home")
             else:
                 msg = 'Invalid credentials'
         else:
@@ -46,26 +31,4 @@ def login_view(request):
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
-def register_user(request):
-    msg = None
-    success = False
 
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
-            raw_password = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=raw_password)
-
-            msg = 'User created - please <a href="/login">login</a>.'
-            success = True
-
-            # return redirect("/login/")
-
-        else:
-            msg = 'Form is not valid'
-    else:
-        form = SignUpForm()
-
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})

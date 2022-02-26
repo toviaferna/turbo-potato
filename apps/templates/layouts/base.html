@@ -1,4 +1,4 @@
-{% load menu %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +19,8 @@
 <div class="wrapper">
 
     {% include 'includes/navigation.html' %}
-   
-    {% generate_menu %}
+    {% load menu %}{% generate_menu %}
     {% include 'includes/sidebar.html' %}
-    
     {% block content %}{% endblock content %}
     
     {% include 'includes/footer.html' %}

@@ -1,0 +1,33 @@
+{% for item in menu %}    
+{{item}}
+    {% if item.visible %}
+        {% if item.separator %}
+            <li class="divider-vertical"></li>
+        {% endif %}
+            <li class="nav-item {% if item.children %} has-treeview {% endif %}  {% if 'charts' in segment %} menu-open {% endif %}">
+                <a href="#" class="nav-link {% if item.selected %} active{% endif %} ">
+                    {% if item.icon %}
+                        &nbsp;<i class="{{ item.icon }}"></i>
+                    {% endif %}
+                    <p>
+                        {{ item.title }}{% if item.children %}<i class="right fas fa-angle-left"></i>{%endif %}
+                    </p>
+                </a>
+                {% if item.children %}
+                <ul class="nav nav-treeview">
+                    {% for item in items %}
+                        {% if item.visible %}
+                            <li class="nav-item">
+                                <a href="{{ item.url }}" class="nav-link {% if item.selected %} active {% endif %}">
+                                    {% if item.icon %}
+                                        <i class="{{ item.icon }}"></i>&nbsp;
+                                    {% endif %}
+                                    <p>{{ item.title }}</p>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+    {% endif %}
+{% endfor %}
