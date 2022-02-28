@@ -9,5 +9,6 @@ from django.conf.urls import url
 
 urlpatterns = [         # Django admin route
     path("", include("apps.authentication.urls")),
+    path("farming/", include("apps.farming.urls")),             # UI Kits Html files
     path("", include("apps.home.urls")),             # UI Kits Html files
 ]

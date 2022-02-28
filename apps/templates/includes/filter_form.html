@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+<form action="" method="get" class="w-full">
+        {% for field in filter.form %}
+            {{ field|as_crispy_field  }}
+        {% endfor %}
+        <div class="mt-2">
+            <input class="btn btn-block  btn-primary" type="submit" value="Filtrar" />
+        </div>
+</form>

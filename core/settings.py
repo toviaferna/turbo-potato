@@ -25,7 +25,13 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + 
 
 INSTALLED_APPS = [
     'menu',
-    'apps.home',  # Enable the inner home (home)
+    'django_tables2',
+    'django_filters',
+    'apps.home',
+    'apps.authentication',
+    'apps.farming',
+    'apps.finance',
+    'apps.inventory',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

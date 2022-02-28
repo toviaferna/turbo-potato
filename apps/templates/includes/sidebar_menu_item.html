@@ -2,13 +2,16 @@
 {% for item in menu %}
 
 {% if item.visible %}
-
-    {% if item.separator %}
-        <li class="divider-vertical"></li>
+    
+{% if item.separator %}
+        <li class="divider"></li>
     {% endif %}
 
-    <li class="nav-item {% if item.children %} has-treeview {% endif %}  {# if 'charts' in segment #} menu-open {# endif #}">
-        <a href="{{ item.url }}" class="nav-link {% if item.selected %} active{% endif %} ">
+    <li class="nav-item 
+    {% if item.children %} has-treeview {% endif %} {% if item.children %}{% for menuitem in item.children %}{% if menuitem.visible %}{% if menuitem.selected %} menu-open {% endif %}{% endif %}{% endfor %}{% endif %}">
+        
+        <a href="{{ item.url }}" class="nav-link 
+        {% if item.selected %} active {% endif %}  {% if item.children %}{% for menuitem in item.children %}{% if menuitem.visible %}{% if menuitem.selected %} active {% endif %}{% endif %}{% endfor %}{% endif %}">
             {% if item.icon %}
                 <i class="nav-icon {{ item.icon }}"></i>
             {% endif %}
@@ -16,22 +19,24 @@
                 {{ item.title }} {% if item.children %}<i class="right fas fa-angle-left"></i>{% endif %}
             </p>
         </a>
+
         {% if item.children %}
             <ul class="nav nav-treeview">
-                {% for item in items %}
-                    {% if item.visible %}
+                {% for menuitem in item.children %}
+                    {% if menuitem.visible %}
                         <li class="nav-item">
-                            <a href="{{ item.url }}" class="nav-link {% if item.selected %} active {% endif %}">
-                                {% if item.icon %}
-                                    <i class="{{ item.icon }}"></i>&nbsp;
+                            <a href="{{ menuitem.url }}" class="nav-link {% if menuitem.selected %} active {% endif %}">
+                                {% if menuitem.icon %}
+                                    <i class="nav-icon {{ menuitem.icon }}  ml-2"></i>
                                 {% endif %}
-                                <p>{{ item.title }}</p>
+                                <p>{{ menuitem.title }}</p>
                             </a>
                         </li>
                     {% endif %}
                 {% endfor %}
             </ul>
         {% endif %}
+
     </li>
 
 {% endif %}

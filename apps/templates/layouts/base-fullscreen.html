@@ -8,11 +8,12 @@
   <link rel="canonical" href="https://appseed.us/adminlte"/>
 
   <title>
-    Agro - {% block title %}{% endblock %} | AppSeed
+    Agro - {% block title %}{% endblock %}
   </title> 
-
+  {% include 'includes/css.html' %}
   <!-- Specific Page CSS goes HERE  -->  
-  {% block stylesheets %}{% endblock stylesheets %}
+  {% block stylesheets %}
+  {% endblock stylesheets %}
 
 </head>
 <body class="hold-transition {% block body_class %}{% endblock body_class %}">
