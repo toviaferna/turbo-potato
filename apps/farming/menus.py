@@ -10,4 +10,4 @@ children = (
     ),
 )
 
-Menu.add_item("agricultura", MenuItem("Agricultura", reverse(),icon='fa fa-tractor',weight=6, children=children))
+Menu.add_item("agricultura", MenuItem("Agricultura","#",icon='fa fa-tractor',weight=6, children=children))

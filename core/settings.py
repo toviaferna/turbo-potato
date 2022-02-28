@@ -21,8 +21,10 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1', config('SERVER', default='127.0.0.1')]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + config('SERVER', default='127.0.0.1')]
 
-# Application definition
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Application definition
 INSTALLED_APPS = [
     'menu',
     'django_tables2',
