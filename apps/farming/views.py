@@ -20,7 +20,6 @@ class FincaListView(LoginRequiredMixin,SearchViewMixin, SingleTableMixin, ListVi
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['helper'] = None
         context['update_url'] = 'home'
         context['delete_url'] = 'home'
         context['create_url'] = 'finca_create'
