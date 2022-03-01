@@ -38,16 +38,23 @@ class FincaCreateView(LoginRequiredMixin,CreateView):
         context = super().get_context_data(**kwargs)
         context['helper'] = None
         context['list_url'] = 'finca_list'
-        context['title'] = "Fincas"
+        context['title'] = "Agregar fincas"
         return context
 
-""" class FincaUpdateView(LoginRequiredMixin,UpdateView):
+class FincaUpdateView(LoginRequiredMixin,UpdateView):
+    form_class = FincaForm
     model = Finca
-    template_name = 'inventory/finca_update.html'
-    fields = ['descripcion','dimensionHa','ubicacion']
+    template_name = 'generic/edit.html'
 
     def get_success_url(self):
         return reverse_lazy("finca_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['helper'] = None
+        context['list_url'] = 'finca_list'
+        context['title'] = "Editar fincas"
+        return context
 
 class FincaDeleteView(LoginRequiredMixin,DeleteView):
     model = Finca
