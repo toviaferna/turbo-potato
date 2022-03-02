@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django_filters.views import FilterView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from core.utils import get_deleted_objects
 
 # FINCA
 class FincaListView(LoginRequiredMixin,SearchViewMixin, SingleTableMixin, ListView):
@@ -20,8 +21,8 @@ class FincaListView(LoginRequiredMixin,SearchViewMixin, SingleTableMixin, ListVi
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['update_url'] = 'home'
-        context['delete_url'] = 'home'
+        context['update_url'] = 'finca_update'
+        context['delete_url'] = 'finca_delete'
         context['create_url'] = 'finca_create'
         context['title'] = "Fincas"
         return context
@@ -58,7 +59,17 @@ class FincaUpdateView(LoginRequiredMixin,UpdateView):
 
 class FincaDeleteView(LoginRequiredMixin,DeleteView):
     model = Finca
-    template_name = 'inventory/finca_delete.html'
+    template_name = 'generic/delete.html'
 
     def get_success_url(self):
-        return reverse_lazy("finca_list") """
+        return reverse_lazy("finca_list")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['list_url'] = 'form_group_list'
+        deletable_objects, model_count, protected = get_deleted_objects([self.object])
+        context['deletable_objects']=deletable_objects
+        context['model_count']=dict(model_count).items()
+        context['protected']=protected
+        context['title'] = "Eliminar fincas"
+        return context

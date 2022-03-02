@@ -19,6 +19,14 @@ class EditableTable(BaseTable):
                     template_name="includes/edit_button.html", 
                     verbose_name="Editar", 
                     orderable=False,
+                    attrs={
+                        'th':{
+                            'class':'col-sm-1 text-center',
+                        },
+                        'td':{
+                            'class':'col-sm-1 text-center',
+                        }
+                    }
                 )
             ),
             (
@@ -26,7 +34,15 @@ class EditableTable(BaseTable):
                 tables.TemplateColumn(
                     template_name="includes/delete_button.html", 
                     verbose_name="Eliminar", 
-                    orderable=False
+                    orderable=False,
+                    attrs={
+                        'th':{
+                            'class':'col-sm-1 text-center',
+                        },
+                        'td':{
+                            'class':'col-sm-1 text-center',
+                        }
+                    }
                 )
             )
         ]
