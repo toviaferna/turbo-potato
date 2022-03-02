@@ -13,5 +13,5 @@ class UserFilter(FilterSet):
     )
     class Meta:
         model = User
-        fields = ["is_superuser","is_staff","is_active","date_joined"]
+        fields = ["is_active","date_joined"]
 
