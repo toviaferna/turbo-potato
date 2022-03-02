@@ -17,6 +17,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.models import User
 from core.views import CustomDeleteView
 from django.urls import reverse_lazy
+from core.utils import get_deleted_objects
 
 def login_view(request):
     form = LoginForm(request.POST or None)

@@ -10,6 +10,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder, Column, Field, Fieldset, HTML, Layout, Row, Submit, Div
 from core.layouts import CancelButton
 
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
@@ -80,12 +81,12 @@ class CustomUserChangeForm(UserChangeForm):
                 Column('email'),
             ),
             Row(
-                Column('phone'),
                 Column('password'),
+                Column()
             ),
             "is_active",
             ButtonHolder(
-                Submit('submit', 'Guardar',  css_class='btn btn-success'),
+                Submit('submit', 'Guardar',  css_class='btn btn-primary'),
                 CancelButton(),
             )
             
@@ -94,3 +95,4 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active",)
+

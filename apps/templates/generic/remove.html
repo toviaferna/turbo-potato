@@ -43,22 +43,22 @@
                       </div>
                       {% endif %}
 
+                      <h2 class="h5 mt-4">Resumen</h2>
+                      <ul class="ml-8">
+                        {% for model_name, object_count in model_count %}
+                          <li>{{ model_name|capfirst }}: {{ object_count }}</li>
+                        {% endfor %}
+                      </ul>
+                          <h2  class="h5 mt-3">Objetos</h2>
+                      <p>
+                        <ul class="ml-8">
+                        {{ deletable_objects|unordered_list }}
+                        </ul>
+                        <br>
+                      </p>
 
-                      <div class="info-box bg-light col-12">
-                        <div class="info-box-content">
-                          <span class="info-box-text text-left text-muted">Resumen</span>
-                          {% for model_name, object_count in model_count %}
-                            <span class="info-box-number text-left text-muted mb-0">{{ model_name|capfirst }}: {{ object_count }}</span>
-                          {% endfor %}
-                        </div>
-                      </div>
+ 
 
-                      <div class="info-box bg-light col-12">
-                        <div class="info-box-content">
-                          <span class="info-box-text text-left text-muted">Objetos</span>
-                          <span class="info-box-number text-left text-muted mb-0">{{ deletable_objects|unordered_list }}</span>
-                        </div>
-                      </div>
                       <form method="post">
                         {% csrf_token %}
                         <input  class="btn btn-danger" type="submit" name="eliminar" value="Eliminar">
