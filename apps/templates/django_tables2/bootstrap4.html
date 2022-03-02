@@ -3,7 +3,7 @@
 {% block table-wrapper %}
 <div class="table-container table-responsive">
     {% block table %}
-        <table {% render_attrs table.attrs class="table  table-striped " %}>
+        <table {% render_attrs table.attrs class="table table-sm  table-striped " %}>
             {% block table.thead %}
             {% if table.show_header %}
                 <thead {{ table.attrs.thead.as_html }}>

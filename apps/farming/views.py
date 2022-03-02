@@ -59,14 +59,14 @@ class FincaUpdateView(LoginRequiredMixin,UpdateView):
 
 class FincaDeleteView(LoginRequiredMixin,DeleteView):
     model = Finca
-    template_name = 'generic/delete.html'
+    template_name = 'generic/remove.html'
 
     def get_success_url(self):
         return reverse_lazy("finca_list")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['list_url'] = 'form_group_list'
+        context['list_url'] = 'finca_list'
         deletable_objects, model_count, protected = get_deleted_objects([self.object])
         context['deletable_objects']=deletable_objects
         context['model_count']=dict(model_count).items()

@@ -14,42 +14,58 @@
           </div>
         </div><!-- /.container-fluid -->
     </section>
+
     <section class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
                 <div class="card card-solid">  
-                    <div class="">
-                        <h1 class="h2 w-100">Eliminar</h1>
-                        <p class="text-muted"> Desea eliminar {{ object }} ? </p>
+                    
+                    <div class="card-header">
+                        <h3 class="card-title">Desea eliminar {{ object }} ?</h3>
                     </div>
-                    {% if error %}
-                    <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-                      <h2 class="alert-heading">Error!</h2>
-                      {{ error }}
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+
+                    <div class="card-body">  
+
+                      {% if error %}                                        
+                      <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Error!</h3>
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                              <i class="fas fa-times"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          {{ error }}
+                        </div>
+                      </div>
+                      {% endif %}
+
+
+                      <div class="info-box bg-light col-12">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-left text-muted">Resumen</span>
+                          {% for model_name, object_count in model_count %}
+                            <span class="info-box-number text-left text-muted mb-0">{{ model_name|capfirst }}: {{ object_count }}</span>
+                          {% endfor %}
+                        </div>
+                      </div>
+
+                      <div class="info-box bg-light col-12">
+                        <div class="info-box-content">
+                          <span class="info-box-text text-left text-muted">Objetos</span>
+                          <span class="info-box-number text-left text-muted mb-0">{{ deletable_objects|unordered_list }}</span>
+                        </div>
+                      </div>
+                      <form method="post">
+                        {% csrf_token %}
+                        <input  class="btn btn-danger" type="submit" name="eliminar" value="Eliminar">
+                        <a class="btn btn-secondary" href="{% url list_url %}"> Cancelar </a>
+                      </form>
+
                     </div>
-                    {% endif %}
-                    <h2 class="h5 mt-4">Resumen</h2>
-                    <ul class="ml-8">
-                      {% for model_name, object_count in model_count %}
-                          <li>{{ model_name|capfirst }}: {{ object_count }}</li>
-                      {% endfor %}
-                    </ul>
-                        <h2  class="h5 mt-3">Objetos</h2>
-                    <p>
-                      <ul class="ml-8">
-                        {{ deletable_objects|unordered_list }}
-                      </ul>
-                      <br>
-                    </p>
-                <form method="post">
-                 {% csrf_token %}
-                 <input  class="btn btn-danger" type="submit" name="eliminar" value="Eliminar">
-                 <a class="btn btn-secondary" href="{% url list_url %}"> Cancelar </a>
-                </form>
                 </div>
             </div>
           </div>

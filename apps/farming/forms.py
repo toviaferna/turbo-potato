@@ -13,24 +13,13 @@ class FincaForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Div(
-                Div(
-                    "descripcion",
-                    "dimensionHa",
-                    "ubicacion",
-                    css_class="card-body",
-                ),
-                Div(
-                    ButtonHolder(
-                        Submit("submit", "Guardar", css_class="btn btn-primary"),
-                        CancelButton(),
-                    ),
-                    css_class="card-footer"
-                ),
-                css_class="card",
-            )
-            
-            
+            "descripcion",
+            "dimensionHa",
+            "ubicacion",
+            ButtonHolder(
+                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                CancelButton(),
+            ),               
         )
     class Meta:
         model = Finca
