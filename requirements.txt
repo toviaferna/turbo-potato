@@ -14,3 +14,4 @@ django-crispy-forms==1.13.0
 django-simple-menu==1.2.1
 django-tables2
 django-filter
+Pillow==8.1.1
