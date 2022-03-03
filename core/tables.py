@@ -26,7 +26,8 @@ class EditableTable(BaseTable):
                         'td':{
                             'class':'col-sm-1 text-center',
                         }
-                    }
+                    },
+                    exclude_from_export=True
                 )
             ),
             (
@@ -42,7 +43,8 @@ class EditableTable(BaseTable):
                         'td':{
                             'class':'col-sm-1 text-center',
                         }
-                    }
+                    },
+                    exclude_from_export=True
                 )
             )
         ]

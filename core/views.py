@@ -1,4 +1,11 @@
+from apps.mixins import SearchViewMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import list
 from django.views.generic.edit import DeleteView
+from django_tables2 import SingleTableMixin
+from django_tables2.export.views import ExportMixin
+from django_filters.views import FilterView
+
 
 class CustomDeleteView(DeleteView):
     error = None
@@ -42,3 +49,9 @@ def get_deleted_objects(objs):
     model_count = {model._meta.verbose_name_plural: len(
         objs) for model, objs in collector.model_objs.items()}
     return to_delete, model_count, protected
+
+
+class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):
+    paginate_by = 10
+    template_name = 'generic/list.html'
+    

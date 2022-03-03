@@ -15,3 +15,4 @@ django-simple-menu==1.2.1
 django-tables2
 django-filter
 Pillow==8.1.1
+tablib[xls, csv, json,xlsx]

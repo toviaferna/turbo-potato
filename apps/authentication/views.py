@@ -15,7 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django_filters.views import FilterView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.models import User
-from core.views import CustomDeleteView
+from core.views import CustomDeleteView, ListView
 from django.urls import reverse_lazy
 from core.utils import get_deleted_objects
 
@@ -37,7 +37,7 @@ def login_view(request):
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
-class UserListView(LoginRequiredMixin, SearchViewMixin, SingleTableMixin, FilterView):
+class UserListView(ListView):
     model = User
     filterset_class = UserFilter
     table_class =  UserTable

@@ -7,17 +7,16 @@ from .models import Finca
 from apps.mixins import SearchViewMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django_filters.views import FilterView
-from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from core.utils import get_deleted_objects
-
+from django_tables2.export.views import ExportMixin
+from core.views import ListView
 # FINCA
-class FincaListView(LoginRequiredMixin,SearchViewMixin, SingleTableMixin, ListView):
+class FincaListView(ListView):
     model = Finca
     table_class = FincaTable
-    paginate_by = 6
     search_fields = ['descripcion','ubicacion']
-    template_name = 'generic/list.html'
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
