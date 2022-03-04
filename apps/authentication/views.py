@@ -41,17 +41,11 @@ class UserListView(ListView):
     model = User
     filterset_class = UserFilter
     table_class =  UserTable
-    template_name = "generic/list.html"
     search_fields = ['first_name', 'username', 'email']
-    paginate_by = 10
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['update_url'] = "user_update"
-        context['delete_url'] = "user_delete"
-        context['create_url'] = "user_add"
-        context['title'] = "Usuarios"
-        return context
+    update_url =  "user_update"
+    create_url = "user_add"
+    delete_url = "user_delete"
+    page_title = "Usuarios"
 
 
 class UserCreateView(LoginRequiredMixin, CreateView):

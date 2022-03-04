@@ -54,4 +54,13 @@ def get_deleted_objects(objs):
 class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):
     paginate_by = 10
     template_name = 'generic/list.html'
-    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['update_url'] = self.update_url
+        context['delete_url'] = self.delete_url
+        context['create_url'] = self.create_url
+        context['title'] = self.page_title
+        if not self.filterset_class:
+            context['filter'] = None
+        return context

@@ -16,15 +16,10 @@ class FincaListView(ListView):
     model = Finca
     table_class = FincaTable
     search_fields = ['descripcion','ubicacion']
-    
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['update_url'] = 'finca_update'
-        context['delete_url'] = 'finca_delete'
-        context['create_url'] = 'finca_create'
-        context['title'] = "Fincas"
-        return context
+    update_url = 'finca_update'
+    delete_url = 'finca_delete'
+    create_url = 'finca_create'
+    page_title = "Fincas"
 
 class FincaCreateView(LoginRequiredMixin,CreateView):
     form_class = FincaForm

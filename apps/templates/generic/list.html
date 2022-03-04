@@ -2,7 +2,6 @@
 {% block title %}{{title}}{% endblock %} 
 {% block body_class %} sidebar-mini pace-secondary {% endblock body_class %}
 {% load render_table from django_tables2 %}
-{% load django_tables2 %}
 {% block content %}
 
 <div class="content-wrapper">
@@ -23,45 +22,18 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="{% if filter == None %}col-12{% else %}col-10{% endif %}">
+        <div class="{% if filter  %}col-10{% else %}col-12{% endif %}">
             <div class="card card-solid">  
                 <div class="card-header">
-                  
-                  
-                    
-                  
-                  <div class="col-8">
-                    {% if search %}          
-                      {% include 'includes/search_input.html' %}                   
-                    {% endif %}
-                  </div>
-                  
-                  <div class="col-2">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-default">Exportar</button>
-                      <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="{% export_url 'csv' %}">CSV</a>
-                      
-                        <a class="dropdown-item" href="{% export_url 'xls' %}">XLS</a>
-                        <a class="dropdown-item" href="{% export_url 'xlsx' %}">xlsx</a>
-                        <a class="dropdown-item" href="{% export_url 'json' %}">json</a>
-                      </div>
-                    </div>
-                  </div>
-                   
-                  
-                 
-                  
+                      {% if search %}          
+                        {% include 'includes/search_input.html' %}                   
+                      {% endif %}
                 </div>
                 <div class="card-body p-0">
                   {% render_table table %} 
                 </div>            
             </div>
         </div>
-        
         {% if filter %}
         <div class="col-2">
             <div class="card ">
