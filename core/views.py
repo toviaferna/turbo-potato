@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from apps.mixins import SearchViewMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import list
@@ -57,9 +58,9 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['update_url'] = self.update_url
-        context['delete_url'] = self.delete_url
-        context['create_url'] = self.create_url
+        context['update_url'] = None if not self.update_url else self.update_url
+        context['delete_url'] = None if not  self.delete_url else self.delete_url
+        context['create_url'] = None if not self.create_url else self.create_url
         context['title'] = self.page_title
         if not self.filterset_class:
             context['filter'] = None
