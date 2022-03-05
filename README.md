@@ -1,3 +1,3 @@
-# [Turbo-Potato]
+# Turbo-Potato
 
 
