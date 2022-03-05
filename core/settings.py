@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'apps.farming',
     'apps.finance',
     'apps.inventory',
+    'apps.supplies',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',

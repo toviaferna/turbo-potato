@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from apps.mixins import SearchViewMixin
+from core.mixins import SearchViewMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import edit
 from django_tables2 import SingleTableMixin
@@ -25,7 +25,7 @@ class DeleteView(edit.DeleteView):
         context['title'] = self.page_title
         context['error'] = self.error
         return context
-    
+
     def before_delete(self):
         pass
 
