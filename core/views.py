@@ -5,9 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import list
 from django.views.generic import edit
 from django_tables2 import SingleTableMixin
-from django_tables2.export.views import ExportMixin
+from core.tables.mixins import ExportMixin
 from django_filters.views import FilterView
-
 from core.utils import get_deleted_objects
 
 
