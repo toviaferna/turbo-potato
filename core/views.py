@@ -2,14 +2,12 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from apps.mixins import SearchViewMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import list
 from django.views.generic import edit
 from django_tables2 import SingleTableMixin
-from core.tables.mixins import ExportMixin
+from django_tables2.export import ExportMixin
 from django_filters.views import FilterView
 from core.utils import get_deleted_objects
-
-
+from core.tables.export import TableExport
 class DeleteView(edit.DeleteView):
     error = None
     template_name = 'generic/remove.html'
@@ -48,6 +46,7 @@ class DeleteView(edit.DeleteView):
 class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):
     paginate_by = 10
     template_name = 'generic/list.html'
+    export_class = TableExport
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -84,3 +83,4 @@ class UpdateView(edit.UpdateView):
         context['list_url'] = self.list_url
         context['title'] = self.page_title
         return context
+

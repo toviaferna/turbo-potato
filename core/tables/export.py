@@ -17,7 +17,7 @@ class TableExport(export.TableExport):
     YAML = "yaml"
 
     FORMATS = {
-        PDF: "application/pdf, charset=utf-8",
+        PDF: "application/pdf",
         CSV: "text/csv; charset=utf-8",
         HTML: "text/html; charset=utf-8",
         JSON: "application/json",
@@ -49,10 +49,9 @@ class TableExport(export.TableExport):
         return html
 
     def export(self):
-
         if self.format == self.PDF:
             response = BytesIO()
-            pdf = pisa.pisaDocument(BytesIO(self.get_dataset_as_html().encode("UTF-8")), response, encoding='utf-8')
+            pdf = pisa.pisaDocument(BytesIO(self.get_dataset_as_html().encode("UTF-8")), response)
             data = response.getvalue()
         elif self.format == self.HTML:
             return self.get_dataset_as_html()
