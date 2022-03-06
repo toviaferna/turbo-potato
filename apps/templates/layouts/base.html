@@ -15,7 +15,7 @@
   {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
-<body class="hold-transition {% block body_class %}{% endblock body_class %}">
+<body class="hold-transition layout-fixed {% block body_class %}{% endblock body_class %}">
 
 <div class="wrapper">
     
@@ -26,7 +26,10 @@
     {% block sidebar %}
       {% load menu %}
       {% generate_menu %}
+     
       {% include 'includes/sidebar.html' %}
+      
+     
     {% endblock %}
     
     {% block content %}
