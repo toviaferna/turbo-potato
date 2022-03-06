@@ -1,7 +1,8 @@
-from .models import Marca
+
+from apps.supplies.models import PedidoCompra
 from core.tables import EditableTable
 
-class MarcaTable(EditableTable):
+class PedidoCompraTable(EditableTable):
     class Meta:
-        model = Marca
-        fields = ("descripcion",)
+        model = PedidoCompra
+        fields = ("proveedor","fecha_documento","fecha_vencimiento","es_vigente",)

@@ -1,10 +1,11 @@
 from django.urls import path
 
-from .views import  MarcaCreateView, MarcaListView,MarcaUpdateView, MarcaDeleteView
+from .views import PedidoCompraListView #PedidoCompraCreateView, PedidoCompraListView,PedidoCompraUpdateView,PedidoCompraDeleteView
+
 
 urlpatterns = [
-    path('marca/<int:pk>/delete/', MarcaDeleteView.as_view(), name="marca_delete"),
-    path('marca/<int:pk>/update/', MarcaUpdateView.as_view(), name="marca_update"),
-    path('marca/add', MarcaCreateView.as_view(), name="marca_create"),
-    path("marca/",  MarcaListView.as_view(), name="marca_list"),
+    #path('pedido_compra/<int:pk>/delete/', PedidoCompraDeleteView.as_view(), name="pedido_compra_delete"),
+    #path('pedido_compra/<int:pk>/update/', PedidoCompraUpdateView.as_view(), name="pedido_compra_update"),
+    #path('pedido_compra/add', PedidoCompraCreateView.as_view(), name="pedido_compra_create"),
+    path("pedido_compra/",  PedidoCompraListView.as_view(), name="pedido_compra_list"),
 ]
