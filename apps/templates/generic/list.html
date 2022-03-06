@@ -24,7 +24,7 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="{% if filter  %}col-10{% else %}col-12{% endif %}">
+        <div class="{% if filter  %}col-sm-10{% else %}col-sm-12{% endif %}">
             <div class="card card-solid">  
                 <div class="card-header">
                       {% if search %}          
@@ -37,7 +37,7 @@
             </div>
         </div>
         {% if filter %}
-        <div class="col-2">
+        <div class="col-sm-2">
             <div class="card ">
                 <div class="card-body filter overflow-auto">
                     {% include 'includes/filter_form.html'%}

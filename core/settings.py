@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.inventory',
     'apps.supplies',
     'crispy_forms',
+    'extra_views',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
