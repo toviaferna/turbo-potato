@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 
 children = (
     MenuItem(
-        "Finca",
+        "Fincas",
         reverse("finca_list"),
         icon="fa fa-map",        
     ),
