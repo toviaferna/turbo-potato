@@ -118,7 +118,7 @@ class CuentaListView(ListView):
     update_url = 'cuenta_update'
     delete_url = 'cuenta_delete'
     create_url = 'cuenta_create'
-    page_title = "Cuentaes"
+    page_title = "Cuentas"
 
 class CuentaCreateView(CreateView):
     form_class = CuentaForm
