@@ -11,19 +11,31 @@
             padding: 0.25rem;
             vertical-align: top;
         }
-         thead th {
+        thead th {
             vertical-align:middle;
             border-bottom: 2px solid #dee2e6;
             text-align: left;
-        }/*
-        table tbody + tbody {
-            border-top: 2px solid #000;
-        } */
+        }
+        .to_right{
+            float: right;
+        }
+        .to_left{
+            float: left;
+        }
     </style>
 </head>
 <body>
-{{ today | date:"d/m/Y H:i" }}
-<h1 style="margin-top: 0px;">{{title}}</h1>
-{{ table|safe }}
+    <div  style="width: 100%;overflow: auto;">
+        <div style="width: 50%;float: left;">
+            
+        </div>
+        <div style="width: 50%;float: right;">
+            {{ today | date:"d/m/Y H:i" }}
+        </div>
+    </div>
+    <h1 style="margin-top: 0px;">{{title}}</h1>
+    
+    {{ table|safe }}
+    
 </body>
 </html>
