@@ -65,4 +65,4 @@ class Persona(models.Model):
     es_empleado = models.BooleanField(verbose_name="Es Empleado?",default=False,help_text="La persona será tratada como un empleado de la empresa")
     
     def __str__(self):
-        return self.razonSocial
+        return self.razon_social

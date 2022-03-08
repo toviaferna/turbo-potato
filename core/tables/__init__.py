@@ -14,39 +14,22 @@ class EditableTable(BaseTable):
     def __init__(self, *args, **kwargs):
         kwargs['extra_columns'] = [
             (
-                'editar', 
+                'acciones', 
                 tables.TemplateColumn(
-                    template_name="includes/edit_button.html", 
-                    verbose_name="Editar", 
+                    template_name="includes/accion_button.html", 
+                    verbose_name="Acciones", 
                     orderable=False,
                     attrs={
                         'th':{
-                            'class':'col-sm-1 text-center',
+                            'class':'col-sm-2 text-center',
                         },
                         'td':{
-                            'class':'col-sm-1 text-center',
+                            'class':'col-sm-2 text-center',
                         }
                     },
                     exclude_from_export=True
                 )
             ),
-            (
-                'eliminar', 
-                tables.TemplateColumn(
-                    template_name="includes/delete_button.html", 
-                    verbose_name="Eliminar", 
-                    orderable=False,
-                    attrs={
-                        'th':{
-                            'class':'col-sm-1 text-center',
-                        },
-                        'td':{
-                            'class':'col-sm-1 text-center',
-                        }
-                    },
-                    exclude_from_export=True
-                )
-            )
         ]
         super().__init__(*args, **kwargs)
 
