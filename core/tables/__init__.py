@@ -10,7 +10,7 @@ class SingleTable(BaseTable):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs) 
 
-class EditableTable(BaseTable):
+class AccionTable(BaseTable):
     def __init__(self, *args, **kwargs):
         kwargs['extra_columns'] = [
             (

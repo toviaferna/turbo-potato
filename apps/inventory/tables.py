@@ -1,27 +1,27 @@
 from .models import Categoria, Deposito, Item, Marca, TipoItem
-from core.tables import EditableTable
+from core.tables import AccionTable
 
-class MarcaTable(EditableTable):
+class MarcaTable(AccionTable):
     class Meta:
         model = Marca
         fields = ("descripcion",)
 
-class CategoriaTable(EditableTable):
+class CategoriaTable(AccionTable):
     class Meta:
         model = Categoria
         fields = ("descripcion",)
 
-class DepositoTable(EditableTable):
+class DepositoTable(AccionTable):
     class Meta:
         model = Deposito
         fields = ("descripcion","es_planta_acopiadora")
 
-class TipoItemTable(EditableTable):
+class TipoItemTable(AccionTable):
     class Meta:
         model = TipoItem
         fields = ("descripcion",)
 
-class ItemTable(EditableTable):
+class ItemTable(AccionTable):
     class Meta:
         model = Item
         fields = ("descripcion","categoria","marca","tipo_impuesto","costo","ultimo_costo","precio","es_activo")

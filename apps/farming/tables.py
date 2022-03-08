@@ -1,7 +1,7 @@
 from .models import Finca
-from core.tables import EditableTable
+from core.tables import AccionTable
 
-class FincaTable(EditableTable):
+class FincaTable(AccionTable):
     class Meta:
         model = Finca
         fields = ("descripcion","dimensionHa","ubicacion")

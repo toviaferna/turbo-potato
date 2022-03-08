@@ -3,7 +3,7 @@ from django_tables2.export import export
 from django.utils import timezone
 import xhtml2pdf.pisa as pisa
 from django.template.loader import get_template
-
+import uuid
 class TableExport(export.TableExport):
     PDF = "pdf"
     CSV = "csv"

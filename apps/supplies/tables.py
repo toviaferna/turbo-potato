@@ -1,8 +1,8 @@
 
 from apps.supplies.models import PedidoCompra
-from core.tables import EditableTable
+from core.tables import AccionTable
 
-class PedidoCompraTable(EditableTable):
+class PedidoCompraTable(AccionTable):
     class Meta:
         model = PedidoCompra
         fields = ("proveedor","fecha_documento","fecha_vencimiento","es_vigente",)
