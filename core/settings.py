@@ -27,6 +27,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Application definition
 INSTALLED_APPS = [
     'menu',
+    'calculation',
     'django_tables2',
     'django_filters',
     'apps.home',

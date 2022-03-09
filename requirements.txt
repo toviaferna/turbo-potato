@@ -18,3 +18,4 @@ Pillow==8.1.1
 tablib[csv, json, xlsx, ods, html]
 git+https://github.com/xhtml2pdf/xhtml2pdf@master#xhtml2pdf
 django-extra-views
+django-calculation
