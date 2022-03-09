@@ -9,14 +9,14 @@
 {% block content %}
   <div class="login-box">
     <div class="login-logo">
-        Nombre del <b>Sotfware</b>
+        Agro <b>Atardecer</b>
     </div>
     <!-- /.login-logo -->
     <div class="card">
       <div class="card-body login-card-body">
             <p class="login-box-msg">
             {% if msg %}
-                {{ msg | safe }}
+                <span class="text-danger">{{ msg | safe }}</span>
             {% else %}
 
             {% endif %}
@@ -53,11 +53,4 @@
 
 {% endblock content %}
 
-{% block javascripts %}
-
-  <!-- jQuery -->
-  <script src="/static/assets/plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
-  <script src="/static/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-{% endblock javascripts %}
+{% block javascripts %}{% endblock javascripts %}

@@ -24,9 +24,9 @@ def login_view(request):
                 login(request, user)
                 return redirect("home")
             else:
-                msg = 'Invalid credentials'
+                msg = 'Datos no validos.'
         else:
-            msg = 'Error validating the form'
+            msg = 'Error al validar el formulario'
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
