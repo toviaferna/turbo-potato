@@ -7,6 +7,7 @@ from apps.supplies.models import PedidoCompra, PedidoCompraDetalle
 from core.layouts import Formset
 from apps.finance.models import Persona
 import calculation
+from core.widgets import DateInput
 class PedidoCompraDetalleForm(ModelForm):
     
     def __init__(self, *args, **kwargs):
@@ -22,10 +23,6 @@ class PedidoCompraForm(forms.ModelForm):
     cantidad = forms.DecimalField(
         widget=calculation.SumInput('cantidad',   attrs={'readonly':True}),
     )
-    class Meta:
-        model = PedidoCompra
-        fields = ['proveedor','fecha_documento', 'fecha_vencimiento', 'observacion']
-        widgets = {'fecha_documento':forms.DateInput,'fecha_vencimiento':forms.DateInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -35,9 +32,11 @@ class PedidoCompraForm(forms.ModelForm):
         #self.fields['cantidad'].widget = DecimalMaskInput()
         self.fields["proveedor"].queryset =  proveedor = Persona.objects.filter(es_proveedor=True)
         self.helper.layout = Layout(
-            "proveedor",
-            "fecha_documento",
-            "fecha_vencimiento",
+            Row(
+                Column("proveedor"),
+                Column("fecha_documento"),
+                Column("fecha_vencimiento")
+            ),
             "observacion",
             Fieldset(
                 u'Detalle',
@@ -63,3 +62,7 @@ class PedidoCompraForm(forms.ModelForm):
                 )
             ) ,
         )
+    class Meta:
+        model = PedidoCompra
+        fields = ['proveedor','fecha_documento', 'fecha_vencimiento', 'observacion']
+        widgets = {'fecha_documento':DateInput,'fecha_vencimiento':DateInput}

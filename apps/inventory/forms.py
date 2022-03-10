@@ -65,9 +65,9 @@ class ItemForm(ModelForm):
                 Column("tipo_impuesto"),
             ),
             Row(
-                Column("precio"),
-                Column("es_activo"),
+                Column("precio", css_class="col-sm-4"),
             ),
+            "es_activo",
             ButtonHolder(
                 Submit("submit", "Guardar", css_class="btn btn-primary"),
                 CancelButton(),

@@ -50,7 +50,7 @@
                             {% if forloop.last and formset.can_delete %}
                                 <td>
                                     {% include 'bootstrap4/field.html' with formset_delete=True form_show_labels=False %}
-                                    <a class="btn btn-danger" data-formset-delete-button><i class="bi-x-lg"></i></a>
+                                    <a class="btn btn-danger" data-formset-delete-button><i class="fa fa-x"></i></a>
                                 </td>
                             {% else %}
                                 {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False %}
@@ -73,7 +73,7 @@
                         {% if forloop.last and formset.can_delete %}
                             <td>
                                 {% include 'bootstrap4/field.html' with formset_delete=True form_show_labels=False %}
-                                <a class="btn btn-danger" data-formset-delete-button><i class="bi-x-lg"></i></a>
+                                <a class="btn btn-danger" data-formset-delete-button><i class="fa fa-x"></i></a>
                             </td>
                         {% else %}
                             {% include 'bootstrap4/field.html' with tag="td" form_show_labels=False %}

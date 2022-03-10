@@ -75,6 +75,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 
             ],
+            'libraries':{
+                'formset_tags': 'core.templatetags.formset_tags',
+            }
         },
     },
 ]
