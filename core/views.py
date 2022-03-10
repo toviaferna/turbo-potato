@@ -8,6 +8,7 @@ from django_tables2.export import ExportMixin
 from django_filters.views import FilterView
 from core.utils import get_deleted_objects
 from core.tables.export import TableExport
+
 class DeleteView(edit.DeleteView):
     error = None
     template_name = 'generic/remove.html'
