@@ -16,6 +16,6 @@ django-tables2
 django-filter
 Pillow==8.1.1
 tablib[csv, json, xlsx, ods, html]
-git+https://github.com/xhtml2pdf/xhtml2pdf@master#xhtml2pdf
+xhtml2pdf==0.2.6
 django-extra-views
 django-calculation
