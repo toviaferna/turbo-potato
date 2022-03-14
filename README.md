@@ -10,7 +10,7 @@
  [![GitHub contributors](https://badgen.net/github/contributors/toviaferna/turbo-potato)](https://GitHub.com/toviaferna/turbo-potato/graphs/contributors/) [![GitHub issues](https://badgen.net/github/issues/toviaferna/turbo-potato/)](https://GitHub.com/toviaferna/turbo-potato/issues/) [![GitHub total-pull-requests](https://badgen.net/github/prs/toviaferna/turbo-potato/)](https://GitHub.com/toviaferna/turbo-potato/pull/)
 
 ### Cómo usarlo
-[![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
+### [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 Crear un entorno virtual de Python.
 
 ```
