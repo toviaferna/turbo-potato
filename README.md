@@ -31,3 +31,14 @@ Instalar dependencias
 (venv) c:\turbo-potato\pip install -r requirements.txt
 ```
 
+Migrar
+
+```
+(venv) c:\turbo-potato\python manage.py migrate
+```
+
+Access the web app in browser:
+```
+(venv) c:\turbo-potato\python manage.py runserver
+```
+
