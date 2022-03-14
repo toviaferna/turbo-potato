@@ -29,8 +29,12 @@ Migrar
 ```
 (venv) c:\turbo-potato\python manage.py migrate
 ```
-Acceda a la aplicación web en el navegador:
+Iniciar la aplicación
 ```
 (venv) c:\turbo-potato\python manage.py runserver
+```
+Acceda a la aplicación web en el navegador:
+```
+http://127.0.0.1:8000/
 ```
 
