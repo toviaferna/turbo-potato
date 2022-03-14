@@ -15,8 +15,6 @@
 </p>
 
 ### Windows
-Configuraciones particulares requeridas para desarrollar en windows.
-
 Crear un entorno virtual de Python.
 
 ```
