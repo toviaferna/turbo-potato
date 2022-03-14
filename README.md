@@ -32,6 +32,6 @@ c:\turbo-potato\venv\Scripts> activate
 Instalar dependencias
 
 ```
-c:\turbo-potato\pip install -r requirements.txt
+(venv) c:\turbo-potato\pip install -r requirements.txt
 ```
 
