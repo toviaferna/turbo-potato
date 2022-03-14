@@ -14,3 +14,26 @@
     </a>
 </p>
 
+### Windows
+Configuraciones particulares requeridas para desarrollar en windows.
+
+Crear un entorno virtual de Python.
+
+```
+cd turbo-potato
+c:\turbo-potato> python -m venv venv
+```
+
+Activar el entorno virtual.
+
+```
+c:\turbo-potato> cd venv\Scripts
+c:\turbo-potato\venv\Scripts> activate
+```
+
+Instalar dependencias
+
+```
+c:\turbo-potato\pip install -r requirements.txt
+```
+
