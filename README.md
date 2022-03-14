@@ -4,12 +4,11 @@
   <img src="https://user-images.githubusercontent.com/33908299/158191854-45c2fef1-0d19-482a-b539-f3abcd4d14fe.png" width="100" />
  </kbd>
  <h2 align="center">Turbo-Potato</h2>
- <p align="center"></p>
 </p>
 
 
- [![GitHub contributors](https://badgen.net/github/contributors/Naereen/Strapdown.js)](https://GitHub.com/toviaferna/turbo-potato/graphs/contributors/) [![GitHub issues](https://badgen.net/github/issues/Naereen/Strapdown.js/)](https://GitHub.com/toviaferna/turbo-potato/issues/) [![GitHub total-pull-requests](https://badgen.net/github/prs/Naereen/Strapdown.js)](https://GitHub.com/toviaferna/turbo-potato/pull/)
-<hr>
+ [![GitHub contributors](https://badgen.net/github/contributors/toviaferna/turbo-potato)](https://GitHub.com/toviaferna/turbo-potato/graphs/contributors/) [![GitHub issues](https://badgen.net/github/issues/toviaferna/turbo-potato/)](https://GitHub.com/toviaferna/turbo-potato/issues/) [![GitHub total-pull-requests](https://badgen.net/github/prs/toviaferna/turbo-potato/)](https://GitHub.com/toviaferna/turbo-potato/pull/)
+
 
 ### [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 Crear un entorno virtual de Python.
