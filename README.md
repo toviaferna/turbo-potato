@@ -11,8 +11,8 @@
 
 </p>
 
-![image]({})
-<img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" >
+
+### [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 Crear un entorno virtual de Python.
 
 ```
