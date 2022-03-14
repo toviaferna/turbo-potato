@@ -12,32 +12,24 @@
 ### Cómo usarlo
 ### ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 Crear un entorno virtual de Python.
-
 ```
 cd turbo-potato
 c:\turbo-potato> python -m venv venv
 ```
-
 Activar el entorno virtual.
-
 ```
 c:\turbo-potato> cd venv\Scripts
 c:\turbo-potato\venv\Scripts> activate
 ```
-
 Instalar dependencias
-
 ```
 (venv) c:\turbo-potato\pip install -r requirements.txt
 ```
-
 Migrar
-
 ```
 (venv) c:\turbo-potato\python manage.py migrate
 ```
-
-Access the web app in browser:
+Acceda a la aplicación web en el navegador:
 ```
 (venv) c:\turbo-potato\python manage.py runserver
 ```
