@@ -9,7 +9,7 @@
 
 
  [![GitHub contributors](https://badgen.net/github/contributors/Naereen/Strapdown.js)](https://GitHub.com/toviaferna/turbo-potato/graphs/contributors/) [![GitHub issues](https://badgen.net/github/issues/Naereen/Strapdown.js/)](https://GitHub.com/toviaferna/turbo-potato/issues/) [![GitHub total-pull-requests](https://badgen.net/github/prs/Naereen/Strapdown.js)](https://GitHub.com/toviaferna/turbo-potato/pull/)
-
+<hr>
 
 ### [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
 Crear un entorno virtual de Python.
