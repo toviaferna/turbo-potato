@@ -1,6 +1,8 @@
 
 <p align="center">
- <img src="https://user-images.githubusercontent.com/33908299/158191854-45c2fef1-0d19-482a-b539-f3abcd4d14fe.png" width="100" />
+ <kbd>
+  <img src="https://user-images.githubusercontent.com/33908299/158191854-45c2fef1-0d19-482a-b539-f3abcd4d14fe.png" width="100" />
+ </kbd>
  <h2 align="center">Turbo-Potato</h2>
  <p align="center"></p>
 </p>
