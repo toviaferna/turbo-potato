@@ -7,9 +7,9 @@
  <p align="center"></p>
 </p>
 
-<p align="center">    
-  [![Issues](https://img.shields.io/github/issues-pr/toviaferna/turbo-potato?color=0088ff)](https://github.com/toviaferna/turbo-potato/issues)
-</p>
+    
+  [![Issue](https://img.shields.io/github/issues-pr/toviaferna/turbo-potato?color=0088ff)](https://github.com/toviaferna/turbo-potato/issues)
+
 
 
 ### [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
