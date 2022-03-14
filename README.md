@@ -1,6 +1,8 @@
 
 <p align="center">
- <img width="100px" height="auto" src="https://cdn-icons-png.flaticon.com/512/1772/1772183.png" align="center" alt="Turbo potato" style="border-radius:50%" />
+ ![image](https://user-images.githubusercontent.com/33908299/158191511-b355d99e-e0da-4a1b-9be8-c50fe69f4198.png)
+
+ 
  <h2 align="center">Turbo-Potato</h2>
  <p align="center"></p>
 </p>
