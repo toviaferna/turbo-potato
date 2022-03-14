@@ -15,7 +15,7 @@
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/toviaferna/turbo-potato?color=0088ff" />
     </a>
     <a href="https://github.com/toviaferna/turbo-potato/forks-url">
-      <img alt="GitHub forks" src="https://img.shields.io/github/forks-url/toviaferna/turbo-potato?color=0088ff" />
+      <img alt="GitHub forks" src="https://img.shields.io/github/forks/toviaferna/turbo-potato?color=0088ff" />
     </a>
 </p>
 
