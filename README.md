@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">    
-  [![Issues](https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff)](https://github.com/toviaferna/turbo-potato/issues)
+  [![Issues](https://img.shields.io/github/issues-pr/toviaferna/turbo-potato?color=0088ff)](https://github.com/toviaferna/turbo-potato/issues)
 </p>
 
 
