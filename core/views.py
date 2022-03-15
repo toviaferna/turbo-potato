@@ -8,8 +8,13 @@ from django_tables2.export import ExportMixin
 from django_filters.views import FilterView
 from core.utils import get_deleted_objects
 from core.tables.export import TableExport
+from extra_views import CreateWithInlinesView, UpdateWithInlinesView
+from django.db import models, transaction
+from django.forms.formsets import all_valid
+from django.core.exceptions import ValidationError
+from apps.supplies.mixins import FormsetInlinesMetaMixin
 
-class DeleteView(edit.DeleteView):
+class DeleteView(LoginRequiredMixin, edit.DeleteView):
     error = None
     template_name = 'generic/remove.html'
 
@@ -85,3 +90,103 @@ class UpdateView(edit.UpdateView):
         context['title'] = self.page_title
         return context
 
+
+class CreateWithFormsetInlinesView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesView):
+    template_name = 'generic/edit.html'
+    
+    def get_success_url(self):
+        return reverse_lazy(self.list_url)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['helper'] = None
+        context['list_url'] = self.list_url
+        context['title'] = self.page_title
+        return context
+
+    def run_form_extra_validation(self, form, inlines):
+        """ ejecutar validaciones adicionales de formularios """
+
+    def run_form_extra_validation_form_master(self, form):
+        """ ejecutar validaciones adicionales de formularios """
+        return True
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        return form
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        #initial_object = self.object
+        inlines = self.construct_inlines()
+        try:
+            with transaction.atomic():
+                if form.is_valid() and self.run_form_extra_validation_form_master(form):
+                    self.object = form.save(commit=False)
+                    form_validated = True
+                else:
+                    form_validated = False
+                # Loop through inlines to set master instance
+                for inline in inlines:
+                    inline.instance = form.instance
+
+                if all_valid(inlines) and form_validated:
+                    response = self.forms_valid(form, inlines)
+                    self.run_form_extra_validation(form, inlines)
+                    if not form.errors and response:
+                        return response
+                raise ValidationError('Error')
+        except ValidationError:
+            pass
+        #self.object = initial_object
+        return self.forms_invalid(form, inlines)
+
+class UpdateWithFormsetInlinesView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesView):
+    template_name = 'generic/edit.html'
+    
+    def get_success_url(self):
+        return reverse_lazy(self.list_url)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        return form
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['helper'] = None
+        context['list_url'] = self.list_url
+        context['title'] = self.page_title
+        return context
+
+    def run_form_extra_validation(self, form, inlines):
+        """ ejecutar validaciones adicionales de formularios """
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        initial_object = self.object
+        inlines = self.construct_inlines()
+        try:
+            with transaction.atomic():
+                if form.is_valid():
+                    self.object = form.save(commit=False)
+                    form_validated = True
+                else:
+                    form_validated = False
+                # Loop through inlines to set master instance
+                for inline in inlines:
+                    inline.instance = form.instance
+
+                if all_valid(inlines) and form_validated:
+                    response = self.forms_valid(form, inlines)
+                    self.run_form_extra_validation(form, inlines)
+                    if not form.errors and response:
+                        return response
+                raise ValidationError('Error')
+        except ValidationError:
+            pass
+        self.object = initial_object
+        return self.forms_invalid(form, inlines)
