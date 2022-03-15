@@ -35,6 +35,6 @@ Iniciar la aplicación
 ```
 Acceda a la aplicación web en el navegador:
 ```
-<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>
+http://127.0.0.1:8000/
 ```
 
