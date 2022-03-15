@@ -111,7 +111,7 @@ class PedidoCompraCreateView(LoginRequiredMixin,CreateWithFormsetInlinesView):
     
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['list_url'] = 'pedico_compra_list'
+        context['list_url'] = 'pedido_compra_list'
         return context
 
 class PedidoCompraUpdateView(LoginRequiredMixin,UpdateWithFormsetInlinesView):

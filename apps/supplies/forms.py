@@ -1,13 +1,15 @@
 from django import forms
 from django.forms.models import ModelForm
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column,Fieldset, HTML, Div
+from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column,Fieldset, HTML, Div,Field
 from apps.inventory.models import Item
 from apps.supplies.models import PedidoCompra, PedidoCompraDetalle
 from core.layouts import Formset
 from apps.finance.models import Persona
 import calculation
 from core.widgets import DateInput
+from core.layouts import CancelButton 
+
 class PedidoCompraDetalleForm(ModelForm):
     
     def __init__(self, *args, **kwargs):
@@ -33,9 +35,9 @@ class PedidoCompraForm(forms.ModelForm):
         self.fields["proveedor"].queryset =  proveedor = Persona.objects.filter(es_proveedor=True)
         self.helper.layout = Layout(
             Row(
-                Column("proveedor"),
-                Column("fecha_documento"),
-                Column("fecha_vencimiento")
+                Column("proveedor", css_class="col-sm-8"),
+                Column("fecha_documento", css_class="col-sm-2"),
+                Column("fecha_vencimiento", css_class="col-sm-2")
             ),
             "observacion",
             Fieldset(
@@ -45,22 +47,16 @@ class PedidoCompraForm(forms.ModelForm):
                 ), 
                 
             ),
+
             Row(
-                Column(
-                    HTML("<div class='w-100'></div>")
-                ), 
-                Column(
-                    HTML('<span class="w-100"> Cantidad: </span>'),
-                    css_class="text-right"
-                ), 
-                Column("cantidad", css_class="col-sm-3")
-            ),  
-            Row(
-                Div(
-                    Submit("submit", "Guardar",css_class = "btn btn-success"), 
-                    HTML("""<a class="btn btn-secondary" href="{% url 'pedido_compra_list' %}"> Cancelar</a>""" )
-                )
-            ) ,
+                Column(HTML("<label>Cantidad</label> {{cantidad}}"),css_class="text-right col-sm-9"), 
+                Column(Field("cantidad", css_class="text-danger text-right bg-white border-0"), css_class="col-sm-2",),
+                Column(css_class="col-sm-1"),
+            ),
+            ButtonHolder(
+                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                CancelButton(),
+            )
         )
     class Meta:
         model = PedidoCompra
