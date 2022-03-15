@@ -7,7 +7,7 @@ from apps.supplies.models import PedidoCompra, PedidoCompraDetalle
 from core.layouts import Formset
 from apps.finance.models import Persona
 import calculation
-from core.widgets import DateInput
+from core.widgets import DateInput, SumInput
 from core.layouts import CancelButton 
 
 class PedidoCompraDetalleForm(ModelForm):
@@ -23,7 +23,7 @@ class PedidoCompraDetalleForm(ModelForm):
 
 class PedidoCompraForm(forms.ModelForm):
     cantidad = forms.DecimalField(
-        widget=calculation.SumInput('cantidad',   attrs={'readonly':True}),
+        widget=SumInput('cantidad'),
     )
 
     def __init__(self, *args, **kwargs):
@@ -49,8 +49,8 @@ class PedidoCompraForm(forms.ModelForm):
             ),
 
             Row(
-                Column(HTML("<label>Cantidad</label> {{cantidad}}"),css_class="text-right col-sm-9"), 
-                Column(Field("cantidad", css_class="text-danger text-right bg-white border-0"), css_class="col-sm-2",),
+                Column(HTML("<label>Total cantidad</label>"),css_class="text-right col-sm-9"), 
+                Column(Field("cantidad"), css_class="col-sm-2",),
                 Column(css_class="col-sm-1"),
             ),
             ButtonHolder(
