@@ -1,4 +1,3 @@
-import email
 import django_tables2 as tables
 from django.contrib.auth.models import User
 from core.tables import AccionTable

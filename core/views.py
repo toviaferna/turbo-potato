@@ -9,7 +9,7 @@ from django_filters.views import FilterView
 from core.utils import get_deleted_objects
 from core.tables.export import TableExport
 from extra_views import CreateWithInlinesView, UpdateWithInlinesView
-from django.db import models, transaction
+from django.db import transaction
 from django.forms.formsets import all_valid
 from django.core.exceptions import ValidationError
 from apps.supplies.mixins import FormsetInlinesMetaMixin
@@ -63,40 +63,14 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
         if not self.filterset_class:
             context['filter'] = None
         return context
-    
-class CreateView(LoginRequiredMixin, edit.CreateView):
-    template_name = 'generic/edit.html'
-    
-    def get_success_url(self):
-        return reverse_lazy(self.list_url)
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['helper'] = None
-        context['list_url'] = self.list_url
-        context['title'] = self.page_title
-        return context
 
-class UpdateView(edit.UpdateView):
+
+class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesView):
     template_name = 'generic/edit.html'
 
     def get_success_url(self):
         return reverse_lazy(self.list_url)
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['helper'] = None
-        context['list_url'] = self.list_url
-        context['title'] = self.page_title
-        return context
 
-
-class CreateWithFormsetInlinesView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesView):
-    template_name = 'generic/edit.html'
-    
-    def get_success_url(self):
-        return reverse_lazy(self.list_url)
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['helper'] = None
@@ -143,16 +117,16 @@ class CreateWithFormsetInlinesView(LoginRequiredMixin, FormsetInlinesMetaMixin, 
         #self.object = initial_object
         return self.forms_invalid(form, inlines)
 
-class UpdateWithFormsetInlinesView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesView):
+class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesView):
     template_name = 'generic/edit.html'
-    
+
     def get_success_url(self):
         return reverse_lazy(self.list_url)
-    
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
         return form
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['helper'] = None
