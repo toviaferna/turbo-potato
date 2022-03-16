@@ -48,6 +48,14 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView):
             context = self.get_context_data(object=self.object)
             return self.render_to_response(context)
 
+class AnnulledView(DeleteView):
+    @transaction.atomic
+    def delete(self, request, *args, **kwargs):
+        success_url = self.get_success_url()
+        self.object = self.get_object()
+        self.object.es_vigente = False
+        self.object.save()
+        return HttpResponseRedirect(success_url)
 
 class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):
     paginate_by = 10
@@ -86,6 +94,7 @@ class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesV
         return True
 
     def get_form(self, form_class=None):
+        print(form_class)
         form = super().get_form(form_class)
         return form
 
