@@ -1,7 +1,10 @@
 from apps.farming.forms import FincaForm
 from apps.farming.tables import FincaTable
+from core.views import CreateView, DeleteView, ListView, UpdateView
+
 from .models import Finca
-from core.views import DeleteView, ListView, CreateView, UpdateView
+
+
 # FINCA
 class FincaListView(ListView):
     model = Finca

@@ -3,14 +3,16 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-# Create your views here.
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
 from apps.authentication.filters import UserFilter
 from apps.authentication.tables import UserTable
-from .forms import LoginForm, CustomUserCreationForm, CustomUserChangeForm
-from core.views import CreateView, DeleteView, UpdateView, ListView
+from core.views import CreateView, DeleteView, ListView, UpdateView
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+# Create your views here.
+from django.shortcuts import redirect, render
+
+from .forms import CustomUserChangeForm, CustomUserCreationForm, LoginForm
+
 
 def login_view(request):
     form = LoginForm(request.POST or None)

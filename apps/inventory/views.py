@@ -1,8 +1,13 @@
 from apps.inventory.filters import DepositoFilter, ItemFilter
-from apps.inventory.forms import CategoriaForm, DepositoForm, ItemForm, MarcaForm, TipoItemForm
-from apps.inventory.tables import CategoriaTable, DepositoTable, ItemTable, MarcaTable, TipoItemTable
+from apps.inventory.forms import (CategoriaForm, DepositoForm, ItemForm,
+                                  MarcaForm, TipoItemForm)
+from apps.inventory.tables import (CategoriaTable, DepositoTable, ItemTable,
+                                   MarcaTable, TipoItemTable)
+from core.views import CreateView, DeleteView, ListView, UpdateView
+
 from .models import Categoria, Deposito, Item, Marca, TipoItem
-from core.views import DeleteView, ListView, CreateView, UpdateView
+
+
 # FINCA
 class MarcaListView(ListView):
     model = Marca

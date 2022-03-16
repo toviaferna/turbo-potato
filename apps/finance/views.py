@@ -1,8 +1,16 @@
-from apps.finance.filters import CuentaFilter, DistritoFilter, LocalidadFilter, PersonaFilter
-from apps.finance.forms import BancoForm, CuentaForm, DepartamentoForm, DistritoForm, LocalidadForm, PaisForm, PersonaForm, TipoImpuestoForm
-from apps.finance.tables import BancoTable, CuentaTable, DepartamentoTable, DistritoTable, LocalidadTable, PaisTable, PersonaTable, TipoImpuestoTable
-from .models import Banco, Cuenta, Departamento, Distrito, Localidad, Pais, Persona, TipoImpuesto
-from core.views import DeleteView, ListView, CreateView, UpdateView
+from apps.finance.filters import (CuentaFilter, DistritoFilter,
+                                  LocalidadFilter, PersonaFilter)
+from apps.finance.forms import (BancoForm, CuentaForm, DepartamentoForm,
+                                DistritoForm, LocalidadForm, PaisForm,
+                                PersonaForm, TipoImpuestoForm)
+from apps.finance.tables import (BancoTable, CuentaTable, DepartamentoTable,
+                                 DistritoTable, LocalidadTable, PaisTable,
+                                 PersonaTable, TipoImpuestoTable)
+from core.views import CreateView, DeleteView, ListView, UpdateView
+
+from .models import (Banco, Cuenta, Departamento, Distrito, Localidad, Pais,
+                     Persona, TipoImpuesto)
+
 
 class BancoListView(ListView):
     model = Banco
