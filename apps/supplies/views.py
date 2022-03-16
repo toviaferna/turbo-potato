@@ -46,5 +46,5 @@ class OrdenCompraCreateView(CreateView):
 class OrdenCompraAnnulledView(AnnulledView):
     model = OrdenCompra
     page_title = "Anular orden de compra"
-    list_url = "pedido_compra_list"
+    list_url = "orden_compra_list"
 

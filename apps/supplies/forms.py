@@ -85,7 +85,7 @@ class OrdenCompraDetalleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.fields["item"].queryset =  Item.objects.filter(tipoItem__pk=2) # sea igual a normal
+        self.fields["item"].queryset =  Item.objects.filter(tipo_item__pk=2) # sea igual a normal
     class Meta:
         model = OrdenCompraDetalle
         fields = ['item', 'cantidad','precio','descuento']
@@ -112,7 +112,7 @@ class OrdenCompraForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.fields["proveedor"].queryset =  proveedor = Persona.objects.filter(esProveedor=True)
+        self.fields["proveedor"].queryset =  proveedor = Persona.objects.filter(es_proveedor=True)
         self.fields['total'].label = False
         #self.fields['total'].widget = DecimalMaskInput()
         self.helper.layout = Layout(
