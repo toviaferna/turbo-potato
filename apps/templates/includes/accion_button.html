@@ -5,7 +5,15 @@
     {% if update_url %}
         <a class="btn btn-sm btn-primary"  href="{% url update_url record.id %}"><i class="fas fa-pen"></i> </a>
     {% endif %}
-    {%  if delete_url %}
-        <a class="btn btn-sm btn-danger"  href="{% url delete_url record.id %}"><i class="fas fa-trash"></i> </a>
+    {%  if delete_url  %}
+        {% if record %}
+            {% if record.es_vigente == None  %}
+                <a class="btn btn-sm btn-danger"  href="{% url delete_url record.id %}"><i class="fas fa-trash"></i> </a>
+            {% else %}
+                {% if record.es_vigente == True %}
+                    <a class="btn btn-sm btn-danger"  href="{% url delete_url record.id %}"><i class="fas fa-trash"></i> </a>
+                {% endif %}
+            {% endif %}
+        {% endif %}
     {%  endif %}
 </div>

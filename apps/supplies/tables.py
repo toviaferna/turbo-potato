@@ -21,5 +21,4 @@ class OrdenCompraTable(AccionTable):
     class Meta:
         model = OrdenCompra
         fields = ("proveedor","fecha_documento","total","es_vigente")
-        row_attrs = { "registro_es_vigente": lambda record: record.es_vigente }
         order_by = "-fecha_documento"
