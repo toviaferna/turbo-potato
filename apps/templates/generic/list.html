@@ -2,6 +2,19 @@
 {% block title %}{{title}}{% endblock %} 
 {% block body_class %} sidebar-mini pace-secondary {% endblock body_class %}
 {% load render_table from django_tables2 %}
+
+
+{% block stylesheets %}
+  <style>
+    tr[es-vigente='False'] {
+        background-color: #343a40!important;
+        color: white; 
+        text-decoration: line-through;
+    }
+  </style>
+{% endblock stylesheets %}
+  
+
 {% block content %}
 
 <div class="content-wrapper">
