@@ -7,12 +7,10 @@
     {% endif %}
     {%  if delete_url  %}
         {% if record %}
-            {% if record.es_vigente == None  %}
+            {% if record.es_vigente == True %}
                 <a class="btn btn-sm btn-danger"  href="{% url delete_url record.id %}"><i class="fas fa-trash"></i> </a>
-            {% else %}
-                {% if record.es_vigente == True %}
-                    <a class="btn btn-sm btn-danger"  href="{% url delete_url record.id %}"><i class="fas fa-trash"></i> </a>
-                {% endif %}
+            {% elif record.es_vigente == None %}
+                <a class="btn btn-sm btn-danger"  href="{% url delete_url record.id %}"><i class="fas fa-trash"></i> </a>
             {% endif %}
         {% endif %}
     {%  endif %}
