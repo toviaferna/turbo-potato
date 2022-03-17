@@ -25,6 +25,9 @@ class AccionTable(BaseTable):
                         },
                         'td':{
                             'class':'col-sm-2 text-center',
+                        },
+                        'tr':{
+                            'prueba':True,
                         }
                     },
                     exclude_from_export=True
@@ -32,4 +35,3 @@ class AccionTable(BaseTable):
             ),
         ]
         super().__init__(*args, **kwargs)
-

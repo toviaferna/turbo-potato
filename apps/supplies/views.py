@@ -34,7 +34,7 @@ class OrdenCompraListView(ListView):
     update_url = None
     delete_url = 'orden_compra_delete'
     create_url = "orden_compra_create"
-    page_title = "Pedidos de compras"
+    page_title = "Ordenes de compras"
 
 class OrdenCompraCreateView(CreateView):
     model = OrdenCompra
