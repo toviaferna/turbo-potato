@@ -116,9 +116,11 @@ class OrdenCompraForm(forms.ModelForm):
         self.fields['total'].label = False
         #self.fields['total'].widget = DecimalMaskInput()
         self.helper.layout = Layout(
-            "pedido_compra",
-            "proveedor",
-            "fecha_documento",
+            Row(
+                Column("pedido_compra", css_class="col-sm-5"),
+                Column("proveedor", css_class="col-sm-5"),
+                Column("fecha_documento", css_class="col-sm-2"),
+            ),
             "observacion",
             Fieldset(
                 u'Detalle',
@@ -128,10 +130,9 @@ class OrdenCompraForm(forms.ModelForm):
                 
             ),
              Row(
-                #Column(
- 
-                Column( HTML('<label> Total: </label>'),css_class='text-right col-sm-10 mt-2'),
-                Column("total", css_class='col')
+                Column(HTML('<label> Total: </label>'),css_class='text-right col-sm-9 mt-2'),
+                Column("total", css_class='col-sm-2'),
+                Column(css_class='col-sm-1')
             ), 
             ButtonHolder(
                 Submit("submit", "Guardar", css_class="btn btn-primary"),
