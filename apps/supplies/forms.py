@@ -1,14 +1,15 @@
+from apps.finance.models import Persona
+from apps.inventory.models import Item
+from apps.supplies.models import (OrdenCompra, OrdenCompraDetalle,
+                                  PedidoCompra, PedidoCompraDetalle)
+from core.layouts import CancelButton, Formset
+from core.widgets import DateInput, FormulaInput, SumInput
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import (HTML, ButtonHolder, Column, Div, Field,
+                                 Fieldset, Layout, Row, Submit)
 from django import forms
 from django.forms.models import ModelForm
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column,Fieldset, HTML, Div,Field
-from apps.inventory.models import Item
-from apps.supplies.models import OrdenCompra, OrdenCompraDetalle, PedidoCompra, PedidoCompraDetalle
-from core.layouts import Formset
-from apps.finance.models import Persona
-import calculation
-from core.widgets import DateInput, SumInput
-from core.layouts import CancelButton 
+
 
 class PedidoCompraDetalleForm(ModelForm):
     
@@ -78,7 +79,7 @@ class PedidoCompraForm(forms.ModelForm):
 
 class OrdenCompraDetalleForm(forms.ModelForm):
     subtotal = forms.DecimalField(
-        widget=calculation.FormulaInput('(cantidad*(precio-descuento))', attrs={'readonly':True}),
+        widget=FormulaInput('(cantidad*(precio-descuento))', attrs={'readonly':True}),
         label = "SubTotal"
     )
 

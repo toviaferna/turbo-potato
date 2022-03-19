@@ -14,7 +14,7 @@ class AccionTable(BaseTable):
     def __init__(self, *args, **kwargs):
         kwargs['extra_columns'] = [
             (
-                'acciones', 
+                'acciones',
                 tables.TemplateColumn(
                     template_name="includes/accion_button.html", 
                     verbose_name="Acciones", 
@@ -26,9 +26,6 @@ class AccionTable(BaseTable):
                         'td':{
                             'class':'col-sm-2 text-center',
                         },
-                        'tr':{
-                            'prueba':True,
-                        }
                     },
                     exclude_from_export=True
                 )

@@ -14,3 +14,11 @@ class SumInput(widgets.SumInput):
             'class':'text-danger text-right bg-white border-0 p-0' 
         }
         super().__init__(*args, **kwargs)
+
+class FormulaInput(widgets.FormulaInput):
+    def __init__(self, *args, **kwargs):
+        kwargs['attrs'] = {
+            'readonly':True,
+            'class':'text-right'
+        }
+        super().__init__(*args, **kwargs)
