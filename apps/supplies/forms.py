@@ -113,7 +113,7 @@ class OrdenCompraForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.fields["proveedor"].queryset =  proveedor = Persona.objects.filter(es_proveedor=True)
+        self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
         self.fields['total'].label = False
         #self.fields['total'].widget = DecimalMaskInput()
         self.helper.layout = Layout(
