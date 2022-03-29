@@ -22,3 +22,24 @@ class FormulaInput(widgets.FormulaInput):
             'class':'text-right'
         }
         super().__init__(*args, **kwargs)
+
+class ItemCustomSelect(forms.Select):
+
+    def __init__(self, attrs=None, choices=(), modify_choices=()):
+        super(forms.Select, self).__init__(attrs, choices=choices)
+        # set data
+        self.modify_choices = modify_choices
+
+    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
+        option = super(forms.Select, self).create_option(name, value, label, selected, index, subindex, attrs)
+
+        if value:
+            option['attrs']['data-precio'] = value.instance.precio
+            option['attrs']['data-costo'] = value.instance.costo
+            option['attrs']['data-ultimo-costo'] = value.instance.ultimo_costo
+            option['attrs']['data-tipo-impuesto-id'] = value.instance.tipo_impuesto.id
+            option['attrs']['data-tipo-impuesto-descripcion'] = value.instance.tipo_impuesto.descripcion
+            option['attrs']['data-tipo-impuesto-porcentaje'] = value.instance.tipo_impuesto.porcentaje
+            option['attrs']['data-tipo-impuesto-iva'] = value.instance.tipo_impuesto.es_iva
+
+        return option

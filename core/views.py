@@ -49,12 +49,21 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView):
             return self.render_to_response(context)
 
 class AnnulledView(DeleteView):
+    mensaje_anulado = "Ya fue anulado!"
     @transaction.atomic
     def delete(self, request, *args, **kwargs):
         success_url = self.get_success_url()
-        self.object = self.get_object()
-        self.object.es_vigente = False
-        self.object.save()
+        try:
+            self.object = self.get_object()
+            if self.object.es_vigente == False:
+                raise Exception(self.mensaje_anulado)
+            else:
+                self.object.es_vigente = False
+                self.object.save()
+        except  Exception as e:
+            self.error = e
+            context = self.get_context_data(object=self.object)
+            return self.render_to_response(context)
         return HttpResponseRedirect(success_url)
 
 class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):

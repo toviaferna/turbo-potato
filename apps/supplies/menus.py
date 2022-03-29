@@ -11,7 +11,12 @@ children = (
     MenuItem(
         "Ordenes de compras",
         reverse("orden_compra_list"),
-        icon="fa fa-cart-plus",
+        icon="fa fa-table-list",
+    ),
+    MenuItem(
+        "Compras",
+        reverse("compra_list"),
+        icon="fa fa-cart-arrow-down",
     ),
 )
 

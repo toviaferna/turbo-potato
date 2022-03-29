@@ -20,3 +20,12 @@ class OrdenCompraTable(AccionTable):
         fields = ("proveedor","fecha_documento","total","es_vigente")
         row_attrs = { 'es-vigente':lambda record: record.es_vigente }
         order_by = "-fecha_documento"
+
+class CompraTable(AccionTable):
+    es_vigente = BooleanColumn()
+    total = NumberColumn(verbose_name="Total")
+    class Meta:
+        model = OrdenCompra
+        fields = ("fecha_documento","comprobante","proveedor","es_credito","total","es_vigente",)
+        row_attrs = { 'es-vigente':lambda record: record.es_vigente }
+        order_by = "-fecha_documento"

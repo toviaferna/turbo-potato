@@ -1,8 +1,12 @@
 from django.urls import path
 
-from .views import OrdenCompraCreateView, OrdenCompraListView, OrdenCompraAnnulledView, PedidoCompraCreateView, PedidoCompraListView, PedidoCompraUpdateView 
+from .views import CompraAnnulledView, CompraCreateView, CompraListView, OrdenCompraCreateView, OrdenCompraListView, OrdenCompraAnnulledView, PedidoCompraCreateView, PedidoCompraListView, PedidoCompraUpdateView 
 
 urlpatterns = [
+    path('compra/<int:pk>/delete/', CompraAnnulledView.as_view(), name="compra_delete"),
+    path('compra/add', CompraCreateView.as_view(), name="compra_create"),
+    path("compra/",  CompraListView.as_view(), name="compra_list"),
+    
     path('orden_compra/<int:pk>/delete/', OrdenCompraAnnulledView.as_view(), name="orden_compra_delete"),
     path('orden_compra/add', OrdenCompraCreateView.as_view(), name="orden_compra_create"),
     path("orden_compra/",  OrdenCompraListView.as_view(), name="orden_compra_list"),
