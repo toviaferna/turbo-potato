@@ -1,53 +1,54 @@
 from django.db.models.signals import post_save,pre_save,pre_delete
-from .models import AcopioDetalle, ActividadAgricolaItemDetalle, AjusteStockDetalle, AperturaCaja, CierreZafra, CierreZafraDetalle, Cobro, CobroDetalle, CompraDetalle, CuotaVenta, Item,ItemMovimiento, NotaCreditoEmitidaDetalle, NotaCreditoRecibidaDetalle, TransferenciaCuenta, Venta, VentaDetalle, Zafra
 from django.dispatch import receiver
+from apps.inventory.models import Item, ItemMovimiento
+from apps.supplies.models import AjusteStockDetalle, CompraDetalle
 
 
 @receiver(pre_save, sender = CompraDetalle)
-def signalCompraDetallePreGuardado(sender, instance, **kwargs):
+def signal_compra_detalle_preguardado(sender, instance, **kwargs):
    pass
 
 @receiver(post_save, sender = CompraDetalle)
-def signalCompraGuardado(sender, instance, created, **kwargs):
+def signal_compra_guardado(sender, instance, created, **kwargs):
     if created:
-        itMov = ItemMovimiento()
-        itMov.item = instance.item
-        itMov.deposito = instance.compra.deposito
-        itMov.cantidad = instance.cantidad
-        itMov.costo = instance.costo
-        itMov.precio = 0
-        itMov.fechaDocumento = instance.compra.fechaDocumento
-        itMov.secuenciaOrigen = instance.compra.pk
-        itMov.detalleSecuenciaOrigen = instance.pk
-        itMov.esVigente = True
-        itMov.tipoMovimiento = 'CM'
-        itMov.save()
+        item_movimiento = ItemMovimiento()
+        item_movimiento.item = instance.item
+        item_movimiento.deposito = instance.compra.deposito
+        item_movimiento.cantidad = instance.cantidad
+        item_movimiento.costo = instance.costo
+        item_movimiento.precio = 0
+        item_movimiento.fecha_documento = instance.compra.fecha_documento
+        item_movimiento.secuencia_origen = instance.compra.pk
+        item_movimiento.detalle_secuencia_origen = instance.pk
+        item_movimiento.es_vigente = True
+        item_movimiento.tipo_movimiento = 'CM'
+        item_movimiento.save()
 
         item = Item.objects.get(pk=instance.item.pk)
-        item.ultimoCosto = instance.costo
+        item.ultimo_costo = instance.costo
         item.costo = instance.costo
         item.save()
 
 @receiver(post_save, sender = AjusteStockDetalle)
-def signalAjusteStockGuardado(sender, instance, created, **kwargs):
+def signal_ajuste_stock_guardado(sender, instance, created, **kwargs):
     if created:
-        itMov = ItemMovimiento()
-        itMov.item = instance.item
-        itMov.deposito = instance.ajusteStock.deposito
-        itMov.cantidad = instance.cantidad
-        itMov.costo = 0
-        itMov.precio = 0
-        itMov.fechaDocumento = instance.ajusteStock.fechaDocumento
-        itMov.secuenciaOrigen = instance.ajusteStock.pk
-        itMov.detalleSecuenciaOrigen = instance.pk
-        itMov.esVigente = True
+        item_movimiento = ItemMovimiento()
+        item_movimiento.item = instance.item
+        item_movimiento.deposito = instance.ajuste_stock.deposito
+        item_movimiento.cantidad = instance.cantidad
+        item_movimiento.costo = 0
+        item_movimiento.precio = 0
+        item_movimiento.fecha_documento = instance.ajuste_stock.fecha_documento
+        item_movimiento.secuencia_origen = instance.ajuste_stock.pk
+        item_movimiento.detalle_secuencia_origen = instance.pk
+        item_movimiento.es_vigente = True
         tipo = ''
         if instance.cantidad >= 0:
             tipo = 'AJ+'
         else:
              tipo = 'AJ-'
-        itMov.tipoMovimiento = tipo
-        itMov.save()
+        item_movimiento.tipo_movimiento = tipo
+        item_movimiento.save()
 
 
 @receiver(post_save, sender = AcopioDetalle)

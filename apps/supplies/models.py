@@ -207,16 +207,3 @@ class NotaDebitoRecibidaDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio/Aumento")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
-
-class AjusteStock(models.Model):
-    empleado = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Empleado")
-    deposito = models.ForeignKey(Deposito, on_delete=models.DO_NOTHING,verbose_name="Deposito")
-    fecha_documento = models.DateField(verbose_name="Fecha")
-    fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
-    comprobante = models.CharField(max_length=15,verbose_name="Comprobante")
-    observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-
-class AjusteStockDetalle(models.Model):
-    ajuste_stock = models.ForeignKey(AjusteStock, on_delete=models.DO_NOTHING)
-    item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
-    cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")

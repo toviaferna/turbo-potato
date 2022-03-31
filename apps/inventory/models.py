@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.finance.models import TipoImpuesto
+from apps.finance.models import Persona, TipoImpuesto
 
 class Marca(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripción")
@@ -42,3 +42,40 @@ class Item(models.Model):
 
     def __str__(self):
         return self.descripcion
+
+
+class ItemMovimiento(models.Model):
+    VALORESENUMTIPMOV = (
+        ('CM', 'COMPRAS'),
+        ('VT', 'VENTAS'),
+        ('A+', 'AJUSTES STOCK +'),
+        ('A-', 'AJUSTES STOCK -'),
+        ('AC', 'ACOPIOS'),
+        ('AA', 'ACTIVIDADES AGRICOLAS'),
+        ('DC', 'DEVOLUCIONES DE COMPRAS'),
+        ('DV', 'DEVOLUCIONES DE VENTAS'),
+    )
+    item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
+    deposito = models.ForeignKey(Deposito, on_delete=models.DO_NOTHING,verbose_name="Deposito")
+    cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
+    costo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo")
+    precio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio")
+    fecha_documento = models.DateField(verbose_name="Fecha Documento")
+    secuencia_origen = models.IntegerField()
+    detalle_secuencia_origen = models.IntegerField()
+    es_vigente = models.BooleanField(verbose_name="Vigente?",default=True) 
+    tipo_movimiento = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Tipo Mov.") 
+
+
+class AjusteStock(models.Model):
+    empleado = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Empleado")
+    deposito = models.ForeignKey(Deposito, on_delete=models.DO_NOTHING,verbose_name="Deposito")
+    fecha_documento = models.DateField(verbose_name="Fecha")
+    fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
+    comprobante = models.CharField(max_length=15,verbose_name="Comprobante")
+    observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+
+class AjusteStockDetalle(models.Model):
+    ajuste_stock = models.ForeignKey(AjusteStock, on_delete=models.DO_NOTHING)
+    item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
+    cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
