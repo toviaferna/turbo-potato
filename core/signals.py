@@ -1,7 +1,9 @@
 from django.db.models.signals import post_save,pre_save,pre_delete
 from django.dispatch import receiver
-from apps.inventory.models import Item, ItemMovimiento
-from apps.supplies.models import AjusteStockDetalle, CompraDetalle
+from apps.inventory.models import AjusteStockDetalle, Item, ItemMovimiento
+from apps.supplies.models import CompraDetalle, NotaCreditoRecibidaDetalle
+from apps.farming.models import AcopioDetalle, ActividadAgricolaItemDetalle, CierreZafra, CierreZafraDetalle, Zafra
+from apps.sales.models import AperturaCaja, Cobro, CobroDetalle, CuotaVenta, NotaCreditoEmitidaDetalle, TransferenciaCuenta, Venta, VentaDetalle
 
 
 @receiver(pre_save, sender = CompraDetalle)
@@ -50,164 +52,158 @@ def signal_ajuste_stock_guardado(sender, instance, created, **kwargs):
         item_movimiento.tipo_movimiento = tipo
         item_movimiento.save()
 
-
 @receiver(post_save, sender = AcopioDetalle)
 def signalAcopioGuardado(sender, instance, created, **kwargs):
     if created:
-        itMov = ItemMovimiento()
-        itMov.item = instance.acopio.zafra.item
-        itMov.deposito = instance.acopio.deposito
-        itMov.cantidad = instance.peso
-        itMov.costo = 0
-        itMov.precio = 0
-        itMov.fechaDocumento = instance.acopio.fecha
-        itMov.secuenciaOrigen = instance.acopio.pk
-        itMov.detalleSecuenciaOrigen = instance.pk
-        itMov.esVigente = True
-        itMov.tipoMovimiento = 'AC'
-        itMov.save()
-
+        item_movimiento = ItemMovimiento()
+        item_movimiento.item = instance.acopio.zafra.item
+        item_movimiento.deposito = instance.acopio.deposito
+        item_movimiento.cantidad = instance.peso
+        item_movimiento.costo = 0
+        item_movimiento.precio = 0
+        item_movimiento.fecha_documento = instance.acopio.fecha
+        item_movimiento.secuencia_origen = instance.acopio.pk
+        item_movimiento.detalle_secuencia_origen = instance.pk
+        item_movimiento.es_vigente = True
+        item_movimiento.tipo_movimiento = 'AC'
+        item_movimiento.save()
 
 @receiver(post_save, sender = ActividadAgricolaItemDetalle)
-def signalActividadAgricolaItemGuardado(sender, instance, created, **kwargs):
+def signal_actividad_agricola_item_guardado(sender, instance, created, **kwargs):
     if created:
-        itMov = ItemMovimiento()
-        itMov.item = instance.item
-        itMov.deposito = instance.deposito
-        itMov.cantidad = instance.cantidad
-        itMov.costo = instance.costo
-        itMov.precio = 0
-        itMov.fechaDocumento = instance.actividadAgricola.fechaDocumento
-        itMov.secuenciaOrigen = instance.actividadAgricola.pk
-        itMov.detalleSecuenciaOrigen = instance.pk
-        itMov.esVigente = True
-        itMov.tipoMovimiento = 'AA'
-        itMov.save()
+        item_movimiento = ItemMovimiento()
+        item_movimiento.item = instance.item
+        item_movimiento.deposito = instance.deposito
+        item_movimiento.cantidad = instance.cantidad
+        item_movimiento.costo = instance.costo
+        item_movimiento.precio = 0
+        item_movimiento.fecha_documento = instance.actividadAgricola.fechaDocumento
+        item_movimiento.secuencia_origen = instance.actividadAgricola.pk
+        item_movimiento.detalle_secuencia_origen = instance.pk
+        item_movimiento.es_vigente = True
+        item_movimiento.tipo_movimiento = 'AA'
+        item_movimiento.save()
 
 @receiver(pre_save, sender = Venta)
-def signalVentaPreGuardado(sender, instance, **kwargs):
-    aperturaCaja = AperturaCaja.objects.filter(estaCerrado = False).order_by('-pk')[:1].first()
+def signal_venta_pre_guardado(sender, instance, **kwargs):
+    apertura_caja = AperturaCaja.objects.filter(esta_cerrado = False).order_by('-pk')[:1].first()
     timbrado = '12332145'
-    instance.aperturaCaja = aperturaCaja
+    instance.apertura_caja = apertura_caja
     instance.timbrado = timbrado
 
 @receiver(pre_save, sender = TransferenciaCuenta)
-def signalTransferenciaCuentaPreGuardado(sender, instance, **kwargs):
-    aperturaCaja = AperturaCaja.objects.filter(estaCerrado = False).order_by('-pk')[:1].first()
-    instance.aperturaCaja = aperturaCaja
+def signal_transferencia_cuenta_pre_guardado(sender, instance, **kwargs):
+    apertura_caja = AperturaCaja.objects.filter(esta_cerrado = False).order_by('-pk')[:1].first()
+    instance.aperturaCaja = apertura_caja
 
 @receiver(pre_save, sender = VentaDetalle)
-def signalVentaDetallePreGuardado(sender, instance, **kwargs):
+def signal_venta_detalle_pre_guardado(sender, instance, **kwargs):
    instance.costo = instance.item.costo
 
 @receiver(post_save, sender = VentaDetalle)
-def signalVentaGuardado(sender, instance, created, **kwargs):
+def signal_venta_guardado(sender, instance, created, **kwargs):
     if created:
-        itMov = ItemMovimiento()
-        itMov.item = instance.item
-        itMov.deposito = instance.venta.deposito
-        itMov.cantidad = instance.cantidad
-        itMov.costo = instance.costo
-        itMov.precio = instance.precio
-        itMov.fechaDocumento = instance.venta.fechaDocumento
-        itMov.secuenciaOrigen = instance.venta.pk
-        itMov.detalleSecuenciaOrigen = instance.pk
-        itMov.esVigente = True
-        itMov.tipoMovimiento = 'VT'
-        itMov.save()
-
+        item_movimiento = ItemMovimiento()
+        item_movimiento.item = instance.item
+        item_movimiento.deposito = instance.venta.deposito
+        item_movimiento.cantidad = instance.cantidad
+        item_movimiento.costo = instance.costo
+        item_movimiento.precio = instance.precio
+        item_movimiento.fecha_documento = instance.venta.fecha_documento
+        item_movimiento.secuencia_origen = instance.venta.pk
+        item_movimiento.detalle_secuencia_origen = instance.pk
+        item_movimiento.es_vigente = True
+        item_movimiento.tipo_movimiento = 'VT'
+        item_movimiento.save()
 
 @receiver(post_save, sender = NotaCreditoRecibidaDetalle)
-def signalNotaCreditoRecibidaGuardado(sender, instance, created, **kwargs):
+def signal_nota_credito_recibida_guardado(sender, instance, created, **kwargs):
     if created:
-        itMov = ItemMovimiento()
-        itMov.item = instance.item
-        itMov.deposito = instance.notaCreditoRecibida.deposito
-        itMov.cantidad = instance.cantidad
-        itMov.costo = instance.valor
-        itMov.precio = instance.valor
-        itMov.fechaDocumento = instance.notaCreditoRecibida.fechaDocumento
-        itMov.secuenciaOrigen = instance.notaCreditoRecibida.pk
-        itMov.detalleSecuenciaOrigen = instance.pk
-        itMov.esVigente = True
-        itMov.tipoMovimiento = 'DC'
-        itMov.save()
+        item_movimiento = ItemMovimiento()
+        item_movimiento.item = instance.item
+        item_movimiento.deposito = instance.nota_credito_recibida.deposito
+        item_movimiento.cantidad = instance.cantidad
+        item_movimiento.costo = instance.valor
+        item_movimiento.precio = instance.valor
+        item_movimiento.fecha_documento = instance.nota_credito_recibida.fecha_documento
+        item_movimiento.secuencia_origen = instance.nota_credito_recibida.pk
+        item_movimiento.detalle_secuencia_origen = instance.pk
+        item_movimiento.es_vigente = True
+        item_movimiento.tipo_movimiento = 'DC'
+        item_movimiento.save()
 
 @receiver(post_save, sender = NotaCreditoEmitidaDetalle)
-def signalNotaCreditoEmitidaGuardado(sender, instance, created, **kwargs):
+def signal_nota_credito_emitida_guardado(sender, instance, created, **kwargs):
     if created:
-        itMov = ItemMovimiento()
-        itMov.item = instance.item
-        itMov.deposito = instance.notaCreditoEmitida.deposito
-        itMov.cantidad = instance.cantidad
-        itMov.costo = instance.item.costo
-        itMov.precio = instance.valor
-        itMov.fechaDocumento = instance.notaCreditoEmitida.fechaDocumento
-        itMov.secuenciaOrigen = instance.notaCreditoEmitida.pk
-        itMov.detalleSecuenciaOrigen = instance.pk
-        itMov.esVigente = True
-        itMov.tipoMovimiento = 'DV'
-        itMov.save()
-
+        item_movimiento = ItemMovimiento()
+        item_movimiento.item = instance.item
+        item_movimiento.deposito = instance.nota_credito_emitida.deposito
+        item_movimiento.cantidad = instance.cantidad
+        item_movimiento.costo = instance.item.costo
+        item_movimiento.precio = instance.valor
+        item_movimiento.fecha_documento = instance.nota_credito_emitida.fecha_documento
+        item_movimiento.secuencia_origen = instance.nota_credito_emitida.pk
+        item_movimiento.detalle_secuencia_origen = instance.pk
+        item_movimiento.es_vigente = True
+        item_movimiento.tipo_movimiento = 'DV'
+        item_movimiento.save()
 
 @receiver(pre_save, sender = Cobro)
-def signalCobroPreGuardado(sender, instance, **kwargs):
-    aperturaCaja = AperturaCaja.objects.filter(estaCerrado = False).order_by('-pk')[:1].first()
-    instance.aperturaCaja = aperturaCaja
-
+def signal_cobro_pre_guardado(sender, instance, **kwargs):
+    apertura_caja = AperturaCaja.objects.filter(esta_cerrado = False).order_by('-pk')[:1].first()
+    instance.apertura_caja = apertura_caja
 
 @receiver(pre_save, sender = CuotaVenta)
-def signalPreGuardadoCuotaVenta(sender, instance, **kwargs):
+def signal_pre_guardado_cuota_venta(sender, instance, **kwargs):
     if instance.pk is None:
         instance.saldo =  instance.monto
 
-
 @receiver(post_save, sender = CobroDetalle)
-def signalCobroDetalleSave(sender, instance, created, **kwargs):
+def signal_cobro_detalle_save(sender, instance, created, **kwargs):
     if created:
-        cuota = CuotaVenta.objects.get(pk=instance.cuotaVenta.pk)
+        cuota = CuotaVenta.objects.get(pk=instance.cuota_venta.pk)
         cuota.saldo = cuota.saldo - instance.cancelacion
         cuota.save()
 
 @receiver(post_save, sender = Cobro)
-def signalCobroAnulado(sender, instance, created, **kwargs):
+def signal_cobro_anulado(sender, instance, created, **kwargs):
     print("entra en la señal")
     if created == False:
-        cobroDetalle = CobroDetalle.objects.filter(cobro__pk = instance.pk)
-        for f in cobroDetalle:
-            cuotaVenta = CuotaVenta.objects.get(pk = f.cuotaVenta.pk)
-            cuotaVenta.saldo =  cuotaVenta.saldo + f.cancelacion  
-            cuotaVenta.save()
+        cobro_detalle = CobroDetalle.objects.filter(cobro__pk = instance.pk)
+        for f in cobro_detalle:
+            cuota_venta = CuotaVenta.objects.get(pk = f.cuota_venta.pk)
+            cuota_venta.saldo =  cuota_venta.saldo + f.cancelacion  
+            cuota_venta.save()
     else: 
          print("entra en la señal create true")
 
 @receiver(post_save, sender = CierreZafra)
-def signalCierreZafraSave(sender, instance, created, **kwargs):
+def signal_cierre_zafra_save(sender, instance, created, **kwargs):
     if created:
         zafra = Zafra.objects.get(pk=instance.zafra.pk)
-        zafra.estaCerrado = True
+        zafra.esta_cerrado = True
         zafra.save()
 
 @receiver(post_save, sender = CierreZafraDetalle)
-def signalCierreZafraDetalleGuardado(sender, instance, created, **kwargs):
+def signal_cierre_zafra_detalle_guardado(sender, instance, created, **kwargs):
     if created:
-        detalleCierreZafra = CierreZafraDetalle.objects.filter(cierreZafra = instance.cierreZafra)
-        sumaCantidadAcopiada = 0
-        sumaCostoTotal = 0
-        costoUnitario = 0
-        for x in detalleCierreZafra:
-            sumaCantidadAcopiada += x.cantidadAcopioNeto
-            sumaCostoTotal += x.costoTotal 
+        detalle_cierre_zafra = CierreZafraDetalle.objects.filter(cierre_zafra = instance.cierre_zafra)
+        suma_cantidad_acopiada = 0
+        suma_costo_total = 0
+        costo_unitario = 0
+        for x in detalle_cierre_zafra:
+            suma_cantidad_acopiada += x.cantidad_acopio_neto
+            suma_costo_total += x.costo_total 
 
-        if sumaCantidadAcopiada > 0 and sumaCostoTotal > 0 :
-            costoUnitario = round(sumaCostoTotal / sumaCantidadAcopiada)
-            item = Item.objects.get(pk= instance.cierreZafra.zafra.item.pk)
-            item.ultimoCosto = costoUnitario
-            item.costo = costoUnitario
+        if suma_cantidad_acopiada > 0 and suma_costo_total > 0 :
+            costo_unitario = round(suma_costo_total / suma_cantidad_acopiada)
+            item = Item.objects.get(pk= instance.cierre_zafra.zafra.item.pk)
+            item.ultimo_costo = costo_unitario
+            item.costo = costo_unitario
             item.save()
 
 @receiver(pre_delete, sender = CierreZafra)
-def signalCierreZafraBorrar(sender, instance, **kwargs):
+def signal_cierre_zafra_borrar(sender, instance, **kwargs):
     zafra = Zafra.objects.get(pk=instance.zafra.pk)
-    zafra.estaCerrado = False
+    zafra.esta_cerrado = False
     zafra.save()
