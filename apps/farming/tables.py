@@ -4,5 +4,5 @@ from core.tables import AccionTable
 class FincaTable(AccionTable):
     class Meta:
         model = Finca
-        fields = ("descripcion","dimensionHa","ubicacion")
+        fields = ("descripcion","dimension_ha","ubicacion")
 

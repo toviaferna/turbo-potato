@@ -1,8 +1,11 @@
 from django.db import models
+from apps.finance.models import Persona
+
+from apps.inventory.models import Deposito, Item
 
 class Finca(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripción",unique=True)
-    dimensionHa = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Dimension Ha")
+    dimension_ha = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Dimension Ha")
     ubicacion = models.CharField(max_length=200,verbose_name="Ubicacion")
     created = models.DateTimeField(auto_now_add=True)
 
@@ -12,9 +15,9 @@ class Finca(models.Model):
 class TipoActividadAgricola(models.Model):
     #  error_messages={'unique': u'My custom message'}
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
-    esCosecha = models.BooleanField(verbose_name="es Cosecha")
-    esSiembra = models.BooleanField(verbose_name="es Siembra")
-    esResiembra = models.BooleanField(verbose_name="es Resiembra")
+    es_cosecha = models.BooleanField(verbose_name="es Cosecha")
+    es_siembra = models.BooleanField(verbose_name="es Siembra")
+    es_resiembra = models.BooleanField(verbose_name="es Resiembra")
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -31,9 +34,9 @@ class Zafra(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion")
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING, verbose_name="Item")
     anho = models.IntegerField(verbose_name="Anho")
-    kgEstimado = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Kg Estimado")
-    esZafrinha = models.BooleanField(verbose_name="Es Zafriña?")
-    estaCerrado = models.BooleanField(verbose_name="Está Cerrado?",default=False)
+    kg_estimado = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Kg Estimado")
+    es_zafrinha = models.BooleanField(verbose_name="Es Zafriña?")
+    esta_cerrado = models.BooleanField(verbose_name="Está Cerrado?",default=False)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -50,11 +53,12 @@ class Lote(models.Model):
 
 class MaquinariaAgricola(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion")
-    tipoMaquinariaAgricola = models.ForeignKey(TipoMaquinariaAgricola, on_delete=models.DO_NOTHING, verbose_name="Maquinaria Agrícola Tipo")
-    esImplemento = models.BooleanField(verbose_name="Es Implemento?")
-    admiteImplemento = models.BooleanField(verbose_name="Admite Implemento?")
+    tipo_maquinaria_agricola = models.ForeignKey(TipoMaquinariaAgricola, on_delete=models.DO_NOTHING, verbose_name="Maquinaria Agrícola Tipo")
+    es_implemento = models.BooleanField(verbose_name="Es Implemento?")
+    admite_implemento = models.BooleanField(verbose_name="Admite Implemento?")
     precio = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Precio")
     created = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.descripcion
 
@@ -68,10 +72,10 @@ class PlanActividadZafra(models.Model):
         return sum(round(x.costo)  for x in self.planactividadzafradetalle_set.all())
 
 class PlanActividadZafraDetalle(models.Model):
-    planActividadZafra = models.ForeignKey(PlanActividadZafra, on_delete=models.DO_NOTHING)
-    fechaActividad = models.DateField(verbose_name="Fecha Act.")
+    plan_actividad_zafra = models.ForeignKey(PlanActividadZafra, on_delete=models.DO_NOTHING)
+    fecha_actividad = models.DateField(verbose_name="Fecha Act.")
     finca = models.ForeignKey(Finca, on_delete=models.DO_NOTHING,verbose_name="Finca")
-    tipoActividadAgricola = models.ForeignKey(TipoActividadAgricola, on_delete=models.DO_NOTHING, null=True, blank=True,verbose_name="Tipo Actividad Agrícola")
+    tipo_actividad_agricola = models.ForeignKey(TipoActividadAgricola, on_delete=models.DO_NOTHING, null=True, blank=True,verbose_name="Tipo Actividad Agrícola")
     descripcion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Descripción")
     costo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Estimado")
 
@@ -82,28 +86,30 @@ class Acopio(models.Model):
     camion = models.ForeignKey(MaquinariaAgricola, on_delete=models.DO_NOTHING,verbose_name="Camión")
     fecha = models.DateField(verbose_name="Fecha")
     comprobante = models.CharField(max_length=30,verbose_name="Comprobante")
-    pBruto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Bruto",default=0)
-    pTara = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Tara",default=0)
-    pDescuento = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Desc.",default=0)
-    pBonificacion = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Bonif.",default=0)
-    esTransportadoraPropia = models.BooleanField(verbose_name="Es Transportadora Propia?",default=False)
-    esVigente = models.BooleanField(verbose_name="Vigente?",default=True)
+    peso_bruto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Bruto",default=0)
+    peso_tara = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Tara",default=0)
+    peso_descuento = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Desc.",default=0)
+    peso_bonificacion = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso Bonif.",default=0)
+    es_transportadora_propia = models.BooleanField(verbose_name="Es Transportadora Propia?",default=False)
+    es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    
     @property
     def total(self):
-        pesoBru = self.pBruto
-        pesoBon = self.pBonificacion
-        pesoTara = self.pTara
-        pesoDesc = self.pDescuento
-        if pesoBru is None :
-            pesoBru = 0
-        if pesoBon is None :
-            pesoBon = 0
-        if pesoTara is None :
-            pesoTara = 0
-        if pesoDesc is None :
-            pesoDesc = 0
-        return (pesoBru + pesoBon) - (pesoTara + pesoDesc)
+        peso_bruto = self.peso_bruto
+        peso_bonificacion = self.peso_bonificacion
+        peso_tara = self.peso_tara
+        peso_descuento = self.peso_descuento
+        
+        if peso_bruto is None :
+            peso_bruto = 0
+        if peso_bonificacion is None :
+            peso_bonificacion = 0
+        if peso_tara is None :
+            peso_tara = 0
+        if peso_descuento is None :
+            peso_descuento = 0
+        return (peso_bruto + peso_bonificacion) - (peso_tara + peso_descuento)
 
 class AcopioDetalle(models.Model):
     acopio = models.ForeignKey(Acopio, on_delete=models.DO_NOTHING)
@@ -114,44 +120,48 @@ class AcopioDetalle(models.Model):
 class CalificacionAgricola(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     created = models.DateTimeField(auto_now_add=True)
+   
     def __str__(self):
         return self.descripcion
 
 class AcopioCalificacion(models.Model):
     acopio = models.ForeignKey(Acopio, on_delete=models.DO_NOTHING)
-    calificacionAgricola = models.ForeignKey(CalificacionAgricola, on_delete=models.DO_NOTHING,verbose_name="Calif. Agrícola")
+    calificacion_agricola = models.ForeignKey(CalificacionAgricola, on_delete=models.DO_NOTHING,verbose_name="Calif. Agrícola")
     grado = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Grado")
     porcentaje = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Porcentaje")
     peso = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso")
 
 class ActividadAgricola(models.Model):
-    tipoActividadAgricola = models.ForeignKey(TipoActividadAgricola, on_delete=models.DO_NOTHING,verbose_name="Tipo Act. Agrícola")
+    tipo_actividad_agricola = models.ForeignKey(TipoActividadAgricola, on_delete=models.DO_NOTHING,verbose_name="Tipo Act. Agrícola")
     lote = models.ForeignKey(Lote, on_delete=models.DO_NOTHING,verbose_name="Lote")
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
     finca = models.ForeignKey(Finca, on_delete=models.DO_NOTHING,verbose_name="Finca")
-    fechaDocumento = models.DateField(verbose_name="Fecha")
+    fecha_documento = models.DateField(verbose_name="Fecha")
     empleado = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Empleado")
-    fechaHoraRegistro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
+    fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-    esVigente = models.BooleanField(verbose_name="Vigente?",default=True)
-    esServicioContratado = models.BooleanField(verbose_name="Es contratado?",default=False)
-    cantidadTrabajada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="HA Trabajada")
+    es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
+    es_servicio_contratado = models.BooleanField(verbose_name="Es contratado?",default=False)
+    cantidad_trabajada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="HA Trabajada")
+    
     @property
-    def totalMaquinaria(self):
-        retorno = sum(round(x.precio * x.haTrabajada)  for x in self.actividadagricolamaquinariadetalle_set.all())
+    def total_maquinaria(self):
+        retorno = sum(round(x.precio * x.ha_trabajada)  for x in self.actividadagricolamaquinariadetalle_set.all())
         if retorno is None:
             retorno = 0
         return retorno
+
     @property    
-    def totalItem(self):
+    def total_item(self):
         retorno = sum(round(x.costo * x.cantidad)  for x in self.actividadagricolaitemdetalle_set.all())
         if retorno is None:
             retorno = 0
         return retorno
+
     @property    
     def total(self):
-        maquinaria = self.totalMaquinaria
-        item = self.totalItem
+        maquinaria = self.total_maquinaria
+        item = self.total_item
         if maquinaria is None: 
            maquinaria = 0
         if item is None: 
@@ -159,17 +169,17 @@ class ActividadAgricola(models.Model):
         return maquinaria + item 
 
 class ActividadAgricolaMaquinariaDetalle(models.Model):
-    actividadAgricola = models.ForeignKey(ActividadAgricola, on_delete=models.DO_NOTHING)
+    actividad_agricola = models.ForeignKey(ActividadAgricola, on_delete=models.DO_NOTHING)
     maquinaria = models.ForeignKey(MaquinariaAgricola, on_delete=models.DO_NOTHING,verbose_name="Maquinaria")
-    haTrabajada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Ha Trabajada")
+    ha_trabajada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Ha Trabajada")
     precio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio HA")
 
 class ActividadAgricolaItemDetalle(models.Model):
-    actividadAgricola = models.ForeignKey(ActividadAgricola, on_delete=models.DO_NOTHING)
+    actividad_agricola = models.ForeignKey(ActividadAgricola, on_delete=models.DO_NOTHING)
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
     costo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo")
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
-    porcentajeImpuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
+    porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
     dosis = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Dosis")
     deposito = models.ForeignKey(Deposito, on_delete=models.DO_NOTHING,verbose_name="Deposito",default=1)
 
@@ -177,65 +187,73 @@ class ActividadAgricolaItemDetalle(models.Model):
 class Contrato(models.Model):
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
     persona = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Persona")
-    costoPactado = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio Pactado")
+    costo_pactado = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio Pactado")
     fecha = models.DateField(verbose_name="Fecha")
     descripcion = models.CharField(max_length=300,verbose_name="Descripción")
 
 class LiquidacionAgricola(models.Model):
     VALORESENUMTIPMOV = (
-    ('ACOPIOS', 'LIQUIDACION DE ACOPIOS'),
-    ('ACTIVIDADES AGRICOLAS', 'LIQUIDACION DE ACTIVIDADES AGRICOLAS'),
+        ('ACOPIOS', 'LIQUIDACION DE ACOPIOS'),
+        ('ACTIVIDADES AGRICOLAS', 'LIQUIDACION DE ACTIVIDADES AGRICOLAS'),
     )
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
-    fechaDocumento = models.DateField(verbose_name="Fecha")
+    fecha_documento = models.DateField(verbose_name="Fecha")
     proveedor = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Proveedor")
-    fechaHoraRegistro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
+    fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-    esVigente = models.BooleanField(verbose_name="Vigente?",default=True)
-    precioUnitario = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Precio")
+    es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
+    precio_unitario = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Precio")
     tipo = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Tipo Liquidación") 
+    
     @property
     def total(self):
-        return sum(round(self.precioUnitario * x.cantidad)  for x in self.liquidacionagricoladetalle_set.all())
+        return sum(round(self.precio_unitario * x.cantidad)  for x in self.liquidacionagricoladetalle_set.all())
         
 class LiquidacionAgricolaDetalle(models.Model):
-    liquidacionAgricola = models.ForeignKey(LiquidacionAgricola, on_delete=models.DO_NOTHING)
+    liquidacion_agricola = models.ForeignKey(LiquidacionAgricola, on_delete=models.DO_NOTHING)
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     lote = models.ForeignKey(Lote, on_delete=models.DO_NOTHING,verbose_name="Lote")
     finca = models.ForeignKey(Finca, on_delete=models.DO_NOTHING,verbose_name="Finca")
-    secuenciaOrigen = models.IntegerField()
+    secuencia_origen = models.IntegerField()
 
 class CierreZafra(models.Model):
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
     fecha = models.DateField(verbose_name="Fecha")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    
     @property
-    def totalCosto(self):
-        return sum(round(x.costoTotal)  for x in self.cierrezafradetalle_set.all())
+    def total_costo(self):
+        return sum(round(x.costo_total)  for x in self.cierrezafradetalle_set.all())
+    
     @property
-    def totalCultivado(self):
-        return sum(round(x.haCultivada)  for x in self.cierrezafradetalle_set.all())
+    def total_cultivado(self):
+        return sum(round(x.ha_cultivada)  for x in self.cierrezafradetalle_set.all())
+    
     @property
-    def totalAcopiado(self):
-        return sum(round(x.cantidadAcopioNeto)  for x in self.cierrezafradetalle_set.all())
+    def total_acopiado(self):
+        return sum(round(x.cantidad_acopio_neto)  for x in self.cierrezafradetalle_set.all())
+    
     @property
-    def totalHA(self):
-        return sum(round(x.haCultivada)  for x in self.cierrezafradetalle_set.all())
+    def total_ha(self):
+        return sum(round(x.ha_cultivada)  for x in self.cierrezafradetalle_set.all())
+    
     @property
-    def totalCostoHa(self):
-        return round(self.totalCosto / self.totalHA)
+    def total_costo_ha(self):
+        return round(self.total_costo / self.total_ha)
+
     @property
-    def totalCostoUnit(self):
-        return round(self.totalCosto / self.totalAcopiado)
+    def total_costo_unit(self):
+        return round(self.total_costo / self.total_acopiado)
+
     def __str__(self):
         return self.zafra.descripcion
 
 class CierreZafraDetalle(models.Model):
-    cierreZafra = models.ForeignKey(CierreZafra, on_delete=models.CASCADE)
+    cierre_zafra = models.ForeignKey(CierreZafra, on_delete=models.CASCADE)
     finca = models.ForeignKey(Finca, on_delete=models.DO_NOTHING,verbose_name="Finca")
-    haCultivada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="HA Cultivada")
-    cantidadAcopioNeto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="KG Acopiado")
+    ha_cultivada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="HA Cultivada")
+    cantidad_acopio_neto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="KG Acopiado")
     rendimiento = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Rendimiento")
-    costoTotal = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Total")
-    costoHA = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo HA")
-    costoUnit = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Unit.")
+    costo_total = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Total")
+    costo_ha = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo HA")
+    costo_unitario = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Unit.")

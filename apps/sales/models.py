@@ -13,7 +13,7 @@ class AperturaCaja(models.Model):
     fecha_hora_cierre = models.DateTimeField(auto_now_add=True,null=True, blank=True,verbose_name="Fec Hr Cierre")
     
     def __str__(self):
-        date_time = self.fechaHoraRegistro.strftime("%m/%d/%Y, %H:%M:%S")
+        date_time = self.fecha_hora_registro.strftime("%m/%d/%Y, %H:%M:%S")
         return date_time+" Obs: "+self.observacion
 
 class Arqueo(models.Model):
@@ -43,29 +43,34 @@ class Venta(models.Model):
     @property
     def imponible5(self):
         return sum(x.imponible5 for x in self.ventadetalle_set.all())
+
     @property
     def imponible10(self):
         return sum(x.imponible10 for x in self.ventadetalle_set.all())
+
     @property
     def imponible_exenta(self):
         valor = sum(x.imponible_exenta for x in self.ventadetalle_set.all())
         if valor is None:
             valor = 0
         return valor
+
     @property
     def iva5(self):
         valor = sum(x.iva5 for x in self.ventadetalle_set.all())
         if valor is None:
             valor = 0
         return valor
+
     @property
     def iva10(self):
         valor = sum(x.iva10 for x in self.ventadetalle_set.all())
         if valor is None:
             valor = 0
         return valor
+
     @property
-    def totalIva(self):
+    def total_iva(self):
         return self.iva5+self.iva10
 
     def __str__(self):

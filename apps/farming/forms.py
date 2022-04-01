@@ -13,7 +13,7 @@ class FincaForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            "dimensionHa",
+            "dimension_ha",
             "ubicacion",
             ButtonHolder(
                 Submit("submit", "Guardar", css_class="btn btn-primary"),
@@ -22,4 +22,4 @@ class FincaForm(ModelForm):
         )
     class Meta:
         model = Finca
-        fields = ['descripcion','dimensionHa','ubicacion']
+        fields = ['descripcion','dimension_ha','ubicacion']
