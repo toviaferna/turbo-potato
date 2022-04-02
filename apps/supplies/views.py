@@ -16,14 +16,12 @@ class PedidoCompraCreateView(CreateView):
     model = PedidoCompra
     form_class = PedidoCompraForm
     inlines = [PedidoCompraDetalleInline]
-    page_title = "Agregar pedidos de compras"
     list_url = "pedido_compra_list"
 
 class PedidoCompraUpdateView(UpdateView):
     model = PedidoCompra
     form_class = PedidoCompraForm
     inlines = [PedidoCompraDetalleInline]
-    page_title = "Agregar pedidos de compras"
     list_url = "pedido_compra_list"
 
 class OrdenCompraListView(ListView):
@@ -38,12 +36,10 @@ class OrdenCompraCreateView(CreateView):
     model = OrdenCompra
     form_class = OrdenCompraForm
     inlines = [OrdenCompraDetalleInline]
-    page_title = "Agregar orden de compra"
     list_url = "orden_compra_list"
 
 class OrdenCompraAnnulledView(AnnulledView):
     model = OrdenCompra
-    page_title = "Anular orden de compra"
     list_url = "orden_compra_list"
 
 
@@ -59,7 +55,6 @@ class CompraCreateView(CreateView):
     model = Compra
     form_class = CompraForm
     inlines = [CompraDetalleInline,CuotaCompraInline]
-    page_title = "Agregar compra"
     list_url = "compra_list"
 
     def run_form_extra_validation(self, form, inlines):
@@ -87,7 +82,6 @@ class CompraCreateView(CreateView):
 
 class CompraAnnulledView(AnnulledView):
     model = Compra
-    page_title = "Anular compra"
     list_url = "compra_list"
     mensaje_anulacion = "La Factura ya fue anulado."
 
