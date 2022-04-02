@@ -1,7 +1,7 @@
-from django.db import models
-
 from apps.finance.models import Cuenta, Persona
 from apps.inventory.models import Deposito, Item
+from django.db import models
+
 
 # Create your models here.
 class AperturaCaja(models.Model):
@@ -225,6 +225,10 @@ class TransferenciaCuenta(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     comprobante = models.CharField(max_length=15,verbose_name="Comprobante", default="" )
 
-
-
-
+from .signals import (signal_cobro_anulado, signal_cobro_detalle_save,
+                      signal_cobro_pre_guardado,
+                      signal_nota_credito_emitida_guardado,
+                      signal_pre_guardado_cuota_venta,
+                      signal_transferencia_cuenta_pre_guardado,
+                      signal_venta_detalle_pre_guardado, signal_venta_guardado,
+                      signal_venta_pre_guardado)

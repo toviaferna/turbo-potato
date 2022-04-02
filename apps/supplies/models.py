@@ -1,7 +1,7 @@
-from django.db import models
-
 from apps.finance.models import Cuenta, Persona
 from apps.inventory.models import Deposito, Item
+from django.db import models
+
 
 # Create your models here.
 class PedidoCompra(models.Model):
@@ -207,3 +207,6 @@ class NotaDebitoRecibidaDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio/Aumento")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
+
+from .signals import (signal_compra_guardado,
+                      signal_nota_credito_recibida_guardado)

@@ -79,3 +79,5 @@ class AjusteStockDetalle(models.Model):
     ajuste_stock = models.ForeignKey(AjusteStock, on_delete=models.DO_NOTHING)
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
+
+from .signals import signal_ajuste_stock_guardado

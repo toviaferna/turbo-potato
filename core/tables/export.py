@@ -1,4 +1,5 @@
 from io import BytesIO
+from re import S
 from django_tables2.export import export
 from django.utils import timezone
 import xhtml2pdf.pisa as pisa
@@ -46,7 +47,12 @@ class TableExport(export.TableExport):
             'title': self.dataset.title,
             'today': timezone.now()
         })
+        print(self.dataset.title)
         return html
+
+    def response(self, filename=None):
+        filename = f"{self.dataset.title.upper()}_{timezone.now().strftime('%d%m%Y_%H%M%S')}.{self.format}".replace(" ","_")
+        return super().response(filename)
 
     def export(self):
         if self.format == self.PDF:

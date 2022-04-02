@@ -1,7 +1,7 @@
-from django.db import models
 from apps.finance.models import Persona
-
 from apps.inventory.models import Deposito, Item
+from django.db import models
+
 
 class Finca(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripción",unique=True)
@@ -257,3 +257,8 @@ class CierreZafraDetalle(models.Model):
     costo_total = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Total")
     costo_ha = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo HA")
     costo_unitario = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Unit.")
+
+from .signals import (signal_acopio_guardado, # signal_cierre_zafra_borrar
+                      signal_actividad_agricola_item_guardado,
+                      signal_cierre_zafra_detalle_guardado,
+                      signal_cierre_zafra_save)
