@@ -24,6 +24,11 @@ class Deposito(models.Model):
 
 class TipoItem(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
+    
+    class Meta:
+        verbose_name = "Tipo de item"
+        verbose_name_plural = "Tipos de items"
+
     def __str__(self):
         return self.descripcion
 
