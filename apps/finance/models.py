@@ -8,7 +8,11 @@ class TipoImpuesto(models.Model):
     porcentaje = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="% Impuesto")
     es_iva = models.BooleanField(max_length=200,verbose_name="es IVA?")
     created = models.DateTimeField(auto_now_add=True)
-
+    
+    class Meta:
+        verbose_name = "Tipo de impuesto"
+        verbose_name_plural = "Tipos de impuestos"
+   
     def __str__(self):
         return self.descripcion
         
@@ -30,6 +34,9 @@ class Pais(models.Model):
     abreviatura = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     
+    class Meta:
+        verbose_name_plural = "Paises"
+    
     def __str__(self):
         return self.descripcion
 
@@ -49,6 +56,9 @@ class Distrito(models.Model):
 class Localidad(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion")
     distrito = models.ForeignKey(Distrito, on_delete=models.DO_NOTHING, verbose_name="Distrito")
+    
+    class Meta:
+        verbose_name_plural = "Localidades"
     
     def __str__(self):
         return self.descripcion

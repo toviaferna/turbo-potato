@@ -19,6 +19,10 @@ class TipoActividadAgricola(models.Model):
     es_siembra = models.BooleanField(verbose_name="es Siembra")
     es_resiembra = models.BooleanField(verbose_name="es Resiembra")
     created = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = "Tipo de actividad agrícola"
+        verbose_name_plural = "Tipos de actividades agrícolas"
 
     def __str__(self):
         return self.descripcion
@@ -26,7 +30,11 @@ class TipoActividadAgricola(models.Model):
 class TipoMaquinariaAgricola(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     created = models.DateTimeField(auto_now_add=True)
-
+    
+    class Meta:
+        verbose_name = "Tipo de maquinaria agrícola"
+        verbose_name_plural = "Tipos de maquinarias agrícolas"
+    
     def __str__(self):
         return self.descripcion
 
@@ -58,7 +66,10 @@ class MaquinariaAgricola(models.Model):
     admite_implemento = models.BooleanField(verbose_name="Admite Implemento?")
     precio = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Precio")
     created = models.DateTimeField(auto_now_add=True)
-    
+    class Meta:
+        verbose_name = "Maquinaria agrícola"
+        verbose_name_plural = "Maquinarias agrícolas"
+
     def __str__(self):
         return self.descripcion
 
@@ -66,6 +77,10 @@ class PlanActividadZafra(models.Model):
     fecha = models.DateField(verbose_name="Fecha")
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING, null=True, blank=True,verbose_name="Zafra")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    
+    class Meta:
+        verbose_name = "Plan de actividad por zafra"
+        verbose_name_plural = "Plan de actividades por zafras"
 
     @property
     def total(self):
@@ -120,7 +135,11 @@ class AcopioDetalle(models.Model):
 class CalificacionAgricola(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     created = models.DateTimeField(auto_now_add=True)
-   
+
+    class Meta:
+        verbose_name = "Calificación agrícola"
+        verbose_name_plural = "Calificaciones agrícolas"
+
     def __str__(self):
         return self.descripcion
 
@@ -130,7 +149,9 @@ class AcopioCalificacion(models.Model):
     grado = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Grado")
     porcentaje = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Porcentaje")
     peso = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso")
-
+    class Meta:
+        verbose_name = "Calificación de acopio"
+        verbose_name_plural = "Calificaciones de acopios"
 class ActividadAgricola(models.Model):
     tipo_actividad_agricola = models.ForeignKey(TipoActividadAgricola, on_delete=models.DO_NOTHING,verbose_name="Tipo Act. Agrícola")
     lote = models.ForeignKey(Lote, on_delete=models.DO_NOTHING,verbose_name="Lote")
@@ -143,7 +164,11 @@ class ActividadAgricola(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     es_servicio_contratado = models.BooleanField(verbose_name="Es contratado?",default=False)
     cantidad_trabajada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="HA Trabajada")
-    
+
+    class Meta:
+        verbose_name = "Actividad agricola"
+        verbose_name_plural = "Actividades agricolas"
+
     @property
     def total_maquinaria(self):
         retorno = sum(round(x.precio * x.ha_trabajada)  for x in self.actividadagricolamaquinariadetalle_set.all())
@@ -204,7 +229,11 @@ class LiquidacionAgricola(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     precio_unitario = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Precio")
     tipo = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Tipo Liquidación") 
-    
+
+    class Meta:
+        verbose_name = "Liquidación agricola"
+        verbose_name_plural = "Liquidaciones agricolas"
+
     @property
     def total(self):
         return sum(round(self.precio_unitario * x.cantidad)  for x in self.liquidacionagricoladetalle_set.all())
@@ -220,7 +249,11 @@ class CierreZafra(models.Model):
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
     fecha = models.DateField(verbose_name="Fecha")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-    
+
+    class Meta:
+        verbose_name = "Cierre de zafra"
+        verbose_name_plural = "Cierres de zafras"
+
     @property
     def total_costo(self):
         return sum(round(x.costo_total)  for x in self.cierrezafradetalle_set.all())
@@ -257,6 +290,7 @@ class CierreZafraDetalle(models.Model):
     costo_total = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Total")
     costo_ha = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo HA")
     costo_unitario = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Unit.")
+
 
 from .signals import (signal_acopio_guardado, # signal_cierre_zafra_borrar
                       signal_actividad_agricola_item_guardado,

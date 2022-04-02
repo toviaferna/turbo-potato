@@ -10,6 +10,9 @@ class PedidoCompra(models.Model):
     fecha_vencimiento = models.DateField(verbose_name="Fecha Vencimiento")
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    class Meta:
+        verbose_name = "Pedido de compra"
+        verbose_name_plural = "Pedidos de compras"
 
     def __str__(self):
         return self.proveedor.razon_social+" - "+"" if not self.observacion else self.observacion
@@ -29,6 +32,11 @@ class OrdenCompra(models.Model):
     fecha_documento = models.DateField(verbose_name="Fecha Documento")
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    
+    class Meta:
+        verbose_name = "Orden de compra"
+        verbose_name_plural = "Ordenes de compras"
+    
     @property
     def total(self):
         return sum(round(x.precio*x.cantidad)  for x in self.ordencompradetalle_set.all())
@@ -158,6 +166,9 @@ class CuotaCompra(models.Model):
     fecha_vencimiento = models.DateField(verbose_name="Fecha Vencimiento")
     monto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Monto")
     saldo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Saldo",default=0)
+    class Meta:
+        verbose_name = "Cuota de compra"
+        verbose_name_plural = "Cuotas de compras"
 
 class NotaCreditoRecibida(models.Model):
     proveedor = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Proveedor")
@@ -171,6 +182,10 @@ class NotaCreditoRecibida(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=False)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    
+    class Meta:
+        verbose_name = "Nota de crédito recibida"
+        verbose_name_plural = "Notas de crédito recibidas"
     
     @property
     def total(self):
@@ -196,6 +211,9 @@ class NotaDebitoRecibida(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=False)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    class Meta:
+        verbose_name = "Nota de débito recibida"
+        verbose_name_plural = "Notas de débito recibidas"
     
     @property
     def total(self):
@@ -207,6 +225,7 @@ class NotaDebitoRecibidaDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio/Aumento")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
+
 
 from .signals import (signal_compra_guardado,
                       signal_nota_credito_recibida_guardado)

@@ -11,7 +11,11 @@ class AperturaCaja(models.Model):
     esta_cerrado = models.BooleanField(verbose_name="Esta Cerrado?",default=False)
     monto_inicio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Monto Apertura")
     fecha_hora_cierre = models.DateTimeField(auto_now_add=True,null=True, blank=True,verbose_name="Fec Hr Cierre")
-    
+
+    class Meta:
+        verbose_name = "Apertura de caja"
+        verbose_name_plural = "Apertura de cajas"
+
     def __str__(self):
         date_time = self.fecha_hora_registro.strftime("%m/%d/%Y, %H:%M:%S")
         return date_time+" Obs: "+self.observacion
@@ -137,6 +141,10 @@ class CuotaVenta(models.Model):
     fecha_vencimiento = models.DateField(verbose_name="Fecha Vencimiento")
     monto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Monto")
     saldo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Saldo",default=0)
+    
+    class Meta:
+        verbose_name = "Cuota de venta"
+        verbose_name_plural = "Cuotas de ventas"
 
 class NotaDebitoEmitida(models.Model):
     cliente = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Cliente")
@@ -150,6 +158,11 @@ class NotaDebitoEmitida(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=False)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    
+    class Meta:
+        verbose_name = "Nota de débito emitida"
+        verbose_name_plural = "Notas de débito emitidas"
+    
     @property
     def total(self):
         return sum(round(x.valor * x.cantidad)  for x in self.notadebitoemitidadetalle_set.all())
@@ -173,6 +186,11 @@ class NotaCreditoEmitida(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=False)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+    
+    class Meta:
+        verbose_name = "Nota de crédito emitida"
+        verbose_name_plural = "Notas de crédito emitidas"
+
     @property
     def total(self):
         return sum(round(x.valor * x.cantidad)  for x in self.notacreditoemitidadetalle_set.all())
@@ -214,7 +232,11 @@ class CobroMedio(models.Model):
     monto = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Monto")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     medio_cobro = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Medio Cobro") 
-
+    
+    class Meta:
+        verbose_name = "Medio de cobro"
+        verbose_name_plural = "Medios de cobros"
+        
 class TransferenciaCuenta(models.Model):
     cuenta_salida = models.ForeignKey(Cuenta, on_delete=models.DO_NOTHING,verbose_name="Cuenta Salida",related_name='salida')
     cuenta_entrada = models.ForeignKey(Cuenta, on_delete=models.DO_NOTHING,verbose_name="Cuenta Entrada",related_name='entrada')
@@ -224,6 +246,9 @@ class TransferenciaCuenta(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     comprobante = models.CharField(max_length=15,verbose_name="Comprobante", default="" )
+    class Meta:
+        verbose_name = "Transferencia de cuenta"
+        verbose_name_plural = "Transferencias de cuentas"
 
 from .signals import (signal_cobro_anulado, signal_cobro_detalle_save,
                       signal_cobro_pre_guardado,

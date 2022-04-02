@@ -17,6 +17,7 @@ from apps.supplies.mixins import FormsetInlinesMetaMixin
 class DeleteView(LoginRequiredMixin, edit.DeleteView):
     error = None
     template_name = 'generic/remove.html'
+    page_title = None
 
     def get_success_url(self):
         return reverse_lazy(self.list_url)
@@ -28,7 +29,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView):
         context['model_count']=dict(model_count).items()
         context['protected']=protected
         context['list_url'] = self.list_url
-        context['title'] = self.page_title
+        context['title'] = "Eliminar "+self.model._meta.verbose_name.title() if self.page_title is None else self.page_title
         context['error'] = self.error
         return context
 
@@ -70,13 +71,14 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
     paginate_by = 10
     template_name = 'generic/list.html'
     export_class = TableExport
+    page_title = None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['update_url'] = None if not self.update_url else self.update_url
         context['delete_url'] = None if not  self.delete_url else self.delete_url
         context['create_url'] = None if not self.create_url else self.create_url
-        context['title'] = self.page_title
+        context['title'] = "Listado de "+self.model._meta.verbose_name_plural.title() if self.page_title is None else self.page_title
         if not self.filterset_class:
             context['filter'] = None
         return context
@@ -84,6 +86,7 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
 
 class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesView):
     template_name = 'generic/edit.html'
+    page_title = None
 
     def get_success_url(self):
         return reverse_lazy(self.list_url)
@@ -92,7 +95,7 @@ class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesV
         context = super().get_context_data(**kwargs)
         context['helper'] = None
         context['list_url'] = self.list_url
-        context['title'] = self.page_title
+        context['title'] = context['title'] = "Agregar "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
         return context
 
     def run_form_extra_validation(self, form, inlines):
@@ -137,6 +140,7 @@ class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesV
 
 class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesView):
     template_name = 'generic/edit.html'
+    page_title = None
 
     def get_success_url(self):
         return reverse_lazy(self.list_url)
@@ -149,7 +153,7 @@ class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesV
         context = super().get_context_data(**kwargs)
         context['helper'] = None
         context['list_url'] = self.list_url
-        context['title'] = self.page_title
+        context['title'] = "Modificar "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
         return context
 
     def run_form_extra_validation(self, form, inlines):
