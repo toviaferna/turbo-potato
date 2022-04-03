@@ -1,3 +1,4 @@
+from apps.supplies.filters import CompraFilter
 from apps.supplies.forms import CompraForm, OrdenCompraForm, PedidoCompraForm
 from apps.supplies.models import Compra, OrdenCompra, PedidoCompra
 from apps.supplies.tables import CompraTable, OrdenCompraTable, PedidoCompraTable
@@ -46,6 +47,7 @@ class OrdenCompraAnnulledView(AnnulledView):
 class CompraListView(ListView):
     model = Compra
     table_class = CompraTable
+    filterset_class = CompraFilter
     search_fields = ['proveedor__razon_social','comprobante','timbrado','observacion']
     update_url = None
     delete_url = "compra_delete"
