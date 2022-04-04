@@ -47,12 +47,12 @@ class TableExport(export.TableExport):
             'title': self.dataset.title,
             'today': timezone.now()
         })
-        print(self.dataset.title)
         return html
 
     def response(self, filename=None):
         filename = f"{self.dataset.title.upper()}_{timezone.now().strftime('%d%m%Y_%H%M%S')}.{self.format}".replace(" ","_")
         return super().response(filename)
+    
 
     def export(self):
         if self.format == self.PDF:
@@ -60,7 +60,7 @@ class TableExport(export.TableExport):
             pdf = pisa.pisaDocument(BytesIO(self.get_dataset_as_html().encode("UTF-8")), response)
             data = response.getvalue()
         elif self.format == self.HTML:
-            return self.get_dataset_as_html()
+            return self.get_dataset_as_html().encode("UTF-8")
         else:
             data = self.dataset.export(self.format)
         return data

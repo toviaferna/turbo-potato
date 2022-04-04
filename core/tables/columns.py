@@ -34,5 +34,4 @@ class BooleanColumn(columns.BooleanColumn):
 
     def value(self, record, value, bound_column):
         value = self._get_bool_value(record, value, bound_column)
-        text = self.yesno[int(not value)]
-        return format_html("<span>{}</span>", escape(text))
+        return 'SI' if value else 'NO'
