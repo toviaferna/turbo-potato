@@ -1,8 +1,10 @@
 from django.forms.models import ModelForm
-from core.layouts import CancelButton
-from .models import Categoria, Deposito, Item, Marca, TipoItem
+from core.layouts import CancelButton, Formset
+from .models import AjusteStock, AjusteStockDetalle, Categoria, Deposito, Item, Marca, TipoItem
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column
+from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column, Fieldset
+from core.widgets import DateInput
+from apps.finance.models import Persona
 
 class MarcaForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -92,3 +94,41 @@ class DepositoForm(ModelForm):
     class Meta:
         model = Deposito
         fields = ['descripcion','es_planta_acopiadora']
+
+class AjusteStockForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields["empleado"].queryset =  Persona.objects.filter(es_empleado=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha_documento", css_class="col-sm-3"),
+                Column("comprobante", css_class="col-sm-3"),
+                Column("empleado"),
+            ),
+            Row(
+                Column("deposito", css_class="col-sm-4"),
+                Column("observacion"),
+            ),
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "AjusteStockDetalleInline"#, stacked=True
+                ), 
+            ),
+            ButtonHolder(
+                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                CancelButton(),
+            ),
+        )
+    class Meta:
+       model = AjusteStock
+       fields = ['fecha_documento','comprobante','empleado','deposito','observacion',]
+       widgets = { 'fecha_documento':DateInput }
+
+class AjusteStockDetalleForm(ModelForm):
+    class Meta:
+        model = AjusteStockDetalle
+        fields = ['item', 'cantidad',]
+        #widgets = {'cantidad':DecimalMaskInput}

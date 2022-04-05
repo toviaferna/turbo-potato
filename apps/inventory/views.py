@@ -1,11 +1,12 @@
 from apps.inventory.filters import DepositoFilter, ItemFilter
-from apps.inventory.forms import (CategoriaForm, DepositoForm, ItemForm,
+from apps.inventory.forms import (AjusteStockForm, CategoriaForm, DepositoForm, ItemForm,
                                   MarcaForm, TipoItemForm)
-from apps.inventory.tables import (CategoriaTable, DepositoTable, ItemTable,
+from apps.inventory.inlines import AjusteStockDetalleInline
+from apps.inventory.tables import (AjusteStockTable, CategoriaTable, DepositoTable, ItemTable,
                                    MarcaTable, TipoItemTable)
 from core.views import CreateView, DeleteView, ListView, UpdateView
 
-from .models import Categoria, Deposito, Item, Marca, TipoItem
+from .models import AjusteStock, Categoria, Deposito, Item, Marca, TipoItem
 
 
 # FINCA
@@ -120,3 +121,27 @@ class TipoItemUpdateView(UpdateView):
 class TipoItemDeleteView(DeleteView):
     model = TipoItem
     list_url = "tipo_item_list"
+
+class AjusteStockListView(ListView):
+    model = AjusteStock
+    table_class = AjusteStockTable
+    search_fields = ['proveedor__razon_social',]
+    update_url = 'ajuste_stock_update'
+    delete_url = 'ajuste_stock_delete'
+    create_url = "ajuste_stock_create"
+
+class AjusteStockCreateView(CreateView):
+    model = AjusteStock
+    form_class = AjusteStockForm
+    inlines = [AjusteStockDetalleInline]
+    list_url = "ajuste_stock_list"
+
+class AjusteStockUpdateView(UpdateView):
+    model = AjusteStock
+    form_class = AjusteStockForm
+    inlines = [AjusteStockDetalleInline]
+    list_url = "ajuste_stock_list"
+
+class AjusteStockDeleteView(DeleteView):
+    model = AjusteStock
+    list_url = "ajuste_stock_list"

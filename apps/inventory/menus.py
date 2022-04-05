@@ -21,9 +21,14 @@ children = (
         reverse("deposito_list"),
         icon="fas fa-cart-flatbed",
     ),
+    #MenuItem(
+    #    "Tipos de items",
+    #    reverse("tipo_item_list"),
+    #    icon="fas fa-boxes-stacked",
+    #),
     MenuItem(
-        "Tipos de items",
-        reverse("tipo_item_list"),
+        "Ajustes de stock",
+        reverse("ajuste_stock_list"),
         icon="fas fa-boxes-stacked",
     ),
 )

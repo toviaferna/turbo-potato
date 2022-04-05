@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (CategoriaCreateView, CategoriaDeleteView,
+from .views import (AjusteStockCreateView, AjusteStockDeleteView, AjusteStockListView, AjusteStockUpdateView, CategoriaCreateView, CategoriaDeleteView,
                     CategoriaListView, CategoriaUpdateView, DepositoCreateView,
                     DepositoDeleteView, DepositoListView, DepositoUpdateView, ItemCreateView, ItemDeleteView, ItemListView, ItemUpdateView,
                     MarcaCreateView, MarcaDeleteView, MarcaListView,
@@ -20,12 +20,16 @@ urlpatterns = [
     path('categoria/<int:pk>/update/', CategoriaUpdateView.as_view(), name="categoria_update"),
     path('categoria/add', CategoriaCreateView.as_view(), name="categoria_create"),
     path("categoria/",  CategoriaListView.as_view(), name="categoria_list"),
-    path('tipo_item/<int:pk>/delete/', TipoItemDeleteView.as_view(), name="tipo_item_delete"),
-    path('tipo_item/<int:pk>/update/', TipoItemUpdateView.as_view(), name="tipo_item_update"),
-    path('tipo_item/add', TipoItemCreateView.as_view(), name="tipo_item_create"),
-    path("tipo_item/",  TipoItemListView.as_view(), name="tipo_item_list"),
+    #path('tipo_item/<int:pk>/delete/', TipoItemDeleteView.as_view(), name="tipo_item_delete"),
+    #path('tipo_item/<int:pk>/update/', TipoItemUpdateView.as_view(), name="tipo_item_update"),
+    #path('tipo_item/add', TipoItemCreateView.as_view(), name="tipo_item_create"),
+    #path("tipo_item/",  TipoItemListView.as_view(), name="tipo_item_list"),
     path('item/<int:pk>/delete/', ItemDeleteView.as_view(), name="item_delete"),
     path('item/<int:pk>/update/', ItemUpdateView.as_view(), name="item_update"),
     path('item/add', ItemCreateView.as_view(), name="item_create"),
     path("item/",  ItemListView.as_view(), name="item_list"),
+    path('ajuste_stock/<int:pk>/delete/', AjusteStockDeleteView.as_view(), name="ajuste_stock_delete"),
+    path('ajuste_stock/<int:pk>/update/', AjusteStockUpdateView.as_view(), name="ajuste_stock_update"),
+    path('ajuste_stock/add', AjusteStockCreateView.as_view(), name="ajuste_stock_create"),
+    path("ajuste_stock/",  AjusteStockListView.as_view(), name="ajuste_stock_list"),
 ]

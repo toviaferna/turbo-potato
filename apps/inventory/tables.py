@@ -1,4 +1,4 @@
-from .models import Categoria, Deposito, Item, Marca, TipoItem
+from .models import AjusteStock, Categoria, Deposito, Item, Marca, TipoItem
 from core.tables import AccionTable
 
 class MarcaTable(AccionTable):
@@ -25,3 +25,8 @@ class ItemTable(AccionTable):
     class Meta:
         model = Item
         fields = ("descripcion","categoria","marca","tipo_impuesto","costo","ultimo_costo","precio","es_activo")
+
+class AjusteStockTable(AccionTable):
+    class Meta:
+        model = AjusteStock
+        fields = ("fecha_documento","comprobante","empleado","deposito","observacion",)
