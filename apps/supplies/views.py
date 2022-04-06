@@ -1,8 +1,9 @@
+from pyexpat import model
 from apps.supplies.filters import CompraFilter
 from apps.supplies.forms import CompraForm, OrdenCompraForm, PedidoCompraForm
 from apps.supplies.models import Compra, OrdenCompra, PedidoCompra
 from apps.supplies.tables import CompraTable, OrdenCompraTable, PedidoCompraTable
-from core.views import AnnulledView, CreateView, ListView, UpdateView
+from core.views import AnnulledView, CreateView, DetailView, ListView, UpdateView
 from apps.supplies.inlines import CompraDetalleInline, CuotaCompraInline, OrdenCompraDetalleInline, PedidoCompraDetalleInline
 
 class PedidoCompraListView(ListView):
@@ -86,5 +87,9 @@ class CompraAnnulledView(AnnulledView):
     model = Compra
     list_url = "compra_list"
     mensaje_anulacion = "La Factura ya fue anulado."
+
+class CompraDetailView(DetailView):
+    model = Compra
+    list_url = "compra_list"
 
 

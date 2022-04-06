@@ -1,9 +1,10 @@
 
 from apps.supplies.models import Compra, OrdenCompra, PedidoCompra
-from core.tables import AccionTable, columns
+from core.tables import AccionTable
 from core.tables.columns import BooleanColumn, NumberColumn
 from django.contrib.humanize.templatetags.humanize import intcomma
-import django_tables2 as tables
+from django.urls.base import reverse
+from django.utils.html import format_html
 
 class PedidoCompraTable(AccionTable):
     es_vigente = BooleanColumn()
@@ -25,6 +26,14 @@ class CompraTable(AccionTable):
     es_credito = BooleanColumn()
     es_vigente = BooleanColumn()
     total = NumberColumn(verbose_name="Total")
+    
+    def render_comprobante(self, value, record):
+            if record.es_vigente:
+                return format_html('<a href="{}">{}</a>',reverse('compra_detail',kwargs={'pk': record.pk}),value)
+            else:
+                return value
+
+
     class Meta:
         model = Compra
         fields = ("fecha_documento","comprobante","proveedor","es_credito","total","es_vigente",)

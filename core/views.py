@@ -13,6 +13,8 @@ from django.db import transaction
 from django.forms.formsets import all_valid
 from django.core.exceptions import ValidationError
 from apps.supplies.mixins import FormsetInlinesMetaMixin
+from  django.views.generic import detail
+from django.db import models
 
 class DeleteView(LoginRequiredMixin, edit.DeleteView):
     error = None
@@ -186,3 +188,30 @@ class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesV
             pass
         self.object = initial_object
         return self.forms_invalid(form, inlines)
+
+class DetailView(LoginRequiredMixin, detail.DetailView):
+    template_name = 'generic/detail.html'
+    page_title = None
+    
+    def get_object_data(self):
+        for field in self.object._meta.fields:
+            if isinstance(field, models.AutoField):
+                continue
+            elif field.auto_created:
+                continue
+            else:
+                choice_display_attr = "get_{}_display".format(field.name)
+            if hasattr(self.object, choice_display_attr):
+                value = getattr(self.object, choice_display_attr)()
+            else:
+                value = getattr(self.object, field.name)
+
+            if value is not None:
+                yield (field.verbose_name.title(), value)
+                
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['helper'] = None
+        context['list_url'] = self.list_url
+        context['title'] = "Ver "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
+        return context

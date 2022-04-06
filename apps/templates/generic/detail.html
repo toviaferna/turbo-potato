@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+{% block title %}{{title}}{% endblock %} 
+{% block body_class %} sidebar-mini pace-secondary {% endblock body_class %}
+{% block content %}
+
+<div class="content-wrapper">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-11">
+            <h1>{{title}}</h1>
+          </div>
+          <div class="col-sm-1">
+              <a href="{% url list_url %}" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col col-lg-12">
+              <div class="card card-solid">
+                <div class="card-body">
+                    {% for field_name, value in object_data %}
+                        {{field_name}} - {{value}}
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+            </div>
+      </div>
+    </section>
+
+  </div>
+
+
+
+{% endblock %}
