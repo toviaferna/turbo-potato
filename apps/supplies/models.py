@@ -1,7 +1,7 @@
 from apps.finance.models import Cuenta, Persona
 from apps.inventory.models import Deposito, Item
 from django.db import models
-
+from django.utils.html import format_html
 
 # Create your models here.
 class PedidoCompra(models.Model):
@@ -60,6 +60,9 @@ class Compra(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
+    #def get_fecha_documento_display(self):
+    #    return format_html(f"<h1 class={self.comprobante}>Fecha documento</h1>")
+
     @property
     def total(self):
         return sum(round(x.costo * x.cantidad)  for x in self.compradetalle_set.all())

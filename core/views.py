@@ -193,7 +193,6 @@ class DetailView(LoginRequiredMixin, detail.DetailView):
     template_name = 'generic/detail.html'
     page_title = None
 
-
     def get_object_data(self):
         for field in self.object._meta.fields:
             if isinstance(field, models.AutoField):
