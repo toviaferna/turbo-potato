@@ -11,7 +11,7 @@
             <h1>{{title}}</h1>
           </div>
           <div class="col-sm-1">
-              <a href="{% url list_url %}" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+              <a href="{% url list_url %}" class="btn btn-primary">Volver</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -23,9 +23,12 @@
             <div class="col col-lg-12">
               <div class="card card-solid">
                 <div class="card-body">
+                   <div class="row">
                     {% for field_name, value in object_data %}
-                        {{field_name}} - {{value}}
+                      <dt class="col-lg-2">{{field_name}}:</dt>
+                      <dd class="col-lg-2">{{value}}</dd>
                     {% endfor %}
+                   </div>
                 </div>
               </div>
             </div>

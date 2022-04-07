@@ -192,7 +192,8 @@ class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesV
 class DetailView(LoginRequiredMixin, detail.DetailView):
     template_name = 'generic/detail.html'
     page_title = None
-    
+
+
     def get_object_data(self):
         for field in self.object._meta.fields:
             if isinstance(field, models.AutoField):
@@ -211,6 +212,7 @@ class DetailView(LoginRequiredMixin, detail.DetailView):
                 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['object_data'] = self.get_object_data()
         context['helper'] = None
         context['list_url'] = self.list_url
         context['title'] = "Ver "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
