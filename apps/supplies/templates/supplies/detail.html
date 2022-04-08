@@ -1,0 +1,6 @@
+{% extends 'generic/detail.html' %}
+{% load render_table from django_tables2 %}
+
+{% block extra-detail %}
+    {% render_table compra_detail %}
+{% endblock extra-detail %}

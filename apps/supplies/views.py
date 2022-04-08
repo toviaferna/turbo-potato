@@ -91,5 +91,10 @@ class CompraAnnulledView(AnnulledView):
 class CompraDetailView(DetailView):
     model = Compra
     list_url = "compra_list"
-
+    template_name = "supplies/detail.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['compra_detail'] = CompraTable(Compra.objects.all())
+        return context
 
