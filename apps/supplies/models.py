@@ -60,8 +60,13 @@ class Compra(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
-    #def get_fecha_documento_display(self):
-    #    return format_html(f"<h1 class={self.comprobante}>Fecha documento</h1>")
+    def get_es_vigente_display(self):
+        value =  'fa-check' if self.es_vigente else 'fa-xmark'
+        return format_html(f"<i class='fa-solid {value}'></i>")
+    
+    def get_es_credito_display(self):
+        value =  'fa-check' if self.es_credito else 'fa-xmark'
+        return format_html(f"<i class='fa-solid {value}'></i>")
 
     @property
     def total(self):
@@ -114,6 +119,14 @@ class CompraDetalle(models.Model):
     def subtotal(self):
         return round(self.costo * self.cantidad)
     
+    @property
+    def subtotal_iva(self):
+        if self.porcentaje_impuesto == 5:
+            return round((self.costo * self.cantidad)/21)
+        elif self.porcentaje_impuesto == 10:
+            return round((self.costo * self.cantidad)/11)
+        else:
+            return round((self.costo * self.cantidad)*0)
     @property
     def imponible5(self):
         if self.porcentaje_impuesto == 5:

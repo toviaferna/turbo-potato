@@ -3,6 +3,7 @@ from django_tables2.columns.base import Column
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django_tables2 import columns
 from django_tables2.utils import AttributeDict
+
 class NumberColumn(Column):
     attrs = {
         "th":{ "class":"text-right" },
@@ -15,6 +16,20 @@ class NumberColumn(Column):
     
     def render_footer(self, bound_column, table):
         return "Total: "+intcomma(sum(bound_column.accessor.resolve(row) for row in table.data if row.es_vigente))
+
+class TotalColumn(Column):
+    attrs = {
+        "th":{ "class":"text-right" },
+        "td":{ "class":"text-right" },
+        "tf":{ "class":"text-right" }
+    }
+    
+    def render(self,value):
+        return intcomma(value)
+    
+    def render_footer(self, bound_column, table):
+        return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data))
+
 
 class BooleanColumn(columns.BooleanColumn):
     attrs = {

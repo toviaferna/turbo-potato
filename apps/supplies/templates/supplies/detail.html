@@ -2,5 +2,23 @@
 {% load render_table from django_tables2 %}
 
 {% block extra-detail %}
-    {% render_table compra_detail %}
+    
+    {% if compra_detail %}
+        <div class="col-lg-12">
+            <fieldset>
+                <legend>Detalles</legend>
+                {% render_table compra_detail %}
+            </fieldset>
+        </div>
+    {% endif %}
+
+    {% if compra_cuota and object.cuotacompra_set.all.count > 0%}
+        <div class="col-lg-6">
+            <fieldset>
+                <legend>Cuotas</legend>
+                {% render_table compra_cuota %}
+            </fieldset>
+        </div>
+    {% endif %}
+
 {% endblock extra-detail %}

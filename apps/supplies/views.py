@@ -1,8 +1,8 @@
 from pyexpat import model
 from apps.supplies.filters import CompraFilter
 from apps.supplies.forms import CompraForm, OrdenCompraForm, PedidoCompraForm
-from apps.supplies.models import Compra, OrdenCompra, PedidoCompra
-from apps.supplies.tables import CompraTable, OrdenCompraTable, PedidoCompraTable
+from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, OrdenCompra, PedidoCompra
+from apps.supplies.tables import CompraDetalleTable, CompraTable, CuotaCompraTable, OrdenCompraTable, PedidoCompraTable
 from core.views import AnnulledView, CreateView, DetailView, ListView, UpdateView
 from apps.supplies.inlines import CompraDetalleInline, CuotaCompraInline, OrdenCompraDetalleInline, PedidoCompraDetalleInline
 
@@ -95,6 +95,9 @@ class CompraDetailView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['compra_detail'] = CompraTable(Compra.objects.all())
+        compra_detalle = CompraDetalle.objects.filter(compra=self.object)
+        compra_cuota = CuotaCompra.objects.filter(compra=self.object)
+        context['compra_detail'] = CompraDetalleTable(compra_detalle)
+        context['compra_cuota'] = CuotaCompraTable(compra_cuota)
         return context
 
