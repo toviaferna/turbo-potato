@@ -4,7 +4,7 @@ from django.contrib.humanize.templatetags.humanize import intcomma
 from django_tables2 import columns
 from django_tables2.utils import AttributeDict
 
-class NumberColumn(Column):
+class NumericColumn(Column):
     attrs = {
         "th":{ "class":"text-right" },
         "td":{ "class":"text-right" },
@@ -14,21 +14,21 @@ class NumberColumn(Column):
     def render(self,value):
         return intcomma(value)
     
-    def render_footer(self, bound_column, table):
-        return "Total: "+intcomma(sum(bound_column.accessor.resolve(row) for row in table.data if row.es_vigente))
 
-class TotalColumn(Column):
-    attrs = {
-        "th":{ "class":"text-right" },
-        "td":{ "class":"text-right" },
-        "tf":{ "class":"text-right" }
-    }
-    
-    def render(self,value):
-        return intcomma(value)
-    
+
+class TotalColumn(NumericColumn):
+
     def render_footer(self, bound_column, table):
-        return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data))
+        print(table.data)
+        for row in table.data:
+            print(row)
+            # if row.es_vigente is None:
+            #     return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data))
+            # else:
+            #     if row.es_vigente:
+            #         return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data if row.es_vigente))
+
+                
 
 
 class BooleanColumn(columns.BooleanColumn):

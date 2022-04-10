@@ -96,8 +96,8 @@ class CompraDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         compra_detalle = CompraDetalle.objects.filter(compra=self.object)
-        compra_cuota = CuotaCompra.objects.filter(compra=self.object)
-        context['compra_detail'] = CompraDetalleTable(compra_detalle)
-        context['compra_cuota'] = CuotaCompraTable(compra_cuota)
+        cuota_compra = CuotaCompra.objects.filter(compra=self.object)
+        context['compra_detalle'] = CompraDetalleTable(compra_detalle)
+        context['cuota_compra'] = CuotaCompraTable(cuota_compra)
         return context
 

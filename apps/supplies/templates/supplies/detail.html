@@ -3,20 +3,20 @@
 
 {% block extra-detail %}
     
-    {% if compra_detail %}
+    {% if compra_detalle %}
         <div class="col-lg-12">
             <fieldset>
                 <legend>Detalles</legend>
-                {% render_table compra_detail %}
+                {% render_table compra_detalle %}
             </fieldset>
         </div>
     {% endif %}
 
-    {% if compra_cuota and object.cuotacompra_set.all.count > 0%}
+    {% if cuota_compra and object.cuotacompra_set.all.count > 0%}
         <div class="col-lg-6">
             <fieldset>
                 <legend>Cuotas</legend>
-                {% render_table compra_cuota %}
+                {% render_table cuota_compra %}
             </fieldset>
         </div>
     {% endif %}
