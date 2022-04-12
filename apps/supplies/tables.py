@@ -1,7 +1,7 @@
 
 from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, OrdenCompra, PedidoCompra
 from core.tables import AccionTable, DetailTable
-from core.tables.columns import BooleanColumn, NumericColumn, TotalColumn
+from core.tables.columns import BooleanColumn, NumericColumn, TotalNumericColumn
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.urls.base import reverse
 from django.utils.html import format_html
@@ -15,7 +15,7 @@ class PedidoCompraTable(AccionTable):
 
 class OrdenCompraTable(AccionTable):
     es_vigente = BooleanColumn()
-    total = TotalColumn(verbose_name="Total")
+    total = TotalNumericColumn(verbose_name="Total")
     class Meta:
         model = OrdenCompra
         fields = ("proveedor","fecha_documento","total","es_vigente")
@@ -25,7 +25,7 @@ class OrdenCompraTable(AccionTable):
 class CompraTable(AccionTable):
     es_credito = BooleanColumn()
     es_vigente = BooleanColumn()
-    total = TotalColumn(verbose_name="Total")
+    total = TotalNumericColumn(verbose_name="Total")
     
     def render_comprobante(self, value, record):
             if record.es_vigente:
@@ -40,14 +40,16 @@ class CompraTable(AccionTable):
         order_by = "-fecha_documento"
     
 class CompraDetalleTable(DetailTable):
-    subtotal = TotalColumn(verbose_name="Subtotal", accessor="compra_detalle")
-    subtotal_iva = NumericColumn(verbose_name="Subtotal IVA")
+    cantidad = NumericColumn()
+    costo = NumericColumn()
+    subtotal = TotalNumericColumn(verbose_name="Subtotal")
+    subtotal_iva = TotalNumericColumn(verbose_name="Subtotal IVA")
     class Meta:
         model = CompraDetalle
         fields = ("item__pk","cantidad","item__descripcion","costo","porcentaje_impuesto", "subtotal","subtotal_iva")
 
 class CuotaCompraTable(DetailTable):
-    monto = NumericColumn()
+    monto = TotalNumericColumn()
     class Meta:
         model = CuotaCompra
         fields = ("fecha_vencimiento", "monto")

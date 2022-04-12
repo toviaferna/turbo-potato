@@ -12,7 +12,7 @@ class SingleTable(BaseTable):
 
 class DetailTable(SingleTable):
     def __init__(self, *args, **kwargs):
-        kwargs['attrs'] = {"class":"table table-sm",}
+        kwargs['attrs'] = {"class":"table table-sm table-striped",}
         kwargs['orderable'] = False
         super().__init__(*args, **kwargs) 
     

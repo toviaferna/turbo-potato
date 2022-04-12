@@ -5,28 +5,27 @@ from django_tables2 import columns
 from django_tables2.utils import AttributeDict
 
 class NumericColumn(Column):
+
     attrs = {
         "th":{ "class":"text-right" },
         "td":{ "class":"text-right" },
         "tf":{ "class":"text-right" }
     }
-    
+
     def render(self,value):
         return intcomma(value)
-    
 
 
-class TotalColumn(NumericColumn):
+
+class TotalNumericColumn(NumericColumn):
 
     def render_footer(self, bound_column, table):
-        print(table.data)
         for row in table.data:
-            print(row)
-            # if row.es_vigente is None:
-            #     return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data))
-            # else:
-            #     if row.es_vigente:
-            #         return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data if row.es_vigente))
+            if hasattr(row, "es_vigente"):
+                if row.es_vigente:
+                    return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data if row.es_vigente))
+            else:
+                return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data))
 
                 
 

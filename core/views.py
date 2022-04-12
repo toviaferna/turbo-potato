@@ -214,5 +214,5 @@ class DetailView(LoginRequiredMixin, detail.DetailView):
         context['object_data'] = self.get_object_data()
         context['helper'] = None
         context['list_url'] = self.list_url
-        context['title'] = "Ver "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
+        context['title'] = "Detalles de "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
         return context
