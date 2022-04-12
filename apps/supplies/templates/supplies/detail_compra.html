@@ -13,7 +13,7 @@
     {% endif %}
 
     {% if cuota_compra and object.cuotacompra_set.all.count > 0%}
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <fieldset>
                 <legend>Cuotas</legend>
                 {% render_table cuota_compra %}

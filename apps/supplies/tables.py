@@ -44,6 +44,7 @@ class CompraDetalleTable(DetailTable):
     costo = NumericColumn()
     subtotal = TotalNumericColumn(verbose_name="Subtotal")
     subtotal_iva = TotalNumericColumn(verbose_name="Subtotal IVA")
+    porcentaje_impuesto = NumericColumn()
     class Meta:
         model = CompraDetalle
         fields = ("item__pk","cantidad","item__descripcion","costo","porcentaje_impuesto", "subtotal","subtotal_iva")
