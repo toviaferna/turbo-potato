@@ -4,22 +4,22 @@ children = (
     MenuItem(
         "Items",
         reverse("item_list"),
-        icon="fas fa-qrcode",
+        #icon="fas fa-qrcode",
     ),
     MenuItem(
         "Marcas",
         reverse("marca_list"),
-        icon="fas fa-tags",
+        #icon="fas fa-tags",
     ),
     MenuItem(
         "Categorias",
         reverse("categoria_list"),
-        icon="fas fa-chart-gantt",
+        #icon="fas fa-chart-gantt",
     ),
     MenuItem(
         "Depositos",
         reverse("deposito_list"),
-        icon="fas fa-cart-flatbed",
+        #icon="fas fa-cart-flatbed",
     ),
     #MenuItem(
     #    "Tipos de items",
@@ -29,7 +29,7 @@ children = (
     MenuItem(
         "Ajustes de stock",
         reverse("ajuste_stock_list"),
-        icon="fas fa-boxes-stacked",
+        #icon="fas fa-boxes-stacked",
     ),
 )
 

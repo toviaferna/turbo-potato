@@ -5,7 +5,7 @@ from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra, OrdenCompr
 from core.layouts import CancelButton, Formset
 from core.widgets import DateInput, FormulaInput, ItemCustomSelect, SumInput
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import (HTML, ButtonHolder, Column, Div, Field,
+from crispy_forms.layout import (HTML, ButtonHolder, Column,
                                  Fieldset, Layout, Row, Submit)
 from django import forms
 from django.forms.models import ModelForm
