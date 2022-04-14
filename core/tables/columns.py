@@ -20,13 +20,14 @@ class NumericColumn(Column):
 class TotalNumericColumn(NumericColumn):
 
     def render_footer(self, bound_column, table):
+        value = 0
         for row in table.data:
             if hasattr(row, "es_vigente"):
                 if row.es_vigente:
-                    return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data if row.es_vigente))
+                    value = intcomma(sum(bound_column.accessor.resolve(row) for row in table.data if row.es_vigente))
             else:
-                return intcomma(sum(bound_column.accessor.resolve(row) for row in table.data))
-
+                value = intcomma(sum(bound_column.accessor.resolve(row) for row in table.data))
+        return value
                 
 
 

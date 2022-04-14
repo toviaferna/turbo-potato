@@ -1,7 +1,7 @@
 from django.template.loader import render_to_string
 from crispy_forms.layout import TemplateNameMixin
 from crispy_forms.utils import TEMPLATE_PACK, flatatt
-from crispy_forms.layout import LayoutObject, TemplateNameMixin, Field
+from crispy_forms.layout import LayoutObject, TemplateNameMixin, Submit
 class BaseButton(TemplateNameMixin):
     def __init__(self, **kwargs):
         if not getattr(self, 'field_classes'):
@@ -24,6 +24,13 @@ class CancelButton(BaseButton):
     def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
         context.update({"cancel_button": self})
         return render_to_string('includes/cancel_button.html', context.flatten())
+
+class SaveButton(Submit):
+    def __init__(self, *args, **kwargs):
+        self.field_classes = "btn btn-primary"
+        kwargs['name'] = "Guardar"
+        kwargs['value'] = "Guardar"
+        super().__init__(*args, **kwargs)
 
 class Formset(LayoutObject):
     template = "bootstrap4/table_inline_formset.html"

@@ -18,6 +18,11 @@ children = (
         reverse("compra_list"),
         #icon="fa fa-cart-arrow-down",
     ),
+    MenuItem(
+        "Notas de débito recibidas",
+        reverse("nota_debito_recibida_list"),
+        #icon="fa fa-cart-arrow-down",
+    ),
 )
 
 Menu.add_item("suministros", MenuItem("Suministros","#",icon='fa fa-shop',weight=6, children=children))
