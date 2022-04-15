@@ -73,7 +73,7 @@ class Compra(models.Model):
         return sum(round(x.costo * x.cantidad)  for x in self.compradetalle_set.all())
     
     def __str__(self):
-        return self.comprobante+" - "+self.timbrado
+        return self.comprobante+" - "+self.timbrado+" - "+self.proveedor.razon_social
     
     @property
     def imponible5(self):
@@ -230,6 +230,9 @@ class NotaDebitoRecibida(models.Model):
     class Meta:
         verbose_name = "Nota de débito recibida"
         verbose_name_plural = "Notas de débito recibidas"
+    
+    def __str__(self):
+        return self.comprobante+" - "+self.timbrado+" - "+self.proveedor.razon_social
     
     @property
     def total(self):

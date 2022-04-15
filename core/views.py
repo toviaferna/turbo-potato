@@ -20,6 +20,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView):
     error = None
     template_name = 'generic/remove.html'
     page_title = None
+    page_subtitle = None
 
     def get_success_url(self):
         return reverse_lazy(self.list_url)
@@ -32,6 +33,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView):
         context['protected']=protected
         context['list_url'] = self.list_url
         context['title'] = "Eliminar "+self.model._meta.verbose_name.title() if self.page_title is None else self.page_title
+        context['subtitle'] = f"Desea eliminar: {self.object}?" if self.page_subtitle is None else self.page_subtitle
         context['error'] = self.error
         return context
 
@@ -68,7 +70,18 @@ class AnnulledView(DeleteView):
             context = self.get_context_data(object=self.object)
             return self.render_to_response(context)
         return HttpResponseRedirect(success_url)
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        deletable_objects, model_count, protected = get_deleted_objects([self.object])
+        context['deletable_objects']=deletable_objects
+        context['model_count']=dict(model_count).items()
+        context['protected']=protected
+        context['list_url'] = self.list_url
+        context['title'] = "Anular "+self.model._meta.verbose_name.title() if self.page_title is None else self.page_title
+        context['subtitle'] = f"Desea anular: {str(self.object)} ?" if self.page_subtitle is None else self.page_subtitle
+        context['error'] = self.error
+        return context
 class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):
     paginate_by = 10
     template_name = 'generic/list.html'

@@ -1,10 +1,10 @@
 from pyexpat import model
 from apps.supplies.filters import CompraFilter
-from apps.supplies.forms import CompraForm, NotaDebitoRecibidaForm, OrdenCompraForm, PedidoCompraForm
-from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, NotaDebitoRecibida, OrdenCompra, PedidoCompra
-from apps.supplies.tables import CompraDetalleTable, CompraTable, CuotaCompraTable, NotaDebitoRecibidaTable, OrdenCompraTable, PedidoCompraTable
+from apps.supplies.forms import CompraForm, NotaCreditoRecibidaForm, NotaDebitoRecibidaForm, OrdenCompraForm, PedidoCompraForm
+from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, NotaCreditoRecibida, NotaDebitoRecibida, OrdenCompra, PedidoCompra
+from apps.supplies.tables import CompraDetalleTable, CompraTable, CuotaCompraTable, NotaCreditoRecibidaTable, NotaDebitoRecibidaTable, OrdenCompraTable, PedidoCompraTable
 from core.views import AnnulledView, CreateView, DetailView, ListView, UpdateView
-from apps.supplies.inlines import CompraDetalleInline, CuotaCompraInline, NotaDebitoRecibidaDetalleInline, OrdenCompraDetalleInline, PedidoCompraDetalleInline
+from apps.supplies.inlines import CompraDetalleInline, CuotaCompraInline, NotaCreditoRecibidaDetalleInline, NotaDebitoRecibidaDetalleInline, OrdenCompraDetalleInline, PedidoCompraDetalleInline
 
 class PedidoCompraListView(ListView):
     model = PedidoCompra
@@ -121,3 +121,24 @@ class NotaDebitoRecibidaAnnulledView(AnnulledView):
     model = NotaDebitoRecibida
     list_url = "nota_debito_recibida_list"
     mensaje_anulacion = "La Nota de Débito ya fue anulado."
+
+class NotaCreditoRecibidaListView(ListView):
+    model = NotaCreditoRecibida
+    table_class = NotaCreditoRecibidaTable
+    filterset_class = None
+    search_fields = ['proveedor__razon_social','comprobante','timbrado','compra__comprobante']
+    list_url = "nota_credito_recibida_list"
+    update_url = None
+    delete_url = "nota_credito_recibida_delete"
+    create_url = "nota_credito_recibida_create"
+
+class NotaCreditoRecibidaCreateView(CreateView):
+    model = NotaCreditoRecibida
+    form_class = NotaCreditoRecibidaForm
+    inlines = [NotaCreditoRecibidaDetalleInline]
+    list_url = "nota_credito_recibida_list"
+
+class NotaCreditoRecibidaAnnulledView(AnnulledView):
+    model = NotaCreditoRecibida
+    list_url = "nota_credito_recibida_list"
+    mensaje_anulacion = "La Nota de Crédito ya fue anulado."

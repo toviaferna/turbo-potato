@@ -1,5 +1,5 @@
 
-from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, NotaDebitoRecibida, OrdenCompra, PedidoCompra
+from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, NotaCreditoRecibida, NotaDebitoRecibida, OrdenCompra, PedidoCompra
 from core.tables import AccionTable, DetailTable
 from core.tables.columns import BooleanColumn, NumericColumn, TotalNumericColumn
 from django.contrib.humanize.templatetags.humanize import intcomma
@@ -64,4 +64,15 @@ class NotaDebitoRecibidaTable(AccionTable):
         row_attrs = {
             "es-vigente": lambda record: record.es_vigente
         }
-        order_by = "-fechaDocumento"
+        order_by = "-fecha_documento"
+
+class NotaCreditoRecibidaTable(AccionTable):
+    total = TotalNumericColumn()
+    es_vigente = BooleanColumn()
+    class Meta:
+        model = NotaCreditoRecibida
+        fields = ("fecha_documento","comprobante","proveedor","total","es_vigente",)
+        row_attrs = {
+            "es-vigente": lambda record: record.es_vigente
+        }
+        order_by = "-fecha_documento"

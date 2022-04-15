@@ -1,6 +1,6 @@
 from apps.finance.models import Persona
 from apps.inventory.models import Deposito, Item
-from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra, NotaDebitoRecibida, NotaDebitoRecibidaDetalle, OrdenCompra, OrdenCompraDetalle,
+from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra, NotaCreditoRecibida, NotaCreditoRecibidaDetalle, NotaDebitoRecibida, NotaDebitoRecibidaDetalle, OrdenCompra, OrdenCompraDetalle,
                                   PedidoCompra, PedidoCompraDetalle)
 from core.layouts import CancelButton, Formset, SaveButton
 from core.widgets import DateInput, FormulaInput, ItemCustomSelect, SumInput
@@ -234,7 +234,7 @@ class CompraDetalleForm(forms.ModelForm):
     class Meta:
         model = CompraDetalle
         fields = ['item', 'cantidad','costo','porcentaje_impuesto','impuesto','subtotal']
-        #widgets = {'costo':DecimalMaskInput,'cantidad':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+        #widgets = {'costo':DecimalMaskInput,'cantidad':DecimalMaskInput,'porcentaje_impuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
 
 class CuotaCompraForm(forms.ModelForm):
     class Meta:
@@ -320,4 +320,85 @@ class NotaDebitoRecibidaDetalleForm(forms.ModelForm):
     class Meta:
         model = NotaDebitoRecibidaDetalle
         fields = ['item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']
-        #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+        #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentaje_impuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+
+class NotaCreditoRecibidaForm(forms.ModelForm):
+    total = forms.DecimalField(
+        widget=SumInput('subtotal'),
+    )
+    total_iva = forms.DecimalField(
+        widget=SumInput('impuesto'),
+    )
+    class Meta:
+        model = NotaCreditoRecibida
+        fields = ['fecha_documento','es_credito','comprobante','timbrado','proveedor','cuenta','deposito',"compra",'observacion']
+        widgets = {'fecha_documento':DateInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total'].label = False
+        #self.fields['total'].widget = DecimalMaskInput()
+        self.fields['total_iva'].label = False
+        #self.fields['total_iva'].widget = DecimalMaskInput()
+        #self.fields['comprobante'].widget = InvoiceMaskInput()
+        self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
+        self.fields["compra"].queryset = Compra.objects.filter(es_vigente=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha_documento", css_class="col-sm-3"),
+                Column("comprobante"),
+                Column("timbrado"),
+                Column("es_credito", css_class="col-sm-3 mt-2"),
+            ),
+            Row(
+                Column("proveedor"),
+                Column("cuenta"),
+                Column("deposito")
+            ),
+            Row(
+                Column("compra"),
+                Column("observacion")
+            ),
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "NotaCreditoRecibidaDetalleInline"#, stacked=True
+                ), 
+                
+            ),
+            Row(
+                Column(
+                    HTML('<label> Total: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total", css_class="col-sm-2")
+            ),
+            Row(
+                Column(
+                    HTML('<label> Total impuesto: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total_iva", css_class="col-sm-2")
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
+
+class NotaCreditoRecibidaDetalleForm(forms.ModelForm):
+    subtotal = forms.DecimalField(
+        widget=FormulaInput('valor*cantidad'),
+        label = "SubTotal"
+    )
+    impuesto = forms.DecimalField(
+        widget=FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)'),
+        label = "Impuesto"
+    )
+    item = ItemCustomSelect()
+    class Meta:
+        model = NotaCreditoRecibidaDetalle
+        fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']
+        #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentaje_impuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}

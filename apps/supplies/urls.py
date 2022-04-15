@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (CompraAnnulledView, CompraCreateView, CompraDetailView,
-                    CompraListView, NotaDebitoRecibidaAnnulledView, NotaDebitoRecibidaCreateView, NotaDebitoRecibidaListView, OrdenCompraAnnulledView,
+                    CompraListView, NotaCreditoRecibidaAnnulledView, NotaCreditoRecibidaCreateView, NotaCreditoRecibidaListView, NotaDebitoRecibidaAnnulledView, NotaDebitoRecibidaCreateView, NotaDebitoRecibidaListView, OrdenCompraAnnulledView,
                     OrdenCompraCreateView, OrdenCompraListView,
                     PedidoCompraCreateView, PedidoCompraListView,
                     PedidoCompraUpdateView)
@@ -12,6 +12,10 @@ urlpatterns = [
     path('compra/add', CompraCreateView.as_view(), name="compra_create"),
     path("compra/",  CompraListView.as_view(), name="compra_list"),
 
+    path('nota-credito-recibida/<int:pk>/delete/', NotaCreditoRecibidaAnnulledView.as_view(), name="nota_credito_recibida_delete"),
+    path('nota-credito-recibida/add', NotaCreditoRecibidaCreateView.as_view(), name="nota_credito_recibida_create"),
+    path("nota-credito-recibida/",  NotaCreditoRecibidaListView.as_view(), name="nota_credito_recibida_list"),
+    
     path('nota-debito-recibida/<int:pk>/delete/', NotaDebitoRecibidaAnnulledView.as_view(), name="nota_debito_recibida_delete"),
     path('nota-debito-recibida/add', NotaDebitoRecibidaCreateView.as_view(), name="nota_debito_recibida_create"),
     path("nota-debito-recibida/",  NotaDebitoRecibidaListView.as_view(), name="nota_debito_recibida_list"),
