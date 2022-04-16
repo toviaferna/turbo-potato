@@ -1,5 +1,5 @@
 from django.forms.models import ModelForm
-from core.layouts import CancelButton, Formset
+from core.layouts import CancelButton, Formset, SaveButton
 from .models import AjusteStock, AjusteStockDetalle, Categoria, Deposito, Item, Marca, TipoItem
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column, Fieldset
@@ -13,7 +13,7 @@ class MarcaForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -28,7 +28,7 @@ class CategoriaForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -43,7 +43,7 @@ class TipoItemForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -71,7 +71,7 @@ class ItemForm(ModelForm):
             ),
             "es_activo",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -87,7 +87,7 @@ class DepositoForm(ModelForm):
             "descripcion",
             "es_planta_acopiadora",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -118,7 +118,7 @@ class AjusteStockForm(ModelForm):
                 ), 
             ),
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )

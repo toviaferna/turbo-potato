@@ -1,6 +1,6 @@
 
 from django.forms.models import ModelForm
-from core.layouts import CancelButton
+from core.layouts import CancelButton, SaveButton
 from .models import Banco, Cuenta, Departamento, Distrito, Localidad, Pais, Persona, TipoImpuesto
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column
@@ -28,7 +28,7 @@ class PersonaForm(ModelForm):
                 Column("es_empleado"),
             ),
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -43,7 +43,7 @@ class BancoForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -56,14 +56,20 @@ class CuentaForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            "descripcion",
-            "es_banco",
-            "nro_cuenta",
-            "banco",
+            Row(
+                Column("descripcion", css_class="col-md my-1"),
+                Column("es_banco", css_class="col-md my-1 mt-4"),
+                css_class="align-items-center"
+            ),
+            Row(
+                Column("nro_cuenta"),
+                Column("banco")
+            ),
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
+            
         )
     class Meta:
         model = Cuenta
@@ -76,7 +82,7 @@ class PaisForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -91,7 +97,7 @@ class DepartamentoForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -107,7 +113,7 @@ class DistritoForm(ModelForm):
             "descripcion",
             "departamento",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -123,7 +129,7 @@ class LocalidadForm(ModelForm):
             "descripcion",
             "distrito",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
@@ -140,7 +146,7 @@ class TipoImpuestoForm(ModelForm):
             "porcentaje",
             "es_iva",
             ButtonHolder(
-                Submit("submit", "Guardar", css_class="btn btn-primary"),
+                SaveButton(),
                 CancelButton(),
             ),
         )
