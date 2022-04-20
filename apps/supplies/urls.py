@@ -1,12 +1,14 @@
 from django.urls import path
 
 from .views import (CompraAnnulledView, CompraCreateView, CompraDetailView,
-                    CompraListView, NotaCreditoRecibidaAnnulledView, NotaCreditoRecibidaCreateView, NotaCreditoRecibidaListView, NotaDebitoRecibidaAnnulledView, NotaDebitoRecibidaCreateView, NotaDebitoRecibidaListView, OrdenCompraAnnulledView,
+                    CompraListView, LibroCompraListView, NotaCreditoRecibidaAnnulledView, NotaCreditoRecibidaCreateView, NotaCreditoRecibidaListView, NotaDebitoRecibidaAnnulledView, NotaDebitoRecibidaCreateView, NotaDebitoRecibidaListView, OrdenCompraAnnulledView,
                     OrdenCompraCreateView, OrdenCompraListView,
                     PedidoCompraCreateView, PedidoCompraListView,
                     PedidoCompraUpdateView)
 
 urlpatterns = [
+    path("libro-compra/",  LibroCompraListView.as_view(), name="libro_compra_list"),
+
     path('compra/<int:pk>/detail/', CompraDetailView.as_view(), name="compra_detail"),
     path('compra/<int:pk>/delete/', CompraAnnulledView.as_view(), name="compra_delete"),
     path('compra/add', CompraCreateView.as_view(), name="compra_create"),

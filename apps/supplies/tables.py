@@ -76,3 +76,15 @@ class NotaCreditoRecibidaTable(AccionTable):
             "es-vigente": lambda record: record.es_vigente
         }
         order_by = "-fecha_documento"
+
+class LibroCompraTable(DetailTable):
+    iva5 = NumericColumn()
+    iva10 = NumericColumn()
+    imponibleExenta = NumericColumn()
+    imponible5 = NumericColumn()
+    imponible10 = NumericColumn()
+    total = NumericColumn()
+
+    class Meta:
+        model = Compra
+        fields = ("fecha_documento","es_credito","comprobante","proveedor","iva5","iva10","imponible_exenta","imponible5","imponible10","total",)

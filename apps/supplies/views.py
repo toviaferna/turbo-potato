@@ -1,8 +1,8 @@
 from pyexpat import model
-from apps.supplies.filters import CompraFilter
+from apps.supplies.filters import CompraFilter, LibroCompraFilter
 from apps.supplies.forms import CompraForm, NotaCreditoRecibidaForm, NotaDebitoRecibidaForm, OrdenCompraForm, PedidoCompraForm
 from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, NotaCreditoRecibida, NotaDebitoRecibida, OrdenCompra, PedidoCompra
-from apps.supplies.tables import CompraDetalleTable, CompraTable, CuotaCompraTable, NotaCreditoRecibidaTable, NotaDebitoRecibidaTable, OrdenCompraTable, PedidoCompraTable
+from apps.supplies.tables import CompraDetalleTable, CompraTable, CuotaCompraTable, LibroCompraTable, NotaCreditoRecibidaTable, NotaDebitoRecibidaTable, OrdenCompraTable, PedidoCompraTable
 from core.views import AnnulledView, CreateView, DetailView, ListView, UpdateView
 from apps.supplies.inlines import CompraDetalleInline, CuotaCompraInline, NotaCreditoRecibidaDetalleInline, NotaDebitoRecibidaDetalleInline, OrdenCompraDetalleInline, PedidoCompraDetalleInline
 
@@ -142,3 +142,13 @@ class NotaCreditoRecibidaAnnulledView(AnnulledView):
     model = NotaCreditoRecibida
     list_url = "nota_credito_recibida_list"
     mensaje_anulacion = "La Nota de Crédito ya fue anulado."
+
+
+class LibroCompraListView(ListView):
+    model = Compra
+    filterset_class = LibroCompraFilter
+    table_class = LibroCompraTable
+    update_url = None
+    delete_url = None
+    create_url = None
+    search_fields = ['comprobante','proveedor__razon_social','deposito__descripcion']

@@ -25,7 +25,7 @@
                 {% for menuitem in item.children %}
                     {% if menuitem.visible %}
                         <li class="nav-item">
-                            <a href="{{ menuitem.url }}" class="nav-link {% if menuitem.selected %} active {% endif %}">
+                            <a href="{{ menuitem.url }}" class="nav-link {% if menuitem.selected %} active text-success {% else %}{% endif %}">
                                 {% if menuitem.icon %}
                                     <i class="nav-icon {{ menuitem.icon }}"></i>
                                 {% endif %}

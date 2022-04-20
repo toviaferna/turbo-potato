@@ -6,7 +6,7 @@ children = (
     MenuItem(
         "Fincas",
         reverse("finca_list"),
-        #icon="fa fa-map",        
+        icon="far fa-circle",        
     ),
 )
 
