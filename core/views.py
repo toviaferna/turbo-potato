@@ -4,8 +4,9 @@ from core.mixins import SearchViewMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import edit
 from django_tables2 import SingleTableMixin
-from django_tables2.export import ExportMixin
+
 from django_filters.views import FilterView
+from core.tables.mixins import ExportMixin
 from core.utils import get_deleted_objects
 from core.tables.export import TableExport
 from extra_views import CreateWithInlinesView, UpdateWithInlinesView
@@ -87,6 +88,7 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
     template_name = 'generic/list.html'
     export_class = TableExport
     page_title = None
+    export_page_orientation = "portrait"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

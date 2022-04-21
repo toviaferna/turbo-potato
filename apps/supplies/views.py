@@ -1,10 +1,23 @@
-from pyexpat import model
 from apps.supplies.filters import CompraFilter, LibroCompraFilter
-from apps.supplies.forms import CompraForm, NotaCreditoRecibidaForm, NotaDebitoRecibidaForm, OrdenCompraForm, PedidoCompraForm
-from apps.supplies.models import Compra, CompraDetalle, CuotaCompra, NotaCreditoRecibida, NotaDebitoRecibida, OrdenCompra, PedidoCompra
-from apps.supplies.tables import CompraDetalleTable, CompraTable, CuotaCompraTable, LibroCompraTable, NotaCreditoRecibidaTable, NotaDebitoRecibidaTable, OrdenCompraTable, PedidoCompraTable
-from core.views import AnnulledView, CreateView, DetailView, ListView, UpdateView
-from apps.supplies.inlines import CompraDetalleInline, CuotaCompraInline, NotaCreditoRecibidaDetalleInline, NotaDebitoRecibidaDetalleInline, OrdenCompraDetalleInline, PedidoCompraDetalleInline
+from apps.supplies.forms import (CompraForm, NotaCreditoRecibidaForm,
+                                 NotaDebitoRecibidaForm, OrdenCompraForm,
+                                 PedidoCompraForm)
+from apps.supplies.inlines import (CompraDetalleInline, CuotaCompraInline,
+                                   NotaCreditoRecibidaDetalleInline,
+                                   NotaDebitoRecibidaDetalleInline,
+                                   OrdenCompraDetalleInline,
+                                   PedidoCompraDetalleInline)
+from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra,
+                                  NotaCreditoRecibida, NotaDebitoRecibida,
+                                  OrdenCompra, PedidoCompra)
+from apps.supplies.tables import (CompraDetalleTable, CompraTable,
+                                  CuotaCompraTable, LibroCompraTable,
+                                  NotaCreditoRecibidaTable,
+                                  NotaDebitoRecibidaTable, OrdenCompraTable,
+                                  PedidoCompraTable)
+from core.views import (AnnulledView, CreateView, DetailView, ListView,
+                        UpdateView)
+
 
 class PedidoCompraListView(ListView):
     model = PedidoCompra
@@ -152,3 +165,4 @@ class LibroCompraListView(ListView):
     delete_url = None
     create_url = None
     search_fields = ['comprobante','proveedor__razon_social','deposito__descripcion']
+    export_page_orientation = "landscape"

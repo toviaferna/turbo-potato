@@ -30,7 +30,8 @@ class TableExport(export.TableExport):
         YAML: "text/yaml; charset=utf-8"
     }  
 
-    def __init__(self, export_format, table, exclude_columns=None, dataset_kwargs=None):
+    def __init__(self, export_format, table, exclude_columns=None,page_orientation="portrait", dataset_kwargs=None):
+        self.page_orientation = page_orientation
         super().__init__(export_format, table, exclude_columns, dataset_kwargs)
 
     @classmethod
@@ -45,7 +46,8 @@ class TableExport(export.TableExport):
         html = template.render({
             'table': self.dataset.export("html"), 
             'title': self.dataset.title,
-            'today': timezone.now()
+            'today': timezone.now(),
+            'orientation': self.page_orientation
         })
         return html
 
