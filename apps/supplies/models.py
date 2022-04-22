@@ -11,6 +11,7 @@ class PedidoCompra(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     class Meta:
+        db_table="pedidos_compras"
         verbose_name = "Pedido de compra"
         verbose_name_plural = "Pedidos de compras"
 
@@ -25,7 +26,8 @@ class PedidoCompraDetalle(models.Model):
     pedido_compra = models.ForeignKey(PedidoCompra, on_delete=models.DO_NOTHING)
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
-
+    class Meta:
+        db_table = "pedidos_compras_detalles"
 class OrdenCompra(models.Model):
     pedido_compra = models.ForeignKey(PedidoCompra, on_delete=models.DO_NOTHING,verbose_name="Pedido Compra")
     proveedor = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Proveedor")
@@ -34,6 +36,7 @@ class OrdenCompra(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
     class Meta:
+        db_table = "ordenes_compras"
         verbose_name = "Orden de compra"
         verbose_name_plural = "Ordenes de compras"
     
@@ -47,7 +50,8 @@ class OrdenCompraDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     precio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio")
     descuento = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Descuento")
-
+    class Meta:
+        db_table = "ordenes_compras_detalles"
 class Compra(models.Model):
     proveedor = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Proveedor")
     cuenta = models.ForeignKey(Cuenta, on_delete=models.DO_NOTHING,verbose_name="Cuenta")
@@ -59,7 +63,9 @@ class Compra(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=True)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-    
+    class Meta:
+        db_table = "compras"    
+        
     def get_es_vigente_display(self):
         value =  'fa-check' if self.es_vigente else 'fa-xmark'
         return format_html(f"<i class='fa-solid {value}'></i>")
@@ -114,7 +120,8 @@ class CompraDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     costo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
-    
+    class Meta:
+        db_table = "compras_detalles"    
     @property
     def subtotal(self):
         return round(self.costo * self.cantidad)
@@ -183,6 +190,7 @@ class CuotaCompra(models.Model):
     monto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Monto")
     saldo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Saldo",default=0)
     class Meta:
+        db_table = "cuotas_compras"
         verbose_name = "Cuota de compra"
         verbose_name_plural = "Cuotas de compras"
 
@@ -200,6 +208,7 @@ class NotaCreditoRecibida(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
     class Meta:
+        db_table = "notas_creditos_recibidas"
         verbose_name = "Nota de crédito recibida"
         verbose_name_plural = "Notas de crédito recibidas"
     
@@ -214,7 +223,8 @@ class NotaCreditoRecibidaDetalle(models.Model):
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo/Descuento")
     es_devolucion = models.BooleanField(verbose_name="Es Devolución?",default=False)
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
-
+    class Meta:
+        db_table = "notas_creditos_recibidas_detalles"
 class NotaDebitoRecibida(models.Model):
     proveedor = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Proveedor")
     compra = models.ForeignKey(Compra, on_delete=models.DO_NOTHING,verbose_name="Compra")
@@ -228,6 +238,7 @@ class NotaDebitoRecibida(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     class Meta:
+        db_table = "notas_debitos_recibidas"
         verbose_name = "Nota de débito recibida"
         verbose_name_plural = "Notas de débito recibidas"
     
@@ -244,7 +255,8 @@ class NotaDebitoRecibidaDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio/Aumento")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
-
+    class Meta:
+        db_table = "notas_debitos_recibidas_detalles"
 
 from .signals import (signal_compra_guardado,
                       signal_nota_credito_recibida_guardado)

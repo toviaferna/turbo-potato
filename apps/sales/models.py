@@ -13,6 +13,7 @@ class AperturaCaja(models.Model):
     fecha_hora_cierre = models.DateTimeField(auto_now_add=True,null=True, blank=True,verbose_name="Fec Hr Cierre")
 
     class Meta:
+        db_table = "aperturas_cajas"
         verbose_name = "Apertura de caja"
         verbose_name_plural = "Apertura de cajas"
 
@@ -26,7 +27,8 @@ class Arqueo(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
     monto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Monto Retirado")
-
+    class Meta:
+        db_table = "arqueos"
 class Venta(models.Model):
     cliente = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Cliente")
     cuenta = models.ForeignKey(Cuenta, on_delete=models.DO_NOTHING,verbose_name="Cuenta")
@@ -39,7 +41,8 @@ class Venta(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=True)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-    
+    class Meta:
+        db_table = "ventas"
     @property
     def total(self):
         return sum(round(x.precio * x.cantidad)  for x in self.ventadetalle_set.all())
@@ -135,7 +138,8 @@ class VentaDetalle(models.Model):
             return valor
         else:
             return 0
-
+    class Meta:
+        db_table = "ventas_detalles"
 class CuotaVenta(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.DO_NOTHING)
     fecha_vencimiento = models.DateField(verbose_name="Fecha Vencimiento")
@@ -143,6 +147,7 @@ class CuotaVenta(models.Model):
     saldo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Saldo",default=0)
     
     class Meta:
+        db_table = "cuotas_ventas"
         verbose_name = "Cuota de venta"
         verbose_name_plural = "Cuotas de ventas"
 
@@ -160,6 +165,7 @@ class NotaDebitoEmitida(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
     class Meta:
+        db_table = "notas_debitos_emitidas"
         verbose_name = "Nota de débito emitida"
         verbose_name_plural = "Notas de débito emitidas"
     
@@ -173,7 +179,8 @@ class NotaDebitoEmitidaDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo/Descuento")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
-
+    class Meta:
+        db_table = "notas_debitos_emitidas_detalles"
 class NotaCreditoEmitida(models.Model):
     cliente = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Cliente")
     venta = models.ForeignKey(Venta, on_delete=models.DO_NOTHING,verbose_name="Venta")
@@ -188,6 +195,7 @@ class NotaCreditoEmitida(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
     class Meta:
+        db_table = "notas_creditos_emitidas"
         verbose_name = "Nota de crédito emitida"
         verbose_name_plural = "Notas de crédito emitidas"
 
@@ -202,6 +210,8 @@ class NotaCreditoEmitidaDetalle(models.Model):
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo/Descuento")
     es_devolucion = models.BooleanField(verbose_name="Es Devolución?",default=False)
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
+    class Meta:
+        db_table = "notas_creditos_emitidas_detalles"
 class Cobro(models.Model):
     cobrador = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Cobrador",related_name='cobrador')
     cuenta = models.ForeignKey(Cuenta, on_delete=models.DO_NOTHING,verbose_name="Cuenta")
@@ -213,11 +223,14 @@ class Cobro(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     monto_a_saldar = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Monto A Saldar")
     comprobante = models.CharField(max_length=15,verbose_name="Comprobante")
+    class Meta:
+        db_table = "cobros"
 class CobroDetalle(models.Model):
     cobro = models.ForeignKey(Cobro, on_delete=models.DO_NOTHING)
     cancelacion = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Cancelacion")
     cuota_venta = models.ForeignKey(CuotaVenta, on_delete=models.DO_NOTHING,verbose_name="Cuota Venta",default= None,null=True)
-
+    class Meta:
+        db_table = "cobros_detalles"
 
 class CobroMedio(models.Model):
     VALORESENUMTIPMOV = (
@@ -234,6 +247,7 @@ class CobroMedio(models.Model):
     medio_cobro = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Medio Cobro") 
     
     class Meta:
+        db_table  = "cobros_medios"
         verbose_name = "Medio de cobro"
         verbose_name_plural = "Medios de cobros"
         
@@ -247,6 +261,7 @@ class TransferenciaCuenta(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     comprobante = models.CharField(max_length=15,verbose_name="Comprobante", default="" )
     class Meta:
+        db_table = "transferencias_cuentas"
         verbose_name = "Transferencia de cuenta"
         verbose_name_plural = "Transferencias de cuentas"
 

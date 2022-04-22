@@ -5,14 +5,16 @@ from apps.finance.models import Persona, TipoImpuesto
 class Marca(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripción")
     created = models.DateTimeField(auto_now_add=True)
-
+    class Meta:
+        db_table = "marcas"
     def __str__(self):
         return self.descripcion
 
 class Categoria(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripción")
     created = models.DateTimeField(auto_now_add=True)
-
+    class Meta:
+        db_table = "categorias"
     def __str__(self):
         return self.descripcion
 
@@ -21,11 +23,13 @@ class Deposito(models.Model):
     es_planta_acopiadora = models.BooleanField(verbose_name="Es Planta Acopiadora?",default=False)
     def __str__(self):
         return self.descripcion
-
+    class Meta:
+        db_table = "depositos"
 class TipoItem(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     
     class Meta:
+        db_table = "tipos_items"
         verbose_name = "Tipo de item"
         verbose_name_plural = "Tipos de items"
 
@@ -47,7 +51,8 @@ class Item(models.Model):
 
     def __str__(self):
         return self.descripcion
-
+    class Meta:
+        db_table = "items"
 
 class ItemMovimiento(models.Model):
     VALORESENUMTIPMOV = (
@@ -70,7 +75,8 @@ class ItemMovimiento(models.Model):
     detalle_secuencia_origen = models.IntegerField()
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True) 
     tipo_movimiento = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Tipo Mov.") 
-
+    class Meta:
+        db_table = "items_movimientos"
 
 class AjusteStock(models.Model):
     empleado = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Empleado")
@@ -79,10 +85,12 @@ class AjusteStock(models.Model):
     fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Hora Registro")
     comprobante = models.CharField(max_length=15,verbose_name="Comprobante")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-
+    class Meta:
+        db_table = "ajustes_stock"
 class AjusteStockDetalle(models.Model):
     ajuste_stock = models.ForeignKey(AjusteStock, on_delete=models.DO_NOTHING)
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
-
+    class Meta:
+        db_table = "ajustes_stock_detalles"
 from .signals import signal_ajuste_stock_guardado

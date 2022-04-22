@@ -10,6 +10,7 @@ class TipoImpuesto(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
+        db_table = "tipos_impuestos"
         verbose_name = "Tipo de impuesto"
         verbose_name_plural = "Tipos de impuestos"
    
@@ -21,13 +22,15 @@ class Banco(models.Model):
     
     def __str__(self):
         return self.descripcion
-    
+    class Meta:
+        db_table = "bancos"    
 class Cuenta(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     es_banco = models.BooleanField(verbose_name="Es Banco?",default=False)
     nro_cuenta = models.CharField(max_length=200, verbose_name="Nro Cuenta",null=True,blank=True)
     banco = models.ForeignKey(Banco, on_delete=models.DO_NOTHING, verbose_name="Banco",null=True,blank=True)
-    
+    class Meta:
+        db_table = "cuentas"    
     def __str__(self):
         return self.descripcion
 class Pais(models.Model):
@@ -35,6 +38,7 @@ class Pais(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     
     class Meta:
+        db_table="paises"
         verbose_name_plural = "Paises"
     
     def __str__(self):
@@ -45,19 +49,22 @@ class Departamento(models.Model):
     
     def __str__(self):
         return self.descripcion
-
+    class Meta:
+        db_table = "departamentos"
 class Distrito(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion")
     departamento = models.ForeignKey(Departamento, on_delete=models.DO_NOTHING, verbose_name="Departamento")
     
     def __str__(self):
         return self.descripcion
-
+    class Meta:
+        db_table = "distritos"
 class Localidad(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion")
     distrito = models.ForeignKey(Distrito, on_delete=models.DO_NOTHING, verbose_name="Distrito")
     
     class Meta:
+        db_table = "localidades"
         verbose_name_plural = "Localidades"
     
     def __str__(self):
@@ -73,6 +80,7 @@ class Persona(models.Model):
     es_cliente = models.BooleanField(verbose_name="Es Cliente?",default=False,help_text="La persona será tratada como un cliente")
     es_proveedor = models.BooleanField(verbose_name="Es Proveedor?",default=False,help_text="La persona será tratada como un proveedor")
     es_empleado = models.BooleanField(verbose_name="Es Empleado?",default=False,help_text="La persona será tratada como un empleado de la empresa")
-    
+    class Meta:
+        db_table = "personas"
     def __str__(self):
         return self.razon_social

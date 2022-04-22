@@ -11,6 +11,9 @@ class Finca(models.Model):
 
     def __str__(self):
         return self.descripcion
+    
+    class Meta:
+        db_table="fincas"
 
 class TipoActividadAgricola(models.Model):
     #  error_messages={'unique': u'My custom message'}
@@ -21,6 +24,7 @@ class TipoActividadAgricola(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
+        db_table = "tipos_actividades_agricolas"
         verbose_name = "Tipo de actividad agrícola"
         verbose_name_plural = "Tipos de actividades agrícolas"
 
@@ -32,6 +36,7 @@ class TipoMaquinariaAgricola(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     
     class Meta:
+        db_table = "tipos_maquinarias_agricolas"
         verbose_name = "Tipo de maquinaria agrícola"
         verbose_name_plural = "Tipos de maquinarias agrícolas"
     
@@ -46,7 +51,8 @@ class Zafra(models.Model):
     es_zafrinha = models.BooleanField(verbose_name="Es Zafriña?")
     esta_cerrado = models.BooleanField(verbose_name="Está Cerrado?",default=False)
     created = models.DateTimeField(auto_now_add=True)
-
+    class Meta:
+        db_table = "zafras"
     def __str__(self):
         return self.descripcion
 
@@ -56,6 +62,8 @@ class Lote(models.Model):
     finca = models.ForeignKey(Finca, on_delete=models.DO_NOTHING, verbose_name="Finca")
     dimension = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Dimensión HA")
     created = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        db_table = "lotes"
     def __str__(self):
         return self.descripcion
 
@@ -67,6 +75,7 @@ class MaquinariaAgricola(models.Model):
     precio = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Precio")
     created = models.DateTimeField(auto_now_add=True)
     class Meta:
+        db_table = "maquinarias_agricolas"
         verbose_name = "Maquinaria agrícola"
         verbose_name_plural = "Maquinarias agrícolas"
 
@@ -79,6 +88,7 @@ class PlanActividadZafra(models.Model):
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
     class Meta:
+        db_table = "planes_actividades_zafras"
         verbose_name = "Plan de actividad por zafra"
         verbose_name_plural = "Plan de actividades por zafras"
 
@@ -93,7 +103,8 @@ class PlanActividadZafraDetalle(models.Model):
     tipo_actividad_agricola = models.ForeignKey(TipoActividadAgricola, on_delete=models.DO_NOTHING, null=True, blank=True,verbose_name="Tipo Actividad Agrícola")
     descripcion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Descripción")
     costo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Estimado")
-
+    class Meta:
+        db_table = "planes_actividades_zafras_detalles"
 class Acopio(models.Model):
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
     deposito = models.ForeignKey(Deposito, on_delete=models.DO_NOTHING,verbose_name="Depósito")
@@ -109,6 +120,9 @@ class Acopio(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
     
+    class Meta:
+        db_table = "acopios"
+
     @property
     def total(self):
         peso_bruto = self.peso_bruto
@@ -131,12 +145,14 @@ class AcopioDetalle(models.Model):
     finca = models.ForeignKey(Finca, on_delete=models.DO_NOTHING,verbose_name="Finca")
     lote = models.ForeignKey(Lote, on_delete=models.DO_NOTHING,verbose_name="Lote")
     peso = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso")
-
+    class Meta:
+        db_table = "acopios_detalles"
 class CalificacionAgricola(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        db_table = "calificaciones_agricolas"
         verbose_name = "Calificación agrícola"
         verbose_name_plural = "Calificaciones agrícolas"
 
@@ -150,6 +166,7 @@ class AcopioCalificacion(models.Model):
     porcentaje = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Porcentaje")
     peso = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Peso")
     class Meta:
+        db_table = "acopios_calificaciones"
         verbose_name = "Calificación de acopio"
         verbose_name_plural = "Calificaciones de acopios"
 class ActividadAgricola(models.Model):
@@ -166,6 +183,7 @@ class ActividadAgricola(models.Model):
     cantidad_trabajada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="HA Trabajada")
 
     class Meta:
+        db_table  = "actividades_agricolas"
         verbose_name = "Actividad agricola"
         verbose_name_plural = "Actividades agricolas"
 
@@ -199,6 +217,9 @@ class ActividadAgricolaMaquinariaDetalle(models.Model):
     ha_trabajada = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Ha Trabajada")
     precio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio HA")
 
+    class Meta:
+        db_table = "actividades_agricolas_maquinarias_detalles"
+
 class ActividadAgricolaItemDetalle(models.Model):
     actividad_agricola = models.ForeignKey(ActividadAgricola, on_delete=models.DO_NOTHING)
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING,verbose_name="Item")
@@ -207,7 +228,9 @@ class ActividadAgricolaItemDetalle(models.Model):
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
     dosis = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Dosis")
     deposito = models.ForeignKey(Deposito, on_delete=models.DO_NOTHING,verbose_name="Deposito",default=1)
-
+    
+    class Meta:
+        db_table = "actividades_agricolas_items_detalles"
 
 class Contrato(models.Model):
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
@@ -215,7 +238,8 @@ class Contrato(models.Model):
     costo_pactado = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio Pactado")
     fecha = models.DateField(verbose_name="Fecha")
     descripcion = models.CharField(max_length=300,verbose_name="Descripción")
-
+    class Meta:
+        db_table = "contratos"
 class LiquidacionAgricola(models.Model):
     VALORESENUMTIPMOV = (
         ('ACOPIOS', 'LIQUIDACION DE ACOPIOS'),
@@ -231,6 +255,7 @@ class LiquidacionAgricola(models.Model):
     tipo = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Tipo Liquidación") 
 
     class Meta:
+        db_table = "liquidaciones_agricolas"
         verbose_name = "Liquidación agricola"
         verbose_name_plural = "Liquidaciones agricolas"
 
@@ -244,13 +269,16 @@ class LiquidacionAgricolaDetalle(models.Model):
     lote = models.ForeignKey(Lote, on_delete=models.DO_NOTHING,verbose_name="Lote")
     finca = models.ForeignKey(Finca, on_delete=models.DO_NOTHING,verbose_name="Finca")
     secuencia_origen = models.IntegerField()
-
+    class Meta:
+        db_table = "liquidaciones_agricolas_detalles"
 class CierreZafra(models.Model):
     zafra = models.ForeignKey(Zafra, on_delete=models.DO_NOTHING,verbose_name="Zafra")
     fecha = models.DateField(verbose_name="Fecha")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-
     class Meta:
+        db_table = "cierres_zafras"
+    class Meta:
+        db_table = ""
         verbose_name = "Cierre de zafra"
         verbose_name_plural = "Cierres de zafras"
 
@@ -290,7 +318,8 @@ class CierreZafraDetalle(models.Model):
     costo_total = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Total")
     costo_ha = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo HA")
     costo_unitario = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Unit.")
-
+    class Meta:
+        db_table = "cierres_zafras_detalles"
 
 from .signals import (signal_acopio_guardado, # signal_cierre_zafra_borrar
                       signal_actividad_agricola_item_guardado,
