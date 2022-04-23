@@ -3,6 +3,15 @@ import django_tables2 as tables
 class BaseTable(tables.Table):
     def __init__(self, *args, **kwargs):
         kwargs['empty_text']  =  "Sin resultados." 
+        kwargs['attrs'] = {
+            "class":"table table-sm table-striped",
+             "th":{
+                "class":"text-nowrap"
+             }
+        }
+        kwargs['row_attrs'] = {
+            "class":"text-nowrap"
+        }
         super().__init__(*args, **kwargs)
         self.template_name = "django_tables2/bootstrap4.html"
 
@@ -12,7 +21,6 @@ class SingleTable(BaseTable):
 
 class DetailTable(SingleTable):
     def __init__(self, *args, **kwargs):
-        kwargs['attrs'] = {"class":"table table-sm table-striped", }
         kwargs['orderable'] = False
         super().__init__(*args, **kwargs) 
     
