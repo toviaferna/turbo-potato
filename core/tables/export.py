@@ -45,6 +45,8 @@ class TableExport(export.TableExport):
         template = get_template('django_tables2/export_pdf.html')
         html = template.render({
             'table': self.dataset.export("html"), 
+            'table_headers': self.dataset.headers, 
+            'table_data': self.dataset._data, 
             'title': self.dataset.title,
             'today': timezone.now(),
             'orientation': self.page_orientation

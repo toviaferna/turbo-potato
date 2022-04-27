@@ -1,83 +1,103 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <style>
-        table {
-            width: 100%;
-            margin-bottom: 0.50rem;
-            padding: 0.15rem;
-            padding-top: 0.50rem;
-            color: #212529;
-        }
-
-        table td {
-            padding: 0.50rem;
-            vertical-align: top;
-        }
-
-        table thead th {
-            vertical-align: bottom;
-            border-bottom: 2px solid #dee2e6;
-            border-top: 2px solid #dee2e6;
-            text-align: left;
-        }
-
-        table tbody + tbody {
-            border-top: 2px solid #dee2e6;
-        }
-
-        @page {
-            size: a4 {{orientation}};
-
-            @frame header_frame {
-                /* Static Frame */
-                -pdf-frame-content: header_content;
-                left: 50pt;
-                width: 512pt;
-                top: 50pt;
-                height: 40pt;
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <style>
+            table {
+                width: 100%;
+                margin-bottom: 0.50rem;
+                padding: 0.15rem;
+                padding-top: 0.50rem;
+                color: #212529;
+                -fs-table-paginate: paginate;
             }
 
-            @frame content_frame {
-                /* Content Frame */
-                left: 50pt;
-                width: 512pt;
-                top: 30pt;
-                height: 632pt;
+            table td {
+                padding: 0.50rem;
+                vertical-align: top;
             }
 
-            @frame footer_frame {
-                /* Another static Frame */
-                -pdf-frame-content: footer_content;
-                left: 50pt;
-                width: 512pt;
-                top: 780pt;
-                height: 20pt;
+            table thead th {
+                vertical-align: bottom;
+                border-bottom: 2px solid #dee2e6;
+                border-top: 2px solid #dee2e6;
+                text-align: left;
             }
-        }
-    </style>
-</head>
 
-<body>
+            table tbody + tbody {
+                border-top: 2px solid #dee2e6;
+            }
 
-    <p id="header_content" >
-        <p><span style="font-size: large;">Agro Atardecer</span></p>
-        <p><span>{{ today | date:"d/m/Y H:i" }}</span></p>
-        <p><span style="font-size: larger;font-weight: bold;">{{title}}</span></p>
-    </p>
+            @page {
+                size: a4 {{orientation}}; 
+                @frame header_frame {           /* Static Frame */
+                    -pdf-frame-content: header_content;
+                    left: 50pt; 
+                    width: {% if orientation == 'portrait' %}512pt{%else%}759pt{% endif %}; 
+                    top: {% if orientation == 'portrait' %}25pt{%else%}25pt{% endif %}; 
+                    height: 100pt;
+                }
+                
+                @frame content_frame {          /* Content Frame */
+                    left: 50pt; 
+                    width: {% if orientation == 'portrait' %}512pt{%else%}759pt{% endif %}; 
+                    top: 105pt; 
+                    height: {% if orientation == 'portrait' %}700pt{%else%}460pt{% endif %};
+                }
+                @frame footer_frame {           /* Another static Frame */
+                    -pdf-frame-content: footer_content;
+                    left: 50pt; 
+                    width: {% if orientation == 'portrait' %}512pt{%else%}759pt{% endif %}; 
+                    top:  {% if orientation == 'portrait' %}772pt{%else%}550pt{% endif %}; 
+                    height: 20pt;
+                }
+            }
+        </style>
+    </head>
 
-    <div id="content_frame">
-        {{ table|safe }}
-    </div>
+    <body>
 
-    <div id="footer_content" style="width: 100%; text-align: center;">
-       página <pdf:pagenumber> de <pdf:pagecount>
-    </div>
+        <div id="header_content">
+            <p>
+                <p><span style="font-size: large;">Agro Atardecer</span></p>
+                <p><span>{{ today | date:"d/m/Y H:i" }}</span></p>
+                <p><span style="font-size: larger;font-weight: bold;">{{title}}</span></p> 
+                
+            </p>
+            {% if table_headers %}
+                    <table>
+                        <thead>
+                            <tr>
+                            {% for column_name in table_headers %}
+                                <th style="white-space: nowrap;">{{column_name}}</th>
+                            {% endfor %}
+                            </tr>
+                        </thead>
+                    </table>
+            {% endif %}
+            
+        </div>
 
-</body>
+        <div id="content_frame">
+            <table>
+                <tbody>
+                    {% if table_data %}
+                        {% for rows in table_data %}
+                            <tr>
+                                {% for colum in rows %}
+                                    <td style="white-space: nowrap;">{{colum}}</td>
+                                {% endfor%}
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
 
+        <div id="footer_content" style="width: 100%; text-align: center;">
+            página <pdf:pagenumber> de <pdf:pagecount>
+        </div>
 
+    </body>
 
 </html>
