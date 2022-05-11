@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import  FincaCreateView, FincaListView,FincaUpdateView,FincaDeleteView
+from .views import  CalificacionAgricolaCreateView, CalificacionAgricolaDeleteView, CalificacionAgricolaListView, CalificacionAgricolaUpdateView, FincaCreateView, FincaListView,FincaUpdateView,FincaDeleteView, MaquinariaAgricolaCreateView, MaquinariaAgricolaDeleteView, MaquinariaAgricolaListView, MaquinariaAgricolaUpdateView, TipoActividadAgricolaCreateView, TipoActividadAgricolaDeleteView, TipoActividadAgricolaListView, TipoActividadAgricolaUpdateView, TipoMaquinariaAgricolaCreateView, TipoMaquinariaAgricolaDeleteView, TipoMaquinariaAgricolaListView, TipoMaquinariaAgricolaUpdateView
 
 
 urlpatterns = [
@@ -8,4 +8,20 @@ urlpatterns = [
     path('finca/<int:pk>/update/', FincaUpdateView.as_view(), name="finca_update"),
     path('finca/add', FincaCreateView.as_view(), name="finca_create"),
     path("finca/",  FincaListView.as_view(), name="finca_list"),
+    path('calificacion-agricola/<int:pk>/delete/', CalificacionAgricolaDeleteView.as_view(), name="calificacion_agricola_delete"),
+    path('calificacion-agricola/<int:pk>/update/', CalificacionAgricolaUpdateView.as_view(), name="calificacion_agricola_update"),
+    path('calificacion-agricola/add', CalificacionAgricolaCreateView.as_view(), name="calificacion_agricola_create"),
+    path("calificacion-agricola/",  CalificacionAgricolaListView.as_view(), name="calificacion_agricola_list"),
+    path('tipo-actividad-agricola/<int:pk>/delete/', TipoActividadAgricolaDeleteView.as_view(), name="tipo_actividad_agricola_delete"),
+    path('tipo-actividad-agricola/<int:pk>/update/', TipoActividadAgricolaUpdateView.as_view(), name="tipo_actividad_agricola_update"),
+    path('tipo-actividad-agricola/add', TipoActividadAgricolaCreateView.as_view(), name="tipo_actividad_agricola_create"),
+    path("tipo-actividad-agricola/",  TipoActividadAgricolaListView.as_view(), name="tipo_actividad_agricola_list"),
+    path('tipo-maquinaria-agricola/<int:pk>/delete/', TipoMaquinariaAgricolaDeleteView.as_view(), name="tipo_maquinaria_agricola_delete"),
+    path('tipo-maquinaria-agricola/<int:pk>/update/', TipoMaquinariaAgricolaUpdateView.as_view(), name="tipo_maquinaria_agricola_update"),
+    path('tipo-maquinaria-agricola/add', TipoMaquinariaAgricolaCreateView.as_view(), name="tipo_maquinaria_agricola_create"),
+    path("tipo-maquinaria-agricola/",  TipoMaquinariaAgricolaListView.as_view(), name="tipo_maquinaria_agricola_list"),
+    path('maquinaria-agricola/<int:pk>/delete/', MaquinariaAgricolaDeleteView.as_view(), name="maquinaria_agricola_delete"),
+    path('maquinaria-agricola/<int:pk>/update/', MaquinariaAgricolaUpdateView.as_view(), name="maquinaria_agricola_update"),
+    path('maquinaria-agricola/add', MaquinariaAgricolaCreateView.as_view(), name="maquinaria_agricola_create"),
+    path("maquinaria-agricola/",  MaquinariaAgricolaListView.as_view(), name="maquinaria_agricola_list"),
 ]
