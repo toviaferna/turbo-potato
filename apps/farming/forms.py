@@ -1,8 +1,11 @@
-from django.forms.models import ModelForm
 from core.layouts import CancelButton, SaveButton
-from .models import CalificacionAgricola, Finca, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column
+from crispy_forms.layout import ButtonHolder, Column, Layout, Row, Submit
+from django.forms.models import ModelForm
+
+from .models import (CalificacionAgricola, Finca, Lote, MaquinariaAgricola,
+                     TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
+from apps.inventory.models import Item
 
 class FincaForm(ModelForm):
     
@@ -101,3 +104,51 @@ class TipoActividadAgricolaForm(ModelForm):
     class Meta:
         model = TipoActividadAgricola
         fields = ['descripcion','es_cosecha','es_siembra','es_resiembra']
+
+class ZafraForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.fields["item"].queryset = Item.objects.filter(tipo_item__pk=1)
+        self.helper.layout = Layout(
+            Row(
+                Column("descripcion"),
+                Column("item", ),
+            ),
+            Row(
+                Column("anho", ),
+                Column("kg_estimado", ),
+            ),
+            'es_zafrinha',
+            ButtonHolder(
+                SaveButton(),
+                CancelButton(),
+            ),
+        )
+    class Meta:
+        model = Zafra
+        fields = ['descripcion','item','anho','es_zafrinha','kg_estimado']
+
+class LoteForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column("descripcion"),
+                Column("zafra", ),
+            ),
+            Row(
+                Column("finca", ),
+                Column("dimension", ),
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton(),
+            ),
+        )
+    class Meta:
+        model = Lote
+        fields = ['descripcion','zafra','finca','dimension']

@@ -1,9 +1,9 @@
-from apps.farming.filters import TipoActividadAgricolaFilter
-from apps.farming.forms import CalificacionAgricolaForm, FincaForm, MaquinariaAgricolaForm, TipoActividadAgricolaForm, TipoMaquinariaAgricolaForm
-from apps.farming.tables import CalificacionAgricolaTable, FincaTable, MaquinariaAgricolaTable, TipoActividadAgricolaTable, TipoMaquinariaAgricolaTable
+from apps.farming.filters import TipoActividadAgricolaFilter, ZafraFilter
+from apps.farming.forms import CalificacionAgricolaForm, FincaForm, LoteForm, MaquinariaAgricolaForm, TipoActividadAgricolaForm, TipoMaquinariaAgricolaForm, ZafraForm
+from apps.farming.tables import CalificacionAgricolaTable, FincaTable, LoteTable, MaquinariaAgricolaTable, TipoActividadAgricolaTable, TipoMaquinariaAgricolaTable, ZafraTable
 from core.views import CreateView, DeleteView, ListView, UpdateView
 
-from .models import CalificacionAgricola, Finca, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola
+from .models import CalificacionAgricola, Finca, Lote, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola, Zafra
 
 
 # FINCA
@@ -118,3 +118,48 @@ class MaquinariaAgricolaUpdateView(UpdateView):
 class MaquinariaAgricolaDeleteView(DeleteView):
     model = MaquinariaAgricola
     list_url = "maquinaria_agricola_list"
+
+class ZafraListView(ListView):
+    model = Zafra
+    table_class = ZafraTable
+    filterset_class = ZafraFilter
+    search_fields = ['descripcion', 'item__descripcion']
+    update_url = 'zafra_update'
+    delete_url = 'zafra_delete'
+    create_url = 'zafra_create'
+
+class ZafraCreateView(CreateView):
+    form_class = ZafraForm
+    model = Zafra
+    list_url = "zafra_list"
+
+class ZafraUpdateView(UpdateView):
+    form_class = ZafraForm
+    model = Zafra
+    list_url = "zafra_list"
+
+class ZafraDeleteView(DeleteView):
+    model = Zafra
+    list_url = "zafra_list"
+
+class LoteListView(ListView):
+    model = Lote
+    table_class = LoteTable
+    search_fields = ['descripcion', 'item__descripcion']
+    update_url = 'lote_update'
+    delete_url = 'lote_delete'
+    create_url = 'lote_create'
+
+class LoteCreateView(CreateView):
+    form_class = LoteForm
+    model = Lote
+    list_url = "lote_list"
+
+class LoteUpdateView(UpdateView):
+    form_class = LoteForm
+    model = Lote
+    list_url = "lote_list"
+
+class LoteDeleteView(DeleteView):
+    model = Lote
+    list_url = "lote_list"

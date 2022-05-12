@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import  CalificacionAgricolaCreateView, CalificacionAgricolaDeleteView, CalificacionAgricolaListView, CalificacionAgricolaUpdateView, FincaCreateView, FincaListView,FincaUpdateView,FincaDeleteView, MaquinariaAgricolaCreateView, MaquinariaAgricolaDeleteView, MaquinariaAgricolaListView, MaquinariaAgricolaUpdateView, TipoActividadAgricolaCreateView, TipoActividadAgricolaDeleteView, TipoActividadAgricolaListView, TipoActividadAgricolaUpdateView, TipoMaquinariaAgricolaCreateView, TipoMaquinariaAgricolaDeleteView, TipoMaquinariaAgricolaListView, TipoMaquinariaAgricolaUpdateView
+from .views import  CalificacionAgricolaCreateView, CalificacionAgricolaDeleteView, CalificacionAgricolaListView, CalificacionAgricolaUpdateView, FincaCreateView, FincaListView,FincaUpdateView,FincaDeleteView, LoteCreateView, LoteDeleteView, LoteListView, LoteUpdateView, MaquinariaAgricolaCreateView, MaquinariaAgricolaDeleteView, MaquinariaAgricolaListView, MaquinariaAgricolaUpdateView, TipoActividadAgricolaCreateView, TipoActividadAgricolaDeleteView, TipoActividadAgricolaListView, TipoActividadAgricolaUpdateView, TipoMaquinariaAgricolaCreateView, TipoMaquinariaAgricolaDeleteView, TipoMaquinariaAgricolaListView, TipoMaquinariaAgricolaUpdateView, ZafraCreateView, ZafraDeleteView, ZafraListView, ZafraUpdateView
 
 
 urlpatterns = [
@@ -24,4 +24,12 @@ urlpatterns = [
     path('maquinaria-agricola/<int:pk>/update/', MaquinariaAgricolaUpdateView.as_view(), name="maquinaria_agricola_update"),
     path('maquinaria-agricola/add', MaquinariaAgricolaCreateView.as_view(), name="maquinaria_agricola_create"),
     path("maquinaria-agricola/",  MaquinariaAgricolaListView.as_view(), name="maquinaria_agricola_list"),
+    path('zafra/<int:pk>/delete/', ZafraDeleteView.as_view(), name="zafra_delete"),
+    path('zafra/<int:pk>/update/', ZafraUpdateView.as_view(), name="zafra_update"),
+    path('zafra/add', ZafraCreateView.as_view(), name="zafra_create"),
+    path("zafra/",  ZafraListView.as_view(), name="zafra_list"),
+    path('lote/<int:pk>/delete/', LoteDeleteView.as_view(), name="lote_delete"),
+    path('lote/<int:pk>/update/', LoteUpdateView.as_view(), name="lote_update"),
+    path('lote/add', LoteCreateView.as_view(), name="lote_create"),
+    path("lote/",  LoteListView.as_view(), name="lote_list"),
 ]

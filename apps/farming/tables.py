@@ -1,4 +1,4 @@
-from .models import CalificacionAgricola, Finca, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola
+from .models import CalificacionAgricola, Finca, Lote, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola, Zafra
 from core.tables import AccionTable
 from core.tables.columns import NumericColumn
 
@@ -27,4 +27,14 @@ class TipoActividadAgricolaTable(AccionTable):
     class Meta:
         model = TipoActividadAgricola
         fields = ("descripcion","es_cosecha","es_siembra","es_resiembra")
+
+class ZafraTable(AccionTable):
+    class Meta:
+        model = Zafra
+        fields = ("descripcion","item", "es_zafrinha","anho","esta_cerrado")
+
+class LoteTable(AccionTable):
+    class Meta:
+        model = Lote
+        fields = ("descripcion","zafra", "finca")
 
