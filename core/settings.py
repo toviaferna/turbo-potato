@@ -138,6 +138,10 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
 
+EXPORT_PDF_CSS = {
+    "portrait":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/portrait.css"),
+    "landscape":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/landscape.css"),
+}
 
 #############################################################
 #############################################################
