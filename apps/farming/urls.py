@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import  CalificacionAgricolaCreateView, CalificacionAgricolaDeleteView, CalificacionAgricolaListView, CalificacionAgricolaUpdateView, FincaCreateView, FincaListView,FincaUpdateView,FincaDeleteView, LoteCreateView, LoteDeleteView, LoteListView, LoteUpdateView, MaquinariaAgricolaCreateView, MaquinariaAgricolaDeleteView, MaquinariaAgricolaListView, MaquinariaAgricolaUpdateView, TipoActividadAgricolaCreateView, TipoActividadAgricolaDeleteView, TipoActividadAgricolaListView, TipoActividadAgricolaUpdateView, TipoMaquinariaAgricolaCreateView, TipoMaquinariaAgricolaDeleteView, TipoMaquinariaAgricolaListView, TipoMaquinariaAgricolaUpdateView, ZafraCreateView, ZafraDeleteView, ZafraListView, ZafraUpdateView
+from .views import  CalificacionAgricolaCreateView, CalificacionAgricolaDeleteView, CalificacionAgricolaListView, CalificacionAgricolaUpdateView, FincaCreateView, FincaListView,FincaUpdateView,FincaDeleteView, LoteCreateView, LoteDeleteView, LoteListView, LoteUpdateView, MaquinariaAgricolaCreateView, MaquinariaAgricolaDeleteView, MaquinariaAgricolaListView, MaquinariaAgricolaUpdateView, PlanActividadZafraCreateView, PlanActividadZafraListView, PlanActividadZafraUpdateView, TipoActividadAgricolaCreateView, TipoActividadAgricolaDeleteView, TipoActividadAgricolaListView, TipoActividadAgricolaUpdateView, TipoMaquinariaAgricolaCreateView, TipoMaquinariaAgricolaDeleteView, TipoMaquinariaAgricolaListView, TipoMaquinariaAgricolaUpdateView, ZafraCreateView, ZafraDeleteView, ZafraListView, ZafraUpdateView
 
 
 urlpatterns = [
@@ -32,4 +32,7 @@ urlpatterns = [
     path('lote/<int:pk>/update/', LoteUpdateView.as_view(), name="lote_update"),
     path('lote/add', LoteCreateView.as_view(), name="lote_create"),
     path("lote/",  LoteListView.as_view(), name="lote_list"),
+    path('plan-actividad-zafra/<int:pk>/update/', PlanActividadZafraUpdateView.as_view(), name="plan_actividad_zafra_update"),
+    path('plan-actividad-zafra/add', PlanActividadZafraCreateView.as_view(), name="plan_actividad_zafra_create"),
+    path("plan-actividad-zafra/",  PlanActividadZafraListView.as_view(), name="plan_actividad_zafra_list"),
 ]

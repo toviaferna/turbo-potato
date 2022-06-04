@@ -1,9 +1,12 @@
-from core.layouts import CancelButton, SaveButton
+from django.forms import DateField, DecimalField
+from core.layouts import CancelButton, Formset, SaveButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder, Column, Layout, Row, Submit
+from crispy_forms.layout import ButtonHolder, Column, Layout, Row, Fieldset, HTML
 from django.forms.models import ModelForm
 
-from .models import (CalificacionAgricola, Finca, Lote, MaquinariaAgricola,
+from core.widgets import DateInput, SumInput
+
+from .models import (CalificacionAgricola, Finca, Lote, MaquinariaAgricola, PlanActividadZafra, PlanActividadZafraDetalle,
                      TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
 from apps.inventory.models import Item
 
@@ -152,3 +155,51 @@ class LoteForm(ModelForm):
     class Meta:
         model = Lote
         fields = ['descripcion','zafra','finca','dimension']
+
+class PlanActividadZafraForm(ModelForm):
+    total = DecimalField(
+        widget=SumInput('costo'),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total'].label = False
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha", css_class="col-sm-3"),
+                Column("zafra",)
+            ),
+            "observacion",
+            Fieldset(
+                u'Detalles',
+                Formset("PlanActividadZafraDetalleInline"), 
+            ),
+            Row(
+                Column(
+                    HTML('<label> Total: </label>'),
+                    css_class='text-right col-sm-10 mt-2'
+                ),
+                Column("total")
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
+
+    class Meta:
+        model = PlanActividadZafra
+        fields = ['fecha', 'zafra', 'observacion']
+        widgets = {'fecha':DateInput}
+
+class PlanActividadZafraDetalleForm(ModelForm):
+    fecha_actividad = DateField(widget=DateInput, label="Fecha Act.")
+    class Meta:
+        model = PlanActividadZafraDetalle
+        fields = ['fecha_actividad', 'finca', 'tipo_actividad_agricola', 'descripcion','costo']
+        widgets = { 
+            'fechaActividad':DateInput,
+            #'costo': DecimalMaskInput 
+        }

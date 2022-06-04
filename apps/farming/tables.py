@@ -1,6 +1,6 @@
 from .models import CalificacionAgricola, Finca, Lote, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola, Zafra
 from core.tables import AccionTable
-from core.tables.columns import NumericColumn
+from core.tables.columns import NumericColumn, TotalNumericColumn
 
 class FincaTable(AccionTable):
     class Meta:
@@ -37,4 +37,10 @@ class LoteTable(AccionTable):
     class Meta:
         model = Lote
         fields = ("descripcion","zafra", "finca")
+
+class PlanActividadZafraTable(AccionTable):
+    total = TotalNumericColumn(verbose_name = 'Total')
+    class Meta:
+        model = Lote
+        fields = ("fecha","zafra","observacion","total")
 

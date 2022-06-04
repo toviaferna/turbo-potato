@@ -1,9 +1,10 @@
-from apps.farming.filters import TipoActividadAgricolaFilter, ZafraFilter
-from apps.farming.forms import CalificacionAgricolaForm, FincaForm, LoteForm, MaquinariaAgricolaForm, TipoActividadAgricolaForm, TipoMaquinariaAgricolaForm, ZafraForm
-from apps.farming.tables import CalificacionAgricolaTable, FincaTable, LoteTable, MaquinariaAgricolaTable, TipoActividadAgricolaTable, TipoMaquinariaAgricolaTable, ZafraTable
+from apps.farming.filters import PlanActividadZafraFilter, TipoActividadAgricolaFilter, ZafraFilter
+from apps.farming.forms import CalificacionAgricolaForm, FincaForm, LoteForm, MaquinariaAgricolaForm, PlanActividadZafraForm, TipoActividadAgricolaForm, TipoMaquinariaAgricolaForm, ZafraForm
+from apps.farming.inlines import PlanActividadZafraDetalleInline
+from apps.farming.tables import CalificacionAgricolaTable, FincaTable, LoteTable, MaquinariaAgricolaTable, PlanActividadZafraTable, TipoActividadAgricolaTable, TipoMaquinariaAgricolaTable, ZafraTable
 from core.views import CreateView, DeleteView, ListView, UpdateView
 
-from .models import CalificacionAgricola, Finca, Lote, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola, Zafra
+from .models import CalificacionAgricola, Finca, Lote, MaquinariaAgricola, PlanActividadZafra, TipoActividadAgricola, TipoMaquinariaAgricola, Zafra
 
 
 # FINCA
@@ -163,3 +164,25 @@ class LoteUpdateView(UpdateView):
 class LoteDeleteView(DeleteView):
     model = Lote
     list_url = "lote_list"
+
+class PlanActividadZafraListView(ListView):
+    model = PlanActividadZafra
+    table_class = PlanActividadZafraTable
+    filterset_class = PlanActividadZafraFilter
+    search_fields = ['zafra__descripcion', 'observacion']
+    update_url = 'plan_actividad_zafra_update'
+    create_url = 'plan_actividad_zafra_create'
+    delete_url = None
+
+class PlanActividadZafraCreateView(CreateView):
+    model = PlanActividadZafra
+    form_class = PlanActividadZafraForm
+    inlines = [PlanActividadZafraDetalleInline]
+    list_url = "plan_actividad_zafra_list"
+
+
+class PlanActividadZafraUpdateView(UpdateView):
+    model = PlanActividadZafra
+    form_class = PlanActividadZafraForm
+    inlines = [PlanActividadZafraDetalleInline]
+    list_url = "plan_actividad_zafra_list"

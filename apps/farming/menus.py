@@ -38,6 +38,11 @@ children = (
         reverse("lote_list"),
         icon="far fa-circle",        
     ),
+    MenuItem(
+        "Plan de actividades por zafra",
+        reverse("plan_actividad_zafra_list"),
+        icon="far fa-circle",        
+    ),
 )
 
 Menu.add_item("agricultura", MenuItem("Agricultura","#",icon='fa fa-tractor',weight=6, children=children))
