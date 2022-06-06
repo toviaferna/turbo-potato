@@ -1,0 +1,24 @@
+table {
+    width: 100%;
+    margin-bottom: 0.50rem;
+    padding: 0.15rem;
+    padding-top: 0.50rem;
+    color: #212529;
+    -fs-table-paginate: paginate;
+}
+
+table td {
+    padding: 0.50rem;
+    vertical-align: top;
+}
+
+table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    border-top: 2px solid #dee2e6;
+    text-align: left;
+}
+
+table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}

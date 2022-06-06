@@ -4,7 +4,7 @@ from django_tables2.export import export
 from django.utils import timezone
 import xhtml2pdf.pisa as pisa
 from django.template.loader import get_template
-import uuid
+from django.conf import settings
 class TableExport(export.TableExport):
     PDF = "pdf"
     CSV = "csv"
@@ -49,7 +49,8 @@ class TableExport(export.TableExport):
             'table_data': self.dataset._data, 
             'title': self.dataset.title,
             'today': timezone.now(),
-            'orientation': self.page_orientation
+            'orientation': self.page_orientation,
+            'css_dir':settings.EXPORT_PDF_CSS.get(self.page_orientation)
         })
         return html
 
