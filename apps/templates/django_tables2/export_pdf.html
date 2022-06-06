@@ -32,21 +32,21 @@
                 size: a4 {{orientation}}; 
                 @frame header_frame {           /* Static Frame */
                     -pdf-frame-content: header_content;
-                    left: 50pt; 
+                    left: 40pt; 
                     width: {% if orientation == 'portrait' %}512pt{%else%}759pt{% endif %}; 
                     top: {% if orientation == 'portrait' %}25pt{%else%}25pt{% endif %}; 
                     height: 100pt;
                 }
                 
                 @frame content_frame {          /* Content Frame */
-                    left: 50pt; 
+                    left: 35pt; 
                     width: {% if orientation == 'portrait' %}512pt{%else%}759pt{% endif %}; 
                     top: 105pt; 
                     height: {% if orientation == 'portrait' %}700pt{%else%}460pt{% endif %};
                 }
                 @frame footer_frame {           /* Another static Frame */
                     -pdf-frame-content: footer_content;
-                    left: 50pt; 
+                    left: 40pt; 
                     width: {% if orientation == 'portrait' %}512pt{%else%}759pt{% endif %}; 
                     top:  {% if orientation == 'portrait' %}772pt{%else%}550pt{% endif %}; 
                     height: 20pt;
