@@ -10,4 +10,4 @@ children = (
     ),
 )
 
-Menu.add_item("ventas", MenuItem("Ventas","#",icon='fa fa-solid fa-cart-shopping',weight=7, children=children))
+Menu.add_item("ventas", MenuItem("Ventas","#",icon='fa fa-cart-shopping',weight=7, children=children))
