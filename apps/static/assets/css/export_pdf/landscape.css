@@ -1,0 +1,27 @@
+@import 'page.css';
+
+@page {
+    size: a4 landscape; 
+    
+    @frame header_frame {           /* Static Frame */
+        -pdf-frame-content: header_content;
+        left: 50pt; 
+        width: 759pt; 
+        top: 25pt; 
+        height: 100pt;
+    }
+    
+    @frame content_frame {          /* Content Frame */
+        left: 50pt; 
+        width: 759pt; 
+        top: 105pt; 
+        height: 460pt;
+    }
+    @frame footer_frame {           /* Another static Frame */
+        -pdf-frame-content: footer_content;
+        left: 50pt; 
+        width: 759pt; 
+        top:  550pt; 
+        height: 20pt;
+    }
+}

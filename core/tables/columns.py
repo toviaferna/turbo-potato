@@ -7,9 +7,9 @@ from django_tables2.utils import AttributeDict
 class NumericColumn(Column):
 
     attrs = {
-        "th":{ "class":"text-right" },
-        "td":{ "class":"text-right" },
-        "tf":{ "class":"text-right" }
+        "th":{ "class":"text-right text-nowrap" },
+        "td":{ "class":"text-right text-nowrap" },
+        "tf":{ "class":"text-right text-nowrap" }
     }
 
     def render(self,value):
@@ -34,10 +34,10 @@ class TotalNumericColumn(NumericColumn):
 class BooleanColumn(columns.BooleanColumn):
     attrs = {
         "th":{
-            "class":"text-center"
+            "class":"text-center text-nowrap"
         },
         "td":{
-            "class":"text-center"
+            "class":"text-center text-nowrap"
         }
     }
     def render(self, value, record, bound_column):

@@ -80,7 +80,7 @@ class NotaCreditoRecibidaTable(AccionTable):
 class LibroCompraTable(DetailTable):
     iva5 = NumericColumn()
     iva10 = NumericColumn()
-    imponibleExenta = NumericColumn()
+    imponible_exenta = NumericColumn()
     imponible5 = NumericColumn()
     imponible10 = NumericColumn()
     total = NumericColumn()

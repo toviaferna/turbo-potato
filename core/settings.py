@@ -21,7 +21,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS        = ["*"]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + config('SERVER', default='127.0.0.1')]
 
-
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Application definition
@@ -138,6 +138,10 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
 
+EXPORT_PDF_CSS = {
+    "portrait":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/portrait.css"),
+    "landscape":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/landscape.css"),
+}
 
 #############################################################
 #############################################################

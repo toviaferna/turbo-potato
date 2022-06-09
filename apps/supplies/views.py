@@ -164,5 +164,6 @@ class LibroCompraListView(ListView):
     update_url = None
     delete_url = None
     create_url = None
+    page_title = "Libro de compras"
     search_fields = ['comprobante','proveedor__razon_social','deposito__descripcion']
     export_page_orientation = "landscape"
