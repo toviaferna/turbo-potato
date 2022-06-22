@@ -1,14 +1,16 @@
-from django.forms import DateField, DecimalField
+from apps.inventory.models import Item
 from core.layouts import CancelButton, Formset, SaveButton
+from core.widgets import DateInput, SumInput
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder, Column, Layout, Row, Fieldset, HTML
+from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
+                                 Row)
+from django.forms import DateField, DecimalField
 from django.forms.models import ModelForm
 
-from core.widgets import DateInput, SumInput
-
-from .models import (CalificacionAgricola, Finca, Lote, MaquinariaAgricola, PlanActividadZafra, PlanActividadZafraDetalle,
+from .models import (CalificacionAgricola, Finca, Lote, MaquinariaAgricola,
+                     PlanActividadZafra, PlanActividadZafraDetalle,
                      TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
-from apps.inventory.models import Item
+
 
 class FincaForm(ModelForm):
     
@@ -179,9 +181,9 @@ class PlanActividadZafraForm(ModelForm):
             Row(
                 Column(
                     HTML('<label> Total: </label>'),
-                    css_class='text-right col-sm-10 mt-2'
+                    css_class='text-right col-sm-9 mt-2'
                 ),
-                Column("total")
+                Column("total", css_class="col-sm-2")
             ),
             ButtonHolder(
                 SaveButton(),
