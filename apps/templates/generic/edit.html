@@ -43,6 +43,18 @@
 {% block javascripts %}
   <script>
     $(document).ready(function(){
+
+        function checkMaquinaria($maquinaria){
+            let $detalleContainer = $maquinaria.closest("tr");
+            let $maquinariaPrecio = $detalleContainer.find(".precio-ha");
+            let $precioHa = $maquinaria.find('option:selected').attr('data-precio-ha');
+            $maquinariaPrecio.val($precioHa);
+        }
+
+        $(document).on("change", "select[data-maquinaria-select]", function(event){
+            checkMaquinaria($(event.target))
+        });
+
         function checkItem($item){
             let $detalleContainer = $item.closest("tr");
             let $itemCosto = $detalleContainer.find(".item-costo");
