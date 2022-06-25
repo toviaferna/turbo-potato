@@ -9,6 +9,7 @@ class DateInput(forms.DateInput):
 
 
 class SumInput(widgets.SumInput):
+
     def __init__(self, *args, **kwargs):
         kwargs['attrs'] = {
             'readonly':True, 
@@ -25,14 +26,15 @@ class FormulaInput(widgets.FormulaInput):
         super().__init__(*args, **kwargs)
 
 class ItemCustomSelect(forms.Select):
+    class Media:
+        js = ("assets/js/lola.js",)
 
     def __init__(self, attrs=None, choices=(), modify_choices=()):
-        super(forms.Select, self).__init__(attrs, choices=choices)
-        # set data
+        super().__init__(attrs, choices=choices)
         self.modify_choices = modify_choices
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
-        option = super(forms.Select, self).create_option(name, value, label, selected, index, subindex, attrs)
+        option = super().create_option(name, value, label, selected, index, subindex, attrs)
 
         if value:
             option['attrs']['data-precio'] = value.instance.precio
@@ -48,12 +50,12 @@ class ItemCustomSelect(forms.Select):
 class MaquinariaCustomSelect(forms.Select):
     
     def __init__(self, attrs=None, choices=(), modify_choices=()):
-        super(forms.Select, self).__init__(attrs, choices=choices)
+        super().__init__(attrs, choices=choices)
         # set data
         self.modify_choices = modify_choices
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
-        option = super(forms.Select, self).create_option(name, value, label, selected, index, subindex, attrs)
+        option = super().create_option(name, value, label, selected, index, subindex, attrs)
         if value:
             option['attrs']['data-precio-ha'] = value.instance.precio
 
