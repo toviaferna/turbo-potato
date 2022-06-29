@@ -1,7 +1,25 @@
 from django.urls import path
 
-from .views import  CalificacionAgricolaCreateView, CalificacionAgricolaDeleteView, CalificacionAgricolaListView, CalificacionAgricolaUpdateView, FincaCreateView, FincaListView,FincaUpdateView,FincaDeleteView, LoteCreateView, LoteDeleteView, LoteListView, LoteUpdateView, MaquinariaAgricolaCreateView, MaquinariaAgricolaDeleteView, MaquinariaAgricolaListView, MaquinariaAgricolaUpdateView, PlanActividadZafraCreateView, PlanActividadZafraListView, PlanActividadZafraUpdateView, TipoActividadAgricolaCreateView, TipoActividadAgricolaDeleteView, TipoActividadAgricolaListView, TipoActividadAgricolaUpdateView, TipoMaquinariaAgricolaCreateView, TipoMaquinariaAgricolaDeleteView, TipoMaquinariaAgricolaListView, TipoMaquinariaAgricolaUpdateView, ZafraCreateView, ZafraDeleteView, ZafraListView, ZafraUpdateView
-
+from .views import (CalificacionAgricolaCreateView,
+                    CalificacionAgricolaDeleteView,
+                    CalificacionAgricolaListView,
+                    CalificacionAgricolaUpdateView, ContratoCreateView,
+                    ContratoDeleteView, ContratoListView, FincaCreateView,
+                    FincaDeleteView, FincaListView, FincaUpdateView,
+                    LoteCreateView, LoteDeleteView, LoteListView,
+                    LoteUpdateView, MaquinariaAgricolaCreateView,
+                    MaquinariaAgricolaDeleteView, MaquinariaAgricolaListView,
+                    MaquinariaAgricolaUpdateView, PlanActividadZafraCreateView,
+                    PlanActividadZafraListView, PlanActividadZafraUpdateView,
+                    TipoActividadAgricolaCreateView,
+                    TipoActividadAgricolaDeleteView,
+                    TipoActividadAgricolaListView,
+                    TipoActividadAgricolaUpdateView,
+                    TipoMaquinariaAgricolaCreateView,
+                    TipoMaquinariaAgricolaDeleteView,
+                    TipoMaquinariaAgricolaListView,
+                    TipoMaquinariaAgricolaUpdateView, ZafraCreateView,
+                    ZafraDeleteView, ZafraListView, ZafraUpdateView)
 
 urlpatterns = [
     path('finca/<int:pk>/delete/', FincaDeleteView.as_view(), name="finca_delete"),
@@ -35,4 +53,7 @@ urlpatterns = [
     path('plan-actividad-zafra/<int:pk>/update/', PlanActividadZafraUpdateView.as_view(), name="plan_actividad_zafra_update"),
     path('plan-actividad-zafra/add', PlanActividadZafraCreateView.as_view(), name="plan_actividad_zafra_create"),
     path("plan-actividad-zafra/",  PlanActividadZafraListView.as_view(), name="plan_actividad_zafra_list"),
+    path('contrato/<int:pk>/delete/', ContratoDeleteView.as_view(), name="contrato_delete"),
+    path('contrato/add', ContratoCreateView.as_view(), name="contrato_create"),
+    path("contrato/",  ContratoListView.as_view(), name="contrato_list"),
 ]

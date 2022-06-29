@@ -7,9 +7,10 @@ from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
 from django.forms import DateField, DecimalField
 from django.forms.models import ModelForm
 
-from .models import (CalificacionAgricola, Finca, Lote, MaquinariaAgricola,
-                     PlanActividadZafra, PlanActividadZafraDetalle,
-                     TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
+from .models import (CalificacionAgricola, Contrato, Finca, Lote,
+                     MaquinariaAgricola, PlanActividadZafra,
+                     PlanActividadZafraDetalle, TipoActividadAgricola,
+                     TipoMaquinariaAgricola, Zafra)
 
 
 class FincaForm(ModelForm):
@@ -205,3 +206,31 @@ class PlanActividadZafraDetalleForm(ModelForm):
             'fechaActividad':DateInput,
             #'costo': DecimalMaskInput 
         }
+
+class ContratoForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        #self.fields['costoPactado'].widget = DecimalMaskInput()
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha", css_class="col-sm-3"),
+                Column("zafra"),
+                Column("persona"),
+            ),
+            Row(
+                Column("descripcion"),
+                Column("costo_pactado", css_class="col-sm-3"),
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
+
+    class Meta:
+        model = Contrato
+        fields = ['fecha','zafra','persona','descripcion','costo_pactado']
+        widgets = {'fecha':DateInput}

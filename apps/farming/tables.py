@@ -1,6 +1,10 @@
-from .models import CalificacionAgricola, Finca, Lote, MaquinariaAgricola, TipoActividadAgricola, TipoMaquinariaAgricola, Zafra
 from core.tables import AccionTable
 from core.tables.columns import NumericColumn, TotalNumericColumn
+
+from .models import (CalificacionAgricola, Contrato, Finca, Lote,
+                     MaquinariaAgricola, TipoActividadAgricola,
+                     TipoMaquinariaAgricola, Zafra)
+
 
 class FincaTable(AccionTable):
     class Meta:
@@ -44,3 +48,9 @@ class PlanActividadZafraTable(AccionTable):
         model = Lote
         fields = ("fecha","zafra","observacion","total")
 
+
+class ContratoTable(AccionTable):
+    costo_pactado = NumericColumn()
+    class Meta:
+        model = Contrato
+        fields = ("fecha","zafra","persona","costo_pactado","descripcion")

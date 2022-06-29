@@ -1,10 +1,22 @@
-from apps.farming.filters import PlanActividadZafraFilter, TipoActividadAgricolaFilter, ZafraFilter
-from apps.farming.forms import CalificacionAgricolaForm, FincaForm, LoteForm, MaquinariaAgricolaForm, PlanActividadZafraForm, TipoActividadAgricolaForm, TipoMaquinariaAgricolaForm, ZafraForm
+from apps.farming.filters import (PlanActividadZafraFilter,
+                                  TipoActividadAgricolaFilter, ZafraFilter)
+from apps.farming.forms import (CalificacionAgricolaForm, ContratoForm,
+                                FincaForm, LoteForm, MaquinariaAgricolaForm,
+                                PlanActividadZafraForm,
+                                TipoActividadAgricolaForm,
+                                TipoMaquinariaAgricolaForm, ZafraForm)
 from apps.farming.inlines import PlanActividadZafraDetalleInline
-from apps.farming.tables import CalificacionAgricolaTable, FincaTable, LoteTable, MaquinariaAgricolaTable, PlanActividadZafraTable, TipoActividadAgricolaTable, TipoMaquinariaAgricolaTable, ZafraTable
+from apps.farming.tables import (CalificacionAgricolaTable, ContratoTable,
+                                 FincaTable, LoteTable,
+                                 MaquinariaAgricolaTable,
+                                 PlanActividadZafraTable,
+                                 TipoActividadAgricolaTable,
+                                 TipoMaquinariaAgricolaTable, ZafraTable)
 from core.views import CreateView, DeleteView, ListView, UpdateView
 
-from .models import CalificacionAgricola, Finca, Lote, MaquinariaAgricola, PlanActividadZafra, TipoActividadAgricola, TipoMaquinariaAgricola, Zafra
+from .models import (CalificacionAgricola, Contrato, Finca, Lote,
+                     MaquinariaAgricola, PlanActividadZafra,
+                     TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
 
 
 # FINCA
@@ -186,3 +198,20 @@ class PlanActividadZafraUpdateView(UpdateView):
     form_class = PlanActividadZafraForm
     inlines = [PlanActividadZafraDetalleInline]
     list_url = "plan_actividad_zafra_list"
+
+class ContratoListView(ListView):
+    model = Contrato
+    table_class = ContratoTable
+    search_fields = ['descripcion', 'item__descripcion']
+    update_url = 'contrato_update'
+    delete_url = 'contrato_delete'
+    create_url = 'contrato_create'
+
+class ContratoCreateView(CreateView):
+    form_class = ContratoForm
+    model = Contrato
+    list_url = "contrato_list"
+
+class ContratoDeleteView(DeleteView):
+    model = Contrato
+    list_url = "contrato_list"

@@ -1,6 +1,5 @@
-from menu import Menu, MenuItem
 from django.shortcuts import reverse
-
+from menu import Menu, MenuItem
 
 children = (
     MenuItem(
@@ -41,6 +40,11 @@ children = (
     MenuItem(
         "Plan de actividades por zafra",
         reverse("plan_actividad_zafra_list"),
+        icon="far fa-circle",        
+    ),
+    MenuItem(
+        "Contratos",
+        reverse("contrato_list"),
         icon="far fa-circle",        
     ),
 )
