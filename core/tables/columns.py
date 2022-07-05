@@ -1,8 +1,9 @@
-from django.utils.html import format_html,escape
-from django_tables2.columns.base import Column
 from django.contrib.humanize.templatetags.humanize import intcomma
+from django.utils.html import escape, format_html
 from django_tables2 import columns
+from django_tables2.columns.base import Column
 from django_tables2.utils import AttributeDict
+
 
 class NumericColumn(Column):
 
@@ -33,12 +34,8 @@ class TotalNumericColumn(NumericColumn):
 
 class BooleanColumn(columns.BooleanColumn):
     attrs = {
-        "th":{
-            "class":"text-center text-nowrap"
-        },
-        "td":{
-            "class":"text-center text-nowrap"
-        }
+        "th":{ "class":"text-center text-nowrap"},
+        "td":{ "class":"text-center text-nowrap"}
     }
     def render(self, value, record, bound_column):
         value = self._get_bool_value(record, value, bound_column)

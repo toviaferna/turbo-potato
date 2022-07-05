@@ -1,5 +1,8 @@
-from .models import AjusteStock, Categoria, Deposito, Item, Marca, TipoItem
 from core.tables import AccionTable
+from core.tables.columns import NumericColumn
+
+from .models import AjusteStock, Categoria, Deposito, Item, Marca, TipoItem
+
 
 class MarcaTable(AccionTable):
     class Meta:
@@ -22,6 +25,9 @@ class TipoItemTable(AccionTable):
         fields = ("descripcion",)
 
 class ItemTable(AccionTable):
+    costo = NumericColumn()
+    ultimo_costo = NumericColumn()
+    precio = NumericColumn()
     class Meta:
         model = Item
         fields = ("descripcion","categoria","marca","tipo_impuesto","costo","ultimo_costo","precio","es_activo")
