@@ -42,8 +42,6 @@ django-tables2==2.4.1
     # via -r requirements.in
 et-xmlfile==1.1.0
     # via openpyxl
-fontawesomefree==6.1.1
-    # via -r requirements.in
 future==0.18.2
     # via arabic-reshaper
 gunicorn==20.1.0

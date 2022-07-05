@@ -21,4 +21,3 @@ xhtml2pdf==0.2.5
 django-extra-views
 django-calculation
 pip-tools
-fontawesomefree==6.1.1
