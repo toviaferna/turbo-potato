@@ -1,6 +1,8 @@
+from apps.finance.models import Persona
 from apps.inventory.models import Deposito, Item
 from core.layouts import CancelButton, Formset, SaveButton
-from core.widgets import DateInput, SumInput
+from core.widgets import (DateInput, FormulaInput, ItemCustomSelect,
+                          MaquinariaCustomSelect, SumInput)
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
                                  Row)
@@ -8,10 +10,11 @@ from django.forms import DateField, DecimalField
 from django.forms.models import ModelForm
 
 from .models import (Acopio, AcopioCalificacion, AcopioDetalle,
-                     CalificacionAgricola, Contrato, Finca, Lote,
-                     MaquinariaAgricola, PlanActividadZafra,
-                     PlanActividadZafraDetalle, TipoActividadAgricola,
-                     TipoMaquinariaAgricola, Zafra)
+                     ActividadAgricola, ActividadAgricolaItemDetalle,
+                     ActividadAgricolaMaquinariaDetalle, CalificacionAgricola,
+                     Contrato, Finca, Lote, MaquinariaAgricola,
+                     PlanActividadZafra, PlanActividadZafraDetalle,
+                     TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
 
 
 class FincaForm(ModelForm):
@@ -292,3 +295,90 @@ class AcopioCalificacionForm(ModelForm):
         model = AcopioCalificacion
         fields = ['acopio', 'calificacion_agricola', 'grado', 'porcentaje', 'peso']
         #widgets = {'grado':DecimalMaskInput,'porcentaje':DecimalMaskInput,'peso':DecimalMaskInput}
+
+class ActividadAgricolaForm(ModelForm):
+    total_maquinaria = DecimalField(
+        widget=SumInput('subtotal_maquinaria'),
+    )
+    total_item = DecimalField(
+        widget=SumInput('subtotalItem'),
+    )
+    class Meta:
+        model = ActividadAgricola
+        fields = ['fecha_documento','tipo_actividad_agricola','zafra', 'finca','lote','es_servicio_contratado','empleado','cantidad_trabajada','observacion']
+        #widgets = {'fechaDocumento':DateInput,'cantidadTrabajada': DecimalMaskInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total_maquinaria'].label = False
+        #self.fields['totalMaquinaria'].widget = DecimalMaskInput()
+        self.fields['total_item'].label = False
+        #self.fields['totalItem'].widget = DecimalMaskInput()
+        self.fields["empleado"].queryset = Persona.objects.filter(es_empleado=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha_documento", css_class="col-sm-3"),
+                Column("tipo_actividad_agricola",),
+                Column( "zafra",),
+            ),
+            Row(
+                Column("finca",),
+                Column("lote",),
+                Column("cantidad_trabajada",css_class="col-sm-2"),
+            ),
+            Row(
+                Column("empleado",css_class="col-sm-4"),
+                Column("observacion",),
+            ),
+            "es_servicio_contratado",
+            Fieldset(
+                u'Detalle',
+                Formset(
+                    "ActividadAgricolaMaquinariaDetalleInline"#, stacked=True
+                ), 
+                Formset(
+                    "ActividadAgricolaItemDetalleInline",#, stacked=True
+                ),       
+            ),
+            Row(
+                Column(
+                    HTML('<label> Total Máquina: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total_maquinaria", css_class="col-sm-2")
+            ),
+            Row(
+                Column(
+                    HTML('<label> Total Items: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total_item", css_class="col-sm-2")
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
+
+class ActividadAgricolaMaquinariaDetalleForm(ModelForm):
+    subtotal_maquinaria = DecimalField(
+        widget=FormulaInput('precio*ha_trabajada'),
+        label = "SubTotal"
+    )
+
+    class Meta:
+        model = ActividadAgricolaMaquinariaDetalle
+        fields = ['maquinaria', 'ha_trabajada','precio','subtotal_maquinaria']
+        #widgets = {'haTrabajada':DecimalMaskInput,'precio':DecimalMaskInput,'subtotalMaquinaria':DecimalMaskInput}
+
+class ActividadAgricolaItemDetalleForm(ModelForm):
+    subtotal_item = DecimalField(
+        widget=FormulaInput('costo*cantidad'),
+        label = "SubTotal"
+    )
+    class Meta:
+        model = ActividadAgricolaItemDetalle
+        fields = ['item', 'deposito','dosis','costo','cantidad','porcentaje_impuesto','subtotal_item']
+        #widgets = {'dosis':DecimalMaskInput,'costo':DecimalMaskInput,'cantidad':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'subtotalItem':DecimalMaskInput}

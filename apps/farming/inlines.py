@@ -1,8 +1,13 @@
 
 from apps.farming.forms import (AcopioCalificacionForm, AcopioDetalleForm,
+                                ActividadAgricolaItemDetalleForm,
+                                ActividadAgricolaMaquinariaDetalleForm,
                                 PlanActividadZafraDetalleForm)
 from apps.farming.models import (AcopioCalificacion, AcopioDetalle,
+                                 ActividadAgricolaItemDetalle,
+                                 ActividadAgricolaMaquinariaDetalle,
                                  PlanActividadZafraDetalle)
+from core.widgets import ItemCustomSelect, MaquinariaCustomSelect
 from django.forms import widgets
 from extra_views import InlineFormSetFactory
 
@@ -75,3 +80,55 @@ class AcopioCalificacionDetalleInline(InlineFormSetFactory):
         }
     }
     fields = ['acopio', 'calificacion_agricola', 'grado', 'porcentaje','peso']
+
+class ActividadAgricolaMaquinariaDetalleInline(InlineFormSetFactory):
+    model = ActividadAgricolaMaquinariaDetalle
+    form_class = ActividadAgricolaMaquinariaDetalleForm
+    factory_kwargs = {
+        'extra':1,
+        'widgets':{
+            'maquinaria':MaquinariaCustomSelect(
+                attrs={
+                    'wrapper_class':'col-sm-4',
+                    'data-maquinaria-select':True,
+                }
+            ),
+            'precio':widgets.NumberInput(
+                attrs={
+                    'class':'text-right precio-ha',
+                }
+            ),
+        } 
+    }
+    fields = ['maquinaria', 'ha_trabajada','precio','subtotal_maquinaria']
+
+class ActividadAgricolaItemDetalleInline(InlineFormSetFactory):
+    model = ActividadAgricolaItemDetalle
+    form_class = ActividadAgricolaItemDetalleForm
+    factory_kwargs = {
+        'extra':1, 
+        'widgets':{
+            'item':ItemCustomSelect(
+                attrs={
+                    'wrapper_class':'col-sm-2',
+                    'data-item-select':True,
+                }
+            ),
+            'porcentaje_impuesto':widgets.NumberInput(
+                attrs={
+                    'class':'text-right item-porcentaje-impuesto',
+                }
+            ),
+            'costo':widgets.NumberInput(
+                attrs={
+                    'class':'text-right item-costo',
+                }
+            ),
+            'cantidad':widgets.NumberInput(
+                attrs={
+                    'wrapper_class':'col-sm-1',
+                }
+            ),
+        }
+    }
+    fields = ['item', 'deposito','dosis','costo','cantidad','porcentaje_impuesto','subtotal_item']

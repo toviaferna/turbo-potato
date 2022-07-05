@@ -2,8 +2,8 @@ from core.tables import AccionTable
 from core.tables.columns import NumericColumn, TotalNumericColumn
 from django_tables2 import Column
 
-from .models import (Acopio, CalificacionAgricola, Contrato, Finca, Lote,
-                     MaquinariaAgricola, TipoActividadAgricola,
+from .models import (Acopio, ActividadAgricola, CalificacionAgricola, Contrato,
+                     Finca, Lote, MaquinariaAgricola, TipoActividadAgricola,
                      TipoMaquinariaAgricola, Zafra)
 
 
@@ -71,3 +71,14 @@ class AcopioTable(AccionTable):
             "es-vigente": lambda record: record.es_vigente
         }
         order_by = "-fecha"
+
+class ActividadAgricolaTable(AccionTable):
+    cantidad_trabajada = NumericColumn()
+    total = NumericColumn()
+    class Meta:
+        model = ActividadAgricola
+        fields = ("fecha_documento","tipo_actividad_agricola","zafra","finca","lote","cantidad_trabajada","es_servicio_contratado","total","es_vigente")
+        row_attrs = {
+            "es-vigente": lambda record: record.es_vigente
+        }
+        order_by = "-fecha_documento"

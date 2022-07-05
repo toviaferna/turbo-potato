@@ -52,6 +52,11 @@ children = (
         reverse("acopio_list"),
         icon="far fa-circle",        
     ),
+    MenuItem(
+        "Actividades Agricolas",
+        reverse("actividad_agricola_list"),
+        icon="far fa-circle",        
+    ),
 )
 
 Menu.add_item("agricultura", MenuItem("Agricultura","#",icon='fa fa-tractor',weight=6, children=children))

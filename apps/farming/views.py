@@ -1,15 +1,19 @@
 from apps.farming.filters import (PlanActividadZafraFilter,
                                   TipoActividadAgricolaFilter, ZafraFilter)
-from apps.farming.forms import (AcopioForm, CalificacionAgricolaForm,
-                                ContratoForm, FincaForm, LoteForm,
-                                MaquinariaAgricolaForm, PlanActividadZafraForm,
+from apps.farming.forms import (AcopioForm, ActividadAgricolaForm,
+                                CalificacionAgricolaForm, ContratoForm,
+                                FincaForm, LoteForm, MaquinariaAgricolaForm,
+                                PlanActividadZafraForm,
                                 TipoActividadAgricolaForm,
                                 TipoMaquinariaAgricolaForm, ZafraForm)
 from apps.farming.inlines import (AcopioCalificacionDetalleInline,
                                   AcopioDetalleInline,
+                                  ActividadAgricolaItemDetalleInline,
+                                  ActividadAgricolaMaquinariaDetalleInline,
                                   PlanActividadZafraDetalleInline)
-from apps.farming.tables import (AcopioTable, CalificacionAgricolaTable,
-                                 ContratoTable, FincaTable, LoteTable,
+from apps.farming.tables import (AcopioTable, ActividadAgricolaTable,
+                                 CalificacionAgricolaTable, ContratoTable,
+                                 FincaTable, LoteTable,
                                  MaquinariaAgricolaTable,
                                  PlanActividadZafraTable,
                                  TipoActividadAgricolaTable,
@@ -17,8 +21,8 @@ from apps.farming.tables import (AcopioTable, CalificacionAgricolaTable,
 from core.views import (AnnulledView, CreateView, DeleteView, ListView,
                         UpdateView)
 
-from .models import (Acopio, CalificacionAgricola, Contrato, Finca, Lote,
-                     MaquinariaAgricola, PlanActividadZafra,
+from .models import (Acopio, ActividadAgricola, CalificacionAgricola, Contrato,
+                     Finca, Lote, MaquinariaAgricola, PlanActividadZafra,
                      TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
 
 
@@ -261,3 +265,39 @@ class AcopioAnnulledView(AnnulledView):
     list_url = "acopio_list"
     mensaje_anulacion = "El acopio ya fue anulado."
 
+class ActividadAgricolaListView(ListView):
+    model = ActividadAgricola
+    table_class = ActividadAgricolaTable
+    search_fields = ['zafra__descripcion','finca__descripcion','lote__descripcion', 'empleado__razon_social','deposito__descripcion']
+    update_url = None
+    delete_url = 'actividad_agricola_delete'
+    create_url = 'actividad_agricola_create'
+
+
+class ActividadAgricolaCreateView(CreateView):
+    model = ActividadAgricola
+    form_class = ActividadAgricolaForm
+    inlines = [ActividadAgricolaMaquinariaDetalleInline,ActividadAgricolaItemDetalleInline]
+    list_url = "actividad_agricola_list"
+    
+    def run_form_extra_validation(self, form, inlines):
+        """ ejecutar validaciones adicionales de formularios """
+        detalle_maquinaria = inlines[0] 
+        detalle_item = inlines[1]
+
+        cantidad_ha_maquinaria = 0
+
+        for f in detalle_maquinaria:
+           cantidad_maquinaria = f.cleaned_data.get('ha_trabajada')
+           if cantidad_maquinaria is None:
+                cantidad_maquinaria = 0
+           cantidad_ha_maquinaria += cantidad_maquinaria
+               
+        if (cantidad_ha_maquinaria != form.cleaned_data.get('cantidad_trabajada')) and form.cleaned_data.get('es_servicio_contratado') == False and cantidad_ha_maquinaria > 0 :
+            form.add_error(None, 'La cantidad de HA trabajada debe ser igual a la cantidad de HA trabajada por las maquinarias')
+
+class ActividadAgricolaAnnulledView(AnnulledView):
+    model = ActividadAgricola
+    template_name = 'inventory/anular.html'
+    list_url = "actividad_agricola_list"
+    mensaje_anulacion = "La Actividad Agrícola ya fue anulado."
