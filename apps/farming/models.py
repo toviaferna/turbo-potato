@@ -1,6 +1,7 @@
 from apps.finance.models import Persona
 from apps.inventory.models import Deposito, Item
 from django.db import models
+from django.utils.html import format_html
 
 
 class Finca(models.Model):
@@ -11,6 +12,7 @@ class Finca(models.Model):
 
     def __str__(self):
         return self.descripcion
+
 
 class TipoActividadAgricola(models.Model):
     #  error_messages={'unique': u'My custom message'}
@@ -292,7 +294,7 @@ class CierreZafraDetalle(models.Model):
     costo_unitario = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo Unit.")
 
 
-from .signals import (signal_acopio_guardado, # signal_cierre_zafra_borrar
-                      signal_actividad_agricola_item_guardado,
+from .signals import signal_acopio_guardado  # signal_cierre_zafra_borrar
+from .signals import (signal_actividad_agricola_item_guardado,
                       signal_cierre_zafra_detalle_guardado,
                       signal_cierre_zafra_save)

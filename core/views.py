@@ -1,21 +1,20 @@
+from apps.supplies.mixins import FormsetInlinesMetaMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
+from django.db import models, transaction
+from django.forms.formsets import all_valid
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from core.mixins import SearchViewMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import edit
-from django_tables2 import SingleTableMixin
-
+from django.views.generic import detail, edit
 from django_filters.views import FilterView
+from django_tables2 import SingleTableMixin
+from extra_views import CreateWithInlinesView, UpdateWithInlinesView
+
+from core.mixins import SearchViewMixin
+from core.tables.export import TableExport
 from core.tables.mixins import ExportMixin
 from core.utils import get_deleted_objects
-from core.tables.export import TableExport
-from extra_views import CreateWithInlinesView, UpdateWithInlinesView
-from django.db import transaction
-from django.forms.formsets import all_valid
-from django.core.exceptions import ValidationError
-from apps.supplies.mixins import FormsetInlinesMetaMixin
-from  django.views.generic import detail
-from django.db import models
+
 
 class DeleteView(LoginRequiredMixin, edit.DeleteView):
     error = None
@@ -123,7 +122,6 @@ class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesV
         return True
 
     def get_form(self, form_class=None):
-        print(form_class)
         form = super().get_form(form_class)
         return form
 

@@ -1,20 +1,23 @@
 from apps.farming.filters import (PlanActividadZafraFilter,
                                   TipoActividadAgricolaFilter, ZafraFilter)
-from apps.farming.forms import (CalificacionAgricolaForm, ContratoForm,
-                                FincaForm, LoteForm, MaquinariaAgricolaForm,
-                                PlanActividadZafraForm,
+from apps.farming.forms import (AcopioForm, CalificacionAgricolaForm,
+                                ContratoForm, FincaForm, LoteForm,
+                                MaquinariaAgricolaForm, PlanActividadZafraForm,
                                 TipoActividadAgricolaForm,
                                 TipoMaquinariaAgricolaForm, ZafraForm)
-from apps.farming.inlines import PlanActividadZafraDetalleInline
-from apps.farming.tables import (CalificacionAgricolaTable, ContratoTable,
-                                 FincaTable, LoteTable,
+from apps.farming.inlines import (AcopioCalificacionDetalleInline,
+                                  AcopioDetalleInline,
+                                  PlanActividadZafraDetalleInline)
+from apps.farming.tables import (AcopioTable, CalificacionAgricolaTable,
+                                 ContratoTable, FincaTable, LoteTable,
                                  MaquinariaAgricolaTable,
                                  PlanActividadZafraTable,
                                  TipoActividadAgricolaTable,
                                  TipoMaquinariaAgricolaTable, ZafraTable)
-from core.views import CreateView, DeleteView, ListView, UpdateView
+from core.views import (AnnulledView, CreateView, DeleteView, ListView,
+                        UpdateView)
 
-from .models import (CalificacionAgricola, Contrato, Finca, Lote,
+from .models import (Acopio, CalificacionAgricola, Contrato, Finca, Lote,
                      MaquinariaAgricola, PlanActividadZafra,
                      TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
 
@@ -215,3 +218,46 @@ class ContratoCreateView(CreateView):
 class ContratoDeleteView(DeleteView):
     model = Contrato
     list_url = "contrato_list"
+
+class AcopioListView(ListView):
+    model = Acopio
+    table_class = AcopioTable
+    search_fields = ['zafra__descripcion', 'comprobante','deposito__descripcion']
+    update_url = 'acopio_update'
+    delete_url = 'acopio_delete'
+    create_url = 'acopio_create'
+
+
+class AcopioCreateView(CreateView):
+    model = Acopio
+    form_class = AcopioForm
+    inlines = [AcopioDetalleInline,AcopioCalificacionDetalleInline]
+    list_url = "acopio_list"
+
+    def run_form_extra_validation(self, form, inlines):
+        acopio_detalle = inlines[0]
+        total_peso = 0
+        existe_registro = False
+        peso_encabezado =  (form.cleaned_data.get('peso_bruto') + form.cleaned_data.get('peso_bonificacion')) - (form.cleaned_data.get('peso_tara') + form.cleaned_data.get('peso_descuento'))
+        
+        for f in acopio_detalle:
+            total_peso = total_peso + f.cleaned_data.get('peso')
+            existe_registro = True
+
+        if existe_registro == False or total_peso == 0 or total_peso is None:
+            form.add_error(None, 'Registre al menos un detalle del acopio')
+        
+        if peso_encabezado != total_peso:  
+            form.add_error('peso_bruto', 'El neto (Peso Bruto + Peso Bonificacion ) - ( Peso Tara + Peso Descuento) no es igual a los detalles cargados')
+
+class AcopioUpdateView(UpdateView):
+    model = Acopio
+    form_class = AcopioForm
+    list_url = "acopio_list"
+    inlines = [AcopioDetalleInline,AcopioCalificacionDetalleInline]
+
+class AcopioAnnulledView(AnnulledView):
+    model = Acopio
+    list_url = "acopio_list"
+    mensaje_anulacion = "El acopio ya fue anulado."
+

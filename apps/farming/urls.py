@@ -36,4 +36,8 @@ urlpatterns = [
     path("contrato/<int:pk>/delete/", views.ContratoDeleteView.as_view(), name="contrato_delete"),
     path("contrato/add", views.ContratoCreateView.as_view(), name="contrato_create"),
     path("contrato/",  views.ContratoListView.as_view(), name="contrato_list"),
+    path("acopio/<int:pk>/delete/", views.AcopioAnnulledView.as_view(), name="acopio_delete"),
+    path("acopio/<int:pk>/update/", views.AcopioUpdateView.as_view(), name="acopio_update"),
+    path("acopio/add", views.AcopioCreateView.as_view(), name="acopio_create"),
+    path("acopio/",  views.AcopioListView.as_view(), name="acopio_list"),
 ]

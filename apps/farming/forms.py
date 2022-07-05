@@ -1,4 +1,4 @@
-from apps.inventory.models import Item
+from apps.inventory.models import Deposito, Item
 from core.layouts import CancelButton, Formset, SaveButton
 from core.widgets import DateInput, SumInput
 from crispy_forms.helper import FormHelper
@@ -7,7 +7,8 @@ from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
 from django.forms import DateField, DecimalField
 from django.forms.models import ModelForm
 
-from .models import (CalificacionAgricola, Contrato, Finca, Lote,
+from .models import (Acopio, AcopioCalificacion, AcopioDetalle,
+                     CalificacionAgricola, Contrato, Finca, Lote,
                      MaquinariaAgricola, PlanActividadZafra,
                      PlanActividadZafraDetalle, TipoActividadAgricola,
                      TipoMaquinariaAgricola, Zafra)
@@ -234,3 +235,60 @@ class ContratoForm(ModelForm):
         model = Contrato
         fields = ['fecha','zafra','persona','descripcion','costo_pactado']
         widgets = {'fecha':DateInput}
+
+class AcopioForm(ModelForm):
+    class Meta:
+        model = Acopio
+        fields = ['fecha', 'zafra', 'deposito', 'conductor','conductor','camion','comprobante','peso_bruto','peso_tara','peso_descuento','peso_bonificacion','es_transportadora_propia','observacion']
+        #widgets = {'fecha':DateInput,'pBruto':DecimalMaskInput,'pTara':DecimalMaskInput,'pDescuento':DecimalMaskInput,'pBonificacion':DecimalMaskInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields["deposito"].queryset =  Deposito.objects.filter(es_planta_acopiadora=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha",css_class="col-sm-3"),
+                Column("zafra",),
+                Column("deposito",),
+            ),
+            Row(
+                Column("conductor",),
+                Column("camion",),
+                Column("comprobante",css_class="col-sm-3"),
+            ),
+            Row(
+                Column("peso_bruto",),
+                Column("peso_tara",),
+                Column("peso_descuento",),
+                Column("peso_bonificacion",),
+            ),
+            "observacion",
+            "es_transportadora_propia",
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "AcopioDetalleInline",#, stacked=True
+                ), 
+                Formset(
+                    "AcopioCalificacionDetalleInline",#, stacked=True
+                ), 
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
+
+class AcopioDetalleForm(ModelForm):
+    class Meta:
+        model = AcopioDetalle
+        fields = ['acopio', 'finca', 'lote', 'peso']
+        #widgets = {'peso':DecimalMaskInput}
+
+class AcopioCalificacionForm(ModelForm):
+    class Meta:
+        model = AcopioCalificacion
+        fields = ['acopio', 'calificacion_agricola', 'grado', 'porcentaje', 'peso']
+        #widgets = {'grado':DecimalMaskInput,'porcentaje':DecimalMaskInput,'peso':DecimalMaskInput}
