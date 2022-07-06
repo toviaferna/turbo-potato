@@ -43,4 +43,8 @@ urlpatterns = [
     path("actividad-agricola/<int:pk>/delete/", views.ActividadAgricolaAnnulledView.as_view(), name="actividad_agricola_delete"),
     path("actividad-agricola/add", views.ActividadAgricolaCreateView.as_view(), name="actividad_agricola_create"),
     path("actividad-agricola/",  views.ActividadAgricolaListView.as_view(), name="actividad_agricola_list"),
+    #path("actividad-agricola/<int:pk>/delete/", views.ActividadAgricolaAnnulledView.as_view(), name="actividad_agricola_delete"),
+    #path("actividad-agricola/add", views.ActividadAgricolaCreateView.as_view(), name="actividad_agricola_create"),
+    path("liquidacion-agricola/",  views.LiquidacionAgricolaListView.as_view(), name="liquidacion_agricola_list"),
+    path("liquidacion-agricola/selection",  views.LiquidacionAgricolaSelectionView.as_view(), name="liquidacion_agricola_selection"),
 ]

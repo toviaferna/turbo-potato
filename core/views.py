@@ -5,12 +5,12 @@ from django.db import models, transaction
 from django.forms.formsets import all_valid
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views.generic import detail, edit
+from django.views.generic import FormView, detail, edit
 from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
 from extra_views import CreateWithInlinesView, UpdateWithInlinesView
 
-from core.mixins import SearchViewMixin
+from core.mixins import SearchViewMixin, SelectionMixin
 from core.tables.export import TableExport
 from core.tables.mixins import ExportMixin
 from core.utils import get_deleted_objects
@@ -229,3 +229,19 @@ class DetailView(LoginRequiredMixin, detail.DetailView):
         context['list_url'] = self.list_url
         context['title'] = "Detalles de "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
         return context
+
+class SelectionListView(SelectionMixin, ListView):
+    """ Vista de seleccion de tipo listado """
+
+
+class SelectionFormView(LoginRequiredMixin, SelectionMixin, FormView):
+    page_title = None
+    selection_title = None
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['helper'] = None
+        context['list_url'] = self.list_url
+        context['selection_title'] = self.selection_title
+        context['title'] = context['title'] = "Agregar "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
+        return context
+

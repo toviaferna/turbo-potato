@@ -1,7 +1,8 @@
-from django.template.loader import render_to_string
-from crispy_forms.layout import TemplateNameMixin
+from crispy_forms.layout import LayoutObject, Submit, TemplateNameMixin
 from crispy_forms.utils import TEMPLATE_PACK, flatatt
-from crispy_forms.layout import LayoutObject, TemplateNameMixin, Submit
+from django.template.loader import render_to_string
+
+
 class BaseButton(TemplateNameMixin):
     def __init__(self, **kwargs):
         if not getattr(self, 'field_classes'):
@@ -30,6 +31,13 @@ class SaveButton(Submit):
         self.field_classes = "btn btn-primary"
         kwargs['name'] = "Guardar"
         kwargs['value'] = "Guardar"
+        super().__init__(*args, **kwargs)
+
+class NextButton(Submit):
+    def __init__(self, *args, **kwargs):
+        self.field_classes = "btn btn-primary"
+        kwargs['name'] = "Siguiente"
+        kwargs['value'] = "Siguiente"
         super().__init__(*args, **kwargs)
 
 class Formset(LayoutObject):

@@ -1,5 +1,7 @@
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models import Q
+from django.urls import reverse_lazy
+
 
 class SearchViewMixin: 
     search_fields = None
@@ -67,3 +69,18 @@ class SearchViewMixin:
         if labels:
             placeholder = ", ".join(map(str.capitalize, map(str, labels)))
         return placeholder
+
+class SelectionMixin:
+    selection_title = None
+    next_url = None
+    back_url = None
+    template_name = 'generic/selection.html'
+    params_name = 'selection-pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['selection_title'] = self.selection_title
+        context['next_url'] = None if not self.next_url else self.next_url
+        context['back_url'] = None if not self.back_url else self.back_url
+        context['params_name'] = self.params_name
+        return context

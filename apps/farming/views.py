@@ -2,27 +2,31 @@ from apps.farming.filters import (PlanActividadZafraFilter,
                                   TipoActividadAgricolaFilter, ZafraFilter)
 from apps.farming.forms import (AcopioForm, ActividadAgricolaForm,
                                 CalificacionAgricolaForm, ContratoForm,
-                                FincaForm, LoteForm, MaquinariaAgricolaForm,
-                                PlanActividadZafraForm,
+                                FincaForm, LiquidacionAgricolaForm,
+                                LiquidacionAgricolaSelectionForm, LoteForm,
+                                MaquinariaAgricolaForm, PlanActividadZafraForm,
                                 TipoActividadAgricolaForm,
                                 TipoMaquinariaAgricolaForm, ZafraForm)
 from apps.farming.inlines import (AcopioCalificacionDetalleInline,
                                   AcopioDetalleInline,
                                   ActividadAgricolaItemDetalleInline,
                                   ActividadAgricolaMaquinariaDetalleInline,
+                                  LiquidacionAgricolaDetalleInline,
                                   PlanActividadZafraDetalleInline)
 from apps.farming.tables import (AcopioTable, ActividadAgricolaTable,
                                  CalificacionAgricolaTable, ContratoTable,
-                                 FincaTable, LoteTable,
-                                 MaquinariaAgricolaTable,
+                                 FincaTable, LiquidacionAgricolaTable,
+                                 LoteTable, MaquinariaAgricolaTable,
                                  PlanActividadZafraTable,
                                  TipoActividadAgricolaTable,
                                  TipoMaquinariaAgricolaTable, ZafraTable)
 from core.views import (AnnulledView, CreateView, DeleteView, ListView,
-                        UpdateView)
+                        SelectionFormView, UpdateView)
 
-from .models import (Acopio, ActividadAgricola, CalificacionAgricola, Contrato,
-                     Finca, Lote, MaquinariaAgricola, PlanActividadZafra,
+from .models import (Acopio, AcopioDetalle, ActividadAgricola,
+                     CalificacionAgricola, Contrato, Finca,
+                     LiquidacionAgricola, LiquidacionAgricolaDetalle, Lote,
+                     MaquinariaAgricola, PlanActividadZafra,
                      TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
 
 
@@ -301,3 +305,95 @@ class ActividadAgricolaAnnulledView(AnnulledView):
     template_name = 'inventory/anular.html'
     list_url = "actividad_agricola_list"
     mensaje_anulacion = "La Actividad Agrícola ya fue anulado."
+
+
+class LiquidacionAgricolaListView(ListView):
+    model = LiquidacionAgricola
+    table_class = LiquidacionAgricolaTable
+    search_fields = ['proveedor__razon_social','zafra__descripcion','tipo']
+    update_url = None
+    delete_url = None#'actividad_agricola_delete'
+    create_url = 'liquidacion_agricola_selection'#'actividad_agricola_create'
+
+class LiquidacionAgricolaSelectionView(SelectionFormView):
+    model = LiquidacionAgricola
+    form_class = LiquidacionAgricolaSelectionForm
+    next_url = None
+    back_url = 'liquidacion_agricola_list'
+    list_url = 'liquidacion_agricola_list'
+    selection_title = 'Complete los filtros para continuar'
+
+class LiquidacionAgricolaCreateView(CreateView):
+    model = LiquidacionAgricola
+    form_class = LiquidacionAgricolaForm
+    inlines = [LiquidacionAgricolaDetalleInline]
+    list_url = 'liquidacion_agricola_list'
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if self.request.GET.get('zafra', None):
+            form.fields['zafra'].initial = self.request.GET.get('zafra', None)
+            form.fields['zafra'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        if self.request.GET.get('proveedor', None):
+            form.fields['proveedor'].initial = self.request.GET.get('proveedor', None)
+            form.fields['proveedor'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        if self.request.GET.get('tipo', None):
+            form.fields['tipo'].initial = self.request.GET.get('tipo', None)
+            form.fields['tipo'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        if self.request.GET.get('precio_unitario', None):
+            form.fields['precio_unitario'].initial = self.request.GET.get('precio_unitario', None)
+            form.fields['precio_unitario'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        return form
+
+    def get_inlines(self):
+        zafraSel = self.request.GET.get('zafra', None)
+        tipoSel = self.request.GET.get('tipo', None)
+        precio = self.request.GET.get('precio_unitario', None)
+        if tipoSel == 'ACTIVIDADES AGRICOLAS':
+            initial = [
+                {
+                    'precio': precio, 
+                    'secuencia_origen': x.pk, 
+                    'check': False, 
+                    'movimiento': x.tipoActividadAgricola.descripcion, 
+                    'finca': x.finca, 
+                    'lote': x.lote, 
+                    'cantidad': x.cantidad_trabajada, 
+                    'sub_total':  round((float(x.cantidad_trabajada) * float(precio)))
+                } for x in ActividadAgricola.objects.filter(es_vigente=True, es_servicio_contratado=True) if not LiquidacionAgricolaDetalle.objects.filter(liquidacion_agricola__es_vigente=True, secuencia_origen=x.pk, liquidacion_agricola__tipo='ACTIVIDADES AGRICOLAS').exists()
+            ]
+        else:
+            initial = [
+                {
+                    'precio': precio, 
+                    'secuencia_origen': x.pk, 
+                    'check': False, 
+                    'movimiento': "Comp:" + x.acopio.comprobante + " Conductor "+x.acopio.conductor.razon_social, 
+                    'finca': x.finca, 
+                    'lote': x.lote,
+                    'cantidad': x.acopio.peso_bruto, 
+                    'sub_total':  round((float(x.acopio.peso_bruto) * float(precio)))
+                } for x in AcopioDetalle.objects.filter(acopio__es_vigente=True, acopio__es_transportadora_propia=False) if not LiquidacionAgricolaDetalle.objects.filter(liquidacion_agricola__es_vigente=True, secuencia_origen=x.pk, liquidacion_agricola__tipo='ACOPIOS').exists()
+            ]
+        detalle = self.inlines[0]
+        detalle.initial = initial
+        detalle.factory_kwargs['extra'] = len(initial)
+        detalle.factory_kwargs['can_delete'] = False
+        return self.inlines
+
+    def run_form_extra_validation(self, form, inlines):
+        """ ejecutar validaciones adicionales de formularios """
+        detalle = inlines[0]
+        existe_un_seleccionado = False
+
+        for f in detalle:
+            if f.cleaned_data.get('check'):
+                existe_un_seleccionado = True
+
+        if existe_un_seleccionado == False:
+            form.add_error(None, 'Seleccione al menos un detalle a liquidar')
+
+class LiquidacionAgricolaAnnulledView(AnnulledView):
+    model = LiquidacionAgricola
+    list_url = "liquidacion_agricola_list"
+    mensaje_anulacion = "La Liquidacion Agrícola ya fue anulado."

@@ -1,18 +1,19 @@
 from apps.finance.models import Persona
 from apps.inventory.models import Deposito, Item
-from core.layouts import CancelButton, Formset, SaveButton
+from core.layouts import CancelButton, Formset, NextButton, SaveButton
 from core.widgets import (DateInput, FormulaInput, ItemCustomSelect,
                           MaquinariaCustomSelect, SumInput)
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
                                  Row)
-from django.forms import DateField, DecimalField
+from django.forms import BooleanField, CharField, DateField, DecimalField
 from django.forms.models import ModelForm
 
 from .models import (Acopio, AcopioCalificacion, AcopioDetalle,
                      ActividadAgricola, ActividadAgricolaItemDetalle,
                      ActividadAgricolaMaquinariaDetalle, CalificacionAgricola,
-                     Contrato, Finca, Lote, MaquinariaAgricola,
+                     Contrato, Finca, LiquidacionAgricola,
+                     LiquidacionAgricolaDetalle, Lote, MaquinariaAgricola,
                      PlanActividadZafra, PlanActividadZafraDetalle,
                      TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
 
@@ -382,3 +383,99 @@ class ActividadAgricolaItemDetalleForm(ModelForm):
         model = ActividadAgricolaItemDetalle
         fields = ['item', 'deposito','dosis','costo','cantidad','porcentaje_impuesto','subtotal_item']
         #widgets = {'dosis':DecimalMaskInput,'costo':DecimalMaskInput,'cantidad':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'subtotalItem':DecimalMaskInput}
+
+class LiquidacionAgricolaSelectionForm(ModelForm):
+    class Meta:
+        model = LiquidacionAgricola
+        fields = ['tipo','zafra','proveedor','precio_unitario']
+        #widgets = {'precioUnitario':DecimalMaskInput}
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("tipo",),
+                Column("zafra",),
+            ),
+            Row(
+                Column("proveedor",),
+                Column("precio_unitario",),
+            ),
+            ButtonHolder(
+                NextButton(),
+                CancelButton(),
+            ),
+        )
+
+class LiquidacionAgricolaForm(ModelForm):
+    total = DecimalField(
+        widget=SumInput('subtotal',   attrs={'readonly':True}),
+    )
+    class Meta:
+        model = LiquidacionAgricola
+        fields = ['fecha_documento','tipo','zafra','proveedor','precio_unitario','observacion']
+        #widgets = {'fechaDocumento':DateInput,'precioUnitario':DecimalMaskInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total'].label = False
+        #self.fields['total'].widget = DecimalMaskInput()
+        self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha_documento", css_class="col-sm-3"),
+                Column("tipo", css_class="col-sm-5"),
+                Column("zafra",),
+            ),
+            Row(
+                Column("proveedor",),
+                Column("precio_unitario", css_class="col-sm-2"),
+                Column("observacion",),
+            ),
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "LiquidacionAgricolaDetalleInline"#, stacked=True
+                )
+            ), 
+            Row(
+                Column(
+                    HTML('<label> Total: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total", css_class="col-sm-2")
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
+
+class LiquidacionAgricolaDetalleForm(ModelForm):
+    
+    check = BooleanField(label='Sel.',required=False)
+    movimiento = CharField(max_length=300,disabled = True)
+    sub_total = DecimalField(max_digits=15,disabled = True)
+    sub_total.label = "Sub Total"
+    
+    class Meta:
+        model = LiquidacionAgricolaDetalle
+        fields = ['secuencia_origen','finca','lote','cantidad']
+        # widgets = {
+        #     'secuenciaOrigen': forms.HiddenInput,
+        #     'cantidad':DecimalMaskInput,
+        #     'subTotal':DecimalMaskInput,   
+        # }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['finca'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['lote'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['cantidad'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        

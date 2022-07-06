@@ -2,10 +2,12 @@
 from apps.farming.forms import (AcopioCalificacionForm, AcopioDetalleForm,
                                 ActividadAgricolaItemDetalleForm,
                                 ActividadAgricolaMaquinariaDetalleForm,
+                                LiquidacionAgricolaDetalleForm,
                                 PlanActividadZafraDetalleForm)
 from apps.farming.models import (AcopioCalificacion, AcopioDetalle,
                                  ActividadAgricolaItemDetalle,
                                  ActividadAgricolaMaquinariaDetalle,
+                                 LiquidacionAgricolaDetalle,
                                  PlanActividadZafraDetalle)
 from core.widgets import ItemCustomSelect, MaquinariaCustomSelect
 from django.forms import widgets
@@ -132,3 +134,9 @@ class ActividadAgricolaItemDetalleInline(InlineFormSetFactory):
         }
     }
     fields = ['item', 'deposito','dosis','costo','cantidad','porcentaje_impuesto','subtotal_item']
+
+class LiquidacionAgricolaDetalleInline(InlineFormSetFactory):
+    model = LiquidacionAgricolaDetalle
+    form_class = LiquidacionAgricolaDetalleForm
+    factory_kwargs = {'extra':1 }
+    fields = ['secuencia_origen','check','movimiento', 'finca', 'lote','cantidad','sub_total']
