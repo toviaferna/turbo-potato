@@ -318,7 +318,7 @@ class LiquidacionAgricolaListView(ListView):
 class LiquidacionAgricolaSelectionView(SelectionFormView):
     model = LiquidacionAgricola
     form_class = LiquidacionAgricolaSelectionForm
-    next_url = None
+    next_url = 'liquidacion_agricola_create'
     back_url = 'liquidacion_agricola_list'
     list_url = 'liquidacion_agricola_list'
     selection_title = 'Complete los filtros para continuar'
