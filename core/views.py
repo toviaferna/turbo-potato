@@ -1,4 +1,3 @@
-from apps.supplies.mixins import FormsetInlinesMetaMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
@@ -10,7 +9,8 @@ from django_filters.views import FilterView
 from django_tables2 import SingleTableMixin
 from extra_views import CreateWithInlinesView, UpdateWithInlinesView
 
-from core.mixins import SearchViewMixin, SelectionMixin
+from core.mixins import (FormsetInlinesMetaMixin, SearchViewMixin,
+                         SelectionMixin)
 from core.tables.export import TableExport
 from core.tables.mixins import ExportMixin
 from core.utils import get_deleted_objects

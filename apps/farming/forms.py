@@ -307,7 +307,7 @@ class ActividadAgricolaForm(ModelForm):
     class Meta:
         model = ActividadAgricola
         fields = ['fecha_documento','tipo_actividad_agricola','zafra', 'finca','lote','es_servicio_contratado','empleado','cantidad_trabajada','observacion']
-        #widgets = {'fechaDocumento':DateInput,'cantidadTrabajada': DecimalMaskInput}
+        widgets = {'fecha_documento':DateInput,} #'cantidadTrabajada': DecimalMaskInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
