@@ -138,5 +138,5 @@ class ActividadAgricolaItemDetalleInline(InlineFormSetFactory):
 class LiquidacionAgricolaDetalleInline(InlineFormSetFactory):
     model = LiquidacionAgricolaDetalle
     form_class = LiquidacionAgricolaDetalleForm
-    factory_kwargs = {'extra':1 }
+    factory_kwargs = { 'extra':1 }
     fields = ['secuencia_origen','check','movimiento', 'finca', 'lote','cantidad','sub_total']

@@ -335,7 +335,7 @@ class ActividadAgricolaForm(ModelForm):
             ),
             "es_servicio_contratado",
             Fieldset(
-                u'Detalle',
+                u'Detalles',
                 Formset(
                     "ActividadAgricolaMaquinariaDetalleInline"#, stacked=True
                 ), 
@@ -411,12 +411,12 @@ class LiquidacionAgricolaSelectionForm(ModelForm):
 
 class LiquidacionAgricolaForm(ModelForm):
     total = DecimalField(
-        widget=SumInput('subtotal',   attrs={'readonly':True}),
+        widget=SumInput('subtotal'),
     )
     class Meta:
         model = LiquidacionAgricola
         fields = ['fecha_documento','tipo','zafra','proveedor','precio_unitario','observacion']
-        #widgets = {'fechaDocumento':DateInput,'precioUnitario':DecimalMaskInput}
+        widgets = {'fecha_documento':DateInput,}#'precioUnitario':DecimalMaskInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -460,22 +460,14 @@ class LiquidacionAgricolaDetalleForm(ModelForm):
     check = BooleanField(label='Sel.',required=False)
     movimiento = CharField(max_length=300,disabled = True)
     sub_total = DecimalField(max_digits=15,disabled = True)
-    sub_total.label = "Sub Total"
+    #sub_total.label = "Sub Total"
     
     class Meta:
         model = LiquidacionAgricolaDetalle
         fields = ['secuencia_origen','finca','lote','cantidad']
-        # widgets = {
-        #     'secuenciaOrigen': forms.HiddenInput,
-        #     'cantidad':DecimalMaskInput,
-        #     'subTotal':DecimalMaskInput,   
-        # }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.fields['finca'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
-        self.fields['lote'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
-        self.fields['cantidad'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
         

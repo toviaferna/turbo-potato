@@ -346,10 +346,12 @@ class LiquidacionAgricolaCreateView(CreateView):
         return form
 
     def get_inlines(self):
-        zafraSel = self.request.GET.get('zafra', None)
-        tipoSel = self.request.GET.get('tipo', None)
+        inlines =  super().get_inlines()
+        zafra_select = self.request.GET.get('zafra', None)
+        tipo_select = self.request.GET.get('tipo', None)
         precio = self.request.GET.get('precio_unitario', None)
-        if tipoSel == 'ACTIVIDADES AGRICOLAS':
+        
+        if tipo_select == 'ACTIVIDADES AGRICOLAS':
             initial = [
                 {
                     'precio': precio, 
@@ -375,11 +377,11 @@ class LiquidacionAgricolaCreateView(CreateView):
                     'sub_total':  round((float(x.acopio.peso_bruto) * float(precio)))
                 } for x in AcopioDetalle.objects.filter(acopio__es_vigente=True, acopio__es_transportadora_propia=False) if not LiquidacionAgricolaDetalle.objects.filter(liquidacion_agricola__es_vigente=True, secuencia_origen=x.pk, liquidacion_agricola__tipo='ACOPIOS').exists()
             ]
-        detalle = self.inlines[0]
-        detalle.initial = initial
-        detalle.factory_kwargs['extra'] = len(initial)
-        detalle.factory_kwargs['can_delete'] = False
-        return self.inlines
+        inlines[0].initial = initial
+        inlines[0].factory_kwargs['extra'] = len(initial)
+        inlines[0].factory_kwargs['can_delete'] = False
+        
+        return inlines
 
     def run_form_extra_validation(self, form, inlines):
         """ ejecutar validaciones adicionales de formularios """
