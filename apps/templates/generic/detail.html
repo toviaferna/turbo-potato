@@ -1,46 +1,46 @@
 {% extends 'layouts/base.html' %}
-{% block title %}{{title}}{% endblock %} 
+{% block title %}{{title}}{% endblock %}
 {% block body_class %} sidebar-mini pace-secondary {% endblock body_class %}
 {% load render_table from django_tables2 %}
 {% block content %}
 
 <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-11">
-            <h1>{{title}}</h1>
-          </div>
-          <div class="col-sm-1 text-right">
-              <a href="{% url list_url %}" class="btn btn-primary">Volver</a>
-          </div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-11">
+          <h1>{{title}}</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+        <div class="col-sm-1 text-right">
+          <a href="{% url list_url %}" class="btn btn-primary">Volver</a>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
 
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-            <div class="col col-lg-12">
-              <div class="card card-solid">
-                <div class="card-body">
-                   <div class="row">
-                      {% for field_name, value in object_data %}
-                        <dt class="col-lg-3">{{field_name}}:</dt>
-                        <dd class="col-lg-3">{{value}}</dd>
-                      {% endfor %}
-                      
-                      {% block extra-detail %}{% endblock extra-detail %}
-                     
-                   </div>
-                </div>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col col-lg-12">
+          <div class="card card-solid">
+            <div class="card-body">
+              <div class="row">
+                {% for field_name, value in object_data %}
+                <dt class="col-lg-3">{{field_name}}:</dt>
+                <dd class="col-lg-3">{{value}}</dd>
+                {% endfor %}
+
+                {% block extra-detail %}{% endblock extra-detail %}
+
               </div>
             </div>
-            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
+</div>
 
 
 
