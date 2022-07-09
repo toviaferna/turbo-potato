@@ -5,19 +5,15 @@
 
 {% block content %}
   <div class="login-box">
-    <div class="login-logo">
-        Agro <b>Atardecer</b>
-    </div>
-    <div class="card">
-      <div class="card-body login-card-body">
-            <p class="login-box-msg">
-            {% if msg %}
-                <span class="text-danger">{{ msg | safe }}</span>
-            {% else %}
-
-            {% endif %}
+    <div class="card card-outline card-secondary">
+      <div class="card-header text-center">
+        <a href="#" class="h1">Agro <b>Atardecer</b></a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">
+          {% if msg %}<span class="text-danger">{{ msg | safe }}</span>{% else %}{% endif %}
         </p>
-        <form method="post" action="">
+        <form action="" method="post">
           {% csrf_token %}
           <div class="input-group mb-3">
             {{ form.username }}
@@ -42,7 +38,6 @@
             </div>
           </div>
         </form>
-        <br /><br />
       </div>
     </div>
   </div>
