@@ -48,4 +48,8 @@ urlpatterns = [
     path("liquidacion-agricola/",  views.LiquidacionAgricolaListView.as_view(), name="liquidacion_agricola_list"),
     path("liquidacion-agricola/selection",  views.LiquidacionAgricolaSelectionView.as_view(), name="liquidacion_agricola_selection"),
     path("liquidacion-agricola/add",  views.LiquidacionAgricolaCreateView.as_view(), name="liquidacion_agricola_create"),
+    path("cierre-zafra/<int:pk>/delete/", views.CierreZafraDeleteView.as_view(), name="cierre_zafra_delete"),
+    path("cierre-zafra/add",  views.CierreZafraCreateView.as_view(), name="cierre_zafra_create"),
+    path("cierre-zafra/selection",  views.CierreZafraSelectionView.as_view(), name="cierre_zafra_selection"),
+    path("cierre-zafra/",  views.CierreZafraListView.as_view(), name="cierre_zafra_list"),
 ]

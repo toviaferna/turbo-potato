@@ -1,7 +1,8 @@
 from apps.farming.filters import (PlanActividadZafraFilter,
                                   TipoActividadAgricolaFilter, ZafraFilter)
 from apps.farming.forms import (AcopioForm, ActividadAgricolaForm,
-                                CalificacionAgricolaForm, ContratoForm,
+                                CalificacionAgricolaForm, CierreZafraForm,
+                                CierreZafraSelectionForm, ContratoForm,
                                 FincaForm, LiquidacionAgricolaForm,
                                 LiquidacionAgricolaSelectionForm, LoteForm,
                                 MaquinariaAgricolaForm, PlanActividadZafraForm,
@@ -11,23 +12,28 @@ from apps.farming.inlines import (AcopioCalificacionDetalleInline,
                                   AcopioDetalleInline,
                                   ActividadAgricolaItemDetalleInline,
                                   ActividadAgricolaMaquinariaDetalleInline,
+                                  CierreZafraDetalleInline,
                                   LiquidacionAgricolaDetalleInline,
                                   PlanActividadZafraDetalleInline)
 from apps.farming.tables import (AcopioTable, ActividadAgricolaTable,
-                                 CalificacionAgricolaTable, ContratoTable,
-                                 FincaTable, LiquidacionAgricolaTable,
-                                 LoteTable, MaquinariaAgricolaTable,
+                                 CalificacionAgricolaTable, CierreZafraTable,
+                                 ContratoTable, FincaTable,
+                                 LiquidacionAgricolaTable, LoteTable,
+                                 MaquinariaAgricolaTable,
                                  PlanActividadZafraTable,
                                  TipoActividadAgricolaTable,
                                  TipoMaquinariaAgricolaTable, ZafraTable)
 from core.views import (AnnulledView, CreateView, DeleteView, ListView,
                         SelectionFormView, UpdateView)
+from django.db.models import F, Sum
 
 from .models import (Acopio, AcopioDetalle, ActividadAgricola,
-                     CalificacionAgricola, Contrato, Finca,
-                     LiquidacionAgricola, LiquidacionAgricolaDetalle, Lote,
-                     MaquinariaAgricola, PlanActividadZafra,
-                     TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
+                     ActividadAgricolaItemDetalle,
+                     ActividadAgricolaMaquinariaDetalle, CalificacionAgricola,
+                     CierreZafra, Contrato, Finca, LiquidacionAgricola,
+                     LiquidacionAgricolaDetalle, Lote, MaquinariaAgricola,
+                     PlanActividadZafra, TipoActividadAgricola,
+                     TipoMaquinariaAgricola, Zafra)
 
 
 # FINCA
@@ -399,3 +405,128 @@ class LiquidacionAgricolaAnnulledView(AnnulledView):
     model = LiquidacionAgricola
     list_url = "liquidacion_agricola_list"
     mensaje_anulacion = "La Liquidacion Agrícola ya fue anulado."
+
+class CierreZafraListView(ListView):
+    model = CierreZafra
+    table_class = CierreZafraTable
+    search_fields = ['zafra__descripcion',]
+    update_url = None
+    delete_url = "cierre_zafra_delete"
+    create_url = "cierre_zafra_selection"
+
+class CierreZafraDeleteView(DeleteView):
+    model = CierreZafra
+    list_url = "cierre_zafra_list"
+
+class CierreZafraSelectionView(SelectionFormView):
+    model = CierreZafra
+    form_class = CierreZafraSelectionForm
+    list_url = 'cierre_zafra_list'
+    next_url = 'cierre_zafra_create'
+    back_url = 'cierre_zafra_list'
+    title = 'Complete los filtros para continuar'
+    params_name = 'zafra'
+
+class CierreZafraCreateView(CreateView):
+    model = CierreZafra
+    form_class = CierreZafraForm
+    inlines = [CierreZafraDetalleInline]
+    list_url = 'cierre_zafra_list'
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if self.request.GET.get('zafra', None):
+            form.fields['zafra'].initial = self.request.GET.get('zafra', None)
+            form.fields['zafra'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        return form
+
+    def run_form_extra_validation(self, form, inlines):
+        """ ejecutar validaciones adicionales de formularios """
+        detalle = inlines[0]
+        existe_finca_sin_plantacion = False
+        existe_sin_costo = False
+        existe_sin_acopio = False
+        existe_sin_selecionar = False
+       
+        for f in detalle:
+            if f.cleaned_data.get('check') == False or f.cleaned_data.get('check') is None :
+                existe_sin_selecionar = True
+            if f.cleaned_data.get('ha_cultivada') == 0 or f.cleaned_data.get('ha_cultivada') is None:
+                existe_finca_sin_plantacion = True
+            if f.cleaned_data.get('cantidad_acopio_neto') == 0 or f.cleaned_data.get('cantidad_acopio_neto') is None:
+                existe_sin_acopio = True
+            print("ha_cultivada",f.cleaned_data.get('ha_cultivada'),"cantidad_acopio_neto",f.cleaned_data.get('cantidad_acopio_neto'),"costo_total",f.cleaned_data.get('costo_total'))
+            if f.cleaned_data.get('costo_total') == 0 or f.cleaned_data.get('costo_total') is None:
+                existe_sin_costo = True
+
+        if existe_sin_selecionar == True:
+            form.add_error(None, 'Confirme todos los detalles para guardar')
+
+        if existe_sin_selecionar == False:
+            if existe_finca_sin_plantacion == True:
+                form.add_error(None, 'Algun/as Finca/as no tienen una actividad de plantación registrada. Proceda a registrar para poder cerrar la zafra')
+            if existe_sin_acopio == True:
+                form.add_error(None, 'Algun/as Finca/as no tienen registrado Acopio/s. Proceda a registrar para poder cerrar la zafra')
+            if existe_sin_costo == True:
+                form.add_error(None, 'Algun/as Finca/as no tienen registrados Gastos. Proceda a registrar para poder cerrar la zafra')
+      
+            
+    def get_inlines(self):
+        initial = []
+        zafra_digitada = self.request.GET.get('zafra', None)
+        for finca_det in Finca.objects.all():
+            ha_cultivada_v = ActividadAgricola.objects.filter(es_vigente = True,tipo_actividad_agricola__es_siembra = True,zafra = zafra_digitada,finca = finca_det).aggregate(Sum('cantidad_trabajada'))
+            cantidad_acopio = AcopioDetalle.objects.filter(acopio__es_vigente = True, acopio__zafra = zafra_digitada,finca = finca_det).aggregate(Sum('peso'))
+            costo_item = ActividadAgricolaItemDetalle.objects.annotate(i_sum=Sum(F('costo') * F('cantidad'))).filter(
+                                                                    actividad_agricola__es_vigente = True,actividad_agricola__zafra = zafra_digitada,actividad_agricola__finca = finca_det
+                                                                    )
+            costo_maquinaria = ActividadAgricolaMaquinariaDetalle.objects.annotate(i_sum=Sum(F('ha_trabajada') * F('ha_trabajada'))).filter(
+                                                                    actividad_agricola__es_vigente = True,actividad_agricola__zafra = zafra_digitada,actividad_agricola__finca = finca_det
+                                                                    )
+            costo_liquidacion = LiquidacionAgricolaDetalle.objects.annotate(i_sum=Sum(F('cantidad') * F('liquidacion_agricola__precioUnitario'))).filter(
+                                                                    liquidacion_agricola__es_vigente = True,liquidacion_agricola__zafra = zafra_digitada,finca = finca_det
+                                                                    )
+            costo_item_total = 0
+            costo_maquinaria_total = 0
+            costo_liquidacion_total = 0
+            costo_total = 0
+            hectareas_cultivadas = ha_cultivada_v.get("cantidad_trabajada__sum")
+            acopios = cantidad_acopio.get("peso__sum")
+            rendimiento_kg = 0
+            costo_ha = 0
+            costo_unit = 0
+
+            for x in costo_item:
+                costo_item_total += x.i_sum
+
+            for x in costo_maquinaria:
+                costo_maquinaria_total += x.i_sum
+            
+            for x in costo_liquidacion:
+                costo_liquidacion_total += x.i_sum
+            
+            if hectareas_cultivadas is None:
+                hectareas_cultivadas = 0
+
+            if acopios is None:
+                acopios = 0
+
+            costo_total = costo_item_total + costo_maquinaria_total + costo_liquidacion_total
+
+            if hectareas_cultivadas != 0 and acopios != 0:
+
+                rendimiento_kg = round(acopios / hectareas_cultivadas)
+
+                costo_ha = round(costo_total / hectareas_cultivadas)
+
+                costo_unit = round(costo_total / acopios)
+
+            if costo_total != 0  or acopios !=0 or hectareas_cultivadas != 0:                                                
+                initial += [ {'check': False,'finca': finca_det, 'ha_cultivada': hectareas_cultivadas, 'cantidad_acopio_neto': round(acopios), 'rendimiento': round(rendimiento_kg), 'costo_total': round(costo_total), 'costo_ha': round(costo_ha), 'costo_unit': round(costo_unit)}]
+       
+
+        detalle = self.inlines[0]
+        detalle.initial = initial
+        detalle.factory_kwargs['extra'] = len(initial)
+        detalle.factory_kwargs['can_delete'] = False
+        return self.inlines

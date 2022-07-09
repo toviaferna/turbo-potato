@@ -62,6 +62,11 @@ children = (
         reverse("liquidacion_agricola_list"),
         icon="far fa-circle",        
     ),
+    MenuItem(
+        "Cierres de zafras",
+        reverse("cierre_zafra_list"),
+        icon="far fa-circle",        
+    ),
 )
 
 Menu.add_item("agricultura", MenuItem("Agricultura","#",icon='fa fa-tractor',weight=6, children=children))

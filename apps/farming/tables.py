@@ -2,9 +2,10 @@ from core.tables import AccionTable
 from core.tables.columns import NumericColumn, TotalNumericColumn
 from django_tables2 import Column
 
-from .models import (Acopio, ActividadAgricola, CalificacionAgricola, Contrato,
-                     Finca, LiquidacionAgricola, Lote, MaquinariaAgricola,
-                     TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
+from .models import (Acopio, ActividadAgricola, CalificacionAgricola,
+                     CierreZafra, Contrato, Finca, LiquidacionAgricola, Lote,
+                     MaquinariaAgricola, TipoActividadAgricola,
+                     TipoMaquinariaAgricola, Zafra)
 
 
 class FincaTable(AccionTable):
@@ -92,3 +93,14 @@ class LiquidacionAgricolaTable(AccionTable):
             "es-vigente": lambda record: record.es_vigente
         }
         order_by = "-fecha_documento"
+
+class CierreZafraTable(AccionTable):
+    total_acopiado = NumericColumn(verbose_name= 'KG Acopiado')
+    total_cultivado = NumericColumn(verbose_name= 'HA Cultivada')
+    total_costo_unit = NumericColumn(verbose_name= 'Costo Unit',)
+    total_costo_ha = NumericColumn(verbose_name= 'Costo HA')
+    total_costo = NumericColumn(verbose_name= 'Costo')
+    class Meta:
+        model = CierreZafra
+        fields = ("fecha","zafra","total_cultivado","total_acopiado","total_costo","total_costo_ha","total_costo_unitario")
+        order_by = "-fecha"

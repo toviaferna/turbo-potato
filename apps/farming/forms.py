@@ -12,10 +12,11 @@ from django.forms.models import ModelForm
 from .models import (Acopio, AcopioCalificacion, AcopioDetalle,
                      ActividadAgricola, ActividadAgricolaItemDetalle,
                      ActividadAgricolaMaquinariaDetalle, CalificacionAgricola,
-                     Contrato, Finca, LiquidacionAgricola,
-                     LiquidacionAgricolaDetalle, Lote, MaquinariaAgricola,
-                     PlanActividadZafra, PlanActividadZafraDetalle,
-                     TipoActividadAgricola, TipoMaquinariaAgricola, Zafra)
+                     CierreZafra, CierreZafraDetalle, Contrato, Finca,
+                     LiquidacionAgricola, LiquidacionAgricolaDetalle, Lote,
+                     MaquinariaAgricola, PlanActividadZafra,
+                     PlanActividadZafraDetalle, TipoActividadAgricola,
+                     TipoMaquinariaAgricola, Zafra)
 
 
 class FincaForm(ModelForm):
@@ -471,3 +472,101 @@ class LiquidacionAgricolaDetalleForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag = False
         
+class CierreZafraSelectionForm(ModelForm):
+    class Meta:
+        model = CierreZafra
+        fields = ['zafra']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.fields["zafra"].queryset =  Zafra.objects.filter(esta_cerrado=False)
+        self.helper.layout = Layout(
+            "zafra",
+            ButtonHolder(
+                NextButton(),
+                CancelButton(),
+            ),
+        )
+
+class CierreZafraForm(ModelForm):
+
+    total_costo_v = DecimalField(
+        widget=SumInput('costo_total'),
+    )
+    total_acopiado_v = DecimalField(
+        widget=SumInput('cantidad_acopio_neto'),
+    )
+    total_cultivado_v = DecimalField(
+        widget=SumInput('ha_cultivada'),
+    )
+    class Meta:
+        model = CierreZafra
+        fields = ['fecha', 'zafra', 'observacion']
+        widgets = {'fecha':DateInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total_costo_v'].label = False
+        self.fields['total_acopiado_v'].label = False
+        self.fields['total_cultivado_v'].label = False
+        
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha", css_class="col-sm-3"),
+                Column("zafra",),
+            ),
+            "observacion",
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "CierreZafraDetalleInline"#, stacked=True
+                ),  
+            ), 
+            Row(
+                Column(
+                    HTML('<label> Total HA Cultivada: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total_cultivado_v", css_class="col-sm-2")
+            ),
+            Row(
+                Column(
+                    HTML('<label> Total Acopiado: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total_acopiado_v", css_class="col-sm-2")
+            ),
+            Row(
+                Column(
+                    HTML('<label> Total Costo: </label>'),
+                    css_class='text-right col-sm-9 mt-2'
+                ),
+                Column("total_costo_v", css_class="col-sm-2")
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
+
+class CierreZafraDetalleForm(ModelForm):
+    check = BooleanField(label='Sel.',required=False)
+    class Meta:
+        model = CierreZafraDetalle
+        fields = ['check','finca','ha_cultivada','cantidad_acopio_neto','rendimiento','costo_total','costo_ha','costo_unitario']
+        #widgets = {'ha_cultivada':DecimalMaskInput,'cantidad_acopio_neto':DecimalMaskInput,'cantidad_acopio_neto':DecimalMaskInput,'rendimiento':DecimalMaskInput,'costo_total':DecimalMaskInput,'costoHA':DecimalMaskInput,'costoUnit':DecimalMaskInput}
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['finca'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['ha_cultivada'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['cantidad_acopio_neto'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['rendimiento'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['costo_total'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['costo_ha'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})
+        self.fields['costo_unitario'].widget.attrs.update({'readonly':True, 'style': 'pointer-events:none;'})

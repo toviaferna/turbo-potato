@@ -2,11 +2,13 @@
 from apps.farming.forms import (AcopioCalificacionForm, AcopioDetalleForm,
                                 ActividadAgricolaItemDetalleForm,
                                 ActividadAgricolaMaquinariaDetalleForm,
+                                CierreZafraDetalleForm,
                                 LiquidacionAgricolaDetalleForm,
                                 PlanActividadZafraDetalleForm)
 from apps.farming.models import (AcopioCalificacion, AcopioDetalle,
                                  ActividadAgricolaItemDetalle,
                                  ActividadAgricolaMaquinariaDetalle,
+                                 CierreZafraDetalle,
                                  LiquidacionAgricolaDetalle,
                                  PlanActividadZafraDetalle)
 from core.widgets import ItemCustomSelect, MaquinariaCustomSelect
@@ -140,3 +142,9 @@ class LiquidacionAgricolaDetalleInline(InlineFormSetFactory):
     form_class = LiquidacionAgricolaDetalleForm
     factory_kwargs = { 'extra':1 }
     fields = ['secuencia_origen','check','movimiento', 'finca', 'lote','cantidad','sub_total']
+
+class CierreZafraDetalleInline(InlineFormSetFactory):
+    model = CierreZafraDetalle
+    form_class = CierreZafraDetalleForm
+    factory_kwargs = {'extra':1 }
+    fields = ['check','finca','ha_cultivada','cantidad_acopio_neto','rendimiento','costo_total','costo_ha','costo_unitario',]
