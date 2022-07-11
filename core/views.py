@@ -35,6 +35,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView):
         context['title'] = "Eliminar "+self.model._meta.verbose_name.title() if self.page_title is None else self.page_title
         context['subtitle'] = f"Desea eliminar: {self.object}?" if self.page_subtitle is None else self.page_subtitle
         context['error'] = self.error
+        context['delete_button_text'] = "Eliminar"
         return context
 
     def before_delete(self):
@@ -82,6 +83,7 @@ class AnnulledView(DeleteView):
         context['subtitle'] = f"Desea anular: {str(self.object)} ?" if self.page_subtitle is None else self.page_subtitle
         context['error'] = self.error
         return context
+
 class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):
     paginate_by = 10
     template_name = 'generic/list.html'

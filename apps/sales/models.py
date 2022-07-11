@@ -7,10 +7,10 @@ from django.db import models
 class AperturaCaja(models.Model):
     empleado = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Empleado")
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-    fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fec Hr Apertura")
+    fecha_hora_registro = models.DateTimeField(auto_now_add=True,verbose_name="Fecha Apertura")
     esta_cerrado = models.BooleanField(verbose_name="Esta Cerrado?",default=False)
-    monto_inicio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Monto Apertura")
-    fecha_hora_cierre = models.DateTimeField(auto_now_add=True,null=True, blank=True,verbose_name="Fec Hr Cierre")
+    monto_inicio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Monto Inicial")
+    fecha_hora_cierre = models.DateTimeField(auto_now_add=True,null=True, blank=True,verbose_name="Fecha Cierre")
 
     class Meta:
         verbose_name = "Apertura de caja"

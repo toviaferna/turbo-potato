@@ -14,9 +14,15 @@ class AperturaCajaCreateForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            "empleado",
-            "observacion",
-            "monto_inicio",
+            Row(
+                Column("empleado"),
+                Column("monto_inicio", css_class="col-sm-3"),
+                
+            ),
+            Row(
+               Column("observacion",),
+            ),
+            
             ButtonHolder(
                 SaveButton(),
                 CancelButton(),

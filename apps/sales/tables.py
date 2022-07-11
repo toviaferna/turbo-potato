@@ -1,9 +1,11 @@
 from apps.sales.models import AperturaCaja
 from core.tables import AccionTable
-from core.tables.columns import BooleanColumn, TotalNumericColumn
+from core.tables.columns import (BooleanColumn, NumericColumn,
+                                 TotalNumericColumn)
+
 
 class AperturaCajaTable(AccionTable):
-    total = TotalNumericColumn(verbose_name = 'Total')
+    monto_inicio = NumericColumn()
     esta_cerrado = BooleanColumn()
     class Meta:
         model = AperturaCaja

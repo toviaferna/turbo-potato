@@ -60,7 +60,7 @@
 
                       <form method="post">
                         {% csrf_token %}
-                        <input  class="btn btn-danger" type="submit" name="eliminar" value="Eliminar">
+                        <input  class="btn btn-danger" type="submit" name="{{delete_button_text|lower}}" value="{{delete_button_text}}">
                         <a class="btn btn-secondary" href="{% url list_url %}"> Cancelar </a>
                       </form>
 
