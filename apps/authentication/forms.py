@@ -50,6 +50,7 @@ class CustomUserCreationForm(forms.UserCreationForm):
             Row(
                 Column('password1'),
                 Column('password2'), 
+                Column()
             ),
             "is_active",
             ButtonHolder(
@@ -69,7 +70,7 @@ class CustomUserChangeForm(forms.UserChangeForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = True
-        #self.fields['password'].help_text = "Las contraseñas no se almacenan en bruto, así que no hay manera de ver la contraseña del usuario, pero se puede cambiar la contraseña mediante <a href='%s'>este formulario.</a>"%reverse("password_change")
+        self.fields['password'].help_text = "Las contraseñas no se almacenan en bruto, así que no hay manera de ver la contraseña del usuario."
         self.helper.layout = Layout(
             Row(
                 Column('first_name', help_text="help_text="),
@@ -83,6 +84,7 @@ class CustomUserChangeForm(forms.UserChangeForm):
             ),
             Row(
                 Column('password'),
+                Column(),
                 Column()
             ),
             "is_active",
