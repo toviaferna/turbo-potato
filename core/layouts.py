@@ -1,9 +1,9 @@
-from crispy_forms.layout import LayoutObject, Submit, TemplateNameMixin
+from crispy_forms import layout
 from crispy_forms.utils import TEMPLATE_PACK, flatatt
 from django.template.loader import render_to_string
 
 
-class BaseButton(TemplateNameMixin):
+class BaseButton(layout.TemplateNameMixin):
     def __init__(self, **kwargs):
         if not getattr(self, 'field_classes'):
             self.field_classes = ""
@@ -26,21 +26,21 @@ class CancelButton(BaseButton):
         context.update({"cancel_button": self})
         return render_to_string('includes/cancel_button.html', context.flatten())
 
-class SaveButton(Submit):
+class SaveButton(layout.Submit):
     def __init__(self, *args, **kwargs):
         self.field_classes = "btn btn-primary"
         kwargs['name'] = "Guardar"
         kwargs['value'] = "Guardar"
         super().__init__(*args, **kwargs)
 
-class NextButton(Submit):
+class NextButton(layout.Submit):
     def __init__(self, *args, **kwargs):
         self.field_classes = "btn btn-primary"
         kwargs['name'] = "Siguiente"
         kwargs['value'] = "Siguiente"
         super().__init__(*args, **kwargs)
 
-class Formset(LayoutObject):
+class Formset(layout.LayoutObject):
     template = "bootstrap4/table_inline_formset.html"
     stacked_template = "bootstrap4/stacked_inline_formset.html"
     

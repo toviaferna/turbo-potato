@@ -1,251 +1,218 @@
-from apps.farming.filters import (PlanActividadZafraFilter,
-                                  TipoActividadAgricolaFilter, ZafraFilter)
-from apps.farming.forms import (AcopioForm, ActividadAgricolaForm,
-                                CalificacionAgricolaForm, CierreZafraForm,
-                                CierreZafraSelectionForm, ContratoForm,
-                                FincaForm, LiquidacionAgricolaForm,
-                                LiquidacionAgricolaSelectionForm, LoteForm,
-                                MaquinariaAgricolaForm, PlanActividadZafraForm,
-                                TipoActividadAgricolaForm,
-                                TipoMaquinariaAgricolaForm, ZafraForm)
-from apps.farming.inlines import (AcopioCalificacionDetalleInline,
-                                  AcopioDetalleInline,
-                                  ActividadAgricolaItemDetalleInline,
-                                  ActividadAgricolaMaquinariaDetalleInline,
-                                  CierreZafraDetalleInline,
-                                  LiquidacionAgricolaDetalleInline,
-                                  PlanActividadZafraDetalleInline)
-from apps.farming.tables import (AcopioTable, ActividadAgricolaTable,
-                                 CalificacionAgricolaTable, CierreZafraTable,
-                                 ContratoTable, FincaTable,
-                                 LiquidacionAgricolaTable, LoteTable,
-                                 MaquinariaAgricolaTable,
-                                 PlanActividadZafraTable,
-                                 TipoActividadAgricolaTable,
-                                 TipoMaquinariaAgricolaTable, ZafraTable)
-from core.views import (AnnulledView, CreateView, DeleteView, ListView,
-                        SelectionFormView, UpdateView)
+from apps.farming import filters, forms, inlines, models, tables
+from core import views
 from django.db.models import F, Sum
-
-from .models import (Acopio, AcopioDetalle, ActividadAgricola,
-                     ActividadAgricolaItemDetalle,
-                     ActividadAgricolaMaquinariaDetalle, CalificacionAgricola,
-                     CierreZafra, Contrato, Finca, LiquidacionAgricola,
-                     LiquidacionAgricolaDetalle, Lote, MaquinariaAgricola,
-                     PlanActividadZafra, TipoActividadAgricola,
-                     TipoMaquinariaAgricola, Zafra)
 
 
 # FINCA
-class FincaListView(ListView):
-    model = Finca
-    table_class = FincaTable
+class FincaListView(views.ListView):
+    model = models.Finca
+    table_class = tables.FincaTable
     search_fields = ['descripcion','ubicacion']
     update_url = 'finca_update'
     delete_url = 'finca_delete'
     create_url = 'finca_create'
 
-class FincaCreateView(CreateView):
-    form_class = FincaForm
-    model = Finca
+class FincaCreateView(views.CreateView):
+    form_class = forms.FincaForm
+    model = models.Finca
     list_url = "finca_list"
 
-class FincaUpdateView(UpdateView):
-    form_class = FincaForm
-    model = Finca
+class FincaUpdateView(views.UpdateView):
+    form_class = forms.FincaForm
+    model = models.Finca
     list_url = "finca_list"
 
-class FincaDeleteView(DeleteView):
-    model = Finca
+class FincaDeleteView(views.DeleteView):
+    model = models.Finca
     list_url = "finca_list"
 
 
-class CalificacionAgricolaListView(ListView):
-    model = CalificacionAgricola
-    table_class = CalificacionAgricolaTable
+class CalificacionAgricolaListView(views.ListView):
+    model = models.CalificacionAgricola
+    table_class = tables.CalificacionAgricolaTable
     search_fields = ['descripcion',]
     update_url = 'calificacion_agricola_update'
     delete_url = 'calificacion_agricola_delete'
     create_url = 'calificacion_agricola_create'
 
-class CalificacionAgricolaCreateView(CreateView):
-    form_class = CalificacionAgricolaForm
-    model = CalificacionAgricola
+class CalificacionAgricolaCreateView(views.CreateView):
+    form_class = forms.CalificacionAgricolaForm
+    model = models.CalificacionAgricola
     list_url = "calificacion_agricola_list"
 
-class CalificacionAgricolaUpdateView(UpdateView):
-    form_class = CalificacionAgricolaForm
-    model = CalificacionAgricola
+class CalificacionAgricolaUpdateView(views.UpdateView):
+    form_class = forms.CalificacionAgricolaForm
+    model = models.CalificacionAgricola
     list_url = "calificacion_agricola_list"
 
-class CalificacionAgricolaDeleteView(DeleteView):
-    model = CalificacionAgricola
+class CalificacionAgricolaDeleteView(views.DeleteView):
+    model = models.CalificacionAgricola
     list_url = "calificacion_agricola_list"
 
-class TipoActividadAgricolaListView(ListView):
-    model = TipoActividadAgricola
-    table_class = TipoActividadAgricolaTable
-    filterset_class = TipoActividadAgricolaFilter
+class TipoActividadAgricolaListView(views.ListView):
+    model = models.TipoActividadAgricola
+    table_class = tables.TipoActividadAgricolaTable
+    filterset_class = filters.TipoActividadAgricolaFilter
     search_fields = ['descripcion',]
     update_url = 'tipo_actividad_agricola_update'
     delete_url = 'tipo_actividad_agricola_delete'
     create_url = 'tipo_actividad_agricola_create'
 
-class TipoActividadAgricolaCreateView(CreateView):
-    form_class = TipoActividadAgricolaForm
-    model = TipoActividadAgricola
+class TipoActividadAgricolaCreateView(views.CreateView):
+    form_class = forms.TipoActividadAgricolaForm
+    model = models.TipoActividadAgricola
     list_url = "tipo_actividad_agricola_list"
 
-class TipoActividadAgricolaUpdateView(UpdateView):
-    form_class = TipoActividadAgricolaForm
-    model = TipoActividadAgricola
+class TipoActividadAgricolaUpdateView(views.UpdateView):
+    form_class = forms.TipoActividadAgricolaForm
+    model = models.TipoActividadAgricola
     list_url = "tipo_actividad_agricola_list"
 
-class TipoActividadAgricolaDeleteView(DeleteView):
-    model = TipoActividadAgricola
+class TipoActividadAgricolaDeleteView(views.DeleteView):
+    model = models.TipoActividadAgricola
     list_url = "tipo_actividad_agricola_list"
 
-class TipoMaquinariaAgricolaListView(ListView):
-    model = TipoMaquinariaAgricola
-    table_class = TipoMaquinariaAgricolaTable
+class TipoMaquinariaAgricolaListView(views.ListView):
+    model = models.TipoMaquinariaAgricola
+    table_class = tables.TipoMaquinariaAgricolaTable
     search_fields = ['descripcion',]
     update_url = 'tipo_maquinaria_agricola_update'
     delete_url = 'tipo_maquinaria_agricola_delete'
     create_url = 'tipo_maquinaria_agricola_create'
 
-class TipoMaquinariaAgricolaCreateView(CreateView):
-    form_class = TipoMaquinariaAgricolaForm
-    model = TipoMaquinariaAgricola
+class TipoMaquinariaAgricolaCreateView(views.CreateView):
+    form_class = forms.TipoMaquinariaAgricolaForm
+    model = models.TipoMaquinariaAgricola
     list_url = "tipo_maquinaria_agricola_list"
 
-class TipoMaquinariaAgricolaUpdateView(UpdateView):
-    form_class = TipoMaquinariaAgricolaForm
-    model = TipoMaquinariaAgricola
+class TipoMaquinariaAgricolaUpdateView(views.UpdateView):
+    form_class = forms.TipoMaquinariaAgricolaForm
+    model = models.TipoMaquinariaAgricola
     list_url = "tipo_maquinaria_agricola_list"
 
-class TipoMaquinariaAgricolaDeleteView(DeleteView):
-    model = TipoMaquinariaAgricola
+class TipoMaquinariaAgricolaDeleteView(views.DeleteView):
+    model = models.TipoMaquinariaAgricola
     list_url = "tipo_maquinaria_agricola_list"
     
-class MaquinariaAgricolaListView(ListView):
-    model = MaquinariaAgricola
-    table_class = MaquinariaAgricolaTable
+class MaquinariaAgricolaListView(views.ListView):
+    model = models.MaquinariaAgricola
+    table_class = tables.MaquinariaAgricolaTable
     search_fields = ['descripcion',]
     update_url = 'maquinaria_agricola_update'
     delete_url = 'maquinaria_agricola_delete'
     create_url = 'maquinaria_agricola_create'
 
-class MaquinariaAgricolaCreateView(CreateView):
-    form_class = MaquinariaAgricolaForm
-    model = MaquinariaAgricola
+class MaquinariaAgricolaCreateView(views.CreateView):
+    form_class = forms.MaquinariaAgricolaForm
+    model = models.MaquinariaAgricola
     list_url = "maquinaria_agricola_list"
 
-class MaquinariaAgricolaUpdateView(UpdateView):
-    form_class = MaquinariaAgricolaForm
-    model = MaquinariaAgricola
+class MaquinariaAgricolaUpdateView(views.UpdateView):
+    form_class = forms.MaquinariaAgricolaForm
+    model = models.MaquinariaAgricola
     list_url = "maquinaria_agricola_list"
 
-class MaquinariaAgricolaDeleteView(DeleteView):
-    model = MaquinariaAgricola
+class MaquinariaAgricolaDeleteView(views.DeleteView):
+    model = models.MaquinariaAgricola
     list_url = "maquinaria_agricola_list"
 
-class ZafraListView(ListView):
-    model = Zafra
-    table_class = ZafraTable
-    filterset_class = ZafraFilter
+class ZafraListView(views.ListView):
+    model = models.Zafra
+    table_class = tables.ZafraTable
+    filterset_class = filters.ZafraFilter
     search_fields = ['descripcion', 'item__descripcion']
     update_url = 'zafra_update'
     delete_url = 'zafra_delete'
     create_url = 'zafra_create'
 
-class ZafraCreateView(CreateView):
-    form_class = ZafraForm
-    model = Zafra
+class ZafraCreateView(views.CreateView):
+    form_class = forms.ZafraForm
+    model = models.Zafra
     list_url = "zafra_list"
 
-class ZafraUpdateView(UpdateView):
-    form_class = ZafraForm
-    model = Zafra
+class ZafraUpdateView(views.UpdateView):
+    form_class = forms.ZafraForm
+    model = models.Zafra
     list_url = "zafra_list"
 
-class ZafraDeleteView(DeleteView):
-    model = Zafra
+class ZafraDeleteView(views.DeleteView):
+    model = models.Zafra
     list_url = "zafra_list"
 
-class LoteListView(ListView):
-    model = Lote
-    table_class = LoteTable
+class LoteListView(views.ListView):
+    model = models.Lote
+    table_class = tables.LoteTable
     search_fields = ['descripcion', 'item__descripcion']
     update_url = 'lote_update'
     delete_url = 'lote_delete'
     create_url = 'lote_create'
 
-class LoteCreateView(CreateView):
-    form_class = LoteForm
-    model = Lote
+class LoteCreateView(views.CreateView):
+    form_class = forms.LoteForm
+    model = models.Lote
     list_url = "lote_list"
 
-class LoteUpdateView(UpdateView):
-    form_class = LoteForm
-    model = Lote
+class LoteUpdateView(views.UpdateView):
+    form_class = forms.LoteForm
+    model = models.Lote
     list_url = "lote_list"
 
-class LoteDeleteView(DeleteView):
-    model = Lote
+class LoteDeleteView(views.DeleteView):
+    model = models.Lote
     list_url = "lote_list"
 
-class PlanActividadZafraListView(ListView):
-    model = PlanActividadZafra
-    table_class = PlanActividadZafraTable
-    filterset_class = PlanActividadZafraFilter
+class PlanActividadZafraListView(views.ListView):
+    model = models.PlanActividadZafra
+    table_class = tables.PlanActividadZafraTable
+    filterset_class = filters.PlanActividadZafraFilter
     search_fields = ['zafra__descripcion', 'observacion']
     update_url = 'plan_actividad_zafra_update'
     create_url = 'plan_actividad_zafra_create'
     delete_url = None
 
-class PlanActividadZafraCreateView(CreateView):
-    model = PlanActividadZafra
-    form_class = PlanActividadZafraForm
-    inlines = [PlanActividadZafraDetalleInline]
+class PlanActividadZafraCreateView(views.CreateView):
+    model = models.PlanActividadZafra
+    form_class = forms.PlanActividadZafraForm
+    inlines = [inlines.PlanActividadZafraDetalleInline]
     list_url = "plan_actividad_zafra_list"
 
 
-class PlanActividadZafraUpdateView(UpdateView):
-    model = PlanActividadZafra
-    form_class = PlanActividadZafraForm
-    inlines = [PlanActividadZafraDetalleInline]
+class PlanActividadZafraUpdateView(views.UpdateView):
+    model = models.PlanActividadZafra
+    form_class = forms.PlanActividadZafraForm
+    inlines = [inlines.PlanActividadZafraDetalleInline]
     list_url = "plan_actividad_zafra_list"
 
-class ContratoListView(ListView):
-    model = Contrato
-    table_class = ContratoTable
+class ContratoListView(views.ListView):
+    model = models.Contrato
+    table_class = tables.ContratoTable
     search_fields = ['descripcion', 'item__descripcion']
     update_url = 'contrato_update'
     delete_url = 'contrato_delete'
     create_url = 'contrato_create'
 
-class ContratoCreateView(CreateView):
-    form_class = ContratoForm
-    model = Contrato
+class ContratoCreateView(views.CreateView):
+    form_class = forms.ContratoForm
+    model = models.Contrato
     list_url = "contrato_list"
 
-class ContratoDeleteView(DeleteView):
-    model = Contrato
+class ContratoDeleteView(views.DeleteView):
+    model = models.Contrato
     list_url = "contrato_list"
 
-class AcopioListView(ListView):
-    model = Acopio
-    table_class = AcopioTable
+class AcopioListView(views.ListView):
+    model = models.Acopio
+    table_class = tables.AcopioTable
     search_fields = ['zafra__descripcion', 'comprobante','deposito__descripcion']
     update_url = 'acopio_update'
     delete_url = 'acopio_delete'
     create_url = 'acopio_create'
 
 
-class AcopioCreateView(CreateView):
-    model = Acopio
-    form_class = AcopioForm
-    inlines = [AcopioDetalleInline,AcopioCalificacionDetalleInline]
+class AcopioCreateView(views.CreateView):
+    model = models.Acopio
+    form_class = forms.AcopioForm
+    inlines = [inlines.AcopioDetalleInline, inlines.AcopioCalificacionDetalleInline]
     list_url = "acopio_list"
 
     def run_form_extra_validation(self, form, inlines):
@@ -264,30 +231,30 @@ class AcopioCreateView(CreateView):
         if peso_encabezado != total_peso:  
             form.add_error('peso_bruto', 'El neto (Peso Bruto + Peso Bonificacion ) - ( Peso Tara + Peso Descuento) no es igual a los detalles cargados')
 
-class AcopioUpdateView(UpdateView):
-    model = Acopio
-    form_class = AcopioForm
+class AcopioUpdateView(views.UpdateView):
+    model = models.Acopio
+    form_class = forms.AcopioForm
     list_url = "acopio_list"
-    inlines = [AcopioDetalleInline,AcopioCalificacionDetalleInline]
+    inlines = [inlines.AcopioDetalleInline,inlines.AcopioCalificacionDetalleInline]
 
-class AcopioAnnulledView(AnnulledView):
-    model = Acopio
+class AcopioAnnulledView(views.AnnulledView):
+    model = models.Acopio
     list_url = "acopio_list"
     mensaje_anulacion = "El acopio ya fue anulado."
 
-class ActividadAgricolaListView(ListView):
-    model = ActividadAgricola
-    table_class = ActividadAgricolaTable
+class ActividadAgricolaListView(views.ListView):
+    model = models.ActividadAgricola
+    table_class = tables.ActividadAgricolaTable
     search_fields = ['zafra__descripcion','finca__descripcion','lote__descripcion', 'empleado__razon_social','deposito__descripcion']
     update_url = None
     delete_url = 'actividad_agricola_delete'
     create_url = 'actividad_agricola_create'
 
 
-class ActividadAgricolaCreateView(CreateView):
-    model = ActividadAgricola
-    form_class = ActividadAgricolaForm
-    inlines = [ActividadAgricolaMaquinariaDetalleInline,ActividadAgricolaItemDetalleInline]
+class ActividadAgricolaCreateView(views.CreateView):
+    model = models.ActividadAgricola
+    form_class = forms.ActividadAgricolaForm
+    inlines = [inlines.ActividadAgricolaMaquinariaDetalleInline,inlines.ActividadAgricolaItemDetalleInline]
     list_url = "actividad_agricola_list"
     
     def run_form_extra_validation(self, form, inlines):
@@ -306,33 +273,33 @@ class ActividadAgricolaCreateView(CreateView):
         if (cantidad_ha_maquinaria != form.cleaned_data.get('cantidad_trabajada')) and form.cleaned_data.get('es_servicio_contratado') == False and cantidad_ha_maquinaria > 0 :
             form.add_error(None, 'La cantidad de HA trabajada debe ser igual a la cantidad de HA trabajada por las maquinarias')
 
-class ActividadAgricolaAnnulledView(AnnulledView):
-    model = ActividadAgricola
+class ActividadAgricolaAnnulledView(views.AnnulledView):
+    model = models.ActividadAgricola
     template_name = 'inventory/anular.html'
     list_url = "actividad_agricola_list"
     mensaje_anulacion = "La Actividad Agrícola ya fue anulado."
 
 
-class LiquidacionAgricolaListView(ListView):
-    model = LiquidacionAgricola
-    table_class = LiquidacionAgricolaTable
+class LiquidacionAgricolaListView(views.ListView):
+    model = models.LiquidacionAgricola
+    table_class = tables.LiquidacionAgricolaTable
     search_fields = ['proveedor__razon_social','zafra__descripcion','tipo']
     update_url = None
     delete_url = None#'actividad_agricola_delete'
     create_url = 'liquidacion_agricola_selection'#'actividad_agricola_create'
 
-class LiquidacionAgricolaSelectionView(SelectionFormView):
-    model = LiquidacionAgricola
-    form_class = LiquidacionAgricolaSelectionForm
+class LiquidacionAgricolaSelectionView(views.SelectionFormView):
+    model = models.LiquidacionAgricola
+    form_class = forms.LiquidacionAgricolaSelectionForm
     next_url = 'liquidacion_agricola_create'
     back_url = 'liquidacion_agricola_list'
     list_url = 'liquidacion_agricola_list'
     selection_title = 'Complete los filtros para continuar'
 
-class LiquidacionAgricolaCreateView(CreateView):
-    model = LiquidacionAgricola
-    form_class = LiquidacionAgricolaForm
-    inlines = [LiquidacionAgricolaDetalleInline]
+class LiquidacionAgricolaCreateView(views.CreateView):
+    model = models.LiquidacionAgricola
+    form_class = forms.LiquidacionAgricolaForm
+    inlines = [inlines.LiquidacionAgricolaDetalleInline]
     list_url = 'liquidacion_agricola_list'
     
     def get_form(self, form_class=None):
@@ -368,7 +335,7 @@ class LiquidacionAgricolaCreateView(CreateView):
                     'lote': x.lote, 
                     'cantidad': x.cantidad_trabajada, 
                     'sub_total':  round((float(x.cantidad_trabajada) * float(precio)))
-                } for x in ActividadAgricola.objects.filter(es_vigente=True, es_servicio_contratado=True) if not LiquidacionAgricolaDetalle.objects.filter(liquidacion_agricola__es_vigente=True, secuencia_origen=x.pk, liquidacion_agricola__tipo='ACTIVIDADES AGRICOLAS').exists()
+                } for x in models.ActividadAgricola.objects.filter(es_vigente=True, es_servicio_contratado=True) if not models.LiquidacionAgricolaDetalle.objects.filter(liquidacion_agricola__es_vigente=True, secuencia_origen=x.pk, liquidacion_agricola__tipo='ACTIVIDADES AGRICOLAS').exists()
             ]
         else:
             initial = [
@@ -381,7 +348,7 @@ class LiquidacionAgricolaCreateView(CreateView):
                     'lote': x.lote,
                     'cantidad': x.acopio.peso_bruto, 
                     'sub_total':  round((float(x.acopio.peso_bruto) * float(precio)))
-                } for x in AcopioDetalle.objects.filter(acopio__es_vigente=True, acopio__es_transportadora_propia=False) if not LiquidacionAgricolaDetalle.objects.filter(liquidacion_agricola__es_vigente=True, secuencia_origen=x.pk, liquidacion_agricola__tipo='ACOPIOS').exists()
+                } for x in models.AcopioDetalle.objects.filter(acopio__es_vigente=True, acopio__es_transportadora_propia=False) if not models.LiquidacionAgricolaDetalle.objects.filter(liquidacion_agricola__es_vigente=True, secuencia_origen=x.pk, liquidacion_agricola__tipo='ACOPIOS').exists()
             ]
         inlines[0].initial = initial
         inlines[0].factory_kwargs['extra'] = len(initial)
@@ -401,36 +368,36 @@ class LiquidacionAgricolaCreateView(CreateView):
         if existe_un_seleccionado == False:
             form.add_error(None, 'Seleccione al menos un detalle a liquidar')
 
-class LiquidacionAgricolaAnnulledView(AnnulledView):
-    model = LiquidacionAgricola
+class LiquidacionAgricolaAnnulledView(views.AnnulledView):
+    model = models.LiquidacionAgricola
     list_url = "liquidacion_agricola_list"
     mensaje_anulacion = "La Liquidacion Agrícola ya fue anulado."
 
-class CierreZafraListView(ListView):
-    model = CierreZafra
-    table_class = CierreZafraTable
+class CierreZafraListView(views.ListView):
+    model = models.CierreZafra
+    table_class = tables.CierreZafraTable
     search_fields = ['zafra__descripcion',]
     update_url = None
     delete_url = "cierre_zafra_delete"
     create_url = "cierre_zafra_selection"
 
-class CierreZafraDeleteView(DeleteView):
-    model = CierreZafra
+class CierreZafraDeleteView(views.DeleteView):
+    model = models.CierreZafra
     list_url = "cierre_zafra_list"
 
-class CierreZafraSelectionView(SelectionFormView):
-    model = CierreZafra
-    form_class = CierreZafraSelectionForm
+class CierreZafraSelectionView(views.SelectionFormView):
+    model = models.CierreZafra
+    form_class = forms.CierreZafraSelectionForm
     list_url = 'cierre_zafra_list'
     next_url = 'cierre_zafra_create'
     back_url = 'cierre_zafra_list'
     title = 'Complete los filtros para continuar'
     params_name = 'zafra'
 
-class CierreZafraCreateView(CreateView):
-    model = CierreZafra
-    form_class = CierreZafraForm
-    inlines = [CierreZafraDetalleInline]
+class CierreZafraCreateView(views.CreateView):
+    model = models.CierreZafra
+    form_class = forms.CierreZafraForm
+    inlines = [inlines.CierreZafraDetalleInline]
     list_url = 'cierre_zafra_list'
     
     def get_form(self, form_class=None):
@@ -474,16 +441,16 @@ class CierreZafraCreateView(CreateView):
     def get_inlines(self):
         initial = []
         zafra_digitada = self.request.GET.get('zafra', None)
-        for finca_det in Finca.objects.all():
-            ha_cultivada_v = ActividadAgricola.objects.filter(es_vigente = True,tipo_actividad_agricola__es_siembra = True,zafra = zafra_digitada,finca = finca_det).aggregate(Sum('cantidad_trabajada'))
-            cantidad_acopio = AcopioDetalle.objects.filter(acopio__es_vigente = True, acopio__zafra = zafra_digitada,finca = finca_det).aggregate(Sum('peso'))
-            costo_item = ActividadAgricolaItemDetalle.objects.annotate(i_sum=Sum(F('costo') * F('cantidad'))).filter(
+        for finca_det in models.Finca.objects.all():
+            ha_cultivada_v = models.ActividadAgricola.objects.filter(es_vigente = True,tipo_actividad_agricola__es_siembra = True,zafra = zafra_digitada,finca = finca_det).aggregate(Sum('cantidad_trabajada'))
+            cantidad_acopio = models.AcopioDetalle.objects.filter(acopio__es_vigente = True, acopio__zafra = zafra_digitada,finca = finca_det).aggregate(Sum('peso'))
+            costo_item = models.ActividadAgricolaItemDetalle.objects.annotate(i_sum=Sum(F('costo') * F('cantidad'))).filter(
                                                                     actividad_agricola__es_vigente = True,actividad_agricola__zafra = zafra_digitada,actividad_agricola__finca = finca_det
                                                                     )
-            costo_maquinaria = ActividadAgricolaMaquinariaDetalle.objects.annotate(i_sum=Sum(F('ha_trabajada') * F('ha_trabajada'))).filter(
+            costo_maquinaria = models.ActividadAgricolaMaquinariaDetalle.objects.annotate(i_sum=Sum(F('ha_trabajada') * F('ha_trabajada'))).filter(
                                                                     actividad_agricola__es_vigente = True,actividad_agricola__zafra = zafra_digitada,actividad_agricola__finca = finca_det
                                                                     )
-            costo_liquidacion = LiquidacionAgricolaDetalle.objects.annotate(i_sum=Sum(F('cantidad') * F('liquidacion_agricola__precioUnitario'))).filter(
+            costo_liquidacion = models.LiquidacionAgricolaDetalle.objects.annotate(i_sum=Sum(F('cantidad') * F('liquidacion_agricola__precioUnitario'))).filter(
                                                                     liquidacion_agricola__es_vigente = True,liquidacion_agricola__zafra = zafra_digitada,finca = finca_det
                                                                     )
             costo_item_total = 0

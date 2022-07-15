@@ -1,22 +1,12 @@
+from apps.farming import models
 from apps.finance.models import Persona
 from apps.inventory.models import Deposito, Item
-from core.layouts import CancelButton, Formset, NextButton, SaveButton
-from core.widgets import (DateInput, FormulaInput, ItemCustomSelect,
-                          MaquinariaCustomSelect, SumInput)
+from core import layouts, widgets
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
                                  Row)
 from django.forms import BooleanField, CharField, DateField, DecimalField
 from django.forms.models import ModelForm
-
-from .models import (Acopio, AcopioCalificacion, AcopioDetalle,
-                     ActividadAgricola, ActividadAgricolaItemDetalle,
-                     ActividadAgricolaMaquinariaDetalle, CalificacionAgricola,
-                     CierreZafra, CierreZafraDetalle, Contrato, Finca,
-                     LiquidacionAgricola, LiquidacionAgricolaDetalle, Lote,
-                     MaquinariaAgricola, PlanActividadZafra,
-                     PlanActividadZafraDetalle, TipoActividadAgricola,
-                     TipoMaquinariaAgricola, Zafra)
 
 
 class FincaForm(ModelForm):
@@ -29,12 +19,12 @@ class FincaForm(ModelForm):
             "dimension_ha",
             "ubicacion",
             ButtonHolder(
-                SaveButton(),
-                CancelButton(),
+                layouts.layouts.SaveButton(),
+                layouts.layouts.CancelButton(),
             ),               
         )
     class Meta:
-        model = Finca
+        model = models.Finca
         fields = ['descripcion','dimension_ha','ubicacion']
 
 class CalificacionAgricolaForm(ModelForm):
@@ -45,12 +35,12 @@ class CalificacionAgricolaForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                SaveButton(),
-                CancelButton(),
+                layouts.SaveButton(),
+                layouts.CancelButton(),
             ),
         )
     class Meta:
-        model = CalificacionAgricola
+        model = models.CalificacionAgricola
         fields = ['descripcion',]
 
 class TipoMaquinariaAgricolaForm(ModelForm):
@@ -61,12 +51,12 @@ class TipoMaquinariaAgricolaForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             ButtonHolder(
-                SaveButton(),
-                CancelButton(),
+                layouts.SaveButton(),
+                layouts.CancelButton(),
             ),
         )
     class Meta:
-        model = TipoMaquinariaAgricola
+        model = models.TipoMaquinariaAgricola
         fields = ['descripcion',]
 
 class MaquinariaAgricolaForm(ModelForm):
@@ -85,12 +75,12 @@ class MaquinariaAgricolaForm(ModelForm):
             "es_implemento",
             "admite_implemento",
             ButtonHolder(
-                SaveButton(),
-                CancelButton(),
+                layouts.SaveButton(),
+                layouts.CancelButton(),
             ),
         )
     class Meta:
-        model = MaquinariaAgricola
+        model = models.MaquinariaAgricola
         fields = ["descripcion","tipo_maquinaria_agricola", "es_implemento","admite_implemento","precio"]
 
 class TipoActividadAgricolaForm(ModelForm):
@@ -109,12 +99,12 @@ class TipoActividadAgricolaForm(ModelForm):
                 css_class="col-sm-6"
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton(),
+                layouts.SaveButton(),
+                layouts.CancelButton(),
             ),
         )
     class Meta:
-        model = TipoActividadAgricola
+        model = models.TipoActividadAgricola
         fields = ['descripcion','es_cosecha','es_siembra','es_resiembra']
 
 class ZafraForm(ModelForm):
@@ -134,12 +124,12 @@ class ZafraForm(ModelForm):
             ),
             'es_zafrinha',
             ButtonHolder(
-                SaveButton(),
-                CancelButton(),
+                layouts.SaveButton(),
+                layouts.CancelButton(),
             ),
         )
     class Meta:
-        model = Zafra
+        model = models.Zafra
         fields = ['descripcion','item','anho','es_zafrinha','kg_estimado']
 
 class LoteForm(ModelForm):
@@ -157,17 +147,17 @@ class LoteForm(ModelForm):
                 Column("dimension", ),
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton(),
+                layouts.SaveButton(),
+                layouts.CancelButton(),
             ),
         )
     class Meta:
-        model = Lote
+        model = models.Lote
         fields = ['descripcion','zafra','finca','dimension']
 
 class PlanActividadZafraForm(ModelForm):
     total = DecimalField(
-        widget=SumInput('costo'),
+        widget=widgets.SumInput('costo'),
     )
 
     def __init__(self, *args, **kwargs):
@@ -183,7 +173,7 @@ class PlanActividadZafraForm(ModelForm):
             "observacion",
             Fieldset(
                 u'Detalles',
-                Formset("PlanActividadZafraDetalleInline"), 
+                layouts.layouts.Formset("PlanActividadZafraDetalleInline"), 
             ),
             Row(
                 Column(
@@ -193,23 +183,23 @@ class PlanActividadZafraForm(ModelForm):
                 Column("total", css_class="col-sm-2")
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton()
+                layouts.SaveButton(),
+                layouts.CancelButton()
             )
         )
 
     class Meta:
-        model = PlanActividadZafra
+        model = models.PlanActividadZafra
         fields = ['fecha', 'zafra', 'observacion']
-        widgets = {'fecha':DateInput}
+        widgets = {'fecha':widgets.DateInput}
 
 class PlanActividadZafraDetalleForm(ModelForm):
-    fecha_actividad = DateField(widget=DateInput, label="Fecha Act.")
+    fecha_actividad = DateField(widget=widgets.DateInput, label="Fecha Act.")
     class Meta:
-        model = PlanActividadZafraDetalle
+        model = models.PlanActividadZafraDetalle
         fields = ['fecha_actividad', 'finca', 'tipo_actividad_agricola', 'descripcion','costo']
         widgets = { 
-            'fechaActividad':DateInput,
+            #'fecha_actividad':widgets.DateInput,
             #'costo': DecimalMaskInput 
         }
 
@@ -231,19 +221,19 @@ class ContratoForm(ModelForm):
                 Column("costo_pactado", css_class="col-sm-3"),
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton()
+                layouts.SaveButton(),
+                layouts.CancelButton()
             )
         )
 
     class Meta:
-        model = Contrato
+        model = models.Contrato
         fields = ['fecha','zafra','persona','descripcion','costo_pactado']
-        widgets = {'fecha':DateInput}
+        widgets = {'fecha':widgets.DateInput}
 
 class AcopioForm(ModelForm):
     class Meta:
-        model = Acopio
+        model = models.Acopio
         fields = ['fecha', 'zafra', 'deposito', 'conductor','conductor','camion','comprobante','peso_bruto','peso_tara','peso_descuento','peso_bonificacion','es_transportadora_propia','observacion']
         #widgets = {'fecha':DateInput,'pBruto':DecimalMaskInput,'pTara':DecimalMaskInput,'pDescuento':DecimalMaskInput,'pBonificacion':DecimalMaskInput}
 
@@ -273,42 +263,42 @@ class AcopioForm(ModelForm):
             "es_transportadora_propia",
             Fieldset(
                 u'Detalles',
-                Formset(
+                layouts.layouts.Formset(
                     "AcopioDetalleInline",#, stacked=True
                 ), 
-                Formset(
+                layouts.layouts.Formset(
                     "AcopioCalificacionDetalleInline",#, stacked=True
                 ), 
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton()
+                layouts.SaveButton(),
+                layouts.CancelButton()
             )
         )
 
 class AcopioDetalleForm(ModelForm):
     class Meta:
-        model = AcopioDetalle
+        model = models.AcopioDetalle
         fields = ['acopio', 'finca', 'lote', 'peso']
         #widgets = {'peso':DecimalMaskInput}
 
 class AcopioCalificacionForm(ModelForm):
     class Meta:
-        model = AcopioCalificacion
+        model = models.AcopioCalificacion
         fields = ['acopio', 'calificacion_agricola', 'grado', 'porcentaje', 'peso']
         #widgets = {'grado':DecimalMaskInput,'porcentaje':DecimalMaskInput,'peso':DecimalMaskInput}
 
 class ActividadAgricolaForm(ModelForm):
     total_maquinaria = DecimalField(
-        widget=SumInput('subtotal_maquinaria'),
+        widget=widgets.SumInput('subtotal_maquinaria'),
     )
     total_item = DecimalField(
-        widget=SumInput('subtotalItem'),
+        widget=widgets.SumInput('subtotalItem'),
     )
     class Meta:
-        model = ActividadAgricola
+        model = models.ActividadAgricola
         fields = ['fecha_documento','tipo_actividad_agricola','zafra', 'finca','lote','es_servicio_contratado','empleado','cantidad_trabajada','observacion']
-        widgets = {'fecha_documento':DateInput,} #'cantidadTrabajada': DecimalMaskInput}
+        widgets = {'fecha_documento':widgets.DateInput,} #'cantidadTrabajada': DecimalMaskInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -337,10 +327,10 @@ class ActividadAgricolaForm(ModelForm):
             "es_servicio_contratado",
             Fieldset(
                 u'Detalles',
-                Formset(
+                layouts.Formset(
                     "ActividadAgricolaMaquinariaDetalleInline"#, stacked=True
                 ), 
-                Formset(
+                layouts.Formset(
                     "ActividadAgricolaItemDetalleInline",#, stacked=True
                 ),       
             ),
@@ -359,35 +349,35 @@ class ActividadAgricolaForm(ModelForm):
                 Column("total_item", css_class="col-sm-2")
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton()
+                layouts.SaveButton(),
+                layouts.CancelButton()
             )
         )
 
 class ActividadAgricolaMaquinariaDetalleForm(ModelForm):
     subtotal_maquinaria = DecimalField(
-        widget=FormulaInput('precio*ha_trabajada'),
+        widget=widgets.FormulaInput('precio*ha_trabajada'),
         label = "SubTotal"
     )
 
     class Meta:
-        model = ActividadAgricolaMaquinariaDetalle
+        model = models.ActividadAgricolaMaquinariaDetalle
         fields = ['maquinaria', 'ha_trabajada','precio','subtotal_maquinaria']
         #widgets = {'haTrabajada':DecimalMaskInput,'precio':DecimalMaskInput,'subtotalMaquinaria':DecimalMaskInput}
 
 class ActividadAgricolaItemDetalleForm(ModelForm):
     subtotal_item = DecimalField(
-        widget=FormulaInput('costo*cantidad'),
+        widget=widgets.FormulaInput('costo*cantidad'),
         label = "SubTotal"
     )
     class Meta:
-        model = ActividadAgricolaItemDetalle
+        model = models.ActividadAgricolaItemDetalle
         fields = ['item', 'deposito','dosis','costo','cantidad','porcentaje_impuesto','subtotal_item']
         #widgets = {'dosis':DecimalMaskInput,'costo':DecimalMaskInput,'cantidad':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'subtotalItem':DecimalMaskInput}
 
 class LiquidacionAgricolaSelectionForm(ModelForm):
     class Meta:
-        model = LiquidacionAgricola
+        model = models.LiquidacionAgricola
         fields = ['tipo','zafra','proveedor','precio_unitario']
         #widgets = {'precioUnitario':DecimalMaskInput}
     
@@ -405,19 +395,19 @@ class LiquidacionAgricolaSelectionForm(ModelForm):
                 Column("precio_unitario",),
             ),
             ButtonHolder(
-                NextButton(),
-                CancelButton(),
+                layouts.NextButton(),
+                layouts.CancelButton(),
             ),
         )
 
 class LiquidacionAgricolaForm(ModelForm):
     total = DecimalField(
-        widget=SumInput('subtotal'),
+        widget=widgets.SumInput('subtotal'),
     )
     class Meta:
-        model = LiquidacionAgricola
+        model = models.LiquidacionAgricola
         fields = ['fecha_documento','tipo','zafra','proveedor','precio_unitario','observacion']
-        widgets = {'fecha_documento':DateInput,}#'precioUnitario':DecimalMaskInput}
+        widgets = {'fecha_documento':widgets.DateInput,}#'precioUnitario':DecimalMaskInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -439,7 +429,7 @@ class LiquidacionAgricolaForm(ModelForm):
             ),
             Fieldset(
                 u'Detalles',
-                Formset(
+                layouts.Formset(
                     "LiquidacionAgricolaDetalleInline"#, stacked=True
                 )
             ), 
@@ -451,8 +441,8 @@ class LiquidacionAgricolaForm(ModelForm):
                 Column("total", css_class="col-sm-2")
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton()
+                layouts.SaveButton(),
+                layouts.CancelButton()
             )
         )
 
@@ -464,7 +454,7 @@ class LiquidacionAgricolaDetalleForm(ModelForm):
     #sub_total.label = "Sub Total"
     
     class Meta:
-        model = LiquidacionAgricolaDetalle
+        model = models.LiquidacionAgricolaDetalle
         fields = ['secuencia_origen','finca','lote','cantidad']
 
     def __init__(self, *args, **kwargs):
@@ -474,36 +464,36 @@ class LiquidacionAgricolaDetalleForm(ModelForm):
         
 class CierreZafraSelectionForm(ModelForm):
     class Meta:
-        model = CierreZafra
+        model = models.CierreZafra
         fields = ['zafra']
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.fields["zafra"].queryset =  Zafra.objects.filter(esta_cerrado=False)
+        self.fields["zafra"].queryset =  models.Zafra.objects.filter(esta_cerrado=False)
         self.helper.layout = Layout(
             "zafra",
             ButtonHolder(
-                NextButton(),
-                CancelButton(),
+                layouts.NextButton(),
+                layouts.CancelButton(),
             ),
         )
 
 class CierreZafraForm(ModelForm):
 
     total_costo_v = DecimalField(
-        widget=SumInput('costo_total'),
+        widget=widgets.SumInput('costo_total'),
     )
     total_acopiado_v = DecimalField(
-        widget=SumInput('cantidad_acopio_neto'),
+        widget=widgets.SumInput('cantidad_acopio_neto'),
     )
     total_cultivado_v = DecimalField(
-        widget=SumInput('ha_cultivada'),
+        widget=widgets.SumInput('ha_cultivada'),
     )
     class Meta:
-        model = CierreZafra
+        model = models.CierreZafra
         fields = ['fecha', 'zafra', 'observacion']
-        widgets = {'fecha':DateInput}
+        widgets = {'fecha':widgets.DateInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -521,7 +511,7 @@ class CierreZafraForm(ModelForm):
             "observacion",
             Fieldset(
                 u'Detalles',
-                Formset(
+                layouts.Formset(
                     "CierreZafraDetalleInline"#, stacked=True
                 ),  
             ), 
@@ -547,15 +537,15 @@ class CierreZafraForm(ModelForm):
                 Column("total_costo_v", css_class="col-sm-2")
             ),
             ButtonHolder(
-                SaveButton(),
-                CancelButton()
+                layouts.SaveButton(),
+                layouts.CancelButton()
             )
         )
 
 class CierreZafraDetalleForm(ModelForm):
     check = BooleanField(label='Sel.',required=False)
     class Meta:
-        model = CierreZafraDetalle
+        model = models.CierreZafraDetalle
         fields = ['check','finca','ha_cultivada','cantidad_acopio_neto','rendimiento','costo_total','costo_ha','costo_unitario']
         #widgets = {'ha_cultivada':DecimalMaskInput,'cantidad_acopio_neto':DecimalMaskInput,'cantidad_acopio_neto':DecimalMaskInput,'rendimiento':DecimalMaskInput,'costo_total':DecimalMaskInput,'costoHA':DecimalMaskInput,'costoUnit':DecimalMaskInput}
     

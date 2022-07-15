@@ -1,28 +1,17 @@
 
-from apps.farming.forms import (AcopioCalificacionForm, AcopioDetalleForm,
-                                ActividadAgricolaItemDetalleForm,
-                                ActividadAgricolaMaquinariaDetalleForm,
-                                CierreZafraDetalleForm,
-                                LiquidacionAgricolaDetalleForm,
-                                PlanActividadZafraDetalleForm)
-from apps.farming.models import (AcopioCalificacion, AcopioDetalle,
-                                 ActividadAgricolaItemDetalle,
-                                 ActividadAgricolaMaquinariaDetalle,
-                                 CierreZafraDetalle,
-                                 LiquidacionAgricolaDetalle,
-                                 PlanActividadZafraDetalle)
-from core.widgets import ItemCustomSelect, MaquinariaCustomSelect
+from apps.farming import forms, models
+from core.widgets import DateInput, ItemCustomSelect, MaquinariaCustomSelect
 from django.forms import widgets
 from extra_views import InlineFormSetFactory
 
 
 class PlanActividadZafraDetalleInline(InlineFormSetFactory):
-    model = PlanActividadZafraDetalle
-    form_class = PlanActividadZafraDetalleForm
+    model = models.PlanActividadZafraDetalle
+    form_class = forms.PlanActividadZafraDetalleForm
     factory_kwargs = {
         'extra':1 ,
         'widgets':{
-            'fecha_actividad':widgets.DateInput(
+            'fecha_actividad':DateInput(
                 attrs={
                     'wrapper_class':'col-sm-1',
                     'type':'date'
@@ -49,8 +38,8 @@ class PlanActividadZafraDetalleInline(InlineFormSetFactory):
     fields =  ['fecha_actividad', 'finca', 'tipo_actividad_agricola','descripcion','costo']
 
 class AcopioDetalleInline(InlineFormSetFactory):
-    model = AcopioDetalle
-    form_class = AcopioDetalleForm
+    model = models.AcopioDetalle
+    form_class = forms.AcopioDetalleForm
     factory_kwargs = {
         'extra':1 ,
         'widgets':{
@@ -70,8 +59,8 @@ class AcopioDetalleInline(InlineFormSetFactory):
     fields = ['acopio', 'finca', 'lote', 'peso']
 
 class AcopioCalificacionDetalleInline(InlineFormSetFactory):
-    model = AcopioCalificacion
-    form_class = AcopioCalificacionForm
+    model = models.AcopioCalificacion
+    form_class = forms.AcopioCalificacionForm
     factory_kwargs = {
         'extra':1 ,
         'widgets':{
@@ -86,8 +75,8 @@ class AcopioCalificacionDetalleInline(InlineFormSetFactory):
     fields = ['acopio', 'calificacion_agricola', 'grado', 'porcentaje','peso']
 
 class ActividadAgricolaMaquinariaDetalleInline(InlineFormSetFactory):
-    model = ActividadAgricolaMaquinariaDetalle
-    form_class = ActividadAgricolaMaquinariaDetalleForm
+    model = models.ActividadAgricolaMaquinariaDetalle
+    form_class = forms.ActividadAgricolaMaquinariaDetalleForm
     factory_kwargs = {
         'extra':1,
         'widgets':{
@@ -107,8 +96,8 @@ class ActividadAgricolaMaquinariaDetalleInline(InlineFormSetFactory):
     fields = ['maquinaria', 'ha_trabajada','precio','subtotal_maquinaria']
 
 class ActividadAgricolaItemDetalleInline(InlineFormSetFactory):
-    model = ActividadAgricolaItemDetalle
-    form_class = ActividadAgricolaItemDetalleForm
+    model = models.ActividadAgricolaItemDetalle
+    form_class = forms.ActividadAgricolaItemDetalleForm
     factory_kwargs = {
         'extra':1, 
         'widgets':{
@@ -138,13 +127,13 @@ class ActividadAgricolaItemDetalleInline(InlineFormSetFactory):
     fields = ['item', 'deposito','dosis','costo','cantidad','porcentaje_impuesto','subtotal_item']
 
 class LiquidacionAgricolaDetalleInline(InlineFormSetFactory):
-    model = LiquidacionAgricolaDetalle
-    form_class = LiquidacionAgricolaDetalleForm
+    model = models.LiquidacionAgricolaDetalle
+    form_class = forms.LiquidacionAgricolaDetalleForm
     factory_kwargs = { 'extra':1 }
     fields = ['secuencia_origen','check','movimiento', 'finca', 'lote','cantidad','sub_total']
 
 class CierreZafraDetalleInline(InlineFormSetFactory):
-    model = CierreZafraDetalle
-    form_class = CierreZafraDetalleForm
+    model = models.CierreZafraDetalle
+    form_class = forms.CierreZafraDetalleForm
     factory_kwargs = {'extra':1 }
     fields = ['check','finca','ha_cultivada','cantidad_acopio_neto','rendimiento','costo_total','costo_ha','costo_unitario',]
