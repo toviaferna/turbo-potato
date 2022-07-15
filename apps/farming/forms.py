@@ -19,8 +19,8 @@ class FincaForm(ModelForm):
             "dimension_ha",
             "ubicacion",
             ButtonHolder(
-                layouts.layouts.SaveButton(),
-                layouts.layouts.CancelButton(),
+                layouts.SaveButton(),
+                layouts.CancelButton(),
             ),               
         )
     class Meta:
@@ -173,7 +173,7 @@ class PlanActividadZafraForm(ModelForm):
             "observacion",
             Fieldset(
                 u'Detalles',
-                layouts.layouts.Formset("PlanActividadZafraDetalleInline"), 
+                layouts.Formset("PlanActividadZafraDetalleInline"), 
             ),
             Row(
                 Column(

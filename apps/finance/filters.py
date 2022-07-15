@@ -1,22 +1,23 @@
+from apps.finance import models
 from django_filters import FilterSet
-from .models import Cuenta, Distrito, Localidad, Persona
+
 
 class DistritoFilter(FilterSet):
     class Meta:
-        model = Distrito
+        model = models.Distrito
         fields = ["departamento",]
 
 class LocalidadFilter(FilterSet):
     class Meta:
-        model = Localidad
+        model = models.Localidad
         fields = ["distrito",]
 
 class CuentaFilter(FilterSet):
     class Meta:
-        model = Cuenta
+        model = models.Cuenta
         fields = ["es_banco",]
 
 class PersonaFilter(FilterSet):
     class Meta:
-        model = Persona
+        model = models.Persona
         fields = ["es_cliente","es_proveedor","es_empleado","pais","localidad"]

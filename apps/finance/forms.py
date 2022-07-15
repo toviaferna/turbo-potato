@@ -1,9 +1,10 @@
 
-from django.forms.models import ModelForm
+from apps.finance import models
 from core.layouts import CancelButton, SaveButton
-from .models import Banco, Cuenta, Departamento, Distrito, Localidad, Pais, Persona, TipoImpuesto
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column
+from crispy_forms.layout import ButtonHolder, Column, Layout, Row
+from django.forms.models import ModelForm
+
 
 class PersonaForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -33,7 +34,7 @@ class PersonaForm(ModelForm):
             ),
         )
     class Meta:
-        model = Persona
+        model = models.Persona
         fields = ['razon_social',"documento","celular","pais","localidad","direccion","es_cliente","es_proveedor","es_empleado"]
 
 class BancoForm(ModelForm):
@@ -48,7 +49,7 @@ class BancoForm(ModelForm):
             ),
         )
     class Meta:
-        model = Banco
+        model = models.Banco
         fields = ['descripcion',]
 
 class CuentaForm(ModelForm):
@@ -72,7 +73,7 @@ class CuentaForm(ModelForm):
             
         )
     class Meta:
-        model = Cuenta
+        model = models.Cuenta
         fields = ['descripcion',"es_banco","nro_cuenta","banco"]
 
 class PaisForm(ModelForm):
@@ -87,7 +88,7 @@ class PaisForm(ModelForm):
             ),
         )
     class Meta:
-        model = Pais
+        model = models.Pais
         fields = ['descripcion',]
 
 class DepartamentoForm(ModelForm):
@@ -102,7 +103,7 @@ class DepartamentoForm(ModelForm):
             ),
         )
     class Meta:
-        model = Departamento
+        model = models.Departamento
         fields = ['descripcion',]
 
 class DistritoForm(ModelForm):
@@ -118,7 +119,7 @@ class DistritoForm(ModelForm):
             ),
         )
     class Meta:
-        model = Distrito
+        model = models.Distrito
         fields = ['descripcion','departamento',]
 
 class LocalidadForm(ModelForm):
@@ -134,7 +135,7 @@ class LocalidadForm(ModelForm):
             ),
         )
     class Meta:
-        model = Localidad
+        model = models.Localidad
         fields = ['descripcion','distrito']
 
 class TipoImpuestoForm(ModelForm):
@@ -151,5 +152,5 @@ class TipoImpuestoForm(ModelForm):
             ),
         )
     class Meta:
-        model = TipoImpuesto
+        model = models.TipoImpuesto
         fields = ['descripcion','porcentaje','es_iva']
