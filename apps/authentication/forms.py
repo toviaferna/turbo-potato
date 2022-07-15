@@ -3,31 +3,31 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from django import forms
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder, Column, Field, Fieldset, HTML, Layout, Row, Submit, Div
+from apps.authentication import models
 from core.layouts import CancelButton, SaveButton
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import ButtonHolder, Column, Layout, Row
+from django.contrib.auth import forms
+from django.forms import CharField, Form, PasswordInput, TextInput
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(
-        widget=forms.TextInput(
+class LoginForm(Form):
+    username = CharField(
+        widget=TextInput(
             attrs={
                 "placeholder": "Nombre de usuario.",
                 "class": "form-control"
             }
         ))
-    password = forms.CharField(
-        widget=forms.PasswordInput(
+    password = CharField(
+        widget=PasswordInput(
             attrs={
                 "placeholder": "Contraseña.",
                 "class": "form-control"
             }
         ))
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(forms.UserCreationForm):
     """
     Custom user register form
     """
@@ -55,11 +55,11 @@ class CustomUserCreationForm(UserCreationForm):
                 CancelButton()
             )
         )
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active",)
+    class Meta(forms.UserCreationForm.Meta):
+        model = models.User
+        fields = forms.UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active",)
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(forms.UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -84,7 +84,7 @@ class CustomUserChangeForm(UserChangeForm):
                 CancelButton(),
             )
         )
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active",)
+    class Meta(forms.UserCreationForm.Meta):
+        model = models.User
+        fields = forms.UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active",)
 

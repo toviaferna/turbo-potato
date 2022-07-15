@@ -1,9 +1,7 @@
-from django import forms
-from django.forms import widgets
-from django_filters import FilterSet
 import django_filters
-
-from django.contrib.auth.models import User
+from apps.authentication import models
+from django import forms
+from django_filters import FilterSet
 
 
 class UserFilter(FilterSet):
@@ -12,6 +10,6 @@ class UserFilter(FilterSet):
         empty_label = "Todos"
     )
     class Meta:
-        model = User
+        model = models.User
         fields = ["is_active","date_joined"]
 

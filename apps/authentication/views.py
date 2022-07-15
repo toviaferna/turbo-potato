@@ -1,21 +1,12 @@
 # -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
-from apps.authentication.filters import UserFilter
-from apps.authentication.tables import UserTable
-from core.views import CreateView, DeleteView, ListView, UpdateView
+from apps.authentication import filters, forms, models, tables
+from core import views
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-# Create your views here.
 from django.shortcuts import redirect, render
-
-from .forms import CustomUserChangeForm, CustomUserCreationForm, LoginForm
 
 
 def login_view(request):
-    form = LoginForm(request.POST or None)
+    form = forms.LoginForm(request.POST or None)
     msg = None
     if request.method == "POST":
         if form.is_valid():
@@ -32,29 +23,29 @@ def login_view(request):
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
-class UserListView(ListView):
-    model = User
-    filterset_class = UserFilter
-    table_class =  UserTable
+class UserListView(views.ListView):
+    model = models.User
+    filterset_class = filters.UserFilter
+    table_class =  tables.UserTable
     search_fields = ['first_name', 'username', 'email']
     update_url =  "user_update"
     create_url = "user_add"
     delete_url = "user_delete"
     page_title = "Usuarios"
 
-class UserCreateView(CreateView):
-    model = User
-    form_class = CustomUserCreationForm
+class UserCreateView(views.CreateView):
+    model = models.User
+    form_class = forms.CustomUserCreationForm
     list_url = 'user_list'
     page_title = 'Agregar usuario'
 
-class UserUpdateView(UpdateView):
-    model = User
-    form_class = CustomUserChangeForm
+class UserUpdateView(views.UpdateView):
+    model = models.User
+    form_class = forms.CustomUserChangeForm
     list_url = 'user_list'
     page_title = 'Actualizar usuario'
 
-class UserDeleteView(DeleteView): 
-    model = User
+class UserDeleteView(views.DeleteView): 
+    model = models.User
     list_url = "user_list"
     page_title = "Eliminar usuario"
