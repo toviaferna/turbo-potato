@@ -15,12 +15,12 @@ class User(AbstractUser):
         help_text="Ingrese su numero de telefono o celular."
     )
 
-    EMAIL_FIELD = 'email'
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'phone']
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email", "first_name", "last_name", "phone"]
 
     def __str__(self):
-        return '{0} ({1})'.format(self.get_full_name(), self.username)
+        return "{0} ({1})".format(self.get_full_name(), self.username)
 
     @property
     def full_name(self):

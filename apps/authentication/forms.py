@@ -40,10 +40,12 @@ class CustomUserCreationForm(forms.UserCreationForm):
             Row(
                 Column('first_name'),
                 Column('last_name'),
+                Column('document')
             ),
             Row(
                 Column('username'),
                 Column('email'),
+                Column('phone'),
             ),
             Row(
                 Column('password1'),
@@ -57,7 +59,10 @@ class CustomUserCreationForm(forms.UserCreationForm):
         )
     class Meta(forms.UserCreationForm.Meta):
         model = models.User
-        fields = forms.UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active",)
+        fields = forms.UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active","document", "phone")
+        labels = {
+            "first_name":"Nombres"
+        }
 
 class CustomUserChangeForm(forms.UserChangeForm):
     def __init__(self, *args, **kwargs):
@@ -67,12 +72,14 @@ class CustomUserChangeForm(forms.UserChangeForm):
         #self.fields['password'].help_text = "Las contraseñas no se almacenan en bruto, así que no hay manera de ver la contraseña del usuario, pero se puede cambiar la contraseña mediante <a href='%s'>este formulario.</a>"%reverse("password_change")
         self.helper.layout = Layout(
             Row(
-                Column('first_name'),
+                Column('first_name', help_text="help_text="),
                 Column('last_name'),
+                Column('document')
             ),
             Row(
                 Column('username'),
                 Column('email'),
+                 Column('phone'),
             ),
             Row(
                 Column('password'),
@@ -86,5 +93,10 @@ class CustomUserChangeForm(forms.UserChangeForm):
         )
     class Meta(forms.UserCreationForm.Meta):
         model = models.User
-        fields = forms.UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active",)
-
+        fields = forms.UserCreationForm.Meta.fields + ("first_name", "last_name", "email","is_active","document", "phone")
+        labels = {
+            "first_name":"Nombres"
+        }
+        #help_texts = {
+        #    "first_name":""
+        #}
