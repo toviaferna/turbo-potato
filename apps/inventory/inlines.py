@@ -1,12 +1,12 @@
-from extra_views import InlineFormSetFactory
+from apps.inventory import models
 from apps.inventory.forms import AjusteStockDetalleForm
-
-from apps.inventory.models import AjusteStockDetalle
 from django import forms
 from django.forms import widgets
+from extra_views import InlineFormSetFactory
+
 
 class AjusteStockDetalleInline(InlineFormSetFactory):
-    model = AjusteStockDetalle
+    model = models.AjusteStockDetalle
     form_class = AjusteStockDetalleForm
     factory_kwargs = {
         'extra':1 ,

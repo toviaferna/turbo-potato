@@ -1,12 +1,13 @@
+from apps.inventory import models
 from django_filters import FilterSet
-from .models import Deposito, Item
+
 
 class DepositoFilter(FilterSet):
     class Meta:
-        model = Deposito
+        model = models.Deposito
         fields = ["es_planta_acopiadora",]
 
 class ItemFilter(FilterSet):
     class Meta:
-        model = Item
+        model = models.Item
         fields = ["categoria","marca","tipo_item","tipo_impuesto","es_activo"]

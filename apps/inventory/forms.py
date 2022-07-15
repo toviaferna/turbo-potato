@@ -1,10 +1,11 @@
-from django.forms.models import ModelForm
-from core.layouts import CancelButton, Formset, SaveButton
-from .models import AjusteStock, AjusteStockDetalle, Categoria, Deposito, Item, Marca, TipoItem
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder,Layout, Submit, Row, Column, Fieldset
-from core.widgets import DateInput
 from apps.finance.models import Persona
+from apps.inventory import models
+from core.layouts import CancelButton, Formset, SaveButton
+from core.widgets import DateInput
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import ButtonHolder, Column, Fieldset, Layout, Row
+from django.forms.models import ModelForm
+
 
 class MarcaForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -18,7 +19,7 @@ class MarcaForm(ModelForm):
             ),
         )
     class Meta:
-        model = Marca
+        model = models.Marca
         fields = ['descripcion',]
 
 class CategoriaForm(ModelForm):
@@ -33,7 +34,7 @@ class CategoriaForm(ModelForm):
             ),
         )
     class Meta:
-        model = Categoria
+        model = models.Categoria
         fields = ['descripcion',]
 
 class TipoItemForm(ModelForm):
@@ -48,7 +49,7 @@ class TipoItemForm(ModelForm):
             ),
         )
     class Meta:
-        model = TipoItem
+        model = models.TipoItem
         fields = ['descripcion',]
 
 class ItemForm(ModelForm):
@@ -76,7 +77,7 @@ class ItemForm(ModelForm):
             ),
         )
     class Meta:
-        model = Item
+        model = models.Item
         fields = ['descripcion','codigo_barra','tipo_item','categoria','marca','tipo_impuesto','precio','es_activo']
 
 class DepositoForm(ModelForm):
@@ -92,7 +93,7 @@ class DepositoForm(ModelForm):
             ),
         )
     class Meta:
-        model = Deposito
+        model = models.Deposito
         fields = ['descripcion','es_planta_acopiadora']
 
 class AjusteStockForm(ModelForm):
@@ -123,12 +124,12 @@ class AjusteStockForm(ModelForm):
             ),
         )
     class Meta:
-       model = AjusteStock
+       model = models.AjusteStock
        fields = ['fecha_documento','comprobante','empleado','deposito','observacion',]
        widgets = { 'fecha_documento':DateInput }
 
 class AjusteStockDetalleForm(ModelForm):
     class Meta:
-        model = AjusteStockDetalle
+        model = models.AjusteStockDetalle
         fields = ['item', 'cantidad',]
         #widgets = {'cantidad':DecimalMaskInput}
