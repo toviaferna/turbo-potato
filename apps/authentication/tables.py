@@ -7,4 +7,4 @@ class UserTable(AccionTable):
     email = tables.Column(verbose_name="E-mail")
     class Meta:
         model = models.User
-        fields = ("first_name", "email", "phone",)
+        fields = ("first_name", "email", "document", "phone",)

@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 
 class BaseButton(layout.TemplateNameMixin):
     def __init__(self, **kwargs):
-        if not getattr(self, 'field_classes'):
+        if not getattr(self, "field_classes"):
             self.field_classes = ""
         self.id = kwargs.pop("css_id", "")
         self.attrs = {}
@@ -17,34 +17,44 @@ class BaseButton(layout.TemplateNameMixin):
 
 
 class CancelButton(BaseButton):
-    
     def __init__(self, **kwargs):
         self.field_classes = "btn btn-secondary"
         super().__init__(**kwargs)
 
     def render(self, form, form_style, context, template_pack=TEMPLATE_PACK, **kwargs):
         context.update({"cancel_button": self})
-        return render_to_string('includes/cancel_button.html', context.flatten())
+        return render_to_string("includes/cancel_button.html", context.flatten())
+
 
 class SaveButton(layout.Submit):
     def __init__(self, *args, **kwargs):
         self.field_classes = "btn btn-primary"
-        kwargs['name'] = "Guardar"
-        kwargs['value'] = "Guardar"
+        kwargs["name"] = "Guardar"
+        kwargs["value"] = "Guardar"
         super().__init__(*args, **kwargs)
+
 
 class NextButton(layout.Submit):
     def __init__(self, *args, **kwargs):
         self.field_classes = "btn btn-primary"
-        kwargs['name'] = "Siguiente"
-        kwargs['value'] = "Siguiente"
+        kwargs["name"] = "Siguiente"
+        kwargs["value"] = "Siguiente"
         super().__init__(*args, **kwargs)
+
 
 class Formset(layout.LayoutObject):
     template = "bootstrap4/table_inline_formset.html"
     stacked_template = "bootstrap4/stacked_inline_formset.html"
-    
-    def __init__(self,formset_name,  formset_title=None, template=None, css_class=None, stacked=False, stacked_class="sm:w-1/2 md:w-1/4"):
+
+    def __init__(
+        self,
+        formset_name,
+        formset_title=None,
+        template=None,
+        css_class=None,
+        stacked=False,
+        stacked_class="sm:w-1/2 md:w-1/4",
+    ):
         self.formset_name = formset_name
         self.css_class = css_class
         self.formset_title = formset_title
@@ -69,24 +79,28 @@ class Formset(layout.LayoutObject):
                 formset = context[self.formset_name]
             except KeyError:
                 try:
-                    inline_index = context['formset_inlines_meta'][self.formset_name]['index']
+                    inline_index = context["formset_inlines_meta"][self.formset_name][
+                        "index"
+                    ]
                 except KeyError:
                     pass
 
         if inline_index is not None:
             try:
-                formset = context['inlines'][inline_index]
+                formset = context["inlines"][inline_index]
             except IndexError:
                 pass
 
         if formset:
-            context.update({
-                'formset': formset,
-                'css_class':self.css_class,
-                'formset_title':self.formset_title,
-                'stacked_class':self.stacked_class
-            })
+            context.update(
+                {
+                    "formset": formset,
+                    "css_class": self.css_class,
+                    "formset_title": self.formset_title,
+                    "stacked_class": self.stacked_class,
+                }
+            )
         else:
-            return ''
+            return ""
 
         return render_to_string(self.template, context.flatten())

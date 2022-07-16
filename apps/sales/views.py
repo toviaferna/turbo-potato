@@ -1,31 +1,28 @@
 import datetime
 
-from apps.sales.filters import AperturaCajaFilter
-from apps.sales.forms import AperturaCajaCreateForm
-from apps.sales.models import AperturaCaja
-from apps.sales.tables import AperturaCajaTable
-from core.views import CreateView, DeleteView, ListView
+from apps.sales import filters, forms, models, tables
+from core import views
 from django.db import transaction
 from django.http import HttpResponseRedirect
 
 
 # Create your views here.
-class AperturaCajaListView(ListView):
-    model = AperturaCaja
-    table_class = AperturaCajaTable
-    filterset_class = AperturaCajaFilter
+class AperturaCajaListView(views.ListView):
+    model = models.AperturaCaja
+    table_class = tables.AperturaCajaTable
+    filterset_class = filters.AperturaCajaFilter
     search_fields = ['empleado__razon_social','observacion']
     update_url = None
     create_url = "apertura_caja_create"#'apertura_caja_create'
     delete_url = "apertura_caja_delete"#'apertura_caja_delete'
 
-class AperturaCajaCreateView(CreateView):
-    form_class = AperturaCajaCreateForm
-    model = AperturaCaja
+class AperturaCajaCreateView(views.CreateView):
+    form_class = forms.AperturaCajaCreateForm
+    model = models.AperturaCaja
     list_url = "apertura_caja_list"
 
-class AperturaCajaDeleteView(DeleteView):
-    model = AperturaCaja
+class AperturaCajaDeleteView(views.DeleteView):
+    model = models.AperturaCaja
     list_url = "apertura_caja_list"
     mensaje_cerrado = "La caja ya fue cerrado!"
     

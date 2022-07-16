@@ -7,12 +7,10 @@ class User(AbstractUser):
         "Documento",
         help_text="Ingrese su número de documento de identidad",
         max_length=15,
-        unique=True
+        unique=True,
     )
     phone = models.CharField(
-        "Teléfono", 
-        max_length=20, 
-        help_text="Ingrese su numero de telefono o celular."
+        "Teléfono", max_length=20, help_text="Ingrese su numero de telefono o celular."
     )
 
     EMAIL_FIELD = "email"
@@ -24,4 +22,4 @@ class User(AbstractUser):
 
     @property
     def full_name(self):
-        return  self.get_full_name() 
+        return self.get_full_name()

@@ -6,10 +6,9 @@ from django_filters import FilterSet
 
 class UserFilter(FilterSet):
     date_joined = django_filters.DateRangeFilter(
-        widget= forms.RadioSelect(),
-        empty_label = "Todos"
+        widget=forms.RadioSelect(), empty_label="Todos"
     )
+
     class Meta:
         model = models.User
-        fields = ["is_active","date_joined"]
-
+        fields = ["is_active", "date_joined"]

@@ -1,7 +1,6 @@
 from apps.sales.models import AperturaCaja
 from core.tables import AccionTable
-from core.tables.columns import (BooleanColumn, NumericColumn,
-                                 TotalNumericColumn)
+from core.tables.columns import BooleanColumn, NumericColumn
 
 
 class AperturaCajaTable(AccionTable):

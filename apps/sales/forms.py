@@ -3,7 +3,7 @@
 
 from core.layouts import CancelButton, SaveButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder, Column, Layout, Row, Submit
+from crispy_forms.layout import ButtonHolder, Column, Layout, Row
 from django.forms import ModelForm
 
 from .models import AperturaCaja

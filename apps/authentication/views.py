@@ -2,12 +2,7 @@
 from apps.authentication import filters, forms, models, tables
 from core import views
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.generic.base import TemplateView
 
 
 def login_view(request):
@@ -55,19 +50,4 @@ class UserDeleteView(views.DeleteView):
     list_url = "user_list"
     page_title = "Eliminar usuario"
 
-class CustomPasswordChangeView(PasswordChangeView):
-    template_name = 'accounts/password_change_form.html'
-    success_url = reverse_lazy('password_change_done_')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Cambiar contraseña"
-        return context
-
-class PasswordChangeDoneView(TemplateView):
-    template_name = 'accounts/password_change_done.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["title"] = "Cambio de contraseña exitoso"
-        return context
