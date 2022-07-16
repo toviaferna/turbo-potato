@@ -96,6 +96,7 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
         context['update_url'] = None if not self.update_url else self.update_url
         context['delete_url'] = None if not  self.delete_url else self.delete_url
         context['create_url'] = None if not self.create_url else self.create_url
+        context['download_url'] = None if not self.download_url else self.download_url
         context['title'] = "Listado de "+self.model._meta.verbose_name_plural.title() if self.page_title is None else self.page_title
         if not self.filterset_class:
             context['filter'] = None
