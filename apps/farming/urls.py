@@ -169,6 +169,11 @@ urlpatterns = [
         name="liquidacion_agricola_create",
     ),
     path(
+        "liquidacion-agricola/<int:pk>/delete/",
+        views.LiquidacionAgricolaAnnulledView.as_view(),
+        name="liquidacion_agricola_delete",
+    ),
+    path(
         "cierre-zafra/<int:pk>/delete/",
         views.CierreZafraDeleteView.as_view(),
         name="cierre_zafra_delete",

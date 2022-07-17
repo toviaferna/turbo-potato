@@ -303,7 +303,6 @@ class ActividadAgricolaListView(views.ListView):
         "empleado__razon_social",
         "deposito__descripcion",
     ]
-    update_url = None
     delete_url = "actividad_agricola_delete"
     create_url = "actividad_agricola_create"
 
@@ -352,8 +351,7 @@ class LiquidacionAgricolaListView(views.ListView):
     model = models.LiquidacionAgricola
     table_class = tables.LiquidacionAgricolaTable
     search_fields = ["proveedor__razon_social", "zafra__descripcion", "tipo"]
-    update_url = None
-    delete_url = None  #'actividad_agricola_delete'
+    delete_url = "liquidacion_agricola_delete"
     create_url = "liquidacion_agricola_selection"  #'actividad_agricola_create'
 
 
@@ -480,7 +478,6 @@ class CierreZafraListView(views.ListView):
     search_fields = [
         "zafra__descripcion",
     ]
-    update_url = None
     delete_url = "cierre_zafra_delete"
     create_url = "cierre_zafra_selection"
 
