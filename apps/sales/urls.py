@@ -13,6 +13,6 @@ urlpatterns = [
     path('transferencia_cuenta', views.TransferenciaCuentaListView.as_view(), name="transferencia_cuenta_list"),
     #path('venta/<int:pk>/delete',views.VentaAnularView.as_view(), name="venta_delete"),
     #path('venta/<int:pk>/download',views.download_view, name="venta_download"),
-    #path('venta/add',views.VentaCreateView.as_view(), name="venta_create"),
+    path('venta/add',views.VentaCreateView.as_view(), name="venta_create"),
     path('venta', views.VentaListView.as_view(), name="venta_list"),
 ]

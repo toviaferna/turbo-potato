@@ -90,6 +90,10 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
     export_class = TableExport
     page_title = None
     export_page_orientation = "portrait"
+    download_url = None
+    update_url = None
+    delete_url = None
+    create_url = None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,6 +1,6 @@
 import datetime
 
-from apps.sales import filters, forms, models, tables
+from apps.sales import filters, forms, inlines, models, tables
 from core import views
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -97,7 +97,49 @@ class VentaListView(views.ListView):
     model = models.Venta
     table_class = tables.VentaTable
     search_fields = ['cliente__razon_social','comprobante','timbrado','observacion']
-    update_url = None
-    create_url = None#"venta_create"
-    delete_url = None#"venta_delete"
+    create_url = "venta_create"
+    delete_url = "venta_delete"
     download_url = None#"venta_download"
+
+class VentaCreateView(views.CreateView):
+    model = models.Venta
+    form_class = forms.VentaForm
+    inlines = [inlines.VentaDetalleInline, inlines.CuotaVentaInline]
+    list_url = "venta_list"
+
+    def run_form_extra_validation_form_master(self,form):
+        apertura_caja = models.AperturaCaja.objects.filter(esta_cerrado = False).order_by('-pk')[:1].first()
+        if apertura_caja is None:
+            form.add_error(None, 'No existe una apertura de Caja en estado ABIERTO')
+            return False
+        return True
+    
+    def run_form_extra_validation(self, form, inlines):
+        venta_detalle = inlines[0]
+        cuota_detalle = inlines[1]
+        total_detalle = 0
+        total_cuota = 0
+        existe_registro = False
+
+        for f in venta_detalle:
+            total_detalle += f.cleaned_data.get('subtotal')
+            existe_registro = True
+
+        for f in cuota_detalle:
+            valor = 0 
+            if f.cleaned_data.get('monto') is None:
+                valor = 0
+            else:
+                valor = f.cleaned_data.get('monto')
+            total_cuota += valor
+
+        if existe_registro == False or total_detalle == 0 or total_detalle is None:
+            form.add_error(None, 'Registre al menos un Detalle')
+        
+        if form.cleaned_data.get('es_credito') and (total_detalle!=total_cuota) :  
+            form.add_error(None, 'Los montos de las cuotas difieren al total de la venta')
+
+class VentaAnnulledView(views.AnnulledView):
+    model = models.Venta
+    list_url = "venta_list"
+    mensaje_anulacion = "La Venta ya fue anulado."

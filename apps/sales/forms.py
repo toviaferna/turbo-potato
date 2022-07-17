@@ -4,10 +4,11 @@
 from apps.finance.models import Persona
 from apps.sales import models
 from core import widgets
-from core.layouts import CancelButton, SaveButton
+from core.layouts import CancelButton, Formset, SaveButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder, Column, Layout, Row
-from django.forms import ModelForm
+from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
+                                 Row)
+from django.forms import DecimalField, ModelForm
 
 
 class AperturaCajaCreateForm(ModelForm):
@@ -82,4 +83,89 @@ class TransferenciaCuentaForm(ModelForm):
                 SaveButton(),
                 CancelButton(),
             ),
+        )
+
+class CuotaVentaForm(ModelForm):
+    class Meta:
+        model = models.CuotaVenta
+        fields = ['fecha_vencimiento','monto']
+        widgets = { 'fecha_vencimiento':widgets.DateInput }
+
+class VentaDetalleForm(ModelForm):
+    subtotal = DecimalField(
+        widget=widgets.FormulaInput('precio*cantidad'),
+        label = "Subtotal"
+    )
+    impuesto = DecimalField(
+        widget=widgets.FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)'),
+        label = "Impuesto"
+    )
+    class Meta:
+        model = models.VentaDetalle 
+        fields = ['item', 'cantidad','precio','porcentaje_impuesto','impuesto','subtotal']
+        #widgets = {'cantidad':DecimalMaskInput,'precio':DecimalMaskInput,'porcentaje_impuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+
+class VentaForm(ModelForm):
+    total = DecimalField(
+        widget=widgets.SumInput('subtotal'),
+    )
+    total_iva = DecimalField(
+        widget=widgets.SumInput('impuesto'),
+    )
+    class Meta:
+        model = models.Venta
+        fields = ['fecha_documento','es_credito','comprobante','cliente','cuenta','deposito','observacion']
+        widgets = {'fecha_documento':widgets.DateInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total'].label = False
+        #self.fields['total'].widget = DecimalMaskInput()
+        self.fields['total_iva'].label = False
+        #self.fields['total_iva'].widget = DecimalMaskInput()
+        #self.fields['comprobante'].widget = InvoiceMaskInput()
+        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha_documento", css_class="col-sm-2"),
+                Column("comprobante",css_class="col-sm-2"),
+                Column("cliente",),
+                Column("es_credito",css_class="col-sm-2"),
+            ),
+            Row(
+                Column("cuenta",),
+                Column("deposito",),
+                Column("observacion",),
+            ),
+            
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "VentaDetalleInline"
+                ), 
+                Formset(
+                    "CuotaVentaInline",
+                    stacked=True,
+                ), 
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total", css_class="col-sm-2"),
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total impuesto: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total_iva", css_class="col-sm-2"),
+            ),
+            ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
         )
