@@ -104,3 +104,12 @@ class Formset(layout.LayoutObject):
             return ""
 
         return render_to_string(self.template, context.flatten())
+
+class FormActions(layout.Layout):
+    def __init__(self, *args, **kwargs):
+        super().__init__(
+            layout.ButtonHolder(
+                SaveButton(),
+                CancelButton()
+            )
+        )
