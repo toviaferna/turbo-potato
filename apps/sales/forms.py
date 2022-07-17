@@ -1,13 +1,15 @@
 
 
 
+from ctypes import c_ssize_t
+
 from apps.finance.models import Persona
 from apps.sales import models
 from core import widgets
 from core.layouts import CancelButton, FormActions, Formset, SaveButton
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
-                                 Row)
+from crispy_forms.layout import (HTML, ButtonHolder, Column, Field, Fieldset,
+                                 Layout, Row)
 from django.forms import DecimalField, ModelForm
 
 
@@ -126,20 +128,20 @@ class VentaForm(ModelForm):
         self.fields['total_iva'].label = False
         #self.fields['total_iva'].widget = DecimalMaskInput()
         #self.fields['comprobante'].widget = InvoiceMaskInput()
-        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True)
+        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True) 
         self.helper.layout = Layout(
             Row(
                 Column("fecha_documento", css_class="col-sm-2"),
                 Column("comprobante",css_class="col-sm-2"),
                 Column("cliente",),
-                Column("es_credito",css_class="col-sm-2"),
+                Column("es_credito", css_class="col-sm-2 mt-2",),
+                css_class="align-items-center"
             ),
             Row(
                 Column("cuenta",),
                 Column("deposito",),
                 Column("observacion",),
             ),
-            
             Fieldset(
                 u'Detalles',
                 Formset(
@@ -164,5 +166,5 @@ class VentaForm(ModelForm):
                 ),
                 Column("total_iva", css_class="col-sm-2"),
             ),
-            FormActions()
+            FormActions(),
         )
