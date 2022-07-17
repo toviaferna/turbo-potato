@@ -2,7 +2,7 @@
 
 
 from apps.authentication import models
-from core.layouts import CancelButton, SaveButton
+from core.layouts import CancelButton, FormActions, SaveButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder, Column, Layout, Row
 from django.contrib.auth import forms
@@ -41,7 +41,7 @@ class CustomUserCreationForm(forms.UserCreationForm):
             ),
             Row(Column("password1"), Column("password2"), Column()),
             "is_active",
-            ButtonHolder(SaveButton(), CancelButton()),
+            FormActions()
         )
 
     class Meta(forms.UserCreationForm.Meta):
@@ -78,10 +78,7 @@ class CustomUserChangeForm(forms.UserChangeForm):
             ),
             Row(Column("password"), Column(), Column()),
             "is_active",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
 
     class Meta(forms.UserCreationForm.Meta):

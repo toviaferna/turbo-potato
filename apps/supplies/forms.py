@@ -1,12 +1,16 @@
 from apps.finance.models import Persona
 from apps.inventory.models import Deposito, Item
-from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra, NotaCreditoRecibida, NotaCreditoRecibidaDetalle, NotaDebitoRecibida, NotaDebitoRecibidaDetalle, OrdenCompra, OrdenCompraDetalle,
-                                  PedidoCompra, PedidoCompraDetalle)
-from core.layouts import CancelButton, Formset, SaveButton
+from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra,
+                                  NotaCreditoRecibida,
+                                  NotaCreditoRecibidaDetalle,
+                                  NotaDebitoRecibida,
+                                  NotaDebitoRecibidaDetalle, OrdenCompra,
+                                  OrdenCompraDetalle, PedidoCompra,
+                                  PedidoCompraDetalle)
+from core.layouts import FormActions, Formset
 from core.widgets import DateInput, FormulaInput, ItemCustomSelect, SumInput
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import (HTML, ButtonHolder, Column,
-                                 Fieldset, Layout, Row, Submit)
+from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
 from django import forms
 from django.forms.models import ModelForm
 
@@ -67,10 +71,7 @@ class PedidoCompraForm(forms.ModelForm):
                 Column(css_class="col-sm-1"),
             ),
 
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            )
+            FormActions()
         )
     class Meta:
         model = PedidoCompra
@@ -136,10 +137,7 @@ class OrdenCompraForm(forms.ModelForm):
                 Column("total", css_class='col-sm-2'),
                 Column(css_class='col-sm-1')
             ), 
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            )
+            FormActions()
         )
     class Meta:
         model = OrdenCompra
@@ -207,10 +205,7 @@ class CompraForm(forms.ModelForm):
                 ),
                 Column("total_iva", css_class="col-sm-2")
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            )
+            FormActions()
         )
     class Meta:
         model = Compra
@@ -297,10 +292,7 @@ class NotaDebitoRecibidaForm(forms.ModelForm):
                 ),
                 Column("total_iva", css_class="col-sm-2")
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton()
-            )
+            FormActions()
         )
     class Meta:
         model = NotaDebitoRecibida
@@ -382,10 +374,7 @@ class NotaCreditoRecibidaForm(forms.ModelForm):
                 ),
                 Column("total_iva", css_class="col-sm-2")
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton()
-            )
+            FormActions()
         )
 
 class NotaCreditoRecibidaDetalleForm(forms.ModelForm):

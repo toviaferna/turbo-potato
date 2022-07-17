@@ -17,10 +17,7 @@ class FincaForm(ModelForm):
             "descripcion",
             "dimension_ha",
             "ubicacion",
-            ButtonHolder(
-                layouts.SaveButton(),
-                layouts.CancelButton(),
-            ),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -34,10 +31,7 @@ class CalificacionAgricolaForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                layouts.SaveButton(),
-                layouts.CancelButton(),
-            ),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -53,10 +47,7 @@ class TipoMaquinariaAgricolaForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                layouts.SaveButton(),
-                layouts.CancelButton(),
-            ),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -77,10 +68,7 @@ class MaquinariaAgricolaForm(ModelForm):
             ),
             "es_implemento",
             "admite_implemento",
-            ButtonHolder(
-                layouts.SaveButton(),
-                layouts.CancelButton(),
-            ),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -114,10 +102,7 @@ class TipoActividadAgricolaForm(ModelForm):
                 ),
                 css_class="col-sm-6",
             ),
-            ButtonHolder(
-                layouts.SaveButton(),
-                layouts.CancelButton(),
-            ),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -146,10 +131,7 @@ class ZafraForm(ModelForm):
                 ),
             ),
             "es_zafrinha",
-            ButtonHolder(
-                layouts.SaveButton(),
-                layouts.CancelButton(),
-            ),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -176,10 +158,7 @@ class LoteForm(ModelForm):
                     "dimension",
                 ),
             ),
-            ButtonHolder(
-                layouts.SaveButton(),
-                layouts.CancelButton(),
-            ),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -216,7 +195,7 @@ class PlanActividadZafraForm(ModelForm):
                 ),
                 Column("total", css_class="col-sm-2"),
             ),
-            ButtonHolder(layouts.SaveButton(), layouts.CancelButton()),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -259,7 +238,7 @@ class ContratoForm(ModelForm):
                 Column("descripcion"),
                 Column("costo_pactado", css_class="col-sm-3"),
             ),
-            ButtonHolder(layouts.SaveButton(), layouts.CancelButton()),
+            layouts.FormActions()
         )
 
     class Meta:
@@ -339,7 +318,7 @@ class AcopioForm(ModelForm):
                     "AcopioCalificacionDetalleInline",  # , stacked=True
                 ),
             ),
-            ButtonHolder(layouts.SaveButton(), layouts.CancelButton()),
+            layouts.FormActions()
         )
 
 
@@ -440,7 +419,7 @@ class ActividadAgricolaForm(ModelForm):
                 ),
                 Column("total_item", css_class="col-sm-2"),
             ),
-            ButtonHolder(layouts.SaveButton(), layouts.CancelButton()),
+            layouts.FormActions()
         )
 
 
@@ -562,7 +541,7 @@ class LiquidacionAgricolaForm(ModelForm):
                 ),
                 Column("total", css_class="col-sm-2"),
             ),
-            ButtonHolder(layouts.SaveButton(), layouts.CancelButton()),
+            layouts.FormActions()
         )
 
 
@@ -659,7 +638,7 @@ class CierreZafraForm(ModelForm):
                 ),
                 Column("total_costo_v", css_class="col-sm-2"),
             ),
-            ButtonHolder(layouts.SaveButton(), layouts.CancelButton()),
+            layouts.FormActions()
         )
 
 

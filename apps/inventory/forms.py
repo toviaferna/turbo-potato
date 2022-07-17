@@ -1,6 +1,6 @@
 from apps.finance.models import Persona
 from apps.inventory import models
-from core.layouts import CancelButton, Formset, SaveButton
+from core.layouts import CancelButton, FormActions, Formset, SaveButton
 from core.widgets import DateInput
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder, Column, Fieldset, Layout, Row
@@ -13,10 +13,7 @@ class MarcaForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Marca
@@ -28,10 +25,7 @@ class CategoriaForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Categoria
@@ -43,10 +37,7 @@ class TipoItemForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.TipoItem
@@ -71,10 +62,7 @@ class ItemForm(ModelForm):
                 Column("precio", css_class="col-sm-4"),
             ),
             "es_activo",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Item
@@ -87,10 +75,7 @@ class DepositoForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             "es_planta_acopiadora",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Deposito
@@ -118,10 +103,7 @@ class AjusteStockForm(ModelForm):
                     "AjusteStockDetalleInline"#, stacked=True
                 ), 
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
        model = models.AjusteStock

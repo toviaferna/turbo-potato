@@ -1,6 +1,6 @@
 
 from apps.finance import models
-from core.layouts import CancelButton, SaveButton
+from core.layouts import CancelButton, FormActions, SaveButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder, Column, Layout, Row
 from django.forms.models import ModelForm
@@ -28,10 +28,7 @@ class PersonaForm(ModelForm):
                 Column("es_proveedor"),
                 Column("es_empleado"),
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Persona
@@ -43,10 +40,7 @@ class BancoForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Banco
@@ -66,10 +60,7 @@ class CuentaForm(ModelForm):
                 Column("nro_cuenta"),
                 Column("banco")
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
             
         )
     class Meta:
@@ -82,10 +73,7 @@ class PaisForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Pais
@@ -97,10 +85,7 @@ class DepartamentoForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Departamento
@@ -113,10 +98,7 @@ class DistritoForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             "departamento",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Distrito
@@ -129,10 +111,7 @@ class LocalidadForm(ModelForm):
         self.helper.layout = Layout(
             "descripcion",
             "distrito",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Localidad
@@ -146,10 +125,7 @@ class TipoImpuestoForm(ModelForm):
             "descripcion",
             "porcentaje",
             "es_iva",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.TipoImpuesto

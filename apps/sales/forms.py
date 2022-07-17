@@ -4,7 +4,7 @@
 from apps.finance.models import Persona
 from apps.sales import models
 from core import widgets
-from core.layouts import CancelButton, Formset, SaveButton
+from core.layouts import CancelButton, FormActions, Formset, SaveButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
                                  Row)
@@ -164,8 +164,5 @@ class VentaForm(ModelForm):
                 ),
                 Column("total_iva", css_class="col-sm-2"),
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton()
-            )
+            FormActions()
         )
