@@ -106,6 +106,9 @@ class VentaCreateView(views.CreateView):
     form_class = forms.VentaForm
     inlines = [inlines.VentaDetalleInline, inlines.CuotaVentaInline]
     list_url = "venta_list"
+   
+    class Media:
+        js = ("assets/js/widgets.js",)
 
     def run_form_extra_validation_form_master(self,form):
         apertura_caja = models.AperturaCaja.objects.filter(esta_cerrado = False).order_by('-pk')[:1].first()

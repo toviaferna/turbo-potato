@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
+from django.forms import widgets
 from django.forms.formsets import all_valid
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -16,7 +17,7 @@ from core.tables.mixins import ExportMixin
 from core.utils import get_deleted_objects
 
 
-class DeleteView(LoginRequiredMixin, edit.DeleteView):
+class DeleteView(LoginRequiredMixin, edit.DeleteView, metaclass=widgets.MediaDefiningClass):
     error = None
     template_name = 'generic/remove.html'
     page_title = None
@@ -36,6 +37,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView):
         context['subtitle'] = f"Desea eliminar: {self.object}?" if self.page_subtitle is None else self.page_subtitle
         context['error'] = self.error
         context['delete_button_text'] = "Eliminar"
+        context['media'] = self.media
         return context
 
     def before_delete(self):
@@ -84,7 +86,7 @@ class AnnulledView(DeleteView):
         context['error'] = self.error
         return context
 
-class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin, FilterView):
+class ListView(LoginRequiredMixin,SearchViewMixin, ExportMixin, SingleTableMixin, FilterView):
     paginate_by = 10
     template_name = 'generic/list.html'
     export_class = TableExport
@@ -107,7 +109,7 @@ class ListView(LoginRequiredMixin,SearchViewMixin,ExportMixin, SingleTableMixin,
         return context
 
 
-class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesView):
+class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesView, metaclass=widgets.MediaDefiningClass):
     template_name = 'generic/edit.html'
     page_title = None
 
@@ -119,6 +121,9 @@ class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesV
         context['helper'] = None
         context['list_url'] = self.list_url
         context['title'] = context['title'] = "Agregar "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
+        context['media'] = self.media
+
+
         return context
 
     def run_form_extra_validation(self, form, inlines):
@@ -160,7 +165,7 @@ class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesV
         #self.object = initial_object
         return self.forms_invalid(form, inlines)
 
-class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesView):
+class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesView, metaclass=widgets.MediaDefiningClass):
     template_name = 'generic/edit.html'
     page_title = None
 
@@ -176,6 +181,7 @@ class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesV
         context['helper'] = None
         context['list_url'] = self.list_url
         context['title'] = "Modificar "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
+        context['media'] = self.media
         return context
 
     def run_form_extra_validation(self, form, inlines):
@@ -209,7 +215,7 @@ class UpdateView(LoginRequiredMixin, FormsetInlinesMetaMixin, UpdateWithInlinesV
         self.object = initial_object
         return self.forms_invalid(form, inlines)
 
-class DetailView(LoginRequiredMixin, detail.DetailView):
+class DetailView(LoginRequiredMixin, detail.DetailView, metaclass=widgets.MediaDefiningClass):
     template_name = 'generic/detail.html'
     page_title = None
 
@@ -235,13 +241,14 @@ class DetailView(LoginRequiredMixin, detail.DetailView):
         context['helper'] = None
         context['list_url'] = self.list_url
         context['title'] = "Detalles de "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
+        context['media'] = self.media
         return context
 
 class SelectionListView(SelectionMixin, ListView):
     """ Vista de seleccion de tipo listado """
 
 
-class SelectionFormView(LoginRequiredMixin, SelectionMixin, FormView):
+class SelectionFormView(LoginRequiredMixin, SelectionMixin, FormView, metaclass=widgets.MediaDefiningClass):
     page_title = None
     selection_title = None
     def get_context_data(self, **kwargs):
@@ -250,5 +257,6 @@ class SelectionFormView(LoginRequiredMixin, SelectionMixin, FormView):
         context['list_url'] = self.list_url
         context['selection_title'] = self.selection_title
         context['title'] = context['title'] = "Agregar "+self.model._meta.verbose_name.lower() if self.page_title is None else self.page_title
+        context['media'] = self.media
         return context
 

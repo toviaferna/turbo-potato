@@ -73,6 +73,9 @@ class CompraCreateView(CreateView):
     inlines = [CompraDetalleInline,CuotaCompraInline]
     list_url = "compra_list"
 
+    class Media:
+        js = ("assets/js/widgets.js",)
+
     def run_form_extra_validation(self, form, inlines):
         """ ejecutar validaciones adicionales de formularios """
         compra_detalle = inlines[0]

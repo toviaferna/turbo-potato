@@ -170,6 +170,7 @@ class CompraForm(forms.ModelForm):
                 Column("comprobante"),
                 Column("timbrado"),
                 Column("es_credito", css_class="col-sm-3 mt-2"),
+                css_class="align-items-center"
             ),
             Row(
                 Column("proveedor"),
