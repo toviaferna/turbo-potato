@@ -1,76 +1,60 @@
+from apps.supplies import forms, inlines, models, tables
 from apps.supplies.filters import CompraFilter, LibroCompraFilter
-from apps.supplies.forms import (CompraForm, NotaCreditoRecibidaForm,
-                                 NotaDebitoRecibidaForm, OrdenCompraForm,
-                                 PedidoCompraForm)
-from apps.supplies.inlines import (CompraDetalleInline, CuotaCompraInline,
-                                   NotaCreditoRecibidaDetalleInline,
-                                   NotaDebitoRecibidaDetalleInline,
-                                   OrdenCompraDetalleInline,
-                                   PedidoCompraDetalleInline)
-from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra,
-                                  NotaCreditoRecibida, NotaDebitoRecibida,
-                                  OrdenCompra, PedidoCompra)
-from apps.supplies.tables import (CompraDetalleTable, CompraTable,
-                                  CuotaCompraTable, LibroCompraTable,
-                                  NotaCreditoRecibidaTable,
-                                  NotaDebitoRecibidaTable, OrdenCompraTable,
-                                  PedidoCompraTable)
-from core.views import (AnnulledView, CreateView, DetailView, ListView,
-                        UpdateView)
+from core import views
 
 
-class PedidoCompraListView(ListView):
-    model = PedidoCompra
-    table_class = PedidoCompraTable
+class PedidoCompraListView(views.ListView):
+    model = models.PedidoCompra
+    table_class = tables.PedidoCompraTable
     search_fields = ['proveedor__razon_social',]
     update_url = 'pedido_compra_update'
     delete_url = None
     create_url = "pedido_compra_create"
 
-class PedidoCompraCreateView(CreateView):
-    model = PedidoCompra
-    form_class = PedidoCompraForm
-    inlines = [PedidoCompraDetalleInline]
+class PedidoCompraCreateView(views.CreateView):
+    model = models.PedidoCompra
+    form_class = forms.PedidoCompraForm
+    inlines = [inlines.PedidoCompraDetalleInline]
     list_url = "pedido_compra_list"
 
-class PedidoCompraUpdateView(UpdateView):
-    model = PedidoCompra
-    form_class = PedidoCompraForm
-    inlines = [PedidoCompraDetalleInline]
+class PedidoCompraUpdateView(views.UpdateView):
+    model = models.PedidoCompra
+    form_class = forms.PedidoCompraForm
+    inlines = [inlines.PedidoCompraDetalleInline]
     list_url = "pedido_compra_list"
 
-class OrdenCompraListView(ListView):
-    model = OrdenCompra
-    table_class = OrdenCompraTable
+class OrdenCompraListView(views.ListView):
+    model = models.OrdenCompra
+    table_class = tables.OrdenCompraTable
     search_fields = ['proveedor__razon_social',]
     update_url = None
     delete_url = 'orden_compra_delete'
     create_url = "orden_compra_create"
 
-class OrdenCompraCreateView(CreateView):
-    model = OrdenCompra
-    form_class = OrdenCompraForm
-    inlines = [OrdenCompraDetalleInline]
+class OrdenCompraCreateView(views.CreateView):
+    model = models.OrdenCompra
+    form_class = forms.OrdenCompraForm
+    inlines = [inlines.OrdenCompraDetalleInline]
     list_url = "orden_compra_list"
 
-class OrdenCompraAnnulledView(AnnulledView):
-    model = OrdenCompra
+class OrdenCompraAnnulledView(views.AnnulledView):
+    model = models.OrdenCompra
     list_url = "orden_compra_list"
 
 
-class CompraListView(ListView):
-    model = Compra
-    table_class = CompraTable
+class CompraListView(views.ListView):
+    model = models.Compra
+    table_class = tables.CompraTable
     filterset_class = CompraFilter
     search_fields = ['proveedor__razon_social','comprobante','timbrado','observacion']
     update_url = None
     delete_url = "compra_delete"
     create_url = "compra_create"
 
-class CompraCreateView(CreateView):
-    model = Compra
-    form_class = CompraForm
-    inlines = [CompraDetalleInline,CuotaCompraInline]
+class CompraCreateView(views.CreateView):
+    model = models.Compra
+    form_class = forms.CompraForm
+    inlines = [inlines.CompraDetalleInline, inlines.CuotaCompraInline]
     list_url = "compra_list"
 
     class Media:
@@ -99,27 +83,27 @@ class CompraCreateView(CreateView):
         if form.cleaned_data.get('es_credito') and (total_detalle!=total_cuota ) :  
             form.add_error(None, 'Los montos de las cuotas difieren al total de la compra')
 
-class CompraAnnulledView(AnnulledView):
-    model = Compra
+class CompraAnnulledView(views.AnnulledView):
+    model = models.Compra
     list_url = "compra_list"
     mensaje_anulacion = "La Factura ya fue anulado."
 
-class CompraDetailView(DetailView):
-    model = Compra
+class CompraDetailView(views.DetailView):
+    model = models.Compra
     list_url = "compra_list"
     template_name = "supplies/detail_compra.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        compra_detalle = CompraDetalle.objects.filter(compra=self.object)
-        cuota_compra = CuotaCompra.objects.filter(compra=self.object)
-        context['compra_detalle'] = CompraDetalleTable(compra_detalle)
-        context['cuota_compra'] = CuotaCompraTable(cuota_compra)
+        compra_detalle = models.CompraDetalle.objects.filter(compra=self.object)
+        cuota_compra = models.CuotaCompra.objects.filter(compra=self.object)
+        context['compra_detalle'] = tables.CompraDetalleTable(compra_detalle)
+        context['cuota_compra'] = tables.CuotaCompraTable(cuota_compra)
         return context
 
-class NotaDebitoRecibidaListView(ListView):
-    model = NotaDebitoRecibida
-    table_class = NotaDebitoRecibidaTable
+class NotaDebitoRecibidaListView(views.ListView):
+    model = models.NotaDebitoRecibida
+    table_class = tables.NotaDebitoRecibidaTable
     filterset_class = None
     search_fields = ['proveedor__razon_social','comprobante','timbrado','compra__comprobante']
     list_url = "nota_debito_recibida_list"
@@ -127,20 +111,22 @@ class NotaDebitoRecibidaListView(ListView):
     delete_url = "nota_debito_recibida_delete"
     create_url = "nota_debito_recibida_create"
 
-class NotaDebitoRecibidaCreateView(CreateView):
-    model = NotaDebitoRecibida
-    form_class = NotaDebitoRecibidaForm
-    inlines = [NotaDebitoRecibidaDetalleInline]
+class NotaDebitoRecibidaCreateView(views.CreateView):
+    model = models.NotaDebitoRecibida
+    form_class = forms.NotaDebitoRecibidaForm
+    inlines = [inlines.NotaDebitoRecibidaDetalleInline]
     list_url = "nota_debito_recibida_list"
+    class Media:
+        js = ("assets/js/widgets.js",)
 
-class NotaDebitoRecibidaAnnulledView(AnnulledView):
-    model = NotaDebitoRecibida
+class NotaDebitoRecibidaAnnulledView(views.AnnulledView):
+    model = models.NotaDebitoRecibida
     list_url = "nota_debito_recibida_list"
     mensaje_anulacion = "La Nota de Débito ya fue anulado."
 
-class NotaCreditoRecibidaListView(ListView):
-    model = NotaCreditoRecibida
-    table_class = NotaCreditoRecibidaTable
+class NotaCreditoRecibidaListView(views.ListView):
+    model = models.NotaCreditoRecibida
+    table_class = tables.NotaCreditoRecibidaTable
     filterset_class = None
     search_fields = ['proveedor__razon_social','comprobante','timbrado','compra__comprobante']
     list_url = "nota_credito_recibida_list"
@@ -148,22 +134,25 @@ class NotaCreditoRecibidaListView(ListView):
     delete_url = "nota_credito_recibida_delete"
     create_url = "nota_credito_recibida_create"
 
-class NotaCreditoRecibidaCreateView(CreateView):
-    model = NotaCreditoRecibida
-    form_class = NotaCreditoRecibidaForm
-    inlines = [NotaCreditoRecibidaDetalleInline]
+class NotaCreditoRecibidaCreateView(views.CreateView):
+    model = models.NotaCreditoRecibida
+    form_class = forms.NotaCreditoRecibidaForm
+    inlines = [inlines.NotaCreditoRecibidaDetalleInline]
     list_url = "nota_credito_recibida_list"
 
-class NotaCreditoRecibidaAnnulledView(AnnulledView):
-    model = NotaCreditoRecibida
+    class Media:
+        js = ("assets/js/widgets.js",)
+
+class NotaCreditoRecibidaAnnulledView(views.AnnulledView):
+    model = models.NotaCreditoRecibida
     list_url = "nota_credito_recibida_list"
     mensaje_anulacion = "La Nota de Crédito ya fue anulado."
 
 
-class LibroCompraListView(ListView):
-    model = Compra
+class LibroCompraListView(views.ListView):
+    model = models.Compra
     filterset_class = LibroCompraFilter
-    table_class = LibroCompraTable
+    table_class = tables.LibroCompraTable
     update_url = None
     delete_url = None
     create_url = None

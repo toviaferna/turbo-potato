@@ -316,6 +316,9 @@ class ActividadAgricolaCreateView(views.CreateView):
     ]
     list_url = "actividad_agricola_list"
 
+    class Media:
+        js = ("assets/js/widgets.js",)
+        
     def run_form_extra_validation(self, form, inlines):
         """ejecutar validaciones adicionales de formularios"""
         detalle_maquinaria = inlines[0]
