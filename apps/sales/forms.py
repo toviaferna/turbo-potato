@@ -150,6 +150,7 @@ class VentaForm(ModelForm):
                 Formset(
                     "CuotaVentaInline",
                     stacked=True,
+                    stacked_class="col-sm-3"
                 ), 
             ),
             Row(
