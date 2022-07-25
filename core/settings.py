@@ -142,6 +142,8 @@ STATICFILES_DIRS = (
 EXPORT_PDF_CSS = {
     "portrait":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/portrait.css"),
     "landscape":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/landscape.css"),
+    "invoice_css":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/invoice.css"),
+    "invoice_img":os.path.join(STATICFILES_DIRS[0],"assets/img/logo.png"),
 }
 
 #############################################################

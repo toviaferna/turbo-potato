@@ -41,3 +41,68 @@ class VentaDetalleInline(InlineFormSetFactory):
 
     }
     fields = ['item', 'cantidad','precio','porcentaje_impuesto',]
+
+class NotaDebitoEmitidaDetalleInline(InlineFormSetFactory):
+    model = models.NotaDebitoEmitidaDetalle
+    form_class = forms.NotaDebitoEmitidaDetalleForm
+    factory_kwargs = {
+        'extra':1,
+        'widgets':{
+            'item':ItemCustomSelect(
+                attrs={
+                    'wrapper_class':'col-sm-3',
+                    'data-item-select':True,
+                }
+            ),
+            'porcentaje_impuesto':widgets.NumberInput(
+                attrs={
+                    'class':'text-right item-porcentaje-impuesto',
+                }
+            ),
+            'valor':widgets.NumberInput(
+                attrs={
+                    'class':'text-right item-precio',
+                }
+            ),
+            'cantidad':widgets.NumberInput(
+                attrs={
+                    'wrapper_class':'col-sm-1',
+                }
+            ),
+        }  
+    
+    }
+    fields = ['item', 'cantidad','valor','porcentaje_impuesto',]
+
+
+class NotaCreditoEmitidaDetalleInline(InlineFormSetFactory):
+    model = models.NotaCreditoEmitidaDetalle
+    form_class = forms.NotaCreditoEmitidaDetalleForm
+    factory_kwargs = {
+        'extra':1,
+        'widgets':{
+            'item':ItemCustomSelect(
+                attrs={
+                    'wrapper_class':'col-sm-3',
+                    'data-item-select':True,
+                }
+            ),
+            'porcentaje_impuesto':widgets.NumberInput(
+                attrs={
+                    'class':'text-right item-porcentaje-impuesto',
+                }
+            ),
+            'valor':widgets.NumberInput(
+                attrs={
+                    'class':'text-right item-precio',
+                }
+            ),
+            'cantidad':widgets.NumberInput(
+                attrs={
+                    'wrapper_class':'col-sm-1',
+                }
+            ),
+        } 
+    
+    }
+    fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto',]

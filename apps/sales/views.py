@@ -2,8 +2,13 @@ import datetime
 
 from apps.sales import filters, forms, inlines, models, tables
 from core import views
+from core.utils import link_callback
+from django.conf import settings
 from django.db import transaction
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template.loader import get_template
+from num2words import num2words
+from xhtml2pdf import pisa
 
 
 # Create your views here.
@@ -99,7 +104,7 @@ class VentaListView(views.ListView):
     search_fields = ['cliente__razon_social','comprobante','timbrado','observacion']
     create_url = "venta_create"
     delete_url = "venta_delete"
-    download_url = None#"venta_download"
+    download_url = "venta_download"
 
 class VentaCreateView(views.CreateView):
     model = models.Venta
@@ -146,3 +151,71 @@ class VentaAnnulledView(views.AnnulledView):
     model = models.Venta
     list_url = "venta_list"
     mensaje_anulacion = "La Venta ya fue anulado."
+
+
+def download_view(request, pk):
+    """"""
+    template_path = "sales/invoice.html"
+    object = models.Venta.objects.get(pk=pk)
+    detalles = object.ventadetalle_set.all()
+
+    context = {
+        'object':object,
+        'number_to_words': str(num2words(object.total, lang="es")).capitalize,
+        'invoice_css_dir': settings.EXPORT_PDF_CSS.get("invoice_css"),
+        'invoice_img_dir': settings.EXPORT_PDF_CSS.get("invoice_img"),
+        'detalles': detalles
+    }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf') 
+    response['Content-Disposition'] = f'attachment; filename="{object.comprobante}.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response, link_callback=link_callback)
+    # if error then show some funy view
+
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+class NotaCreditoEmitidaListView(views.ListView):
+    model = models.NotaCreditoEmitida
+    table_class = tables.NotaCreditoEmitidaTable
+    search_fields = ['cliente__razon_social','comprobante','timbrado','venta__comprobante']
+    create_url = "nota_credito_emitida_create"
+    delete_url = "nota_credito_emitida_delete"
+
+class NotaCreditoEmitidaCreateView(views.CreateView):
+    model = models.NotaCreditoEmitida
+    form_class = forms.NotaCreditoEmitidaForm
+    inlines = [inlines.NotaCreditoEmitidaDetalleInline]
+    list_url = "nota_credito_emitida_list"
+    
+class NotaCreditoEmitidaAnnulledView(views.AnnulledView):
+    model = models.NotaCreditoEmitida
+    list_url = "nota_credito_emitida_list"
+    mensaje_anulacion = "La Nota de Crédito ya fue anulado."
+
+class NotaDebitoEmitidaListView(views.ListView):
+    model = models.NotaCreditoEmitida
+    table_class = tables.NotaCreditoEmitidaTable
+    search_fields = ['cliente__razon_social','comprobante','timbrado','venta__comprobante']
+    create_url = "nota_debito_emitida_create"
+    delete_url = "nota_debito_emitida_delete"
+
+class NotaDebitoEmitidaCreateView(views.CreateView):
+    model = models.NotaDebitoEmitida
+    form_class = forms.NotaDebitoEmitidaForm
+    inlines = [inlines.NotaDebitoEmitidaDetalleInline]
+    list_url = "nota_debito_emitida_list"
+
+class NotaDebitoEmitidaAnnulledView(views.AnnulledView):
+    model = models.NotaDebitoEmitida
+    list_url = "nota_debito_emitida_list"
+    mensaje_anulacion = "La Nota de Débito ya fue anulado."
+

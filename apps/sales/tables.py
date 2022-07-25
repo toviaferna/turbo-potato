@@ -1,4 +1,5 @@
 from apps.sales import models
+from apps.supplies.models import NotaDebitoRecibida
 from core.tables import AccionTable
 from core.tables.columns import BooleanColumn, NumericColumn
 
@@ -30,6 +31,28 @@ class VentaTable(AccionTable):
     total = NumericColumn(verbose_name='Total')
     class Meta:
         model = models.Venta
+        fields = ("fecha_documento","comprobante","cliente","total","es_vigente",)
+        row_attrs = {
+            "es-vigente": lambda record: record.es_vigente
+        }
+        order_by = "-fecha_documento"
+
+class NotaCreditoEmitidaTable(AccionTable):
+
+    total = NumericColumn(verbose_name= 'Total',)
+    class Meta:
+        model = models.NotaCreditoEmitida
+        fields = ("fecha_documento","comprobante","cliente","total","es_vigente",)
+        row_attrs = {
+            "es-vigente": lambda record: record.es_vigente
+        }
+        order_by = "-fecha_documento"
+
+class NotaDebitoEmitidaTable(AccionTable):
+
+    total = NumericColumn(verbose_name= 'Total')
+    class Meta:
+        model = NotaDebitoRecibida
         fields = ("fecha_documento","comprobante","cliente","total","es_vigente",)
         row_attrs = {
             "es-vigente": lambda record: record.es_vigente

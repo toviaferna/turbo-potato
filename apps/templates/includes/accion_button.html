@@ -11,4 +11,13 @@
             {% endif %}
         {% endif %}
     {%  endif %}
+    {% if download_url %}
+        {% if record %}
+            {% if record.es_vigente == True %}
+                <a class="btn btn-sm btn-info"  href="{% url download_url record.id %}"><i class="fas fa-download"></i> </a>
+            {% elif record.es_vigente == None %}
+                <a class="btn btn-sm btn-info"  href="{% url download_url record.id %}"><i class="fas fa-download"></i> </a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
 </div>

@@ -20,7 +20,17 @@ children = (
     MenuItem(
         "Ventas",
         reverse("venta_list"),
-        icon="far fa-circle",        
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Notas de débito emitidas",
+        reverse("nota_debito_emitida_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Notas de crédito emitidas",
+        reverse("nota_credito_emitida_list"),
+        icon="far fa-circle",
     ),
 )
 

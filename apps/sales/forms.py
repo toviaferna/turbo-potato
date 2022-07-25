@@ -169,3 +169,160 @@ class VentaForm(ModelForm):
             ),
             FormActions(),
         )
+
+class NotaCreditoEmitidaForm(ModelForm):
+    total = DecimalField(
+        widget=widgets.SumInput('subtotal', ),
+    )
+    total_iva = DecimalField(
+        widget=widgets.SumInput('impuesto', ),
+    )
+    class Meta:
+        model = models.NotaCreditoEmitida
+        fields = ['fecha_documento','es_credito','comprobante', 'timbrado','cliente','cuenta','deposito',"venta",'observacion']
+        widgets = {'fecha_documento':widgets.DateInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total'].label = False
+        #self.fields['total'].widget = DecimalMaskInput()
+        self.fields['total_iva'].label = False
+        #self.fields['total_iva'].widget = DecimalMaskInput()
+        #self.fields['comprobante'].widget = InvoiceMaskInput()
+        self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
+        self.fields["venta"].queryset =  models.Venta.objects.filter(es_vigente=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha_documento",),
+                Column("comprobante",),
+                Column("timbrado",),
+                Column("es_credito",),
+            ),
+            Row(
+                Column("cliente",),
+                Column("cuenta",),
+                Column("deposito",),
+               
+            ),
+            Row(
+                Column("venta", css_class="col-sm-4"),
+                Column("observacion",),
+            ),
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "NotaCreditoEmitidaDetalleInline"#, stacked=True
+                ), 
+                
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total", css_class="col-sm-2"),
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total impuesto: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total_iva", css_class="col-sm-2"),
+            ),
+            FormActions(),
+        )
+
+class NotaCreditoEmitidaDetalleForm(ModelForm):
+    subtotal = DecimalField(
+        widget=widgets.FormulaInput('valor*cantidad'),
+        label = "SubTotal"
+    )
+    impuesto = DecimalField(
+        widget=widgets.FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)',),
+        label = "Impuesto"
+    )
+    item = widgets.ItemCustomSelect()
+    class Meta:
+        model = models.NotaCreditoEmitidaDetalle
+        fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']
+        #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+
+class NotaDebitoEmitidaForm(ModelForm):
+    total = DecimalField(
+        widget=widgets.SumInput('subtotal',),
+    )
+    total_iva = DecimalField(
+        widget=widgets.SumInput('impuesto',),
+    )
+    class Meta:
+        model = models.NotaDebitoEmitida
+        fields = ['fecha_documento','es_credito','comprobante', 'timbrado','cliente','cuenta','deposito',"venta",'observacion']
+        widgets = {'fecha_documento':widgets.DateInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total'].label = False
+        #self.fields['total'].widget = DecimalMaskInput()
+        self.fields['total_iva'].label = False
+        #self.fields['total_iva'].widget = DecimalMaskInput()
+        #self.fields['comprobante'].widget = InvoiceMaskInput()
+        self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
+        self.fields["venta"].queryset =  models.Venta.objects.filter(es_vigente=True)
+        self.helper.layout = Layout(
+            Row(
+                Column("fecha_documento",),
+                Column("comprobante",),
+                Column("timbrado",),
+                Column("es_credito",),
+            ),
+            Row(
+                Column("cliente",),
+                Column("cuenta",),
+                Column("deposito",),
+            ),
+            Row(
+                Column("venta", css_class="col-sm-4"),
+                Column("observacion",),
+            ),
+            Fieldset(
+                u'Detalles',
+                Formset(
+                    "NotaDebitoEmitidaDetalleInline"#, stacked=True
+                ), 
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total", css_class="col-sm-2"),
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total impuesto: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total_iva", css_class="col-sm-2"),
+            ),
+            FormActions(),
+        )
+
+class NotaDebitoEmitidaDetalleForm(ModelForm):
+    subtotal = DecimalField(
+        widget=widgets.FormulaInput('valor*cantidad', ),
+        label = "SubTotal"
+    )
+    impuesto = DecimalField(
+        widget=widgets.FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)',),
+        label = "Impuesto"
+    )
+
+    item = widgets.ItemCustomSelect()
+    class Meta:
+        model = models.NotaDebitoEmitidaDetalle
+        fields = ['item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']
+        #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
