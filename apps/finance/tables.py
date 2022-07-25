@@ -1,5 +1,6 @@
 from apps.finance import models
 from core.tables import AccionTable
+from core.tables.columns import BooleanColumn
 
 
 class PersonaTable(AccionTable):
@@ -38,6 +39,7 @@ class LocalidadTable(AccionTable):
         fields = ("descripcion","distrito")
 
 class TipoImpuestoTable(AccionTable):
+    es_iva = BooleanColumn()
     class Meta:
         model = models.TipoImpuesto
         fields = ("descripcion","porcentaje","es_iva")

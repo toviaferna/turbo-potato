@@ -1,5 +1,5 @@
 from core.tables import AccionTable
-from core.tables.columns import NumericColumn
+from core.tables.columns import BooleanColumn, NumericColumn
 
 from .models import AjusteStock, Categoria, Deposito, Item, Marca, TipoItem
 
@@ -15,6 +15,7 @@ class CategoriaTable(AccionTable):
         fields = ("descripcion",)
 
 class DepositoTable(AccionTable):
+    es_planta_acopiadora = BooleanColumn()
     class Meta:
         model = Deposito
         fields = ("descripcion","es_planta_acopiadora")
@@ -28,6 +29,7 @@ class ItemTable(AccionTable):
     costo = NumericColumn()
     ultimo_costo = NumericColumn()
     precio = NumericColumn()
+    es_activo = BooleanColumn()
     class Meta:
         model = Item
         fields = ("descripcion","categoria","marca","tipo_impuesto","costo","ultimo_costo","precio","es_activo")
