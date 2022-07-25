@@ -1,3 +1,4 @@
+from apps.finance.models import Persona
 from apps.sales import models
 from apps.supplies.models import NotaDebitoRecibida
 from core.tables import AccionTable
@@ -58,3 +59,20 @@ class NotaDebitoEmitidaTable(AccionTable):
             "es-vigente": lambda record: record.es_vigente
         }
         order_by = "-fecha_documento"
+
+class CobroTable(AccionTable):
+
+    monto_a_saldar = NumericColumn(verbose_name= 'Total',)
+    class Meta:
+        model = models.Cobro
+        fields = ("fecha_documento","comprobante","cuenta","cliente",'cobrador',"monto_a_saldar","es_vigente")
+        row_attrs = {
+            "es-vigente": lambda record: record.es_vigente
+        }
+        order_by = "-fecha_documento"
+
+
+class CobroPersonaSelectionTable(AccionTable):
+    class Meta:
+        model = Persona
+        fields = ("razon_social", "documento", )

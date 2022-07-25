@@ -96,6 +96,7 @@ class ListView(LoginRequiredMixin,SearchViewMixin, ExportMixin, SingleTableMixin
     update_url = None
     delete_url = None
     create_url = None
+    export_button = True
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -104,6 +105,7 @@ class ListView(LoginRequiredMixin,SearchViewMixin, ExportMixin, SingleTableMixin
         context['create_url'] = None if not self.create_url else self.create_url
         context['download_url'] = None if not self.download_url else self.download_url
         context['title'] = "Listado de "+self.model._meta.verbose_name_plural.title() if self.page_title is None else self.page_title
+        context['export_button'] = self.export_button
         if not self.filterset_class:
             context['filter'] = None
         return context

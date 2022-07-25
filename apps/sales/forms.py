@@ -10,7 +10,8 @@ from core.layouts import CancelButton, FormActions, Formset, SaveButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (HTML, ButtonHolder, Column, Field, Fieldset,
                                  Layout, Row)
-from django.forms import DecimalField, ModelForm
+from django.forms import (BooleanField, CharField, DecimalField, HiddenInput,
+                          ModelForm)
 
 
 class AperturaCajaCreateForm(ModelForm):
@@ -326,3 +327,72 @@ class NotaDebitoEmitidaDetalleForm(ModelForm):
         model = models.NotaDebitoEmitidaDetalle
         fields = ['item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']
         #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+
+class CobroForm(ModelForm):
+
+    total = DecimalField(
+        widget=widgets.SumInput('cancelacion', ),
+    )
+    class Meta:
+        model = models.Cobro
+        fields = ['fecha_documento','comprobante','cliente','cuenta','cobrador','monto_a_saldar','observacion']
+        widgets = {'fecha_documento':widgets.DateInput,}#'monto_a_saldar':DecimalMaskInput}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields['total'].label = False
+        #self.fields['total'].widget = DecimalMaskInput()
+        #self.fields['comprobante'].widget = InvoiceMaskInput()
+        self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
+        self.fields["cobrador"].queryset =  Persona.objects.filter(es_empleado=True)
+        self.helper.layout = Layout(
+            "fecha_documento",
+            "comprobante",
+            "cliente",
+            "cuenta",
+            "cobrador",
+            "monto_a_saldar",
+            "observacion",
+            Fieldset(
+                u'Detalle',
+                Formset(
+                    "CobroDetalleInline"#, stacked=True
+                ), 
+                Formset(
+                    "CobroMedioInline",
+                    stacked=True,
+                    css_class="col-sm-3"
+                ), 
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total", css_class="col-sm-2"),
+            ),
+            FormActions()
+        )
+
+class CobroDetalleForm(ModelForm):
+    check = BooleanField(label='Sel.',required=False)
+    comprobante = CharField(max_length=30,disabled = True)
+    monto = DecimalField(max_digits=15,disabled = True)
+    saldo = DecimalField(max_digits=15,disabled = True)
+    class Meta:
+        model = models.CobroDetalle
+        fields = ['cuota_venta','check','cancelacion']
+        widgets = {
+            #'cancelacion':DecimalMaskInput,
+            #'monto':DecimalMaskInput,
+            #'saldo':DecimalMaskInput,
+            'cuota_venta': HiddenInput
+        }
+
+class CobroMedioForm(ModelForm):
+    class Meta:
+        model = models.CobroMedio
+        fields = ['numero','comprobante','medio_cobro','observacion','monto']
+        #widgets = {'cancelacion':DecimalMaskInput}

@@ -21,4 +21,8 @@ urlpatterns = [
     path('nota-debito-emitida/<int:pk>/delete',views.NotaDebitoEmitidaAnnulledView.as_view(), name="nota_debito_emitida_delete"),
     path('nota-debito-emitida/add',views.NotaDebitoEmitidaCreateView.as_view(), name="nota_debito_emitida_create"),
     path('nota-debito-emitida', views.NotaDebitoEmitidaListView.as_view(), name="nota_debito_emitida_list"),
+    path('cobro/<int:pk>/delete', views.CobroAnnulledView.as_view(), name="cobro_delete"),
+    path('cobro/add', views.CobroCreateView.as_view(), name="cobro_create"),
+    path('cobro/selection', views.CobroPersonaSelectionListView.as_view(), name="cobro_selection"),
+    path('cobro', views.CobroListView.as_view(), name="cobro_list"),
 ]

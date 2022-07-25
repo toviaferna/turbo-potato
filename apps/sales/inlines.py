@@ -106,3 +106,15 @@ class NotaCreditoEmitidaDetalleInline(InlineFormSetFactory):
     
     }
     fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto',]
+
+class CobroDetalleInline(InlineFormSetFactory):
+    model = models.CobroDetalle
+    form_class = forms.CobroDetalleForm
+    factory_kwargs = {'extra':1 }
+    fields = ['cuota_venta','check','comprobante', 'monto', 'saldo','cancelacion',]
+
+class CobroMedioInline(InlineFormSetFactory):
+    model = models.CobroMedio
+    form_class = forms.CobroMedioForm
+    factory_kwargs = {'extra':1}
+    fields = ['numero','comprobante','medio_cobro','observacion','monto',]

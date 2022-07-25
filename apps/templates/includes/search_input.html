@@ -8,9 +8,14 @@
                 <i class="fa fa-search"></i>
             </span>
         </div>
-        <div class="ml-2">
-            {% include 'includes/export_button.html' %}
-        </div>
+        
+        {% if export_button %}
+            <div class="ml-2">
+                {% include 'includes/export_button.html' %}
+            </div>
+        {% endif %}
+            
+
 
     </div>
 </form>
