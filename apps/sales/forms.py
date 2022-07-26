@@ -348,12 +348,16 @@ class CobroForm(ModelForm):
         self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
         self.fields["cobrador"].queryset =  Persona.objects.filter(es_empleado=True)
         self.helper.layout = Layout(
-            "fecha_documento",
-            "comprobante",
-            "cliente",
-            "cuenta",
-            "cobrador",
-            "monto_a_saldar",
+            Row(
+                Column("fecha_documento", css_class="col-sm-3"),
+                Column("comprobante", css_class="col-sm-3"),
+                Column("cliente",),
+            ),
+            Row(
+                Column("cobrador",),
+                Column("cuenta",),
+                Column("monto_a_saldar", css_class="col-sm-3"),
+            ),
             "observacion",
             Fieldset(
                 u'Detalle',
@@ -363,7 +367,6 @@ class CobroForm(ModelForm):
                 Formset(
                     "CobroMedioInline",
                     stacked=True,
-                    css_class="col-sm-3"
                 ), 
             ),
             Row(

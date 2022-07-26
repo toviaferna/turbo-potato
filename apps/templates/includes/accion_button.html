@@ -20,4 +20,9 @@
             {% endif %}
         {% endif %}
     {% endif %}
+    
+    {% if next_url %}
+        <a class="btn btn-sm btn-primary" href="{% url next_url %}?{{params_name}}={{record.id}}"> <i class="fa fa-hand-holding-dollar"></i> </a>
+    {% endif %}
+        
 </div>
