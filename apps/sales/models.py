@@ -39,7 +39,7 @@ class Venta(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=True)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
-    
+
     @property
     def total(self):
         return sum(round(x.precio * x.cantidad)  for x in self.ventadetalle_set.all())
@@ -213,6 +213,10 @@ class Cobro(models.Model):
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     monto_a_saldar = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Monto A Saldar")
     comprobante = models.CharField(max_length=15,verbose_name="Comprobante")
+
+    def __str__(self):
+        return self.comprobante+" - "+self.cliente.razon_social
+
 class CobroDetalle(models.Model):
     cobro = models.ForeignKey(Cobro, on_delete=models.DO_NOTHING)
     cancelacion = models.DecimalField(max_digits=15, decimal_places=0,verbose_name="Cancelacion")
