@@ -61,7 +61,7 @@ class NotaDebitoEmitidaTable(AccionTable):
         order_by = "-fecha_documento"
 
 class CobroTable(AccionTable):
-
+    es_vigente = BooleanColumn()
     monto_a_saldar = NumericColumn(verbose_name= 'Total',)
     class Meta:
         model = models.Cobro
