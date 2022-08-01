@@ -1,7 +1,18 @@
 from calculation import widgets
+from dal import autocomplete
 from django import forms
 
 from core.mixins import MaskInputMixin
+
+
+class AutocompleteSelect(autocomplete.ModelSelect2):
+    class Media:
+        css = {
+            'all':('assets/css/select2/select2-bootstrap4.css',)
+        }
+    
+
+
 
 
 class DateInput(forms.DateInput):
@@ -16,6 +27,8 @@ class FormulaInput(widgets.FormulaInput):
             'class':'text-right'
         }
         super().__init__(*args, **kwargs)
+
+
 
 class ItemCustomSelect(forms.Select):
 

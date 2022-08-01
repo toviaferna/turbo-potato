@@ -22,3 +22,4 @@ django-extra-views
 django-calculation
 pip-tools
 num2words
+django-autocomplete-light

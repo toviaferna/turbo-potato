@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'apps.sales',
     'crispy_forms',
     'extra_views',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

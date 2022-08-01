@@ -1,3 +1,4 @@
+
 from apps.finance.models import Persona
 from apps.inventory.models import Deposito, Item
 from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra,
@@ -8,10 +9,11 @@ from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra,
                                   OrdenCompraDetalle, PedidoCompra,
                                   PedidoCompraDetalle)
 from core.layouts import FormActions, Formset
-from core.widgets import (DateInput, FormulaInput, InvoiceNumberMaskInput,
-                          ItemCustomSelect, SumInput)
+from core.widgets import (AutocompleteSelect, DateInput, FormulaInput,
+                          InvoiceNumberMaskInput, ItemCustomSelect, SumInput)
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
+from dal import autocomplete
 from django import forms
 from django.forms.models import ModelForm
 
@@ -44,14 +46,13 @@ class PedidoCompraForm(forms.ModelForm):
     cantidad = forms.DecimalField(
         widget=SumInput('cantidad'),
     )
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.fields['cantidad'].label = False
         #self.fields['cantidad'].widget = DecimalMaskInput()
-        self.fields["proveedor"].queryset =  proveedor = Persona.objects.filter(es_proveedor=True)
+        #self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
         self.helper.layout = Layout(
             Row(
                 Column("proveedor", css_class="col-sm-6"),
@@ -77,7 +78,19 @@ class PedidoCompraForm(forms.ModelForm):
     class Meta:
         model = PedidoCompra
         fields = ['proveedor','fecha_documento', 'fecha_vencimiento', 'observacion']
-        widgets = {'fecha_documento':DateInput,'fecha_vencimiento':DateInput}
+        widgets = {
+            'fecha_documento':DateInput,
+            'fecha_vencimiento':DateInput, 
+            "proveedor":AutocompleteSelect(
+                url="proveedor_autocomplete",
+                attrs={
+                    'data-html':True, 
+                    'data-theme':'bootstrap4',
+                    'data-width':'100%',
+                    'data-height':'100%',
+                }
+            )
+        }
 
 class OrdenCompraDetalleForm(forms.ModelForm):
     subtotal = forms.DecimalField(

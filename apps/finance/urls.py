@@ -1,4 +1,5 @@
-from apps.finance import views
+from apps.finance import autocomplete, views
+from django.conf.urls import url
 from django.urls import path
 
 urlpatterns = [
@@ -30,6 +31,8 @@ urlpatterns = [
     path("persona/<int:pk>/update/", views.PersonaUpdateView.as_view(), name="persona_update"),
     path("persona/add", views.PersonaCreateView.as_view(), name="persona_create"),
     path("persona/",  views.PersonaListView.as_view(), name="persona_list"),
+    url(r'^proveedor-autocomplete/$', autocomplete.ProveedorAutocomplete.as_view(), name='proveedor_autocomplete',),
+
     path("banco/<int:pk>/delete/", views.BancoDeleteView.as_view(), name="banco_delete"),
     path("banco/<int:pk>/update/", views.BancoUpdateView.as_view(), name="banco_update"),
     path("banco/add", views.BancoCreateView.as_view(), name="banco_create"),
