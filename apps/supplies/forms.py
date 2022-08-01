@@ -230,7 +230,7 @@ class CompraDetalleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.fields["item"].queryset =  item = Item.objects.filter(tipo_item__pk=2) # sea igual a normal
+        self.fields["item"].queryset = Item.objects.filter(tipo_item__pk=2) # sea igual a normal
     class Meta:
         model = CompraDetalle
         fields = ['item', 'cantidad','costo','porcentaje_impuesto','impuesto','subtotal']
@@ -249,6 +249,7 @@ class NotaDebitoRecibidaForm(forms.ModelForm):
     total_iva = forms.DecimalField(
         widget=SumInput('impuesto'),
     )
+    comprobante = InvoiceNumberMaskInput()
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -257,7 +258,6 @@ class NotaDebitoRecibidaForm(forms.ModelForm):
         #self.fields['total'].widget = DecimalMaskInput()
         self.fields['total_iva'].label = False
         #self.fields['total_iva'].widget = DecimalMaskInput()
-        #self.fields['comprobante'].widget = InvoiceMaskInput()
         self.fields["proveedor"].queryset =  proveedor = Persona.objects.filter(es_proveedor=True)
         self.fields["compra"].queryset =  compra = Compra.objects.filter(es_vigente=True)
         self.helper.layout = Layout(
@@ -326,6 +326,7 @@ class NotaCreditoRecibidaForm(forms.ModelForm):
     total_iva = forms.DecimalField(
         widget=SumInput('impuesto'),
     )
+    comprobante = InvoiceNumberMaskInput()
     class Meta:
         model = NotaCreditoRecibida
         fields = ['fecha_documento','es_credito','comprobante','timbrado','proveedor','cuenta','deposito',"compra",'observacion']
@@ -339,7 +340,6 @@ class NotaCreditoRecibidaForm(forms.ModelForm):
         #self.fields['total'].widget = DecimalMaskInput()
         self.fields['total_iva'].label = False
         #self.fields['total_iva'].widget = DecimalMaskInput()
-        #self.fields['comprobante'].widget = InvoiceMaskInput()
         self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
         self.fields["compra"].queryset = Compra.objects.filter(es_vigente=True)
         self.helper.layout = Layout(

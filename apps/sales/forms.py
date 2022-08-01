@@ -1,8 +1,3 @@
-
-
-
-from ctypes import c_ssize_t
-
 from apps.finance.models import Persona
 from apps.sales import models
 from core import widgets
@@ -115,6 +110,7 @@ class VentaForm(ModelForm):
     total_iva = DecimalField(
         widget=widgets.SumInput('impuesto'),
     )
+    comprobante = widgets.InvoiceNumberMaskInput()
     class Meta:
         model = models.Venta
         fields = ['fecha_documento','es_credito','comprobante','cliente','cuenta','deposito','observacion']
@@ -128,7 +124,6 @@ class VentaForm(ModelForm):
         #self.fields['total'].widget = DecimalMaskInput()
         self.fields['total_iva'].label = False
         #self.fields['total_iva'].widget = DecimalMaskInput()
-        #self.fields['comprobante'].widget = InvoiceMaskInput()
         self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True) 
         self.helper.layout = Layout(
             Row(
@@ -178,6 +173,7 @@ class NotaCreditoEmitidaForm(ModelForm):
     total_iva = DecimalField(
         widget=widgets.SumInput('impuesto', ),
     )
+    comprobante = widgets.InvoiceNumberMaskInput()
     class Meta:
         model = models.NotaCreditoEmitida
         fields = ['fecha_documento','es_credito','comprobante', 'timbrado','cliente','cuenta','deposito',"venta",'observacion']
@@ -191,7 +187,6 @@ class NotaCreditoEmitidaForm(ModelForm):
         #self.fields['total'].widget = DecimalMaskInput()
         self.fields['total_iva'].label = False
         #self.fields['total_iva'].widget = DecimalMaskInput()
-        #self.fields['comprobante'].widget = InvoiceMaskInput()
         self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
         self.fields["venta"].queryset =  models.Venta.objects.filter(es_vigente=True)
         self.helper.layout = Layout(
@@ -257,6 +252,7 @@ class NotaDebitoEmitidaForm(ModelForm):
     total_iva = DecimalField(
         widget=widgets.SumInput('impuesto',),
     )
+    comprobante = widgets.InvoiceNumberMaskInput()
     class Meta:
         model = models.NotaDebitoEmitida
         fields = ['fecha_documento','es_credito','comprobante', 'timbrado','cliente','cuenta','deposito',"venta",'observacion']

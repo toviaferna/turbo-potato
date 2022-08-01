@@ -72,7 +72,7 @@ class InvoiceNumberMaskInput(forms.CharField):
     widget = MaskInput(mask={'mask': '999-999-9999999'})
 
 class SumInput(widgets.SumInput):
-    widget=DecimalMaskInput
+    #widget=DecimalMaskInput
     def __init__(self, *args, **kwargs):
         kwargs['attrs'] = {
             'readonly':True, 
