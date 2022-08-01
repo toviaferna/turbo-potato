@@ -1,21 +1,13 @@
 from calculation import widgets
 from django import forms
 
+from core.mixins import MaskInputMixin
+
 
 class DateInput(forms.DateInput):
     input_type = 'date'
     def __init__(self, attrs=None, format=None):
         super().__init__(attrs, format='%Y-%m-%d' if format is None else format)
-
-
-class SumInput(widgets.SumInput):
-
-    def __init__(self, *args, **kwargs):
-        kwargs['attrs'] = {
-            'readonly':True, 
-            'class':'text-danger text-right bg-white border-0 p-0' 
-        }
-        super().__init__(*args, **kwargs)
 
 class FormulaInput(widgets.FormulaInput):
     def __init__(self, *args, **kwargs):
@@ -26,8 +18,6 @@ class FormulaInput(widgets.FormulaInput):
         super().__init__(*args, **kwargs)
 
 class ItemCustomSelect(forms.Select):
-    class Media:
-        js = ("assets/js/lola.js",)
 
     def __init__(self, attrs=None, choices=(), modify_choices=()):
         super().__init__(attrs, choices=choices)
@@ -60,3 +50,32 @@ class MaquinariaCustomSelect(forms.Select):
             option['attrs']['data-precio-ha'] = value.instance.precio
 
         return option
+
+class MaskInput(MaskInputMixin, forms.TextInput):
+    """"""
+
+class DecimalMaskInput(MaskInputMixin, forms.TextInput):
+
+    mask = {
+        'alias': 'decimal',
+        'step': 0,
+        'autoUnmask': True,
+        'unmaskAsNumber': True,
+        'clearMaskOnLostFocus': False,
+        #'groupSeparator': ','
+    }
+
+class DecimalField(forms.DecimalField):
+    widget = DecimalMaskInput
+
+class InvoiceNumberMaskInput(forms.CharField):
+    widget = MaskInput(mask={'mask': '999-999-9999999'})
+
+class SumInput(widgets.SumInput):
+    widget=DecimalMaskInput
+    def __init__(self, *args, **kwargs):
+        kwargs['attrs'] = {
+            'readonly':True, 
+            'class':'text-danger text-right bg-white border-0 p-0' 
+        }
+        super().__init__(*args, **kwargs)

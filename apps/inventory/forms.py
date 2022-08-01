@@ -1,9 +1,9 @@
 from apps.finance.models import Persona
 from apps.inventory import models
-from core.layouts import CancelButton, FormActions, Formset, SaveButton
+from core.layouts import FormActions, Formset
 from core.widgets import DateInput
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import ButtonHolder, Column, Fieldset, Layout, Row
+from crispy_forms.layout import Column, Fieldset, Layout, Row
 from django.forms.models import ModelForm
 
 
@@ -50,16 +50,16 @@ class ItemForm(ModelForm):
         self.helper.layout = Layout(
             Row(
                 Column("descripcion"),
-                Column("codigo_barra"),
-                Column("tipo_item"),
+                Column("tipo_item", css_class="col-sm-3"),
             ),
             Row(
+                Column("codigo_barra"),
                 Column("categoria"),
                 Column("marca"),
                 Column("tipo_impuesto"),
             ),
             Row(
-                Column("precio", css_class="col-sm-4"),
+                Column("precio", css_class="col-sm-3"),
             ),
             "es_activo",
             FormActions()

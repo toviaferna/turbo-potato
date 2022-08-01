@@ -1,6 +1,7 @@
+import json
+
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models import Q
-from django.urls import reverse_lazy
 
 
 class SearchViewMixin: 
@@ -109,3 +110,34 @@ class FormsetInlinesMetaMixin(object):
         context = super().get_context_data(**kwargs)
         context['formset_inlines_meta'] = self.get_formset_inlines_meta()
         return context
+
+class MaskInputMixin:
+    mask = {}
+    class Media:
+        js = [
+            'assets/js/mask.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/inputmask.js',
+        ]
+        
+    def __init__(self, *args, **kwargs):
+        mask = kwargs.pop('mask', None)
+        attrs = kwargs.get('attrs', {})
+        if attrs is None: attrs={}
+        kwargs['attrs'] = attrs
+        super().__init__(*args, **kwargs)
+        if mask:
+            self.mask.update(mask)
+
+    def render(self, name, value, attrs=None, renderer=None):
+        attrs = attrs or {}
+        attrs['data-inputmask'] = json.dumps(self.mask).replace('{', '').replace('}', '')
+        rendered = super().render(name, value, attrs=attrs, renderer=None)
+        return rendered
+
+    def format_value(self, value):
+        """
+        Return a value as it should appear when rendered in a template.
+        """
+        if value == '' or value is None:
+            return None
+        return str(value)

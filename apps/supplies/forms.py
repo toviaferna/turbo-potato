@@ -8,7 +8,8 @@ from apps.supplies.models import (Compra, CompraDetalle, CuotaCompra,
                                   OrdenCompraDetalle, PedidoCompra,
                                   PedidoCompraDetalle)
 from core.layouts import FormActions, Formset
-from core.widgets import DateInput, FormulaInput, ItemCustomSelect, SumInput
+from core.widgets import (DateInput, FormulaInput, InvoiceNumberMaskInput,
+                          ItemCustomSelect, SumInput)
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
 from django import forms
@@ -146,12 +147,15 @@ class OrdenCompraForm(forms.ModelForm):
 
 
 class CompraForm(forms.ModelForm):
+    
     total = forms.DecimalField(
         widget=SumInput('subtotal'),
     )
     total_iva = forms.DecimalField(
         widget=SumInput('impuesto'),
     )
+
+    comprobante = InvoiceNumberMaskInput()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
