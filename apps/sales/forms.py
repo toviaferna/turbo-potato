@@ -22,11 +22,7 @@ class AperturaCajaCreateForm(ModelForm):
             Row(
                Column("observacion",),
             ),
-            
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.AperturaCaja
@@ -47,10 +43,7 @@ class ArqueoForm(ModelForm):
                 Column("observacion"),
                 Column("monto", css_class="col-sm-3"),
             ),
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
     class Meta:
         model = models.Arqueo
@@ -77,10 +70,7 @@ class TransferenciaCuentaForm(ModelForm):
                 Column("monto", css_class="col-sm-3"),
             ),
             "observacion",
-            ButtonHolder(
-                SaveButton(),
-                CancelButton(),
-            ),
+            FormActions()
         )
 
 class CuotaVentaForm(ModelForm):
