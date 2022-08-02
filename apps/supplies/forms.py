@@ -83,12 +83,6 @@ class PedidoCompraForm(forms.ModelForm):
             'fecha_vencimiento':DateInput, 
             "proveedor":AutocompleteSelect(
                 url="proveedor_autocomplete",
-                attrs={
-                    'data-html':True, 
-                    'data-theme':'bootstrap4',
-                    'data-width':'100%',
-                    'data-height':'100%',
-                }
             )
         }
 

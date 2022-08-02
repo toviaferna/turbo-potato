@@ -1,5 +1,8 @@
 import json
 
+from dal_select2 import widgets
+from django import forms
+from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models import Q
 
@@ -141,3 +144,33 @@ class MaskInputMixin:
         if value == '' or value is None:
             return None
         return str(value)
+
+
+
+class Select2WidgetMixin(widgets.Select2WidgetMixin):
+
+    @property
+    def media(self):
+        """Return JS/CSS resources for the widget."""
+        extra = '' if settings.DEBUG else '.min'
+        i18n_name = self._get_language_code()
+        i18n_file = (
+            '%s%s.js' % (widgets.I18N_PATH, i18n_name),
+        ) if i18n_name else ()
+
+        return forms.Media(
+            js=(
+                'admin/js/vendor/select2/select2.full.js',
+                'autocomplete_light/autocomplete_light%s.js' % extra,
+                'autocomplete_light/select2%s.js' % extra,
+            ) + i18n_file,
+            css={
+                'screen': (
+                    'admin/css/vendor/select2/select2%s.css' % extra,
+                    'admin/css/autocomplete.css',
+                    'autocomplete_light/select2.css',
+                    'assets/css/select2/select2-bootstrap4.css'
+                ),
+            },
+        )
+

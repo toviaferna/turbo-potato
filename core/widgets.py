@@ -1,17 +1,23 @@
 from calculation import widgets
-from dal import autocomplete
+from dal_select2 import widgets as dal_widgets
 from django import forms
 
-from core.mixins import MaskInputMixin
+from core.mixins import MaskInputMixin, Select2WidgetMixin
 
 
-class AutocompleteSelect(autocomplete.ModelSelect2):
-    class Media:
-        css = {
-            'all':('assets/css/select2/select2-bootstrap4.css',)
-        }
-    
+class ModelSelect2(dal_widgets.QuerySetSelectMixin,
+                   Select2WidgetMixin,
+                   forms.Select):
+   """"""
 
+class AutocompleteSelect(ModelSelect2):
+
+    def build_attrs(self, *args, **kwargs):
+        attrs = super().build_attrs(*args, **kwargs)
+        attrs.setdefault('data-theme', 'bootstrap4')
+        attrs.setdefault('data-html',True)
+        attrs.setdefault('data-width','100%')
+        return attrs
 
 
 
