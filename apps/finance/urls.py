@@ -32,7 +32,8 @@ urlpatterns = [
     path("persona/add", views.PersonaCreateView.as_view(), name="persona_create"),
     path("persona/",  views.PersonaListView.as_view(), name="persona_list"),
     url(r'^proveedor-autocomplete/$', autocomplete.ProveedorAutocomplete.as_view(), name='proveedor_autocomplete',),
-
+    url(r'^cliente-autocomplete/$', autocomplete.ClienteAutocomplete.as_view(), name='cliente_autocomplete',),
+    url(r'^empleado-autocomplete/$', autocomplete.EmpleadoAutocomplete.as_view(), name='empleado_autocomplete',),
     path("banco/<int:pk>/delete/", views.BancoDeleteView.as_view(), name="banco_delete"),
     path("banco/<int:pk>/update/", views.BancoUpdateView.as_view(), name="banco_update"),
     path("banco/add", views.BancoCreateView.as_view(), name="banco_create"),

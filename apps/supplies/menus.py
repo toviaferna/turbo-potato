@@ -1,12 +1,11 @@
-from menu import Menu, MenuItem
 from django.shortcuts import reverse
-
+from menu import Menu, MenuItem
 
 children = (
     MenuItem(
         "Pedidos de compras",
         reverse("pedido_compra_list"),
-        icon="far fa-circle",        
+        icon="far fa-circle",
     ),
     MenuItem(
         "Ordenes de compras",
@@ -35,4 +34,7 @@ children = (
     ),
 )
 
-Menu.add_item("suministros", MenuItem("Suministros","#",icon='fa fa-shop',weight=6, children=children))
+Menu.add_item(
+    "suministros",
+    MenuItem("Suministros", "#", icon="fa fa-shop", weight=6, children=children),
+)

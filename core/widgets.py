@@ -21,6 +21,7 @@ class AutocompleteSelect(ModelSelect2):
 
 
 
+
 class DateInput(forms.DateInput):
     input_type = 'date'
     def __init__(self, attrs=None, format=None):

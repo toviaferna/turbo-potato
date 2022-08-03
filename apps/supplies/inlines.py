@@ -1,118 +1,142 @@
-from extra_views import InlineFormSetFactory
-from apps.supplies.forms import CompraDetalleForm, CuotaCompraForm, NotaCreditoRecibidaDetalleForm, NotaDebitoRecibidaDetalleForm, OrdenCompraDetalleForm, PedidoCompraDetalleForm
-from apps.supplies.models import CompraDetalle, CuotaCompra, NotaCreditoRecibidaDetalle, NotaDebitoRecibidaDetalle, OrdenCompraDetalle, PedidoCompraDetalle
+from apps.supplies import forms, models
 from core.widgets import ItemCustomSelect
 from django.forms import widgets
+from extra_views import InlineFormSetFactory
+
 
 class PedidoCompraDetalleInline(InlineFormSetFactory):
-    model = PedidoCompraDetalle
-    form_class = PedidoCompraDetalleForm
-    factory_kwargs = { 'extra':1, }
-    fields =  ['item','cantidad']
+    model = models.PedidoCompraDetalle
+    form_class = forms.PedidoCompraDetalleForm
+    factory_kwargs = {
+        "extra": 1,
+    }
+    fields = ["item", "cantidad"]
+
 
 class OrdenCompraDetalleInline(InlineFormSetFactory):
-    model = OrdenCompraDetalle
-    form_class = OrdenCompraDetalleForm
-    factory_kwargs = { 'extra':1, }
-    fields = ['item', 'cantidad','precio','descuento']
+    model = models.OrdenCompraDetalle
+    form_class = forms.OrdenCompraDetalleForm
+    factory_kwargs = {
+        "extra": 1,
+    }
+    fields = ["item", "cantidad", "precio", "descuento"]
+
 
 class CompraDetalleInline(InlineFormSetFactory):
-    model = CompraDetalle
-    form_class = CompraDetalleForm
+    model = models.CompraDetalle
+    form_class = forms.CompraDetalleForm
     factory_kwargs = {
-        'extra':1 ,
-        'widgets':{
-            'item':ItemCustomSelect(
+        "extra": 1,
+        "widgets": {
+            "item": ItemCustomSelect(
                 attrs={
-                    'wrapper_class':'col-sm-4',
-                    'data-item-select':True,
-
+                    "wrapper_class": "col-sm-4",
+                    "data-item-select": True,
                 }
             ),
-            'cantidad':widgets.NumberInput(
+            "cantidad": widgets.NumberInput(
                 attrs={
-                    'wrapper_class':'col-sm-1',
-                    'class':'text-right',
+                    "wrapper_class": "col-sm-1",
+                    "class": "text-right",
                 }
             ),
-            'costo':widgets.NumberInput(
+            "costo": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-costo',
+                    "class": "text-right item-costo",
                 }
             ),
-            'porcentaje_impuesto':widgets.NumberInput(
+            "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-porcentaje-impuesto',
+                    "class": "text-right item-porcentaje-impuesto",
                 }
             ),
-        }
+        },
     }
-    fields = ['item', 'cantidad','costo','porcentaje_impuesto',]
+    fields = [
+        "item",
+        "cantidad",
+        "costo",
+        "porcentaje_impuesto",
+    ]
+
 
 class CuotaCompraInline(InlineFormSetFactory):
-    model = CuotaCompra
-    form_class =CuotaCompraForm
-    factory_kwargs = {'extra':1 }
-    fields = ['fecha_vencimiento','monto']
+    model = models.CuotaCompra
+    form_class = forms.CuotaCompraForm
+    factory_kwargs = {"extra": 1}
+    fields = ["fecha_vencimiento", "monto"]
+
 
 class NotaDebitoRecibidaDetalleInline(InlineFormSetFactory):
-    model = NotaDebitoRecibidaDetalle
-    form_class = NotaDebitoRecibidaDetalleForm
+    model = models.NotaDebitoRecibidaDetalle
+    form_class = forms.NotaDebitoRecibidaDetalleForm
     factory_kwargs = {
-        'extra':1,
-        'widgets':{
-            'item':ItemCustomSelect(
+        "extra": 1,
+        "widgets": {
+            "item": ItemCustomSelect(
                 attrs={
-                    'wrapper_class':'col-sm-3',
-                    'data-item-select':True,
+                    "wrapper_class": "col-sm-3",
+                    "data-item-select": True,
                 }
             ),
-            'porcentaje_impuesto':widgets.NumberInput(
+            "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-porcentaje-impuesto',
+                    "class": "text-right item-porcentaje-impuesto",
                 }
             ),
-            'valor':widgets.NumberInput(
+            "valor": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-costo',
+                    "class": "text-right item-costo",
                 }
             ),
-            'cantidad':widgets.NumberInput(
+            "cantidad": widgets.NumberInput(
                 attrs={
-                    'wrapper_class':'col-sm-1',
+                    "wrapper_class": "col-sm-1",
                 }
             ),
-        }
+        },
     }
-    fields = ['item', 'cantidad','valor','porcentaje_impuesto',]
+    fields = [
+        "item",
+        "cantidad",
+        "valor",
+        "porcentaje_impuesto",
+    ]
+
 
 class NotaCreditoRecibidaDetalleInline(InlineFormSetFactory):
-    model = NotaCreditoRecibidaDetalle
-    form_class = NotaCreditoRecibidaDetalleForm
+    model = models.NotaCreditoRecibidaDetalle
+    form_class = forms.NotaCreditoRecibidaDetalleForm
     factory_kwargs = {
-        'extra':1, 
-        'widgets':{
-            'item':ItemCustomSelect(
+        "extra": 1,
+        "widgets": {
+            "item": ItemCustomSelect(
                 attrs={
-                    'wrapper_class':'col-sm-3',
-                    'data-item-select':True,
+                    "wrapper_class": "col-sm-3",
+                    "data-item-select": True,
                 }
             ),
-            'porcentaje_impuesto':widgets.NumberInput(
+            "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-porcentaje-impuesto',
+                    "class": "text-right item-porcentaje-impuesto",
                 }
             ),
-            'valor':widgets.NumberInput(
+            "valor": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-costo',
+                    "class": "text-right item-costo",
                 }
             ),
-            'cantidad':widgets.NumberInput(
+            "cantidad": widgets.NumberInput(
                 attrs={
-                    'wrapper_class':'col-sm-1',
+                    "wrapper_class": "col-sm-1",
                 }
             ),
-        }        
+        },
     }
-    fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto',]
+    fields = [
+        "es_devolucion",
+        "item",
+        "cantidad",
+        "valor",
+        "porcentaje_impuesto",
+    ]
