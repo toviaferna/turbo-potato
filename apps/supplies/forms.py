@@ -300,7 +300,7 @@ class NotaDebitoRecibidaForm(forms.ModelForm):
                 Column("fecha_documento", css_class="col-sm-3"),
                 Column("comprobante"),
                 Column("timbrado"),
-                Column("es_credito", css_class="col-sm-3 mt-2"),
+                Column("es_credito", css_class="col-sm-3"),
             ),
             Row(
                 Column("proveedor", css_class="col-sm-6"),
@@ -415,7 +415,7 @@ class NotaCreditoRecibidaForm(forms.ModelForm):
                 Column("fecha_documento", css_class="col-sm-3"),
                 Column("comprobante"),
                 Column("timbrado"),
-                Column("es_credito", css_class="col-sm-3 mt-2"),
+                Column("es_credito", css_class="col-sm-3"),
             ),
             Row(Column("proveedor"), Column("cuenta"), Column("deposito")),
             Row(Column("compra"), Column("observacion")),
