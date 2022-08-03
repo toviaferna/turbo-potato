@@ -4,7 +4,7 @@
     {{ field }}
 {% else %}
     {% if field|is_checkbox %}
-        <div class="{% if formset_delete %}d-none{% else %}form-group{% endif %}{% if 'form-horizontal' in form_class %} row{% endif %}">
+        <div class="{% if formset_delete %}d-none{% else %}form-check mt-3{% endif %}{% if 'form-horizontal' in form_class %} row{% endif %}">
         {% if label_class %}
             <div class="{% for offset in bootstrap_checkbox_offsets %}{{ offset }} {% endfor %}{{ field_class }}">
         {% endif %}

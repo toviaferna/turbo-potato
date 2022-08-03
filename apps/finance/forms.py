@@ -52,9 +52,8 @@ class CuentaForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
-                Column("descripcion", css_class="col-md my-1"),
-                Column("es_banco", css_class="col-md my-1 mt-4"),
-                css_class="align-items-center"
+                Column("descripcion", ),
+                Column("es_banco", css_class="col-sm-2"),
             ),
             Row(
                 Column("nro_cuenta"),

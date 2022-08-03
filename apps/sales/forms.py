@@ -1,10 +1,9 @@
 from apps.finance.models import Persona
 from apps.sales import models
 from core import widgets
-from core.layouts import CancelButton, FormActions, Formset, SaveButton
+from core.layouts import FormActions, Formset
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import (HTML, ButtonHolder, Column, Field, Fieldset,
-                                 Layout, Row)
+from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
 from django.forms import (BooleanField, CharField, DecimalField, HiddenInput,
                           ModelForm)
 
@@ -120,8 +119,7 @@ class VentaForm(ModelForm):
                 Column("fecha_documento", css_class="col-sm-2"),
                 Column("comprobante",css_class="col-sm-2"),
                 Column("cliente",),
-                Column("es_credito", css_class="col-sm-2 mt-2",),
-                css_class="align-items-center"
+                Column("es_credito", css_class="col-sm-2",),
             ),
             Row(
                 Column("cuenta",),

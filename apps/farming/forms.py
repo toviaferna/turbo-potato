@@ -14,10 +14,7 @@ class FincaForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            "descripcion",
-            "dimension_ha",
-            "ubicacion",
-            layouts.FormActions()
+            "descripcion", "dimension_ha", "ubicacion", layouts.FormActions()
         )
 
     class Meta:
@@ -29,10 +26,7 @@ class CalificacionAgricolaForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout(
-            "descripcion",
-            layouts.FormActions()
-        )
+        self.helper.layout = Layout("descripcion", layouts.FormActions())
 
     class Meta:
         model = models.CalificacionAgricola
@@ -45,10 +39,7 @@ class TipoMaquinariaAgricolaForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.layout = Layout(
-            "descripcion",
-            layouts.FormActions()
-        )
+        self.helper.layout = Layout("descripcion", layouts.FormActions())
 
     class Meta:
         model = models.TipoMaquinariaAgricola
@@ -68,7 +59,7 @@ class MaquinariaAgricolaForm(ModelForm):
             ),
             "es_implemento",
             "admite_implemento",
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
     class Meta:
@@ -102,7 +93,7 @@ class TipoActividadAgricolaForm(ModelForm):
                 ),
                 css_class="col-sm-6",
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
     class Meta:
@@ -131,7 +122,7 @@ class ZafraForm(ModelForm):
                 ),
             ),
             "es_zafrinha",
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
     class Meta:
@@ -158,7 +149,7 @@ class LoteForm(ModelForm):
                     "dimension",
                 ),
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
     class Meta:
@@ -195,7 +186,7 @@ class PlanActividadZafraForm(ModelForm):
                 ),
                 Column("total", css_class="col-sm-2"),
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
     class Meta:
@@ -238,7 +229,7 @@ class ContratoForm(ModelForm):
                 Column("descripcion"),
                 Column("costo_pactado", css_class="col-sm-3"),
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
     class Meta:
@@ -318,7 +309,7 @@ class AcopioForm(ModelForm):
                     "AcopioCalificacionDetalleInline",  # , stacked=True
                 ),
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
 
@@ -419,7 +410,7 @@ class ActividadAgricolaForm(ModelForm):
                 ),
                 Column("total_item", css_class="col-sm-2"),
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
 
@@ -541,7 +532,7 @@ class LiquidacionAgricolaForm(ModelForm):
                 ),
                 Column("total", css_class="col-sm-2"),
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
 
@@ -638,7 +629,7 @@ class CierreZafraForm(ModelForm):
                 ),
                 Column("total_costo_v", css_class="col-sm-2"),
             ),
-            layouts.FormActions()
+            layouts.FormActions(),
         )
 
 
