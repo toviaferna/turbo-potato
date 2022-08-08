@@ -352,5 +352,6 @@ class LibroVentaListView(views.ListView):
     model = models.Venta
     filterset_class = filters.LibroVentaFilter
     table_class = tables.LibroVentaTable
-    search_fields = ['comprobante','cliente__razonSocial','deposito__descripcion'] #context?
+    search_fields = ['comprobante','cliente__razon_social','deposito__descripcion'] #context?
     page_title = "Libro de ventas"
+    export_page_orientation = "landscape"
