@@ -55,7 +55,7 @@ class LibroCompraFilter(FilterSet):
 
     def __init__(self, *args, **kwargs):
         super(LibroCompraFilter, self).__init__(*args, **kwargs)
-        self.form.initial["es=vigente"] = True
+        self.form.initial["es_vigente"] = True
 
     class Meta:
         model = Compra

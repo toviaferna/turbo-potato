@@ -347,3 +347,10 @@ class CobroAnnulledView(views.AnnulledView):
     model = models.Cobro
     list_url = "cobro_list"
     mensaje_anulacion = "El Cobro ya fue anulado."
+
+class LibroVentaListView(views.ListView):
+    model = models.Venta
+    filterset_class = filters.LibroVentaFilter
+    table_class = tables.LibroVentaTable
+    search_fields = ['comprobante','cliente__razonSocial','deposito__descripcion'] #context?
+    page_title = "Libro de ventas"
