@@ -1,10 +1,13 @@
 from io import BytesIO
 from re import S
-from django_tables2.export import export
-from django.utils import timezone
+
 import xhtml2pdf.pisa as pisa
-from django.template.loader import get_template
 from django.conf import settings
+from django.template.loader import get_template
+from django.utils import timezone
+from django_tables2.export import export
+
+
 class TableExport(export.TableExport):
     PDF = "pdf"
     CSV = "csv"
@@ -30,8 +33,10 @@ class TableExport(export.TableExport):
         YAML: "text/yaml; charset=utf-8"
     }  
 
-    def __init__(self, export_format, table, exclude_columns=None,page_orientation="portrait", dataset_kwargs=None):
+    def __init__(self, export_format, table, exclude_columns=None,page_orientation="portrait", report_title=None, columns=None, dataset_kwargs=None):
         self.page_orientation = page_orientation
+        self.report_title  = report_title
+        self.table = table
         super().__init__(export_format, table, exclude_columns, dataset_kwargs)
 
     @classmethod
@@ -41,15 +46,21 @@ class TableExport(export.TableExport):
         """
         return export_format is not None and export_format in TableExport.FORMATS.keys()
 
+    
+        
+
     def get_dataset_as_html(self):
         template = get_template('django_tables2/export_pdf.html')
+        for column in self.table.columns: 
+            print(column.column.exclude_from_export)
         html = template.render({
             'table': self.dataset.export("html"), 
-            'table_headers': self.dataset.headers, 
-            'table_data': self.dataset._data, 
-            'title': self.dataset.title,
+            'table_columns': self.table.columns, 
+            'table_rows': self.table.rows, 
+            'title': self.dataset.title if self.report_title is None else self.report_title,
             'today': timezone.now(),
             'orientation': self.page_orientation,
+            'report_title': self.report_title,
             'css_dir':settings.EXPORT_PDF_CSS.get(self.page_orientation)
         })
         return html
