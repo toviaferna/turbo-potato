@@ -15,16 +15,17 @@ class PedidoCompraDetalleForm(ModelForm):
         self.helper = FormHelper()
         self.fields["item"].queryset = Item.objects.filter(
             tipo_item__pk=2
-        )  # sea igual a normal
+        )
 
     class Meta:
         model = models.PedidoCompraDetalle
         fields = ["item", "cantidad"]
         widgets = {
-            "item": forms.Select(
+            "item": AutocompleteSelect(
+                url="item_autocomplete",
                 attrs={
-                    "wrapper_class": "col-sm-10",
-                }
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
+                },
             ),
             "cantidad": forms.NumberInput(
                 attrs={
