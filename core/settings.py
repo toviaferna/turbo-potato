@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'apps.inventory',
     'apps.supplies',
     'apps.sales',
+    'apps.reports',
     'crispy_forms',
     'extra_views',
     'dal',
