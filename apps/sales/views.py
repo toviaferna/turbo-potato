@@ -184,6 +184,7 @@ def download_view(request, pk):
         "invoice_css_dir": settings.EXPORT_PDF_CSS.get("invoice_css"),
         "invoice_img_dir": settings.EXPORT_PDF_CSS.get("invoice_img"),
         "detalles": detalles,
+        "empresa": settings.EMPRESA
     }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type="application/pdf")

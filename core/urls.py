@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-from django.urls import path, include  # add this
+from django.urls import include, path  # add this
 
 urlpatterns = [         # Django admin route
     path("", include("apps.authentication.urls")),
+    path("reports/", include("apps.reports.urls")), 
     path("sales/", include("apps.sales.urls")), 
     path("farming/", include("apps.farming.urls")),             # UI Kits Html files
     path("inventory/", include("apps.inventory.urls")),             # UI Kits Html files

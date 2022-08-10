@@ -19,17 +19,17 @@
             <img src="{{invoice_img_dir}}" width="100">
         </td>
         <td style="width: 60%;padding: 0;" valign="top" align="center">
-            <div class="text-center text-large">PRODUCCION AGRICOLA Y VENTA DE INSUMOS</div>
-            <div class="text-center text-xlarge text-bold">de AGRO ATARDECER S.A</div>
-            <div class="text-center text-large">Tele/Fax: 0528 222234 0961 672432</div>
-            <div class="text-center text-large">SAN MIGUEL - CAAGUAZU - PARAGUAY</div>
-            <div class="text-center text-large">RUTA PY13 - KM 40,5</div>
+            <div class="text-center text-large">{{empresa.rubro}}</div>
+            <div class="text-center text-xlarge text-bold">de {{empresa.razon_social}}</div>
+            <div class="text-center text-large">Tele/Fax: {{empresa.telefono}} - {{empresa.fax}}</div>
+            <div class="text-center text-large">{{empresa.localidad}} - {{empresa.departamento}} - {{empresa.pais}}</div>
+            <div class="text-center text-large">{{empresa.direccion}}</div>
         </td>
         <td style="width: 25%;padding: 0;">
             <div class="text-center text-bold text-large"> TIMBRADO N°:{{object.timbrado}}</div>
-            <div class="text-center">Inicio de vigencia: 01/01/2022</div>
-            <div class="text-center">Fin de vigencia: 31/12/2022</div>
-            <div class="text-center text-bold">RUC 80049687-6</div> 
+            <div class="text-center">Inicio de vigencia: {{empresa.timbrado.fecha_inicio}}</div>
+            <div class="text-center">Fin de vigencia: {{empresa.timbrado.fecha_fin}}</div>
+            <div class="text-center text-bold">RUC {{empresa.ruc}}</div> 
             <div class="text-center text-bold text-xxlarge">FACTURA</div>
             <div class="text-center text-bold text-xlarge">{{ object.comprobante }}</div>
         </td>
@@ -47,7 +47,7 @@
         <td {% if not only_detail %}style="width: 50%;vertical-align: top;padding-left: 10px;padding-top: 10px;"{% endif %}>
         <div style="padding: 0px;">Condición de venta: {% if object.es_credito %} CREDITO {% else %} CONTADO {% endif %}</div>
         <div style="padding: 0px;">Telefono: {{object.cliente.celular}}</div>
-        <div style="padding: 0px;">Vendedor: {{user}}</div>
+        <div style="padding: 0px;">Vendedor: -</div>
         <div style="padding: 0px;"> </div>
         </td>
     </tr>
@@ -102,7 +102,7 @@
         
         <tr class="">
             <td colspan="2" valign="bottom">
-            <div class="col"><p class="ml-3 mt-3">Autorización como autoimpresor y timbrado, habilitación Nro.: 350050010670</p></div>
+            <div class="col"><p class="ml-3 mt-3">Autorización como autoimpresor y timbrado, habilitación Nro.: {{empresa.timbrado.autorizacion}}</p></div>
             </td>
             <td colspan="2" style="vertical-align: bottom;">
             <div class="col text-right"><p class="ml-3 mt-3">Original: Cliente</p></div>

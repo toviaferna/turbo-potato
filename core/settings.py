@@ -78,7 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+                'core.context_processors.empresa'
             ],
             'libraries':{
                 'formset_tags': 'core.templatetags.formset_tags',
@@ -148,6 +148,25 @@ EXPORT_PDF_CSS = {
     "landscape":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/landscape.css"),
     "invoice_css":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/invoice.css"),
     "invoice_img":os.path.join(STATICFILES_DIRS[0],"assets/img/logo.png"),
+}
+
+EMPRESA = {
+    "nombre":"Agro Atardecer",
+    "razon_social":"Agro Atardecer S.A",
+    "ruc":"80049687-6",
+    "rubro":"PRODUCCION AGRICOLA Y VENTA DE INSUMOS",
+    "telefono":"0971 436141",
+    "fax":"0528 222123",
+    "pais":"PARAGUAY",
+    "departamento":"CAAGUAZU",
+    "localidad":"SAN MIGUEL",
+    "direccion":"RUTA PY13 - KM 40,5",
+    "timbrado":{
+        "numero":"12332145",
+        "fecha_inicio":"01/01/2022",
+        "fecha_fin":"31/12/2022",
+        "autorizacion":"350050010670"
+    }
 }
 
 #############################################################

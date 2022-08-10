@@ -1,14 +1,17 @@
-from django.db.models.signals import post_save,pre_save,pre_delete
-from django.dispatch import receiver
 from apps.inventory.models import ItemMovimiento
-from apps.sales.models import AperturaCaja, Cobro, CobroDetalle, CuotaVenta, NotaCreditoEmitidaDetalle, TransferenciaCuenta, Venta, VentaDetalle
+from apps.sales.models import (AperturaCaja, Cobro, CobroDetalle, CuotaVenta,
+                               NotaCreditoEmitidaDetalle, TransferenciaCuenta,
+                               Venta, VentaDetalle)
+from django.conf import settings
+from django.db.models.signals import post_save, pre_delete, pre_save
+from django.dispatch import receiver
+
 
 @receiver(pre_save, sender = Venta)
 def signal_venta_pre_guardado(sender, instance, **kwargs):
     apertura_caja = AperturaCaja.objects.filter(esta_cerrado = False).order_by('-pk')[:1].first()
-    timbrado = '12332145'
     instance.apertura_caja = apertura_caja
-    instance.timbrado = timbrado
+    instance.timbrado = settings.EMPRESA.get("timbrado").get("numero")
 
 @receiver(pre_save, sender = TransferenciaCuenta)
 def signal_transferencia_cuenta_pre_guardado(sender, instance, **kwargs):

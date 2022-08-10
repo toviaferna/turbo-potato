@@ -30,12 +30,21 @@ class TableExport(export.TableExport):
         TSV: "text/tsv; charset=utf-8",
         XLS: "application/vnd.ms-excel",
         XLSX: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        YAML: "text/yaml; charset=utf-8"
-    }  
+        YAML: "text/yaml; charset=utf-8",
+    }
 
-    def __init__(self, export_format, table, exclude_columns=None,page_orientation="portrait", report_title=None, columns=None, dataset_kwargs=None):
+    def __init__(
+        self,
+        export_format,
+        table,
+        exclude_columns=None,
+        page_orientation="portrait",
+        report_title=None,
+        columns=None,
+        dataset_kwargs=None,
+    ):
         self.page_orientation = page_orientation
-        self.report_title  = report_title
+        self.report_title = report_title
         self.table = table
         super().__init__(export_format, table, exclude_columns, dataset_kwargs)
 
@@ -46,34 +55,38 @@ class TableExport(export.TableExport):
         """
         return export_format is not None and export_format in TableExport.FORMATS.keys()
 
-    
-        
-
     def get_dataset_as_html(self):
-        template = get_template('django_tables2/export_pdf.html')
-        for column in self.table.columns: 
+        template = get_template("django_tables2/export_pdf.html")
+        for column in self.table.columns:
             print(column.column.exclude_from_export)
-        html = template.render({
-            'table': self.dataset.export("html"), 
-            'table_columns': self.table.columns, 
-            'table_rows': self.table.rows, 
-            'title': self.dataset.title if self.report_title is None else self.report_title,
-            'today': timezone.now(),
-            'orientation': self.page_orientation,
-            'report_title': self.report_title,
-            'css_dir':settings.EXPORT_PDF_CSS.get(self.page_orientation)
-        })
+        html = template.render(
+            {
+                "table_columns": self.table.columns,
+                "table_rows": self.table.rows,
+                "title": self.dataset.title
+                if self.report_title is None
+                else self.report_title,
+                "empresa": settings.EMPRESA,
+                "today": timezone.now(),
+                "orientation": self.page_orientation,
+                "report_title": self.report_title,
+                "css_dir": settings.EXPORT_PDF_CSS.get(self.page_orientation),
+            }
+        )
         return html
 
     def response(self, filename=None):
-        filename = f"{self.dataset.title.upper()}_{timezone.now().strftime('%d%m%Y_%H%M%S')}.{self.format}".replace(" ","_")
+        filename = f"{self.dataset.title.upper()}_{timezone.now().strftime('%d%m%Y_%H%M%S')}.{self.format}".replace(
+            " ", "_"
+        )
         return super().response(filename)
-    
 
     def export(self):
         if self.format == self.PDF:
             response = BytesIO()
-            pdf = pisa.pisaDocument(BytesIO(self.get_dataset_as_html().encode("UTF-8")), response)
+            pdf = pisa.pisaDocument(
+                BytesIO(self.get_dataset_as_html().encode("UTF-8")), response
+            )
             data = response.getvalue()
         elif self.format == self.HTML:
             return self.get_dataset_as_html().encode("UTF-8")
