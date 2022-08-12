@@ -22,7 +22,7 @@ class PedidoCompraDetalleForm(ModelForm):
         fields = ["item", "cantidad"]
         widgets = {
             "item": AutocompleteSelect(
-                url="item_autocomplete",
+                url="producto_normal_autocomplete",
                 attrs={
                     "data-placeholder": "Buscar por descripcion, categoria, marca.",
                 },

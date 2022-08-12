@@ -1,6 +1,9 @@
 from calculation import widgets
 from dal_select2 import widgets as dal_widgets
 from django import forms
+from django.conf import settings
+from django.utils import formats
+from django.utils.formats import get_format
 
 from core.mixins import MaskInputMixin, Select2WidgetMixin
 
@@ -82,11 +85,30 @@ class DecimalMaskInput(MaskInputMixin, forms.TextInput):
         'autoUnmask': True,
         'unmaskAsNumber': True,
         'clearMaskOnLostFocus': False,
-        #'groupSeparator': ','
+        'groupSeparator': get_format('THOUSAND_SEPARATOR'),
+        'radixPoint': get_format('DECIMAL_SEPARATOR'),
     }
 
+
+
 class DecimalField(forms.DecimalField):
-    widget = DecimalMaskInput
+    
+    def __init__(self, max_digits=10, decimal_places=2, *args, **kwargs):
+        self.widget = DecimalMaskInput()
+        super(DecimalField, self).__init__(*args, **kwargs)
+        self.widget.max_digits = max_digits
+        self.widget.decimal_places = decimal_places
+        self.localize = True
+
+    def to_python(self, value):
+        old_settings = settings.USE_L10N, settings.USE_THOUSAND_SEPARATOR
+
+        settings.USE_L10N = True
+        settings.USE_THOUSAND_SEPARATOR = True
+        result = super().to_python(value)
+         # restore original values
+        settings.USE_L10N, settings.USE_THOUSAND_SEPARATOR = old_settings
+        return result
 
 class InvoiceNumberMaskInput(forms.CharField):
     widget = MaskInput(mask={'mask': '999-999-9999999'})

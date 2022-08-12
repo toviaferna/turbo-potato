@@ -62,8 +62,23 @@ urlpatterns = [
         "ajuste-stock/", views.AjusteStockListView.as_view(), name="ajuste_stock_list"
     ),
     url(
-        r"^item-autocomplete/$",
-        autocomplete.ItemAutocomplete.as_view(),
-        name="item_autocomplete",
+        r"^producto-autocomplete/$",
+        autocomplete.ProductoAutocomplete.as_view(),
+        name="producto_autocomplete",
+    ),
+    url(
+        r"^producto-normal-autocomplete/$",
+        autocomplete.ProductoNormalAutocomplete.as_view(),
+        name="producto_normal_autocomplete",
+    ),
+    url(
+        r"^producto-normal-autocomplete/$",
+        autocomplete.ProductoNormalAutocomplete.as_view(),
+        name="producto_normal_autocomplete",
+    ),
+    url(
+        r"^producto-agricola-autocomplete/$",
+        autocomplete.ProductoAgricolaAutocomplete.as_view(),
+        name="producto_agricola_autocomplete",
     ),
 ]
