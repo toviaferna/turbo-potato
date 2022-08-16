@@ -249,7 +249,6 @@ class CompraDetalleForm(forms.ModelForm):
         ),
         label="Impuesto",
     )
-    item = ItemCustomSelect()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

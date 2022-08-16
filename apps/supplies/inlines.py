@@ -1,5 +1,5 @@
 from apps.supplies import forms, models
-from core.widgets import ItemCustomSelect
+from core.widgets import AutocompleteSelect, ItemCustomSelect
 from django.forms import widgets
 from extra_views import InlineFormSetFactory
 
@@ -28,11 +28,13 @@ class CompraDetalleInline(InlineFormSetFactory):
     factory_kwargs = {
         "extra": 1,
         "widgets": {
-            "item": ItemCustomSelect(
+            "item": AutocompleteSelect(
+                url="producto_normal_autocomplete",
                 attrs={
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
                     "wrapper_class": "col-sm-4",
                     "data-item-select": True,
-                }
+                },
             ),
             "cantidad": widgets.NumberInput(
                 attrs={

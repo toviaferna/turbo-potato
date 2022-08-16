@@ -12,11 +12,13 @@ $(document).ready(function () {
     });
 
     function checkItem($item) {
+
       let $detalleContainer = $item.closest("tr");
       let $itemCosto = $detalleContainer.find(".item-costo");
       let $itemPorcentajeIva = $detalleContainer.find(".item-porcentaje-impuesto");
-      let $precioCosto = $item.find('option:selected').attr('data-costo');
-      let $impuestoPorcentaje = $item.find('option:selected').attr('data-tipo-impuesto-porcentaje');
+      let $precioCosto = $($item.find('option:selected').text()).data("costo");
+      let $impuestoPorcentaje = $($item.find('option:selected').text()).data("tipoImpuestoPorcentaje")
+
       $itemCosto.val($precioCosto);
       $itemPorcentajeIva.val($impuestoPorcentaje);
     }
