@@ -19,7 +19,6 @@ class AutocompleteSelect(ModelSelect2):
         attrs = super().build_attrs(*args, **kwargs)
         attrs.setdefault('data-theme', 'bootstrap4')
         attrs.setdefault('data-html',True)
-        attrs.setdefault('data-width','100%')
         return attrs
 
 

@@ -93,18 +93,17 @@ class OrdenCompraDetalleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.fields["item"].queryset = Item.objects.filter(
-            tipo_item__pk=2
-        )  # sea igual a normal
 
     class Meta:
         model = models.OrdenCompraDetalle
         fields = ["item", "cantidad", "precio", "descuento"]
         widgets = {
-            "item": forms.Select(
+            "item": AutocompleteSelect(
+                url="producto_normal_autocomplete",
                 attrs={
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
                     "wrapper_class": "col-sm-4",
-                }
+                },
             ),
             "cantidad": forms.NumberInput(
                 attrs={
