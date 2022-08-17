@@ -2,7 +2,7 @@ from apps.inventory.models import Deposito, Item
 from apps.supplies import models
 from core.layouts import FormActions, Formset
 from core.widgets import (AutocompleteSelect, DateInput, FormulaInput,
-                          InvoiceNumberMaskInput, ItemCustomSelect, SumInput)
+                          InvoiceNumberMaskInput, SumInput)
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
 from django import forms
@@ -10,30 +10,14 @@ from django.forms.models import ModelForm
 
 
 class PedidoCompraDetalleForm(ModelForm):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.fields["item"].queryset = Item.objects.filter(
-            tipo_item__pk=2
-        )
 
     class Meta:
         model = models.PedidoCompraDetalle
         fields = ["item", "cantidad"]
-        widgets = {
-            "item": AutocompleteSelect(
-                url="producto_normal_autocomplete",
-                attrs={
-                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
-                },
-            ),
-            "cantidad": forms.NumberInput(
-                attrs={
-                    "wrapper_class": "col-sm-2",
-                    "class": "text-right",
-                }
-            ),
-        }
 
 
 class PedidoCompraForm(forms.ModelForm):
@@ -359,7 +343,6 @@ class NotaDebitoRecibidaDetalleForm(forms.ModelForm):
         ),
         label="Impuesto",
     )
-    item = ItemCustomSelect()
 
     class Meta:
         model = models.NotaDebitoRecibidaDetalle
@@ -450,7 +433,6 @@ class NotaCreditoRecibidaDetalleForm(forms.ModelForm):
         ),
         label="Impuesto",
     )
-    item = ItemCustomSelect()
 
     class Meta:
         model = models.NotaCreditoRecibidaDetalle

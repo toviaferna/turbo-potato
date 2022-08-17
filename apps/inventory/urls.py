@@ -72,11 +72,6 @@ urlpatterns = [
         name="producto_normal_autocomplete",
     ),
     url(
-        r"^producto-normal-autocomplete/$",
-        autocomplete.ProductoNormalAutocomplete.as_view(),
-        name="producto_normal_autocomplete",
-    ),
-    url(
         r"^producto-agricola-autocomplete/$",
         autocomplete.ProductoAgricolaAutocomplete.as_view(),
         name="producto_agricola_autocomplete",

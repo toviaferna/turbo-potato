@@ -1,6 +1,6 @@
 from apps.supplies import forms, models
-from core.widgets import AutocompleteSelect, ItemCustomSelect
-from django.forms import widgets
+from core.widgets import AutocompleteSelect
+from django.forms import NumberInput, widgets
 from extra_views import InlineFormSetFactory
 
 
@@ -9,6 +9,22 @@ class PedidoCompraDetalleInline(InlineFormSetFactory):
     form_class = forms.PedidoCompraDetalleForm
     factory_kwargs = {
         "extra": 1,
+        "widgets": {
+            "cantidad": NumberInput(
+                attrs={
+                    "class": "text-right",
+                    "wrapper_class": "col-sm-2",
+                }
+            ),
+            "item": AutocompleteSelect(
+                url="producto_normal_autocomplete",
+                attrs={
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
+                    "wrapper_class": "col-sm-10",
+                    "data-width": "100%",
+                },
+            ),
+        }
     }
     fields = ["item", "cantidad"]
 
@@ -75,11 +91,13 @@ class NotaDebitoRecibidaDetalleInline(InlineFormSetFactory):
     factory_kwargs = {
         "extra": 1,
         "widgets": {
-            "item": ItemCustomSelect(
+            "item": AutocompleteSelect(
+                url="producto_autocomplete",
                 attrs={
-                    "wrapper_class": "col-sm-3",
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
+                    "wrapper_class": "col-sm-4",
                     "data-item-select": True,
-                }
+                },
             ),
             "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
@@ -112,11 +130,13 @@ class NotaCreditoRecibidaDetalleInline(InlineFormSetFactory):
     factory_kwargs = {
         "extra": 1,
         "widgets": {
-            "item": ItemCustomSelect(
+            "item": AutocompleteSelect(
+                url="producto_autocomplete",
                 attrs={
-                    "wrapper_class": "col-sm-3",
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
+                    "wrapper_class": "col-sm-4",
                     "data-item-select": True,
-                }
+                },
             ),
             "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
