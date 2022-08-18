@@ -59,6 +59,8 @@ class ItemCustomSelect(forms.Select):
 
         return option
 
+
+
 class MaquinariaCustomSelect(forms.Select):
     
     def __init__(self, attrs=None, choices=(), modify_choices=()):

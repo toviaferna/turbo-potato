@@ -68,12 +68,12 @@ urlpatterns = [
     ),
     url(
         r"^producto-normal-autocomplete/$",
-        autocomplete.ProductoNormalAutocomplete.as_view(),
+        autocomplete.ProductoAutocomplete.as_view(tipo_item=2),
         name="producto_normal_autocomplete",
     ),
     url(
         r"^producto-agricola-autocomplete/$",
-        autocomplete.ProductoAgricolaAutocomplete.as_view(),
+        autocomplete.ProductoAutocomplete.as_view(tipo_item=1),
         name="producto_agricola_autocomplete",
     ),
 ]

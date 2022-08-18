@@ -24,7 +24,6 @@ class PedidoCompraForm(forms.ModelForm):
     cantidad = forms.DecimalField(
         widget=SumInput("cantidad"),
     )
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()

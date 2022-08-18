@@ -165,7 +165,12 @@ class NotaCreditoEmitidaForm(ModelForm):
     class Meta:
         model = models.NotaCreditoEmitida
         fields = ['fecha_documento','es_credito','comprobante', 'timbrado','cliente','cuenta','deposito',"venta",'observacion']
-        widgets = {'fecha_documento':widgets.DateInput}
+        widgets = {
+            'fecha_documento':widgets.DateInput,
+            "cliente": widgets.AutocompleteSelect(
+                url="cliente_autocomplete",
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -227,7 +232,7 @@ class NotaCreditoEmitidaDetalleForm(ModelForm):
         widget=widgets.FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)',),
         label = "Impuesto"
     )
-    item = widgets.ItemCustomSelect()
+
     class Meta:
         model = models.NotaCreditoEmitidaDetalle
         fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']

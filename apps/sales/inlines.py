@@ -1,5 +1,5 @@
 from apps.sales import forms, models
-from core.widgets import ItemCustomSelect
+from core.widgets import AutocompleteSelect, ItemCustomSelect
 from django.forms import widgets
 from extra_views import InlineFormSetFactory
 
@@ -7,114 +7,146 @@ from extra_views import InlineFormSetFactory
 class CuotaVentaInline(InlineFormSetFactory):
     model = models.CuotaVenta
     form_class = forms.CuotaVentaForm
-    factory_kwargs = {'extra':1 }
-    fields = ['fecha_vencimiento','monto']
+    factory_kwargs = {"extra": 1}
+    fields = ["fecha_vencimiento", "monto"]
+
 
 class VentaDetalleInline(InlineFormSetFactory):
     model = models.VentaDetalle
     form_class = forms.VentaDetalleForm
     factory_kwargs = {
-        'extra':1,
-        'widgets':{
-            'item':ItemCustomSelect(
+        "extra": 1,
+        "widgets": {
+            "item": ItemCustomSelect(
                 attrs={
-                    'wrapper_class':'col-sm-4',
-                    'data-item-select':True,
+                    "wrapper_class": "col-sm-4",
+                    "data-item-select": True,
                 }
             ),
-            'porcentaje_impuesto':widgets.NumberInput(
+            "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-porcentaje-impuesto',
+                    "class": "text-right item-porcentaje-impuesto",
                 }
             ),
-            'precio':widgets.NumberInput(
+            "precio": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-precio',
+                    "class": "text-right item-precio",
                 }
             ),
-            'cantidad':widgets.NumberInput(
+            "cantidad": widgets.NumberInput(
                 attrs={
-                    'wrapper_class':'col-sm-1',
+                    "wrapper_class": "col-sm-1",
                 }
             ),
-        }
-
+        },
     }
-    fields = ['item', 'cantidad','precio','porcentaje_impuesto',]
+    fields = [
+        "item",
+        "cantidad",
+        "precio",
+        "porcentaje_impuesto",
+    ]
+
 
 class NotaDebitoEmitidaDetalleInline(InlineFormSetFactory):
     model = models.NotaDebitoEmitidaDetalle
     form_class = forms.NotaDebitoEmitidaDetalleForm
     factory_kwargs = {
-        'extra':1,
-        'widgets':{
-            'item':ItemCustomSelect(
+        "extra": 1,
+        "widgets": {
+            "item": ItemCustomSelect(
                 attrs={
-                    'wrapper_class':'col-sm-3',
-                    'data-item-select':True,
+                    "wrapper_class": "col-sm-3",
+                    "data-item-select": True,
                 }
             ),
-            'porcentaje_impuesto':widgets.NumberInput(
+            "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-porcentaje-impuesto',
+                    "class": "text-right item-porcentaje-impuesto",
                 }
             ),
-            'valor':widgets.NumberInput(
+            "valor": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-precio',
+                    "class": "text-right item-precio",
                 }
             ),
-            'cantidad':widgets.NumberInput(
+            "cantidad": widgets.NumberInput(
                 attrs={
-                    'wrapper_class':'col-sm-1',
+                    "wrapper_class": "col-sm-1",
                 }
             ),
-        }  
-    
+        },
     }
-    fields = ['item', 'cantidad','valor','porcentaje_impuesto',]
+    fields = [
+        "item",
+        "cantidad",
+        "valor",
+        "porcentaje_impuesto",
+    ]
 
 
 class NotaCreditoEmitidaDetalleInline(InlineFormSetFactory):
     model = models.NotaCreditoEmitidaDetalle
     form_class = forms.NotaCreditoEmitidaDetalleForm
     factory_kwargs = {
-        'extra':1,
-        'widgets':{
-            'item':ItemCustomSelect(
+        "extra": 1,
+        "widgets": {
+            "item": AutocompleteSelect(
+                url="producto_autocomplete",
                 attrs={
-                    'wrapper_class':'col-sm-3',
-                    'data-item-select':True,
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
+                    "wrapper_class": "col-sm-4",
+                    "data-item-select": True,
+                },
+            ),
+            "porcentaje_impuesto": widgets.NumberInput(
+                attrs={
+                    "class": "text-right item-porcentaje-impuesto",
                 }
             ),
-            'porcentaje_impuesto':widgets.NumberInput(
+            "valor": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-porcentaje-impuesto',
+                    "class": "text-right item-precio",
                 }
             ),
-            'valor':widgets.NumberInput(
+            "cantidad": widgets.NumberInput(
                 attrs={
-                    'class':'text-right item-precio',
+                    "wrapper_class": "col-sm-1",
                 }
             ),
-            'cantidad':widgets.NumberInput(
-                attrs={
-                    'wrapper_class':'col-sm-1',
-                }
-            ),
-        } 
-    
+        },
     }
-    fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto',]
+    fields = [
+        "es_devolucion",
+        "item",
+        "cantidad",
+        "valor",
+        "porcentaje_impuesto",
+    ]
+
 
 class CobroDetalleInline(InlineFormSetFactory):
     model = models.CobroDetalle
     form_class = forms.CobroDetalleForm
-    factory_kwargs = {'extra':1 }
-    fields = ['cuota_venta','check','comprobante', 'monto', 'saldo','cancelacion',]
+    factory_kwargs = {"extra": 1}
+    fields = [
+        "cuota_venta",
+        "check",
+        "comprobante",
+        "monto",
+        "saldo",
+        "cancelacion",
+    ]
+
 
 class CobroMedioInline(InlineFormSetFactory):
     model = models.CobroMedio
     form_class = forms.CobroMedioForm
-    factory_kwargs = {'extra':1}
-    fields = ['numero','comprobante','medio_cobro','observacion','monto',]
+    factory_kwargs = {"extra": 1}
+    fields = [
+        "numero",
+        "comprobante",
+        "medio_cobro",
+        "observacion",
+        "monto",
+    ]
