@@ -16,16 +16,22 @@ class AperturaCajaCreateForm(ModelForm):
             Row(
                 Column("empleado"),
                 Column("monto_inicio", css_class="col-sm-3"),
-                
             ),
             Row(
-               Column("observacion",),
+                Column(
+                    "observacion",
+                ),
             ),
-            FormActions()
+            FormActions(),
         )
+
     class Meta:
         model = models.AperturaCaja
-        fields = ["empleado","observacion","monto_inicio",]
+        fields = [
+            "empleado",
+            "observacion",
+            "monto_inicio",
+        ]
 
 
 class ArqueoForm(ModelForm):
@@ -42,17 +48,26 @@ class ArqueoForm(ModelForm):
                 Column("observacion"),
                 Column("monto", css_class="col-sm-3"),
             ),
-            FormActions()
+            FormActions(),
         )
+
     class Meta:
         model = models.Arqueo
-        fields = ['empleado','apertura_caja','observacion','monto']
+        fields = ["empleado", "apertura_caja", "observacion", "monto"]
+
 
 class TransferenciaCuentaForm(ModelForm):
     class Meta:
         model = models.TransferenciaCuenta
-        fields = ['fecha','comprobante','cuenta_salida','cuenta_entrada','monto','observacion']
-        widgets = {'fecha':widgets.DateInput}
+        fields = [
+            "fecha",
+            "comprobante",
+            "cuenta_salida",
+            "cuenta_entrada",
+            "monto",
+            "observacion",
+        ]
+        widgets = {"fecha": widgets.DateInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -62,111 +77,74 @@ class TransferenciaCuentaForm(ModelForm):
             Row(
                 Column("fecha", css_class="col-sm-3"),
                 Column("comprobante", css_class="col-sm-3"),
-                Column("cuenta_salida",),
+                Column(
+                    "cuenta_salida",
+                ),
             ),
             Row(
-                Column("cuenta_entrada",),
+                Column(
+                    "cuenta_entrada",
+                ),
                 Column("monto", css_class="col-sm-3"),
             ),
             "observacion",
-            FormActions()
+            FormActions(),
         )
+
 
 class CuotaVentaForm(ModelForm):
     class Meta:
         model = models.CuotaVenta
-        fields = ['fecha_vencimiento','monto']
-        widgets = { 'fecha_vencimiento':widgets.DateInput }
+        fields = ["fecha_vencimiento", "monto"]
+        widgets = {"fecha_vencimiento": widgets.DateInput}
+
 
 class VentaDetalleForm(ModelForm):
     subtotal = DecimalField(
-        widget=widgets.FormulaInput('precio*cantidad'),
-        label = "Subtotal"
+        widget=widgets.FormulaInput("precio*cantidad"), label="Subtotal"
     )
     impuesto = DecimalField(
-        widget=widgets.FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)'),
-        label = "Impuesto"
+        widget=widgets.FormulaInput(
+            "parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)"
+        ),
+        label="Impuesto",
     )
+
     class Meta:
-        model = models.VentaDetalle 
-        fields = ['item', 'cantidad','precio','porcentaje_impuesto','impuesto','subtotal']
-        #widgets = {'cantidad':DecimalMaskInput,'precio':DecimalMaskInput,'porcentaje_impuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+        model = models.VentaDetalle
+        fields = [
+            "item",
+            "cantidad",
+            "precio",
+            "porcentaje_impuesto",
+            "impuesto",
+            "subtotal",
+        ]
+        # widgets = {'cantidad':DecimalMaskInput,'precio':DecimalMaskInput,'porcentaje_impuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+
 
 class VentaForm(ModelForm):
     total = DecimalField(
-        widget=widgets.SumInput('subtotal'),
+        widget=widgets.SumInput("subtotal"),
     )
     total_iva = DecimalField(
-        widget=widgets.SumInput('impuesto'),
+        widget=widgets.SumInput("impuesto"),
     )
     comprobante = widgets.InvoiceNumberMaskInput()
+
     class Meta:
         model = models.Venta
-        fields = ['fecha_documento','es_credito','comprobante','cliente','cuenta','deposito','observacion']
-        widgets = {'fecha_documento':widgets.DateInput}
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = False
-        self.fields['total'].label = False
-        #self.fields['total'].widget = DecimalMaskInput()
-        self.fields['total_iva'].label = False
-        #self.fields['total_iva'].widget = DecimalMaskInput()
-        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True) 
-        self.helper.layout = Layout(
-            Row(
-                Column("fecha_documento", css_class="col-sm-2"),
-                Column("comprobante",css_class="col-sm-2"),
-                Column("cliente",),
-                Column("es_credito", css_class="col-sm-2",),
-            ),
-            Row(
-                Column("cuenta",),
-                Column("deposito",),
-                Column("observacion",),
-            ),
-            Fieldset(
-                u'Detalles',
-                Formset(
-                    "VentaDetalleInline"
-                ), 
-                Formset(
-                    "CuotaVentaInline",
-                    stacked=True,
-                    stacked_class="col-sm-3"
-                ), 
-            ),
-            Row(
-                Column(
-                    HTML("<label> Total: </label>"),
-                    css_class="text-right col-sm-9 mt-2",
-                ),
-                Column("total", css_class="col-sm-2"),
-            ),
-            Row(
-                Column(
-                    HTML("<label> Total impuesto: </label>"),
-                    css_class="text-right col-sm-9 mt-2",
-                ),
-                Column("total_iva", css_class="col-sm-2"),
-            ),
-            FormActions(),
-        )
-
-class NotaCreditoEmitidaForm(ModelForm):
-    total = DecimalField(
-        widget=widgets.SumInput('subtotal', ),
-    )
-    total_iva = DecimalField(
-        widget=widgets.SumInput('impuesto', ),
-    )
-    comprobante = widgets.InvoiceNumberMaskInput()
-    class Meta:
-        model = models.NotaCreditoEmitida
-        fields = ['fecha_documento','es_credito','comprobante', 'timbrado','cliente','cuenta','deposito',"venta",'observacion']
+        fields = [
+            "fecha_documento",
+            "es_credito",
+            "comprobante",
+            "cliente",
+            "cuenta",
+            "deposito",
+            "observacion",
+        ]
         widgets = {
-            'fecha_documento':widgets.DateInput,
+            "fecha_documento": widgets.DateInput,
             "cliente": widgets.AutocompleteSelect(
                 url="cliente_autocomplete",
             ),
@@ -176,35 +154,38 @@ class NotaCreditoEmitidaForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.fields['total'].label = False
-        #self.fields['total'].widget = DecimalMaskInput()
-        self.fields['total_iva'].label = False
-        #self.fields['total_iva'].widget = DecimalMaskInput()
-        self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
-        self.fields["venta"].queryset =  models.Venta.objects.filter(es_vigente=True)
+        self.fields["total"].label = False
+        # self.fields['total'].widget = DecimalMaskInput()
+        self.fields["total_iva"].label = False
+        # self.fields['total_iva'].widget = DecimalMaskInput()
+        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True)
         self.helper.layout = Layout(
             Row(
-                Column("fecha_documento",),
-                Column("comprobante",),
-                Column("timbrado",),
-                Column("es_credito",),
+                Column("fecha_documento", css_class="col-sm-2"),
+                Column("comprobante", css_class="col-sm-2"),
+                Column(
+                    "cliente",
+                ),
+                Column(
+                    "es_credito",
+                    css_class="col-sm-2",
+                ),
             ),
             Row(
-                Column("cliente",),
-                Column("cuenta",),
-                Column("deposito",),
-               
-            ),
-            Row(
-                Column("venta", css_class="col-sm-4"),
-                Column("observacion",),
+                Column(
+                    "cuenta",
+                ),
+                Column(
+                    "deposito",
+                ),
+                Column(
+                    "observacion",
+                ),
             ),
             Fieldset(
-                u'Detalles',
-                Formset(
-                    "NotaCreditoEmitidaDetalleInline"#, stacked=True
-                ), 
-                
+                "Detalles",
+                Formset("VentaDetalleInline"),
+                Formset("CuotaVentaInline", stacked=True, stacked_class="col-sm-3"),
             ),
             Row(
                 Column(
@@ -223,66 +204,208 @@ class NotaCreditoEmitidaForm(ModelForm):
             FormActions(),
         )
 
+
+class NotaCreditoEmitidaForm(ModelForm):
+    total = DecimalField(
+        widget=widgets.SumInput(
+            "subtotal",
+        ),
+    )
+    total_iva = DecimalField(
+        widget=widgets.SumInput(
+            "impuesto",
+        ),
+    )
+    comprobante = widgets.InvoiceNumberMaskInput()
+
+    class Meta:
+        model = models.NotaCreditoEmitida
+        fields = [
+            "fecha_documento",
+            "es_credito",
+            "comprobante",
+            "timbrado",
+            "cliente",
+            "cuenta",
+            "deposito",
+            "venta",
+            "observacion",
+        ]
+        widgets = {
+            "fecha_documento": widgets.DateInput,
+            "cliente": widgets.AutocompleteSelect(
+                url="cliente_autocomplete",
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+        self.fields["total"].label = False
+        # self.fields['total'].widget = DecimalMaskInput()
+        self.fields["total_iva"].label = False
+        # self.fields['total_iva'].widget = DecimalMaskInput()
+        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True)
+        self.fields["venta"].queryset = models.Venta.objects.filter(es_vigente=True)
+        self.helper.layout = Layout(
+            Row(
+                Column(
+                    "fecha_documento",
+                ),
+                Column(
+                    "comprobante",
+                ),
+                Column(
+                    "timbrado",
+                ),
+                Column(
+                    "es_credito",
+                ),
+            ),
+            Row(
+                Column(
+                    "cliente",
+                ),
+                Column(
+                    "cuenta",
+                ),
+                Column(
+                    "deposito",
+                ),
+            ),
+            Row(
+                Column("venta", css_class="col-sm-4"),
+                Column(
+                    "observacion",
+                ),
+            ),
+            Fieldset(
+                "Detalles",
+                Formset("NotaCreditoEmitidaDetalleInline"),  # , stacked=True
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total", css_class="col-sm-2"),
+            ),
+            Row(
+                Column(
+                    HTML("<label> Total impuesto: </label>"),
+                    css_class="text-right col-sm-9 mt-2",
+                ),
+                Column("total_iva", css_class="col-sm-2"),
+            ),
+            FormActions(),
+        )
+
+
 class NotaCreditoEmitidaDetalleForm(ModelForm):
     subtotal = DecimalField(
-        widget=widgets.FormulaInput('valor*cantidad'),
-        label = "SubTotal"
+        widget=widgets.FormulaInput("valor*cantidad"), label="SubTotal"
     )
     impuesto = DecimalField(
-        widget=widgets.FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)',),
-        label = "Impuesto"
+        widget=widgets.FormulaInput(
+            "parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)",
+        ),
+        label="Impuesto",
     )
 
     class Meta:
         model = models.NotaCreditoEmitidaDetalle
-        fields = ['es_devolucion','item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']
-        #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+        fields = [
+            "es_devolucion",
+            "item",
+            "cantidad",
+            "valor",
+            "porcentaje_impuesto",
+            "impuesto",
+            "subtotal",
+        ]
+        # widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+
 
 class NotaDebitoEmitidaForm(ModelForm):
     total = DecimalField(
-        widget=widgets.SumInput('subtotal',),
+        widget=widgets.SumInput(
+            "subtotal",
+        ),
     )
     total_iva = DecimalField(
-        widget=widgets.SumInput('impuesto',),
+        widget=widgets.SumInput(
+            "impuesto",
+        ),
     )
     comprobante = widgets.InvoiceNumberMaskInput()
+
     class Meta:
         model = models.NotaDebitoEmitida
-        fields = ['fecha_documento','es_credito','comprobante', 'timbrado','cliente','cuenta','deposito',"venta",'observacion']
-        widgets = {'fecha_documento':widgets.DateInput}
+        fields = [
+            "fecha_documento",
+            "es_credito",
+            "comprobante",
+            "timbrado",
+            "cliente",
+            "cuenta",
+            "deposito",
+            "venta",
+            "observacion",
+        ]
+        widgets = {
+            "fecha_documento": widgets.DateInput,
+            "cliente": widgets.AutocompleteSelect(
+                url="cliente_autocomplete",
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.fields['total'].label = False
-        #self.fields['total'].widget = DecimalMaskInput()
-        self.fields['total_iva'].label = False
-        #self.fields['total_iva'].widget = DecimalMaskInput()
-        #self.fields['comprobante'].widget = InvoiceMaskInput()
-        self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
-        self.fields["venta"].queryset =  models.Venta.objects.filter(es_vigente=True)
+        self.fields["total"].label = False
+        # self.fields['total'].widget = DecimalMaskInput()
+        self.fields["total_iva"].label = False
+        # self.fields['total_iva'].widget = DecimalMaskInput()
+        # self.fields['comprobante'].widget = InvoiceMaskInput()
+        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True)
+        self.fields["venta"].queryset = models.Venta.objects.filter(es_vigente=True)
         self.helper.layout = Layout(
             Row(
-                Column("fecha_documento",),
-                Column("comprobante",),
-                Column("timbrado",),
-                Column("es_credito",),
+                Column(
+                    "fecha_documento",
+                ),
+                Column(
+                    "comprobante",
+                ),
+                Column(
+                    "timbrado",
+                ),
+                Column(
+                    "es_credito",
+                ),
             ),
             Row(
-                Column("cliente",),
-                Column("cuenta",),
-                Column("deposito",),
+                Column(
+                    "cliente",
+                ),
+                Column(
+                    "cuenta",
+                ),
+                Column(
+                    "deposito",
+                ),
             ),
             Row(
                 Column("venta", css_class="col-sm-4"),
-                Column("observacion",),
+                Column(
+                    "observacion",
+                ),
             ),
             Fieldset(
-                u'Detalles',
-                Formset(
-                    "NotaDebitoEmitidaDetalleInline"#, stacked=True
-                ), 
+                "Detalles",
+                Formset("NotaDebitoEmitidaDetalleInline"),  # , stacked=True
             ),
             Row(
                 Column(
@@ -301,62 +424,91 @@ class NotaDebitoEmitidaForm(ModelForm):
             FormActions(),
         )
 
+
 class NotaDebitoEmitidaDetalleForm(ModelForm):
     subtotal = DecimalField(
-        widget=widgets.FormulaInput('valor*cantidad', ),
-        label = "SubTotal"
+        widget=widgets.FormulaInput(
+            "valor*cantidad",
+        ),
+        label="SubTotal",
     )
     impuesto = DecimalField(
-        widget=widgets.FormulaInput('parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)',),
-        label = "Impuesto"
+        widget=widgets.FormulaInput(
+            "parseFloat((subtotal*porcentaje_impuesto)/(porcentaje_impuesto+100)).toFixed(0)",
+        ),
+        label="Impuesto",
     )
 
-    item = widgets.ItemCustomSelect()
     class Meta:
         model = models.NotaDebitoEmitidaDetalle
-        fields = ['item', 'cantidad','valor','porcentaje_impuesto','impuesto','subtotal']
-        #widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+        fields = [
+            "item",
+            "cantidad",
+            "valor",
+            "porcentaje_impuesto",
+            "impuesto",
+            "subtotal",
+        ]
+        # widgets = {'cantidad':DecimalMaskInput,'valor':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'impuesto':DecimalMaskInput,'subtotal':DecimalMaskInput}
+
 
 class CobroForm(ModelForm):
 
     total = DecimalField(
-        widget=widgets.SumInput('cancelacion', ),
+        widget=widgets.SumInput(
+            "cancelacion",
+        ),
     )
+
     class Meta:
         model = models.Cobro
-        fields = ['fecha_documento','comprobante','cliente','cuenta','cobrador','monto_a_saldar','observacion']
-        widgets = {'fecha_documento':widgets.DateInput,}#'monto_a_saldar':DecimalMaskInput}
+        fields = [
+            "fecha_documento",
+            "comprobante",
+            "cliente",
+            "cuenta",
+            "cobrador",
+            "monto_a_saldar",
+            "observacion",
+        ]
+        widgets = {
+            "fecha_documento": widgets.DateInput,
+        }  #'monto_a_saldar':DecimalMaskInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
-        self.fields['total'].label = False
-        #self.fields['total'].widget = DecimalMaskInput()
-        #self.fields['comprobante'].widget = InvoiceMaskInput()
-        self.fields["cliente"].queryset =  Persona.objects.filter(es_cliente=True)
-        self.fields["cobrador"].queryset =  Persona.objects.filter(es_empleado=True)
+        self.fields["total"].label = False
+        # self.fields['total'].widget = DecimalMaskInput()
+        # self.fields['comprobante'].widget = InvoiceMaskInput()
+        self.fields["cliente"].queryset = Persona.objects.filter(es_cliente=True)
+        self.fields["cobrador"].queryset = Persona.objects.filter(es_empleado=True)
         self.helper.layout = Layout(
             Row(
                 Column("fecha_documento", css_class="col-sm-3"),
                 Column("comprobante", css_class="col-sm-3"),
-                Column("cliente",),
+                Column(
+                    "cliente",
+                ),
             ),
             Row(
-                Column("cobrador",),
-                Column("cuenta",),
+                Column(
+                    "cobrador",
+                ),
+                Column(
+                    "cuenta",
+                ),
                 Column("monto_a_saldar", css_class="col-sm-3"),
             ),
             "observacion",
             Fieldset(
-                u'Detalle',
-                Formset(
-                    "CobroDetalleInline"#, stacked=True
-                ), 
+                "Detalle",
+                Formset("CobroDetalleInline"),  # , stacked=True
                 Formset(
                     "CobroMedioInline",
                     stacked=True,
-                ), 
+                ),
             ),
             Row(
                 Column(
@@ -365,26 +517,29 @@ class CobroForm(ModelForm):
                 ),
                 Column("total", css_class="col-sm-2"),
             ),
-            FormActions()
+            FormActions(),
         )
 
+
 class CobroDetalleForm(ModelForm):
-    check = BooleanField(label='Sel.',required=False)
-    comprobante = CharField(max_length=30,disabled = True)
-    monto = DecimalField(max_digits=15,disabled = True)
-    saldo = DecimalField(max_digits=15,disabled = True)
+    check = BooleanField(label="Sel.", required=False)
+    comprobante = CharField(max_length=30, disabled=True)
+    monto = DecimalField(max_digits=15, disabled=True)
+    saldo = DecimalField(max_digits=15, disabled=True)
+
     class Meta:
         model = models.CobroDetalle
-        fields = ['cuota_venta','check','cancelacion']
+        fields = ["cuota_venta", "check", "cancelacion"]
         widgets = {
             #'cancelacion':DecimalMaskInput,
             #'monto':DecimalMaskInput,
             #'saldo':DecimalMaskInput,
-            'cuota_venta': HiddenInput
+            "cuota_venta": HiddenInput
         }
+
 
 class CobroMedioForm(ModelForm):
     class Meta:
         model = models.CobroMedio
-        fields = ['numero','comprobante','medio_cobro','observacion','monto']
-        #widgets = {'cancelacion':DecimalMaskInput}
+        fields = ["numero", "comprobante", "medio_cobro", "observacion", "monto"]
+        # widgets = {'cancelacion':DecimalMaskInput}

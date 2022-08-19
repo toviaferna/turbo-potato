@@ -25,14 +25,11 @@ class ProductoAutocomplete(autocomplete.Select2QuerySetView):
     
     def get_queryset(self):
 
-        print(self.tipo_item)
-
         fields = ["codigo_barra", "descripcion", "marca__descripcion", "categoria__descripcion"]
         if not self.request.user.is_authenticated:
             return models.Item.objects.none()
         qs = models.Item.objects.all().filter(es_activo=True)
         if self.tipo_item:
-            print("HEREEE")
             qs = models.Item.objects.all().filter(es_activo=True, tipo_item__pk=self.tipo_item)
         or_condition = Q()
         

@@ -1,5 +1,5 @@
 from apps.sales import forms, models
-from core.widgets import AutocompleteSelect, ItemCustomSelect
+from core.widgets import AutocompleteSelect
 from django.forms import widgets
 from extra_views import InlineFormSetFactory
 
@@ -17,11 +17,13 @@ class VentaDetalleInline(InlineFormSetFactory):
     factory_kwargs = {
         "extra": 1,
         "widgets": {
-            "item": ItemCustomSelect(
+            "item": AutocompleteSelect(
+                url="producto_autocomplete",
                 attrs={
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
                     "wrapper_class": "col-sm-4",
                     "data-item-select": True,
-                }
+                },
             ),
             "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
@@ -54,11 +56,13 @@ class NotaDebitoEmitidaDetalleInline(InlineFormSetFactory):
     factory_kwargs = {
         "extra": 1,
         "widgets": {
-            "item": ItemCustomSelect(
+            "item": AutocompleteSelect(
+                url="producto_autocomplete",
                 attrs={
+                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
                     "wrapper_class": "col-sm-3",
                     "data-item-select": True,
-                }
+                },
             ),
             "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
