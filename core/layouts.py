@@ -28,18 +28,19 @@ class CancelButton(BaseButton):
 
 class SaveButton(layout.Submit):
     def __init__(self, *args, **kwargs):
-        self.field_classes = "btn btn-primary"
-        kwargs["name"] = "Guardar"
-        kwargs["value"] = "Guardar"
+        kwargs['name'] = "Guardar"
+        kwargs['value'] = "Guardar"
         super().__init__(*args, **kwargs)
+        self.field_classes = "btn btn-outline-primary"
+
 
 
 class NextButton(layout.Submit):
     def __init__(self, *args, **kwargs):
-        self.field_classes = "btn btn-primary"
         kwargs["name"] = "Siguiente"
         kwargs["value"] = "Siguiente"
         super().__init__(*args, **kwargs)
+        self.field_classes = "btn btn-primary"
 
 
 class Formset(layout.LayoutObject):
