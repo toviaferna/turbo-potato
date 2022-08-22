@@ -31,7 +31,7 @@ class SaveButton(layout.Submit):
         kwargs['name'] = "Guardar"
         kwargs['value'] = "Guardar"
         super().__init__(*args, **kwargs)
-        self.field_classes = "btn btn-outline-primary"
+        self.field_classes = "btn btn-primary"
 
 
 
