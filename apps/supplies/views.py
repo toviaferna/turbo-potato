@@ -10,7 +10,6 @@ class PedidoCompraListView(views.ListView):
         "proveedor__razon_social",
     ]
     update_url = "pedido_compra_update"
-    delete_url = None
     create_url = "pedido_compra_create"
 
 
@@ -34,7 +33,6 @@ class OrdenCompraListView(views.ListView):
     search_fields = [
         "proveedor__razon_social",
     ]
-    update_url = None
     delete_url = "orden_compra_delete"
     create_url = "orden_compra_create"
 
@@ -61,7 +59,6 @@ class CompraListView(views.ListView):
         "timbrado",
         "observacion",
     ]
-    update_url = None
     delete_url = "compra_delete"
     create_url = "compra_create"
 
@@ -132,7 +129,6 @@ class NotaDebitoRecibidaListView(views.ListView):
         "compra__comprobante",
     ]
     list_url = "nota_debito_recibida_list"
-    update_url = None
     delete_url = "nota_debito_recibida_delete"
     create_url = "nota_debito_recibida_create"
 
@@ -164,7 +160,6 @@ class NotaCreditoRecibidaListView(views.ListView):
         "compra__comprobante",
     ]
     list_url = "nota_credito_recibida_list"
-    update_url = None
     delete_url = "nota_credito_recibida_delete"
     create_url = "nota_credito_recibida_create"
 
@@ -189,9 +184,6 @@ class LibroCompraListView(views.ListView):
     model = models.Compra
     filterset_class = LibroCompraFilter
     table_class = tables.LibroCompraTable
-    update_url = None
-    delete_url = None
-    create_url = None
     page_title = "Libro de compras"
     search_fields = ["comprobante", "proveedor__razon_social", "deposito__descripcion"]
     export_page_orientation = "landscape"
