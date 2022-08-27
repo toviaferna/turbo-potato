@@ -2,7 +2,10 @@ from apps.finance.models import Persona
 from apps.sales import models
 from apps.supplies.models import NotaDebitoRecibida
 from core.tables import AccionTable, DetailTable
-from core.tables.columns import BooleanColumn, NumericColumn
+from core.tables.columns import (BooleanColumn, NumericColumn,
+                                 TotalNumericColumn)
+from django.urls.base import reverse
+from django.utils.html import format_html
 
 
 class AperturaCajaTable(AccionTable):
@@ -52,7 +55,17 @@ class TransferenciaCuentaTable(AccionTable):
 
 class VentaTable(AccionTable):
     total = NumericColumn(verbose_name="Total")
-
+    es_vigente = BooleanColumn()
+    
+    def render_comprobante(self, value, record):
+        if record.es_vigente:
+            return format_html(
+                '<a href="{}">{}</a>',
+                reverse("venta_detail", kwargs={"pk": record.pk}),
+                value,
+            )
+        else:
+            return value
     class Meta:
         model = models.Venta
         fields = (
@@ -65,13 +78,39 @@ class VentaTable(AccionTable):
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
         order_by = "-fecha_documento"
 
+class VentaDetalleTable(DetailTable):
+    cantidad = NumericColumn()
+    costo = NumericColumn()
+    subtotal = TotalNumericColumn(verbose_name="Subtotal")
+    subtotal_iva = TotalNumericColumn(verbose_name="Subtotal IVA")
+    porcentaje_impuesto = NumericColumn()
 
+    class Meta:
+        model = models.VentaDetalle
+        fields = (
+            "item__pk",
+            "cantidad",
+            "item__descripcion",
+            "costo",
+            "porcentaje_impuesto",
+            "subtotal",
+            "subtotal_iva",
+        )
+
+
+class CuotaVentaTable(DetailTable):
+    monto = TotalNumericColumn()
+
+    class Meta:
+        model = models.CuotaVenta
+        fields = ("fecha_vencimiento", "monto")
+        
 class NotaCreditoEmitidaTable(AccionTable):
 
     total = NumericColumn(
         verbose_name="Total",
     )
-
+    es_vigente = BooleanColumn()
     class Meta:
         model = models.NotaCreditoEmitida
         fields = (
@@ -88,7 +127,7 @@ class NotaCreditoEmitidaTable(AccionTable):
 class NotaDebitoEmitidaTable(AccionTable):
 
     total = NumericColumn(verbose_name="Total")
-
+    es_vigente = BooleanColumn()
     class Meta:
         model = NotaDebitoRecibida
         fields = (

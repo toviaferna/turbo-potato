@@ -38,6 +38,11 @@ urlpatterns = [
         name="transferencia_cuenta_list",
     ),
     path(
+        "venta/<int:pk>/detail/",
+        views.VentaDetailView.as_view(),
+        name="venta_detail",
+    ),
+    path(
         "venta/<int:pk>/delete", views.VentaAnnulledView.as_view(), name="venta_delete"
     ),
     path("venta/<int:pk>/download", views.download_view, name="venta_download"),

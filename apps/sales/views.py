@@ -171,6 +171,19 @@ class VentaAnnulledView(views.AnnulledView):
     list_url = "venta_list"
     mensaje_anulacion = "La Venta ya fue anulado."
 
+class VentaDetailView(views.DetailView):
+    model = models.Venta
+    list_url = "venta_list"
+    template_name = "sales/detail_venta.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        venta_detalle = models.VentaDetalle.objects.filter(venta=self.object)
+        cuota_venta = models.CuotaVenta.objects.filter(venta=self.object)
+        context["venta_detalle"] = tables.VentaDetalleTable(venta_detalle)
+        context["cuota_venta"] = tables.CuotaVentaTable(cuota_venta)
+        return context
+
 
 def download_view(request, pk):
     """"""

@@ -1,6 +1,7 @@
 from apps.finance.models import Cuenta, Persona
 from apps.inventory.models import Deposito, Item
 from django.db import models
+from django.utils.html import format_html
 
 
 # Create your models here.
@@ -18,7 +19,7 @@ class AperturaCaja(models.Model):
 
     def __str__(self):
         date_time = self.fecha_hora_registro.strftime("%m/%d/%Y, %H:%M:%S")
-        return date_time+" Obs: "+self.observacion
+        return f"{date_time} Obs: {self.observacion}"
 
 class Arqueo(models.Model):
     empleado = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Empleado")
@@ -39,6 +40,14 @@ class Venta(models.Model):
     es_credito = models.BooleanField(verbose_name="Es Crédito?",default=True)
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     observacion = models.CharField(max_length=300, null=True, blank=True,verbose_name="Observación")
+
+    def get_es_vigente_display(self):
+        value = "fa-check" if self.es_vigente else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
+
+    def get_es_credito_display(self):
+        value = "fa-check" if self.es_credito else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
 
     @property
     def total(self):
@@ -87,9 +96,20 @@ class VentaDetalle(models.Model):
     costo = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo")
     precio = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Precio")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
+    
     @property
     def subtotal(self):
         return round(self.precio * self.cantidad)
+    
+    @property
+    def subtotal_iva(self):
+        if self.porcentaje_impuesto == 5:
+            return round((self.costo * self.cantidad) / 21)
+        elif self.porcentaje_impuesto == 10:
+            return round((self.costo * self.cantidad) / 11)
+        else:
+            return round((self.costo * self.cantidad) * 0)
+
     @property
     def imponible5(self):
         if self.porcentaje_impuesto == 5:

@@ -112,11 +112,7 @@ class Compra(models.Model):
 
     def __str__(self):
         return (
-            self.comprobante
-            + " - "
-            + self.timbrado
-            + " - "
-            + self.proveedor.razon_social
+            f"{self.comprobante} - {self.timbrado} - {self.proveedor.razon_social}"
         )
 
     @property
