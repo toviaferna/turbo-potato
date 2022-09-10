@@ -12,8 +12,8 @@ class PersonaForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
-                Column("razon_social"),
                 Column("documento"),
+                Column("razon_social"),
             ),
             Row(
                 Column("celular"),
@@ -30,6 +30,7 @@ class PersonaForm(ModelForm):
             ),
             FormActions()
         )
+
     class Meta:
         model = models.Persona
         fields = ['razon_social',"documento","celular","pais","localidad","direccion","es_cliente","es_proveedor","es_empleado"]

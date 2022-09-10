@@ -150,6 +150,8 @@ class PersonaCreateView(views.CreateView):
     form_class = forms.PersonaForm
     model = models.Persona
     list_url = "persona_list"
+    class Media:
+        js = ("assets/js/documento.js",)
 
 class PersonaUpdateView(views.UpdateView):
     form_class = forms.PersonaForm
