@@ -1,7 +1,8 @@
-from apps.finance.models import Cuenta, Persona
-from apps.inventory.models import Deposito, Item
 from django.db import models
 from django.utils.html import format_html
+
+from apps.finance.models import Cuenta, Persona
+from apps.inventory.models import Deposito, Item
 
 
 # Create your models here.
@@ -119,6 +120,7 @@ class VentaDetalle(models.Model):
             return valor
         else:
             return 0
+            
     @property
     def imponible10(self):
         if self.porcentaje_impuesto == 10:

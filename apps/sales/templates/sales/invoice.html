@@ -70,7 +70,7 @@
         {% for det in detalles %}
 
         <tr class="text-center">
-        <td  class="border-light-1 text-center" style="width: 10%;">{{det.item.codigo_barra}}</td>
+        <td  class="border-light-1 text-center" style="width: 10%;">{{det.item.pk}}</td>
         <td  class="border-light-1 text-center" style="width: 10%;">{{det.cantidad}}</td>
         <td  class="border-light-1 text-left" style="width: 40%;">{{det.item.descripcion}}</td>
         <td  class="border-light-1 text-right" style="width: 10%;">{{det.precio|intcomma}}</td>

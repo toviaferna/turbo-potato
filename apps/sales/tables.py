@@ -1,11 +1,12 @@
+from django.urls.base import reverse
+from django.utils.html import format_html
+
 from apps.finance.models import Persona
 from apps.sales import models
 from apps.supplies.models import NotaDebitoRecibida
 from core.tables import AccionTable, DetailTable
 from core.tables.columns import (BooleanColumn, NumericColumn,
                                  TotalNumericColumn)
-from django.urls.base import reverse
-from django.utils.html import format_html
 
 
 class AperturaCajaTable(AccionTable):
@@ -80,7 +81,7 @@ class VentaTable(AccionTable):
 
 class VentaDetalleTable(DetailTable):
     cantidad = NumericColumn()
-    costo = NumericColumn()
+    precio = NumericColumn()
     subtotal = TotalNumericColumn(verbose_name="Subtotal")
     subtotal_iva = TotalNumericColumn(verbose_name="Subtotal IVA")
     porcentaje_impuesto = NumericColumn()
@@ -91,7 +92,7 @@ class VentaDetalleTable(DetailTable):
             "item__pk",
             "cantidad",
             "item__descripcion",
-            "costo",
+            "precio",
             "porcentaje_impuesto",
             "subtotal",
             "subtotal_iva",

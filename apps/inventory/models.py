@@ -1,5 +1,6 @@
-from apps.finance.models import Persona, TipoImpuesto
 from django.db import models
+
+from apps.finance.models import Persona, TipoImpuesto
 
 
 class Marca(models.Model):
