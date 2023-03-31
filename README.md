@@ -38,3 +38,47 @@ Acceda a la aplicación web en el navegador:
 http://127.0.0.1:8000/
 ```
 
+@startuml
+!define AWSPUML https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v19.0/dist
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v0.8/sprites
+!define PERSONURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v0.8/sprites/person
+!define COUNTRYURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v0.8/sprites/country
+!define CITYURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v0.8/sprites/city
+
+!includeurl AWSPUML/Database/AmazonRDS.puml
+!includeurl SPRITESURL/cicon.puml
+!includeurl PERSONURL/person.puml
+!includeurl COUNTRYURL/country.puml
+!includeurl CITYURL/city.puml
+
+skinparam monochrome true
+
+entity "Person" as person {
+  + id : int <<generated>>
+  --
+  + name : string
+  + last_name : string
+  + email : string
+  + phone : string
+  --
+  o country_id : int
+}
+
+entity "Country" as country {
+  + id : int <<generated>>
+  --
+  + name : string
+  --
+  o city_id : int
+}
+
+entity "City" as city {
+  + id : int <<generated>>
+  --
+  + name : string
+}
+
+person -d- country : belongs to
+country -d- city : contains
+@enduml
+
