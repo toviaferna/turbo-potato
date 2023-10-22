@@ -1,9 +1,10 @@
-from menu import Menu, MenuItem
 from django.shortcuts import reverse
+from menu import Menu, MenuItem
+
 children = (
     MenuItem(
         "Items",
-        reverse("item_list"),
+        "#",
         icon="far fa-circle",
     ),
     MenuItem(
@@ -13,12 +14,12 @@ children = (
     ),
     MenuItem(
         "Categorias",
-        reverse("categoria_list"),
+        "#",
         icon="far fa-circle",
     ),
     MenuItem(
         "Depositos",
-        reverse("deposito_list"),
+        "#",
         icon="far fa-circle",
     ),
     #MenuItem(
@@ -28,7 +29,7 @@ children = (
     #),
     MenuItem(
         "Ajustes de stock",
-        reverse("ajuste_stock_list"),
+        "#",
         icon="far fa-circle",
     ),
 )

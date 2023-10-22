@@ -4,44 +4,40 @@ from menu import Menu, MenuItem
 children = (
     MenuItem(
         "Apertura/Cierre de cajas",
-        reverse("apertura_caja_list"),
+        "#",
         icon="far fa-circle",        
     ),
     MenuItem(
         "Arqueos",
-        reverse("arqueo_list"),
+        "#",
         icon="far fa-circle",        
     ),
     MenuItem(
         "Transferencia de cuentas",
-        reverse("transferencia_cuenta_list"),
+        "#",
         icon="far fa-circle",        
     ),
     MenuItem(
         "Ventas",
-        reverse("venta_list"),
+        "#",
         icon="far fa-circle",
     ),
     MenuItem(
         "Notas de débito emitidas",
-        reverse("nota_debito_emitida_list"),
+        "#",
         icon="far fa-circle",
     ),
     MenuItem(
         "Notas de crédito emitidas",
-        reverse("nota_credito_emitida_list"),
+        "#",
         icon="far fa-circle",
     ),
     MenuItem(
         "Cobros",
-        reverse("cobro_list"),
+        "#",
         icon="far fa-circle",
     ),
-    MenuItem(
-        "Libro de ventas",
-        reverse("libro_venta_list"),
-        icon="far fa-circle",
-    ),
+
 )
 
 Menu.add_item("ventas", MenuItem("Ventas","#",icon='fa fa-cart-shopping',weight=7, children=children))

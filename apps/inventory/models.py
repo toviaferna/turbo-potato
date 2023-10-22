@@ -4,7 +4,7 @@ from apps.finance.models import Persona, TipoImpuesto
 
 
 class Marca(models.Model):
-    descripcion = models.CharField(max_length=200, verbose_name="Descripción")
+    descripcion = models.CharField(max_length=200, verbose_name="Descripción", unique=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
