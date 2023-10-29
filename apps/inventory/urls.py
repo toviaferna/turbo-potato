@@ -1,6 +1,7 @@
-from apps.inventory import autocomplete, views
 from django.conf.urls import url
 from django.urls import path
+
+from apps.inventory import autocomplete, views
 
 urlpatterns = [
     path(
@@ -35,10 +36,10 @@ urlpatterns = [
     ),
     path("categoria/add", views.CategoriaCreateView.as_view(), name="categoria_create"),
     path("categoria/", views.CategoriaListView.as_view(), name="categoria_list"),
-    # path("tipo-item/<int:pk>/delete/", views.TipoItemDeleteView.as_view(), name="tipo_item_delete"),
-    # path("tipo-item/<int:pk>/update/", views.TipoItemUpdateView.as_view(), name="tipo_item_update"),
-    # path("tipo-item/add", views.TipoItemCreateView.as_view(), name="tipo_item_create"),
-    # path("tipo-item/",  views.TipoItemListView.as_view(), name="tipo_item_list"),
+    path("tipo-item/<int:pk>/delete/", views.TipoItemDeleteView.as_view(), name="tipo_item_delete"),
+    path("tipo-item/<int:pk>/update/", views.TipoItemUpdateView.as_view(), name="tipo_item_update"),
+    path("tipo-item/add", views.TipoItemCreateView.as_view(), name="tipo_item_create"),
+    path("tipo-item/",  views.TipoItemListView.as_view(), name="tipo_item_list"),
     path("item/<int:pk>/delete/", views.ItemDeleteView.as_view(), name="item_delete"),
     path("item/<int:pk>/update/", views.ItemUpdateView.as_view(), name="item_update"),
     path("item/add", views.ItemCreateView.as_view(), name="item_create"),
