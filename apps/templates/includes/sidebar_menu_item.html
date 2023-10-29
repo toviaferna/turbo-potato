@@ -1,4 +1,3 @@
-
 {% for item in menu %}
 
 {% if item.visible %}
@@ -23,16 +22,7 @@
         {% if item.children %}
             <ul class="nav nav-treeview">
                 {% for menuitem in item.children %}
-                    {% if menuitem.visible %}
-                        <li class="nav-item">
-                            <a href="{{ menuitem.url }}" class="nav-link {% if menuitem.selected %} active {% else %}{% endif %}">
-                                {% if menuitem.icon %}
-                                    <i class="nav-icon {{ menuitem.icon }} {% if menuitem.selected %} text-success {% endif %} "></i>
-                                {% endif %}
-                                <p>{{ menuitem.title }}</p>
-                            </a>
-                        </li>
-                    {% endif %}
+                    {% include "includes/menu_item.html" with menuitem=menuitem %}
                 {% endfor %}
             </ul>
         {% endif %}

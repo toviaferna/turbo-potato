@@ -1,0 +1,23 @@
+{% if menuitem.visible %}
+
+
+
+
+
+    <li class="nav-item {% if menuitem.children %} has-treeview {% endif %} 
+    {% if menuitem.children %}{% for child in menuitem.children %}{% if child.visible %}{% if child.selected %} menu-open {% endif %}{% endif %}{% endfor %}{% endif %}">
+        <a href="{{ menuitem.url }}" class="nav-link {% if menuitem.selected %} active {% endif %}">
+            {% if menuitem.icon %}
+                <i class="nav-icon {{ menuitem.icon }} {% if menuitem.selected %} text-success {% endif %} "></i>
+            {% endif %}
+            <p>{{ menuitem.title }}</p> {% if menuitem.children %}<i class="right fas fa-angle-left"></i>{% endif %}
+        </a>
+        {% if menuitem.children %}
+            <ul class="nav nav-treeview">
+                {% for child in menuitem.children %}
+                    {% include "includes/menu_item.html" with menuitem=child %}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endif %}
