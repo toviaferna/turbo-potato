@@ -9,6 +9,11 @@ class MarcaTable(AccionTable):
         model = Marca
         fields = ("descripcion",)
 
+class UnidadMedidaTable(AccionTable):
+    class Meta:
+        model = Marca
+        fields = ("descripcion","simbolo")
+
 class CategoriaTable(AccionTable):
     class Meta:
         model = Categoria

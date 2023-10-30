@@ -1,12 +1,12 @@
 from apps.inventory.filters import DepositoFilter, ItemFilter
 from apps.inventory.forms import (AjusteStockForm, CategoriaForm, DepositoForm, ItemForm,
-                                  MarcaForm, TipoItemForm)
+                                  MarcaForm, TipoItemForm, UnidadMedidaForm)
 from apps.inventory.inlines import AjusteStockDetalleInline
 from apps.inventory.tables import (AjusteStockTable, CategoriaTable, DepositoTable, ItemTable,
-                                   MarcaTable, TipoItemTable)
+                                   MarcaTable, TipoItemTable, UnidadMedidaTable)
 from core.views import CreateView, DeleteView, ListView, UpdateView
 
-from .models import AjusteStock, Categoria, Deposito, Item, Marca, TipoItem
+from .models import AjusteStock, Categoria, Deposito, Item, Marca, TipoItem, UnidadMedida
 
 
 # FINCA
@@ -31,6 +31,28 @@ class MarcaUpdateView(UpdateView):
 class MarcaDeleteView(DeleteView):
     model = Marca
     list_url = "marca_list"
+
+class UnidadMedidaListView(ListView):
+    model = UnidadMedida
+    table_class = UnidadMedidaTable
+    search_fields = ['descripcion',]
+    update_url = 'unidad_medida_update'
+    delete_url = 'unidad_medida_delete'
+    create_url = 'unidad_medida_create'
+
+class UnidadMedidaCreateView(CreateView):
+    form_class = UnidadMedidaForm
+    model = UnidadMedida
+    list_url = "unidad_medida_list"
+
+class UnidadMedidaUpdateView(UpdateView):
+    form_class = UnidadMedidaForm
+    model = UnidadMedida
+    list_url = "unidad_medida_list"
+
+class UnidadMedidaDeleteView(DeleteView):
+    model = UnidadMedida
+    list_url = "unidad_medida_list"
 
 class CategoriaListView(ListView):
     model = Categoria

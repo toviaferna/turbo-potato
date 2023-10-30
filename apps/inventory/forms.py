@@ -19,6 +19,19 @@ class MarcaForm(ModelForm):
         model = models.Marca
         fields = ['descripcion',]
 
+class UnidadMedidaForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            "descripcion",
+            "simbolo",
+            FormActions()
+        )
+    class Meta:
+        model = models.UnidadMedida
+        fields = ['descripcion','simbolo']
+
 class CategoriaForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -59,6 +72,7 @@ class ItemForm(ModelForm):
                 Column("tipo_impuesto"),
             ),
             Row(
+                Column("unidad_medida"),
                 Column("precio", css_class="col-sm-3"),
                 Column("es_activo", css_class="col-sm-3"),
             ),
@@ -66,7 +80,7 @@ class ItemForm(ModelForm):
         )
     class Meta:
         model = models.Item
-        fields = ['descripcion','codigo_barra','tipo_item','categoria','marca','tipo_impuesto','precio','es_activo']
+        fields = ['descripcion','codigo_barra','tipo_item','categoria','marca','tipo_impuesto','precio','es_activo', 'unidad_medida']
 
 class DepositoForm(ModelForm):
     def __init__(self, *args, **kwargs):

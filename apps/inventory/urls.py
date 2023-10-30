@@ -5,6 +5,14 @@ from apps.inventory import autocomplete, views
 
 urlpatterns = [
     path(
+        "unidad-medida/<int:pk>/delete/", views.UnidadMedidaDeleteView.as_view(), name="unidad_medida_delete"
+    ),
+    path(
+        "unidad-medida/<int:pk>/update/", views.UnidadMedidaUpdateView.as_view(), name="unidad_medida_update"
+    ),
+    path("unidad-medida/add", views.UnidadMedidaCreateView.as_view(), name="unidad_medida_create"),
+    path("unidad-medida/", views.UnidadMedidaListView.as_view(), name="unidad_medida_list"),
+    path(
         "marca/<int:pk>/delete/", views.MarcaDeleteView.as_view(), name="marca_delete"
     ),
     path(

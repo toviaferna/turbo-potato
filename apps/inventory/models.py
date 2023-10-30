@@ -33,6 +33,13 @@ class TipoItem(models.Model):
     def __str__(self):
         return self.descripcion
 
+class UnidadMedida(models.Model):
+    descripcion = models.CharField(max_length=45, verbose_name="Descripcion")
+    simbolo = models.CharField(max_length=15, verbose_name="Abreviatura")
+    
+    def __str__(self):
+        return self.descripcion
+
 class Item(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion")
     precio = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Precio")
@@ -45,6 +52,7 @@ class Item(models.Model):
     tipo_item = models.ForeignKey(TipoItem, on_delete=models.DO_NOTHING, verbose_name="Tipo Item")
     tipo_impuesto = models.ForeignKey(TipoImpuesto, on_delete=models.DO_NOTHING, verbose_name="Tipo Imp.")
     created = models.DateTimeField(auto_now_add=True)
+    unidad_medida = models.ForeignKey(UnidadMedida, on_delete=models.DO_NOTHING, verbose_name="Unidad de medida", default=None)
 
     def __str__(self):
         return self.descripcion
