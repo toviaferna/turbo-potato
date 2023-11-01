@@ -27,11 +27,6 @@ children = (
         reverse("nota_credito_recibida_list"),
         icon="far fa-circle",
     ),
-    MenuItem(
-        "Libro de compras",
-        reverse("libro_compra_list"),
-        icon="far fa-circle",
-    ),
 )
 
 Menu.add_item(

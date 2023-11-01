@@ -1,12 +1,7 @@
 from django.shortcuts import reverse
 from menu import Menu, MenuItem
 
-children = (
-    MenuItem(
-        "Items",
-        reverse("item_list"),
-        icon="far fa-circle",
-    ),
+referencial = (
     MenuItem(
         "Marcas",
         reverse("marca_list"),
@@ -23,9 +18,22 @@ children = (
         icon="far fa-circle",
     ),
     MenuItem(
+        "Unidad de Medida",
+        reverse("unidad_medida_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
         "Tipos de items",
         reverse("tipo_item_list"),
-        icon="fas fa-boxes-stacked",
+        icon="far fa-circle",
+    ),
+)
+
+children = (
+    MenuItem(
+        "Items",
+        reverse("item_list"),
+        icon="far fa-circle",
     ),
     MenuItem(
         "Ajustes de stock",
@@ -33,10 +41,11 @@ children = (
         icon="far fa-circle",
     ),
     MenuItem(
-        "Unidad de Medida",
-        reverse("unidad_medida_list"),
+        "Referenciales",
+        "#",
         icon="far fa-circle",
-    ),
+        children=referencial
+    )
 )
 
 Menu.add_item("inventario", MenuItem("Inventario","#",icon='fa fa-warehouse',weight=6, children=children))

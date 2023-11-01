@@ -1,16 +1,7 @@
-from menu import Menu, MenuItem
 from django.shortcuts import reverse
-children = (
-    MenuItem(
-        "Personas",
-        reverse("persona_list"),
-        icon="far fa-circle",
-    ),
-    MenuItem(
-        "Cuentas",
-        reverse("cuenta_list"),
-        icon="far fa-circle",
-    ),
+from menu import Menu, MenuItem
+
+referencial = (
     MenuItem(
         "Bancos",
         reverse("banco_list"),
@@ -40,6 +31,25 @@ children = (
         "Tipos de impuesto",
         reverse("impuesto_list"),
         icon="far fa-circle",
+    ),
+)
+
+children = (
+    MenuItem(
+        "Personas",
+        reverse("persona_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Cuentas",
+        reverse("cuenta_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Referenciales",
+        "#",
+        icon="far fa-circle",
+        children=referencial
     ),
 )
 
