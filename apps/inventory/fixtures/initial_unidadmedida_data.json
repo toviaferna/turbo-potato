@@ -1,0 +1,74 @@
+[
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 1,
+        "fields": {
+            "descripcion": "HECTAREAS",
+            "simbolo": "ha"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 2,
+        "fields": {
+            "descripcion": "HORAS",
+            "simbolo": "h"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 3,
+        "fields": {
+            "descripcion": "LITROS",
+            "simbolo": "L"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 4,
+        "fields": {
+            "descripcion": "UNIDAD",
+            "simbolo": "u"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 5,
+        "fields": {
+            "descripcion": "TONELADAS",
+            "simbolo": "t"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 6,
+        "fields": {
+            "descripcion": "KILOS",
+            "simbolo": "kg"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 7,
+        "fields": {
+            "descripcion": "BOLSAS",
+            "simbolo": "bls"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 8,
+        "fields": {
+            "descripcion": "DOSIS",
+            "simbolo": "ds"
+        }
+    },
+    {
+        "model": "inventory.UnidadMedida",
+        "pk": 9,
+        "fields": {
+            "descripcion": "CAJAS",
+            "simbolo": "cjs"
+        }
+    }
+]

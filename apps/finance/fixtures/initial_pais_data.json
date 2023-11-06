@@ -1,0 +1,1922 @@
+[
+{
+ "model": "finance.pais",
+ "pk": 1,
+ "fields": {
+  "abreviatura": "AF",
+  "descripcion": "Afganistán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 2,
+ "fields": {
+  "abreviatura": "AX",
+  "descripcion": "Islas Gland"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 3,
+ "fields": {
+  "abreviatura": "AL",
+  "descripcion": "Albania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 4,
+ "fields": {
+  "abreviatura": "DE",
+  "descripcion": "Alemania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 5,
+ "fields": {
+  "abreviatura": "AD",
+  "descripcion": "Andorra"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 6,
+ "fields": {
+  "abreviatura": "AO",
+  "descripcion": "Angola"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 7,
+ "fields": {
+  "abreviatura": "AI",
+  "descripcion": "Anguilla"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 8,
+ "fields": {
+  "abreviatura": "AQ",
+  "descripcion": "Antártida"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 9,
+ "fields": {
+  "abreviatura": "AG",
+  "descripcion": "Antigua y Barbuda"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 10,
+ "fields": {
+  "abreviatura": "AN",
+  "descripcion": "Antillas Holandesas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 11,
+ "fields": {
+  "abreviatura": "SA",
+  "descripcion": "Arabia Saudí"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 12,
+ "fields": {
+  "abreviatura": "DZ",
+  "descripcion": "Argelia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 13,
+ "fields": {
+  "abreviatura": "AR",
+  "descripcion": "Argentina"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 14,
+ "fields": {
+  "abreviatura": "AM",
+  "descripcion": "Armenia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 15,
+ "fields": {
+  "abreviatura": "AW",
+  "descripcion": "Aruba"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 16,
+ "fields": {
+  "abreviatura": "AU",
+  "descripcion": "Australia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 17,
+ "fields": {
+  "abreviatura": "AT",
+  "descripcion": "Austria"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 18,
+ "fields": {
+  "abreviatura": "AZ",
+  "descripcion": "Azerbaiyán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 19,
+ "fields": {
+  "abreviatura": "BS",
+  "descripcion": "Bahamas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 20,
+ "fields": {
+  "abreviatura": "BH",
+  "descripcion": "Bahréin"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 21,
+ "fields": {
+  "abreviatura": "BD",
+  "descripcion": "Bangladesh"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 22,
+ "fields": {
+  "abreviatura": "BB",
+  "descripcion": "Barbados"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 23,
+ "fields": {
+  "abreviatura": "BY",
+  "descripcion": "Bielorrusia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 24,
+ "fields": {
+  "abreviatura": "BE",
+  "descripcion": "Bélgica"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 25,
+ "fields": {
+  "abreviatura": "BZ",
+  "descripcion": "Belice"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 26,
+ "fields": {
+  "abreviatura": "BJ",
+  "descripcion": "Benin"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 27,
+ "fields": {
+  "abreviatura": "BM",
+  "descripcion": "Bermudas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 28,
+ "fields": {
+  "abreviatura": "BT",
+  "descripcion": "Bhután"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 29,
+ "fields": {
+  "abreviatura": "BO",
+  "descripcion": "Bolivia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 30,
+ "fields": {
+  "abreviatura": "BA",
+  "descripcion": "Bosnia y Herzegovina"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 31,
+ "fields": {
+  "abreviatura": "BW",
+  "descripcion": "Botsuana"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 32,
+ "fields": {
+  "abreviatura": "BV",
+  "descripcion": "Isla Bouvet"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 33,
+ "fields": {
+  "abreviatura": "BR",
+  "descripcion": "Brasil"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 34,
+ "fields": {
+  "abreviatura": "BN",
+  "descripcion": "Brunéi"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 35,
+ "fields": {
+  "abreviatura": "BG",
+  "descripcion": "Bulgaria"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 36,
+ "fields": {
+  "abreviatura": "BF",
+  "descripcion": "Burkina Faso"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 37,
+ "fields": {
+  "abreviatura": "BI",
+  "descripcion": "Burundi"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 38,
+ "fields": {
+  "abreviatura": "CV",
+  "descripcion": "Cabo Verde"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 39,
+ "fields": {
+  "abreviatura": "KY",
+  "descripcion": "Islas Caimán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 40,
+ "fields": {
+  "abreviatura": "KH",
+  "descripcion": "Camboya"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 41,
+ "fields": {
+  "abreviatura": "CM",
+  "descripcion": "Camerún"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 42,
+ "fields": {
+  "abreviatura": "CA",
+  "descripcion": "Canadá"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 43,
+ "fields": {
+  "abreviatura": "CF",
+  "descripcion": "República Centroafricana"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 44,
+ "fields": {
+  "abreviatura": "TD",
+  "descripcion": "Chad"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 45,
+ "fields": {
+  "abreviatura": "CZ",
+  "descripcion": "República Checa"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 46,
+ "fields": {
+  "abreviatura": "CL",
+  "descripcion": "Chile"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 47,
+ "fields": {
+  "abreviatura": "CN",
+  "descripcion": "China"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 48,
+ "fields": {
+  "abreviatura": "CY",
+  "descripcion": "Chipre"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 49,
+ "fields": {
+  "abreviatura": "CX",
+  "descripcion": "Isla de Navidad"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 50,
+ "fields": {
+  "abreviatura": "VA",
+  "descripcion": "Ciudad del Vaticano"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 51,
+ "fields": {
+  "abreviatura": "CC",
+  "descripcion": "Islas Cocos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 52,
+ "fields": {
+  "abreviatura": "CO",
+  "descripcion": "Colombia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 53,
+ "fields": {
+  "abreviatura": "KM",
+  "descripcion": "Comoras"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 54,
+ "fields": {
+  "abreviatura": "CD",
+  "descripcion": "República Democrática del Congo"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 55,
+ "fields": {
+  "abreviatura": "CG",
+  "descripcion": "Congo"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 56,
+ "fields": {
+  "abreviatura": "CK",
+  "descripcion": "Islas Cook"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 57,
+ "fields": {
+  "abreviatura": "KP",
+  "descripcion": "Corea del Norte"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 58,
+ "fields": {
+  "abreviatura": "KR",
+  "descripcion": "Corea del Sur"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 59,
+ "fields": {
+  "abreviatura": "CI",
+  "descripcion": "Costa de Marfil"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 60,
+ "fields": {
+  "abreviatura": "CR",
+  "descripcion": "Costa Rica"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 61,
+ "fields": {
+  "abreviatura": "HR",
+  "descripcion": "Croacia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 62,
+ "fields": {
+  "abreviatura": "CU",
+  "descripcion": "Cuba"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 63,
+ "fields": {
+  "abreviatura": "DK",
+  "descripcion": "Dinamarca"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 64,
+ "fields": {
+  "abreviatura": "DM",
+  "descripcion": "Dominica"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 65,
+ "fields": {
+  "abreviatura": "DO",
+  "descripcion": "República Dominicana"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 66,
+ "fields": {
+  "abreviatura": "EC",
+  "descripcion": "Ecuador"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 67,
+ "fields": {
+  "abreviatura": "EG",
+  "descripcion": "Egipto"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 68,
+ "fields": {
+  "abreviatura": "SV",
+  "descripcion": "El Salvador"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 69,
+ "fields": {
+  "abreviatura": "AE",
+  "descripcion": "Emiratos Árabes Unidos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 70,
+ "fields": {
+  "abreviatura": "ER",
+  "descripcion": "Eritrea"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 71,
+ "fields": {
+  "abreviatura": "SK",
+  "descripcion": "Eslovaquia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 72,
+ "fields": {
+  "abreviatura": "SI",
+  "descripcion": "Eslovenia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 73,
+ "fields": {
+  "abreviatura": "ES",
+  "descripcion": "España"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 74,
+ "fields": {
+  "abreviatura": "UM",
+  "descripcion": "Islas ultramarinas de Estados Unidos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 75,
+ "fields": {
+  "abreviatura": "US",
+  "descripcion": "Estados Unidos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 76,
+ "fields": {
+  "abreviatura": "EE",
+  "descripcion": "Estonia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 77,
+ "fields": {
+  "abreviatura": "ET",
+  "descripcion": "Etiopía"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 78,
+ "fields": {
+  "abreviatura": "FO",
+  "descripcion": "Islas Feroe"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 79,
+ "fields": {
+  "abreviatura": "PH",
+  "descripcion": "Filipinas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 80,
+ "fields": {
+  "abreviatura": "FI",
+  "descripcion": "Finlandia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 81,
+ "fields": {
+  "abreviatura": "FJ",
+  "descripcion": "Fiyi"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 82,
+ "fields": {
+  "abreviatura": "FR",
+  "descripcion": "Francia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 83,
+ "fields": {
+  "abreviatura": "GA",
+  "descripcion": "Gabón"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 84,
+ "fields": {
+  "abreviatura": "GM",
+  "descripcion": "Gambia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 85,
+ "fields": {
+  "abreviatura": "GE",
+  "descripcion": "Georgia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 86,
+ "fields": {
+  "abreviatura": "GS",
+  "descripcion": "Islas Georgias del Sur y Sandwich del Sur"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 87,
+ "fields": {
+  "abreviatura": "GH",
+  "descripcion": "Ghana"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 88,
+ "fields": {
+  "abreviatura": "GI",
+  "descripcion": "Gibraltar"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 89,
+ "fields": {
+  "abreviatura": "GD",
+  "descripcion": "Granada"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 90,
+ "fields": {
+  "abreviatura": "GR",
+  "descripcion": "Grecia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 91,
+ "fields": {
+  "abreviatura": "GL",
+  "descripcion": "Groenlandia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 92,
+ "fields": {
+  "abreviatura": "GP",
+  "descripcion": "Guadalupe"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 93,
+ "fields": {
+  "abreviatura": "GU",
+  "descripcion": "Guam"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 94,
+ "fields": {
+  "abreviatura": "GT",
+  "descripcion": "Guatemala"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 95,
+ "fields": {
+  "abreviatura": "GF",
+  "descripcion": "Guayana Francesa"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 96,
+ "fields": {
+  "abreviatura": "GN",
+  "descripcion": "Guinea"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 97,
+ "fields": {
+  "abreviatura": "GQ",
+  "descripcion": "Guinea Ecuatorial"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 98,
+ "fields": {
+  "abreviatura": "GW",
+  "descripcion": "Guinea-Bissau"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 99,
+ "fields": {
+  "abreviatura": "GY",
+  "descripcion": "Guyana"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 100,
+ "fields": {
+  "abreviatura": "HT",
+  "descripcion": "Haití"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 101,
+ "fields": {
+  "abreviatura": "HM",
+  "descripcion": "Islas Heard y McDonald"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 102,
+ "fields": {
+  "abreviatura": "HN",
+  "descripcion": "Honduras"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 103,
+ "fields": {
+  "abreviatura": "HK",
+  "descripcion": "Hong Kong"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 104,
+ "fields": {
+  "abreviatura": "HU",
+  "descripcion": "Hungría"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 105,
+ "fields": {
+  "abreviatura": "IN",
+  "descripcion": "India"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 106,
+ "fields": {
+  "abreviatura": "ID",
+  "descripcion": "Indonesia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 107,
+ "fields": {
+  "abreviatura": "IR",
+  "descripcion": "Irán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 108,
+ "fields": {
+  "abreviatura": "IQ",
+  "descripcion": "Iraq"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 109,
+ "fields": {
+  "abreviatura": "IE",
+  "descripcion": "Irlanda"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 110,
+ "fields": {
+  "abreviatura": "IS",
+  "descripcion": "Islandia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 111,
+ "fields": {
+  "abreviatura": "IL",
+  "descripcion": "Israel"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 112,
+ "fields": {
+  "abreviatura": "IT",
+  "descripcion": "Italia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 113,
+ "fields": {
+  "abreviatura": "JM",
+  "descripcion": "Jamaica"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 114,
+ "fields": {
+  "abreviatura": "JP",
+  "descripcion": "Japón"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 115,
+ "fields": {
+  "abreviatura": "JO",
+  "descripcion": "Jordania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 116,
+ "fields": {
+  "abreviatura": "KZ",
+  "descripcion": "Kazajstán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 117,
+ "fields": {
+  "abreviatura": "KE",
+  "descripcion": "Kenia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 118,
+ "fields": {
+  "abreviatura": "KG",
+  "descripcion": "Kirguistán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 119,
+ "fields": {
+  "abreviatura": "KI",
+  "descripcion": "Kiribati"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 120,
+ "fields": {
+  "abreviatura": "KW",
+  "descripcion": "Kuwait"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 121,
+ "fields": {
+  "abreviatura": "LA",
+  "descripcion": "Laos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 122,
+ "fields": {
+  "abreviatura": "LS",
+  "descripcion": "Lesotho"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 123,
+ "fields": {
+  "abreviatura": "LV",
+  "descripcion": "Letonia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 124,
+ "fields": {
+  "abreviatura": "LB",
+  "descripcion": "Líbano"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 125,
+ "fields": {
+  "abreviatura": "LR",
+  "descripcion": "Liberia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 126,
+ "fields": {
+  "abreviatura": "LY",
+  "descripcion": "Libia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 127,
+ "fields": {
+  "abreviatura": "LI",
+  "descripcion": "Liechtenstein"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 128,
+ "fields": {
+  "abreviatura": "LT",
+  "descripcion": "Lituania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 129,
+ "fields": {
+  "abreviatura": "LU",
+  "descripcion": "Luxemburgo"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 130,
+ "fields": {
+  "abreviatura": "MO",
+  "descripcion": "Macao"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 131,
+ "fields": {
+  "abreviatura": "MK",
+  "descripcion": "ARY Macedonia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 132,
+ "fields": {
+  "abreviatura": "MG",
+  "descripcion": "Madagascar"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 133,
+ "fields": {
+  "abreviatura": "MY",
+  "descripcion": "Malasia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 134,
+ "fields": {
+  "abreviatura": "MW",
+  "descripcion": "Malawi"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 135,
+ "fields": {
+  "abreviatura": "MV",
+  "descripcion": "Maldivas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 136,
+ "fields": {
+  "abreviatura": "ML",
+  "descripcion": "Malí"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 137,
+ "fields": {
+  "abreviatura": "MT",
+  "descripcion": "Malta"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 138,
+ "fields": {
+  "abreviatura": "FK",
+  "descripcion": "Islas Malvinas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 139,
+ "fields": {
+  "abreviatura": "MP",
+  "descripcion": "Islas Marianas del Norte"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 140,
+ "fields": {
+  "abreviatura": "MA",
+  "descripcion": "Marruecos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 141,
+ "fields": {
+  "abreviatura": "MH",
+  "descripcion": "Islas Marshall"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 142,
+ "fields": {
+  "abreviatura": "MQ",
+  "descripcion": "Martinica"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 143,
+ "fields": {
+  "abreviatura": "MU",
+  "descripcion": "Mauricio"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 144,
+ "fields": {
+  "abreviatura": "MR",
+  "descripcion": "Mauritania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 145,
+ "fields": {
+  "abreviatura": "YT",
+  "descripcion": "Mayotte"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 146,
+ "fields": {
+  "abreviatura": "MX",
+  "descripcion": "México"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 147,
+ "fields": {
+  "abreviatura": "FM",
+  "descripcion": "Micronesia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 148,
+ "fields": {
+  "abreviatura": "MD",
+  "descripcion": "Moldavia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 149,
+ "fields": {
+  "abreviatura": "MC",
+  "descripcion": "Mónaco"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 150,
+ "fields": {
+  "abreviatura": "MN",
+  "descripcion": "Mongolia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 151,
+ "fields": {
+  "abreviatura": "MS",
+  "descripcion": "Montserrat"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 152,
+ "fields": {
+  "abreviatura": "MZ",
+  "descripcion": "Mozambique"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 153,
+ "fields": {
+  "abreviatura": "MM",
+  "descripcion": "Myanmar"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 154,
+ "fields": {
+  "abreviatura": "NA",
+  "descripcion": "Namibia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 155,
+ "fields": {
+  "abreviatura": "NR",
+  "descripcion": "Nauru"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 156,
+ "fields": {
+  "abreviatura": "NP",
+  "descripcion": "Nepal"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 157,
+ "fields": {
+  "abreviatura": "NI",
+  "descripcion": "Nicaragua"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 158,
+ "fields": {
+  "abreviatura": "NE",
+  "descripcion": "Níger"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 159,
+ "fields": {
+  "abreviatura": "NG",
+  "descripcion": "Nigeria"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 160,
+ "fields": {
+  "abreviatura": "NU",
+  "descripcion": "Niue"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 161,
+ "fields": {
+  "abreviatura": "NF",
+  "descripcion": "Isla Norfolk"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 162,
+ "fields": {
+  "abreviatura": "NO",
+  "descripcion": "Noruega"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 163,
+ "fields": {
+  "abreviatura": "NC",
+  "descripcion": "Nueva Caledonia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 164,
+ "fields": {
+  "abreviatura": "NZ",
+  "descripcion": "Nueva Zelanda"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 165,
+ "fields": {
+  "abreviatura": "OM",
+  "descripcion": "Omán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 166,
+ "fields": {
+  "abreviatura": "NL",
+  "descripcion": "Países Bajos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 167,
+ "fields": {
+  "abreviatura": "PK",
+  "descripcion": "Pakistán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 168,
+ "fields": {
+  "abreviatura": "PW",
+  "descripcion": "Palau"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 169,
+ "fields": {
+  "abreviatura": "PS",
+  "descripcion": "Palestina"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 170,
+ "fields": {
+  "abreviatura": "PA",
+  "descripcion": "Panamá"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 171,
+ "fields": {
+  "abreviatura": "PG",
+  "descripcion": "Papúa Nueva Guinea"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 172,
+ "fields": {
+  "abreviatura": "PY",
+  "descripcion": "Paraguay"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 173,
+ "fields": {
+  "abreviatura": "PE",
+  "descripcion": "Perú"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 174,
+ "fields": {
+  "abreviatura": "PN",
+  "descripcion": "Islas Pitcairn"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 175,
+ "fields": {
+  "abreviatura": "PF",
+  "descripcion": "Polinesia Francesa"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 176,
+ "fields": {
+  "abreviatura": "PL",
+  "descripcion": "Polonia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 177,
+ "fields": {
+  "abreviatura": "PT",
+  "descripcion": "Portugal"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 178,
+ "fields": {
+  "abreviatura": "PR",
+  "descripcion": "Puerto Rico"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 179,
+ "fields": {
+  "abreviatura": "QA",
+  "descripcion": "Qatar"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 180,
+ "fields": {
+  "abreviatura": "GB",
+  "descripcion": "Reino Unido"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 181,
+ "fields": {
+  "abreviatura": "RE",
+  "descripcion": "Reunión"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 182,
+ "fields": {
+  "abreviatura": "RW",
+  "descripcion": "Ruanda"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 183,
+ "fields": {
+  "abreviatura": "RO",
+  "descripcion": "Rumania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 184,
+ "fields": {
+  "abreviatura": "RU",
+  "descripcion": "Rusia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 185,
+ "fields": {
+  "abreviatura": "EH",
+  "descripcion": "Sahara Occidental"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 186,
+ "fields": {
+  "abreviatura": "SB",
+  "descripcion": "Islas Salomón"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 187,
+ "fields": {
+  "abreviatura": "WS",
+  "descripcion": "Samoa"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 188,
+ "fields": {
+  "abreviatura": "AS",
+  "descripcion": "Samoa Americana"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 189,
+ "fields": {
+  "abreviatura": "KN",
+  "descripcion": "San Cristóbal y Nevis"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 190,
+ "fields": {
+  "abreviatura": "SM",
+  "descripcion": "San Marino"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 191,
+ "fields": {
+  "abreviatura": "PM",
+  "descripcion": "San Pedro y Miquelón"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 192,
+ "fields": {
+  "abreviatura": "VC",
+  "descripcion": "San Vicente y las Granadinas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 193,
+ "fields": {
+  "abreviatura": "SH",
+  "descripcion": "Santa Helena"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 194,
+ "fields": {
+  "abreviatura": "LC",
+  "descripcion": "Santa Lucía"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 195,
+ "fields": {
+  "abreviatura": "ST",
+  "descripcion": "Santo Tomé y Príncipe"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 196,
+ "fields": {
+  "abreviatura": "SN",
+  "descripcion": "Senegal"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 197,
+ "fields": {
+  "abreviatura": "CS",
+  "descripcion": "Serbia y Montenegro"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 198,
+ "fields": {
+  "abreviatura": "SC",
+  "descripcion": "Seychelles"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 199,
+ "fields": {
+  "abreviatura": "SL",
+  "descripcion": "Sierra Leona"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 200,
+ "fields": {
+  "abreviatura": "SG",
+  "descripcion": "Singapur"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 201,
+ "fields": {
+  "abreviatura": "SY",
+  "descripcion": "Siria"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 202,
+ "fields": {
+  "abreviatura": "SO",
+  "descripcion": "Somalia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 203,
+ "fields": {
+  "abreviatura": "LK",
+  "descripcion": "Sri Lanka"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 204,
+ "fields": {
+  "abreviatura": "SZ",
+  "descripcion": "Suazilandia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 205,
+ "fields": {
+  "abreviatura": "ZA",
+  "descripcion": "Sudáfrica"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 206,
+ "fields": {
+  "abreviatura": "SD",
+  "descripcion": "Sudán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 207,
+ "fields": {
+  "abreviatura": "SE",
+  "descripcion": "Suecia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 208,
+ "fields": {
+  "abreviatura": "CH",
+  "descripcion": "Suiza"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 209,
+ "fields": {
+  "abreviatura": "SR",
+  "descripcion": "Surinam"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 210,
+ "fields": {
+  "abreviatura": "SJ",
+  "descripcion": "Svalbard y Jan Mayen"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 211,
+ "fields": {
+  "abreviatura": "TH",
+  "descripcion": "Tailandia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 212,
+ "fields": {
+  "abreviatura": "TW",
+  "descripcion": "Taiwán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 213,
+ "fields": {
+  "abreviatura": "TZ",
+  "descripcion": "Tanzania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 214,
+ "fields": {
+  "abreviatura": "TJ",
+  "descripcion": "Tayikistán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 215,
+ "fields": {
+  "abreviatura": "IO",
+  "descripcion": "Territorio Británico del Océano Índico"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 216,
+ "fields": {
+  "abreviatura": "TF",
+  "descripcion": "Territorios Australes Franceses"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 217,
+ "fields": {
+  "abreviatura": "TL",
+  "descripcion": "Timor Oriental"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 218,
+ "fields": {
+  "abreviatura": "TG",
+  "descripcion": "Togo"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 219,
+ "fields": {
+  "abreviatura": "TK",
+  "descripcion": "Tokelau"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 220,
+ "fields": {
+  "abreviatura": "TO",
+  "descripcion": "Tonga"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 221,
+ "fields": {
+  "abreviatura": "TT",
+  "descripcion": "Trinidad y Tobago"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 222,
+ "fields": {
+  "abreviatura": "TN",
+  "descripcion": "Túnez"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 223,
+ "fields": {
+  "abreviatura": "TC",
+  "descripcion": "Islas Turcas y Caicos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 224,
+ "fields": {
+  "abreviatura": "TM",
+  "descripcion": "Turkmenistán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 225,
+ "fields": {
+  "abreviatura": "TR",
+  "descripcion": "Turquía"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 226,
+ "fields": {
+  "abreviatura": "TV",
+  "descripcion": "Tuvalu"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 227,
+ "fields": {
+  "abreviatura": "UA",
+  "descripcion": "Ucrania"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 228,
+ "fields": {
+  "abreviatura": "UG",
+  "descripcion": "Uganda"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 229,
+ "fields": {
+  "abreviatura": "UY",
+  "descripcion": "Uruguay"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 230,
+ "fields": {
+  "abreviatura": "UZ",
+  "descripcion": "Uzbekistán"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 231,
+ "fields": {
+  "abreviatura": "VU",
+  "descripcion": "Vanuatu"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 232,
+ "fields": {
+  "abreviatura": "VE",
+  "descripcion": "Venezuela"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 233,
+ "fields": {
+  "abreviatura": "VN",
+  "descripcion": "Vietnam"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 234,
+ "fields": {
+  "abreviatura": "VG",
+  "descripcion": "Islas Vírgenes Británicas"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 235,
+ "fields": {
+  "abreviatura": "VI",
+  "descripcion": "Islas Vírgenes de los Estados Unidos"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 236,
+ "fields": {
+  "abreviatura": "WF",
+  "descripcion": "Wallis y Futuna"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 237,
+ "fields": {
+  "abreviatura": "YE",
+  "descripcion": "Yemen"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 238,
+ "fields": {
+  "abreviatura": "DJ",
+  "descripcion": "Yibuti"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 239,
+ "fields": {
+  "abreviatura": "ZM",
+  "descripcion": "Zambia"
+ }
+},
+{
+ "model": "finance.pais",
+ "pk": 240,
+ "fields": {
+  "abreviatura": "ZW",
+  "descripcion": "Zimbabue"
+ }
+}
+]

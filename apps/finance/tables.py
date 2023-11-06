@@ -21,7 +21,7 @@ class CuentaTable(AccionTable):
 class PaisTable(AccionTable):
     class Meta:
         model = models.Pais
-        fields = ("descripcion",)
+        fields = ("descripcion", "abreviatura")
 
 class DepartamentoTable(AccionTable):
     class Meta:

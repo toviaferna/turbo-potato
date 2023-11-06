@@ -1,0 +1,102 @@
+[
+    {
+        "model": "farming.Finca",
+        "pk": 1,
+        "fields": {
+            "descripcion": "Finca La Luz (Coronel Oviedo)",
+            "dimension_ha": 500.00,
+            "ubicacion": "-25.46000, -56.02000",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 2,
+        "fields": {
+            "descripcion": "Lote El Amanecer (Caaguazú)",
+            "dimension_ha": 750.00,
+            "ubicacion": "-25.417, -56.450",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 3,
+        "fields": {
+            "descripcion": "Granja Los Girasoles (Nueva Londres)",
+            "dimension_ha": 300.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 4,
+        "fields": {
+            "descripcion": "Parcela La Esperanza (Carayaó)",
+            "dimension_ha": 600.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 5,
+        "fields": {
+            "descripcion": "Finca El Descanso (San Joaquín)",
+            "dimension_ha": 400.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 6,
+        "fields": {
+            "descripcion": "Lote La Alegría (Doctor Juan Manuel Frutos)",
+            "dimension_ha": 350.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 7,
+        "fields": {
+            "descripcion": "Granja Los Pinos (José Domingo Ocampos)",
+            "dimension_ha": 450.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 8,
+        "fields": {
+            "descripcion": "Parcela El Refugio (La Pastora)",
+            "dimension_ha": 550.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 9,
+        "fields": {
+            "descripcion": "Finca La Tranquilidad (Mariscal Francisco Solano López)",
+            "dimension_ha": 650.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.Finca",
+        "pk": 10,
+        "fields": {
+            "descripcion": "Lote El Paraíso (Raúl Arsenio Oviedo)",
+            "dimension_ha": 700.00,
+            "ubicacion": "-25.47104, -56.01603",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    }
+]

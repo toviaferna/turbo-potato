@@ -33,7 +33,7 @@ class PersonaForm(ModelForm):
 
     class Meta:
         model = models.Persona
-        fields = ['razon_social',"documento","celular","pais","localidad","direccion","es_cliente","es_proveedor","es_empleado"]
+        fields = ["razon_social","documento","celular","pais","localidad","direccion","es_cliente","es_proveedor","es_empleado"]
 
 class BancoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -45,7 +45,7 @@ class BancoForm(ModelForm):
         )
     class Meta:
         model = models.Banco
-        fields = ['descripcion',]
+        fields = ["descripcion",]
 
 class CuentaForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -65,7 +65,7 @@ class CuentaForm(ModelForm):
         )
     class Meta:
         model = models.Cuenta
-        fields = ['descripcion',"es_banco","nro_cuenta","banco"]
+        fields = ["descripcion","es_banco","nro_cuenta","banco"]
 
 class PaisForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -73,11 +73,12 @@ class PaisForm(ModelForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             "descripcion",
+            "abreviatura",
             FormActions()
         )
     class Meta:
         model = models.Pais
-        fields = ['descripcion',]
+        fields = ["descripcion", "abreviatura"]
 
 class DepartamentoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -89,7 +90,7 @@ class DepartamentoForm(ModelForm):
         )
     class Meta:
         model = models.Departamento
-        fields = ['descripcion',]
+        fields = ["descripcion",]
 
 class DistritoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -102,7 +103,7 @@ class DistritoForm(ModelForm):
         )
     class Meta:
         model = models.Distrito
-        fields = ['descripcion','departamento',]
+        fields = ["descripcion","departamento",]
 
 class LocalidadForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -115,7 +116,7 @@ class LocalidadForm(ModelForm):
         )
     class Meta:
         model = models.Localidad
-        fields = ['descripcion','distrito']
+        fields = ["descripcion","distrito"]
 
 class TipoImpuestoForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -129,4 +130,4 @@ class TipoImpuestoForm(ModelForm):
         )
     class Meta:
         model = models.TipoImpuesto
-        fields = ['descripcion','porcentaje','es_iva']
+        fields = ["descripcion","porcentaje","es_iva"]

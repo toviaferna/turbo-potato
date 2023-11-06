@@ -1,0 +1,50 @@
+[
+    {
+        "model": "farming.CalificacionAgricola",
+        "pk": 1,
+        "fields": {
+            "descripcion": "HUMEDAD",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.CalificacionAgricola",
+        "pk": 2,
+        "fields": {
+            "descripcion": "CUERPO EXTRAÑO",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.CalificacionAgricola",
+        "pk": 3,
+        "fields": {
+            "descripcion": "AVERIADO/ARDIDO",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.CalificacionAgricola",
+        "pk": 4,
+        "fields": {
+            "descripcion": "VERDOSO",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.CalificacionAgricola",
+        "pk": 5,
+        "fields": {
+            "descripcion": "QUEBRADO",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.CalificacionAgricola",
+        "pk": 6,
+        "fields": {
+            "descripcion": "IMPUREZAS",
+            "created": "2023-11-06T00:00:00Z"
+        }
+    }
+]

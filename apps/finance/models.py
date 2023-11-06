@@ -31,7 +31,7 @@ class Cuenta(models.Model):
     def __str__(self):
         return self.descripcion
 class Pais(models.Model):
-    abreviatura = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
+    abreviatura = models.CharField(max_length=200, verbose_name="Abreviatura",unique=True)
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
     
     class Meta:
@@ -42,7 +42,7 @@ class Pais(models.Model):
 
 class Departamento(models.Model):
     descripcion = models.CharField(max_length=200, verbose_name="Descripcion",unique=True)
-    
+
     def __str__(self):
         return self.descripcion
 

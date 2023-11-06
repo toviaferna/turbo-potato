@@ -1,0 +1,79 @@
+[
+    {
+        "model": "farming.TipoActividadAgricola",
+        "pk": 1,
+        "fields": {
+            "descripcion": "SIEMBRA",
+            "es_cosecha": false,
+            "es_siembra": true,
+            "es_resiembra": false,
+            "created":"2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.TipoActividadAgricola",
+        "pk": 2,
+        "fields": {
+            "descripcion": "FUMIGACIÓN",
+            "es_cosecha": false,
+            "es_siembra": false,
+            "es_resiembra": false,
+            "created":"2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.TipoActividadAgricola",
+        "pk": 3,
+        "fields": {
+            "descripcion": "APLICACIÓN DE CALCAREO",
+            "es_cosecha": false,
+            "es_siembra": false,
+            "es_resiembra": false,
+            "created":"2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.TipoActividadAgricola",
+        "pk": 4,
+        "fields": {
+            "descripcion": "SUBSULAJE",
+            "es_cosecha": false,
+            "es_siembra": false,
+            "es_resiembra": false,
+            "created":"2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.TipoActividadAgricola",
+        "pk": 5,
+        "fields": {
+            "descripcion": "PREPARACIÓN DE SUELO",
+            "es_cosecha": false,
+            "es_siembra": false,
+            "es_resiembra": false,
+            "created":"2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.TipoActividadAgricola",
+        "pk": 6,
+        "fields": {
+            "descripcion": "COSECHA",
+            "es_cosecha": true,
+            "es_siembra": false,
+            "es_resiembra": false,
+            "created":"2023-11-06T00:00:00Z"
+        }
+    },
+    {
+        "model": "farming.TipoActividadAgricola",
+        "pk": 7,
+        "fields": {
+            "descripcion": "DISTRIBUCIÓN DE ABONO AL VOLEO",
+            "es_cosecha": false,
+            "es_siembra": false,
+            "es_resiembra": false,
+            "created":"2023-11-06T00:00:00Z"
+        }
+    }
+]
