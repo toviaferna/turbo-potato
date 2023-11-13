@@ -1,49 +1,49 @@
 [
     {
         "pk": 1,
-        "model": "inventory.banco",
+        "model": "finance.banco",
         "fields": {
             "descripcion": "BANCO ATLAS "
         }
     },
     {
         "pk": 2,
-        "model": "inventory.banco",
+        "model": "finance.banco",
         "fields": {
             "descripcion": "BANCO ITAU"
         }
     },
     {
         "pk": 3,
-        "model": "inventory.banco",
+        "model": "finance.banco",
         "fields": {
             "descripcion": "BANCO REGIONAL"
         }
     },
     {
         "pk": 4,
-        "model": "inventory.banco",
+        "model": "finance.banco",
         "fields": {
             "descripcion": "BANCO BBVA"
         }
     },
     {
         "pk": 5,
-        "model": "inventory.banco",
+        "model": "finance.banco",
         "fields": {
             "descripcion": "BANCO CONTINENTAL"
         }
     },
     {
         "pk": 6,
-        "model": "inventory.banco",
+        "model": "finance.banco",
         "fields": {
             "descripcion": "BANCO GNB"
         }
     },
     {
         "pk": 7,
-        "model": "inventory.banco",
+        "model": "finance.banco",
         "fields": {
             "descripcion": "BANCO BNF"
         }

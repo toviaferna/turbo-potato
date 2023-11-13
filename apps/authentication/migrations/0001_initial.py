@@ -4,7 +4,15 @@ import django.contrib.auth.models
 import django.contrib.auth.validators
 from django.db import migrations, models
 import django.utils.timezone
+from apps.authentication.models import User
 
+
+
+def create_superuser(apps, schema_editor):
+    print(f"Existe {User.objects.filter(username='admin').exists()}")
+    if not User.objects.filter(username='admin').exists():
+        este = User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+        print(este)
 
 class Migration(migrations.Migration):
 
@@ -43,4 +51,5 @@ class Migration(migrations.Migration):
                 ('objects', django.contrib.auth.models.UserManager()),
             ],
         ),
+        migrations.RunPython(create_superuser),
     ]
