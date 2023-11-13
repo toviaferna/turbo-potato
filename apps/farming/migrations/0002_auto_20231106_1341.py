@@ -9,6 +9,7 @@ def load_data(apps, schema_editor):
     call_command('loaddata', 'apps/farming/fixtures/initial_tipomaquinariaagricola_data.json')
     call_command('loaddata', 'apps/farming/fixtures/initial_finca_data.json')
     call_command('loaddata', 'apps/farming/fixtures/initial_calificacionagricola_data.json')
+    call_command('loaddata', 'apps/farming/fixtures/initial_maquinariaagricola_data.json')
 
 class Migration(migrations.Migration):
 

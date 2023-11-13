@@ -1,0 +1,682 @@
+[
+    {
+        "pk": 1,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": " MATRI SOJA"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AGRO-CAL"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AGRO. PANAMBI"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AGROFERTIL"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AGROSYSTEM"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AGROTEC"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ALEMANA"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ALFAMEX"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "APRON"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ATRAZINA"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AVALON"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AXION"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "AXIUM"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "BAYER"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "BENSUATO"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "BUSHKILL"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "CANAVECIO"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "CASH"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "CCETODIM"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "CELEST "
+        }
+    },
+    {
+        "pk": 21,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "CONFIR"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "COOPERATIVA SOMMERFELD"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "CROPSTAR"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "DBU ZET"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "DBV"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "DEKALPAR"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "DIAGRO"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "DIFFERE"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "DROP FIX"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ECOP"
+        }
+    },
+    {
+        "pk": 31,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ELLECT"
+        }
+    },
+    {
+        "pk": 32,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "FENDIEZ"
+        }
+    },
+    {
+        "pk": 33,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "FORCE"
+        }
+    },
+    {
+        "pk": 34,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "FORZA"
+        }
+    },
+    {
+        "pk": 35,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "G.P.S.A"
+        }
+    },
+    {
+        "pk": 36,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "GENERAL"
+        }
+    },
+    {
+        "pk": 37,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "GLYMAX"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "HALLEY"
+        }
+    },
+    {
+        "pk": 39,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "JACTO"
+        }
+    },
+    {
+        "pk": 40,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "JOHN DEERE"
+        }
+    },
+    {
+        "pk": 41,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "LAMBACIALOTRINA"
+        }
+    },
+    {
+        "pk": 42,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "LITROS ROUNDP"
+        }
+    },
+    {
+        "pk": 43,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "MAX PREMIUN "
+        }
+    },
+    {
+        "pk": 44,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "MELSUFURON"
+        }
+    },
+    {
+        "pk": 45,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "MOBIL"
+        }
+    },
+    {
+        "pk": 46,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "MONSOY"
+        }
+    },
+    {
+        "pk": 47,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "MURALLA"
+        }
+    },
+    {
+        "pk": 48,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "NASSER CUBIERTAS"
+        }
+    },
+    {
+        "pk": 49,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "NATIVO"
+        }
+    },
+    {
+        "pk": 50,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "NEW HOLLAND"
+        }
+    },
+    {
+        "pk": 51,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "NOCTUR PLUS"
+        }
+    },
+    {
+        "pk": 52,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "NOCTUR PLUS.."
+        }
+    },
+    {
+        "pk": 53,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "NUTRISILO"
+        }
+    },
+    {
+        "pk": 54,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ONLY"
+        }
+    },
+    {
+        "pk": 55,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "OVETRIL"
+        }
+    },
+    {
+        "pk": 56,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "PACTO"
+        }
+    },
+    {
+        "pk": 57,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "PORAGUOT"
+        }
+    },
+    {
+        "pk": 58,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "PREMIER"
+        }
+    },
+    {
+        "pk": 59,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "PRIMICARB RIDER"
+        }
+    },
+    {
+        "pk": 60,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "PROPICONAZOLE"
+        }
+    },
+    {
+        "pk": 61,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "QUARTZO"
+        }
+    },
+    {
+        "pk": 62,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "RAINBOW"
+        }
+    },
+    {
+        "pk": 63,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ROUNDUP FULL"
+        }
+    },
+    {
+        "pk": 64,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "SCANIA"
+        }
+    },
+    {
+        "pk": 65,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "SEM-AGRO"
+        }
+    },
+    {
+        "pk": 66,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "SOLUBOR"
+        }
+    },
+    {
+        "pk": 67,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "SOMAX"
+        }
+    },
+    {
+        "pk": 68,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "STICKER DCCITC TECNOMIL"
+        }
+    },
+    {
+        "pk": 69,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "SUL AMERICA"
+        }
+    },
+    {
+        "pk": 70,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "SUNSET"
+        }
+    },
+    {
+        "pk": 71,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "SYNGENTA"
+        }
+    },
+    {
+        "pk": 72,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TATU"
+        }
+    },
+    {
+        "pk": 73,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TECNOMYL"
+        }
+    },
+    {
+        "pk": 74,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TECNUN PREMIUM II"
+        }
+    },
+    {
+        "pk": 75,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TIAMETOXAM"
+        }
+    },
+    {
+        "pk": 76,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TOPGOL"
+        }
+    },
+    {
+        "pk": 77,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TORPEDO"
+        }
+    },
+    {
+        "pk": 78,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TOTALNITRO NOD"
+        }
+    },
+    {
+        "pk": 79,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "TRANS AGRO"
+        }
+    },
+    {
+        "pk": 80,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "ULTRAMAX"
+        }
+    },
+    {
+        "pk": 81,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "VALTRA"
+        }
+    },
+    {
+        "pk": 82,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "VIGGORA"
+        }
+    },
+    {
+        "pk": 83,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "VOLVO"
+        }
+    },
+    {
+        "pk": 84,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "YESO"
+        }
+    },
+    {
+        "pk": 85,
+        "model": "inventory.marca",
+        "fields": {
+            "created": "2023-11-13T13:29:35Z",
+            "descripcion": "YNOX PLUS"
+        }
+    }
+]

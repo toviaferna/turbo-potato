@@ -1,74 +1,66 @@
 [
     {
-        "model": "inventory.UnidadMedida",
         "pk": 1,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "HECTAREAS",
-            "simbolo": "ha"
+            "simbolo": "tnl",
+            "descripcion": "Tonelada"
         }
     },
     {
-        "model": "inventory.UnidadMedida",
         "pk": 2,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "HORAS",
-            "simbolo": "h"
+            "simbolo": "kg",
+            "descripcion": "Kilogramos"
         }
     },
     {
-        "model": "inventory.UnidadMedida",
         "pk": 3,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "LITROS",
-            "simbolo": "L"
+            "simbolo": "lts",
+            "descripcion": "Litros"
         }
     },
     {
-        "model": "inventory.UnidadMedida",
         "pk": 4,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "UNIDAD",
-            "simbolo": "u"
+            "simbolo": "ha",
+            "descripcion": "Hectareas"
         }
     },
     {
-        "model": "inventory.UnidadMedida",
         "pk": 5,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "TONELADAS",
-            "simbolo": "t"
+            "simbolo": "m2",
+            "descripcion": "Metros2"
         }
     },
     {
-        "model": "inventory.UnidadMedida",
         "pk": 6,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "KILOS",
-            "simbolo": "kg"
+            "simbolo": "hs",
+            "descripcion": "Horas"
         }
     },
     {
-        "model": "inventory.UnidadMedida",
         "pk": 7,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "BOLSAS",
-            "simbolo": "bls"
+            "simbolo": "un",
+            "descripcion": "Unidad"
         }
     },
     {
-        "model": "inventory.UnidadMedida",
         "pk": 8,
+        "model": "inventory.unidadmedida",
         "fields": {
-            "descripcion": "DOSIS",
-            "simbolo": "ds"
-        }
-    },
-    {
-        "model": "inventory.UnidadMedida",
-        "pk": 9,
-        "fields": {
-            "descripcion": "CAJAS",
-            "simbolo": "cjs"
+            "simbolo": "dosis",
+            "descripcion": "Dosis"
         }
     }
 ]

@@ -1,0 +1,130 @@
+[
+    {
+        "pk": 1,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Soja"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Trigo"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Maiz"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Navo Y Avena"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Gastos Maquinas  C"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Gastos Varios C"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Personal C"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Girasol"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Abono"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Insecticida"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Semilla"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Herbicida"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Adherente"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Cal Y Otros Correctores"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Funguicida"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2023-11-13T11:28:49Z",
+            "descripcion": "Combustible"
+        }
+    }
+]

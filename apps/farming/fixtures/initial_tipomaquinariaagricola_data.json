@@ -1,98 +1,210 @@
 [
     {
-        "model": "farming.TipoMaquinariaAgricola",
-        "pk": 1,
-        "fields": {
-            "descripcion": "COSECHADORA",
-            "created": "2023-11-06T00:00:00Z"
-        }
-    },
-    {
-        "model": "farming.TipoMaquinariaAgricola",
         "pk": 2,
+        "model": "farming.TipoMaquinariaAgricola",
         "fields": {
-            "descripcion": "TRACTOR",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "COSECHADORAS"
         }
     },
     {
+        "pk": 17,
         "model": "farming.TipoMaquinariaAgricola",
-        "pk": 3,
         "fields": {
-            "descripcion": "PLANTADORA",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "DISTRIBUCION DE CALCAREO"
         }
     },
     {
+        "pk": 18,
         "model": "farming.TipoMaquinariaAgricola",
-        "pk": 4,
         "fields": {
-            "descripcion": "FUMIGADORA",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "DISTRIBUCION DE ABONO"
         }
     },
     {
+        "pk": 23,
         "model": "farming.TipoMaquinariaAgricola",
-        "pk": 5,
         "fields": {
-            "descripcion": "CAMION-GRUA-TUMBA",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "EMUTIDORA"
         }
     },
     {
-        "model": "farming.TipoMaquinariaAgricola",
-        "pk": 6,
-        "fields": {
-            "descripcion": "SUBSULADOR",
-            "created": "2023-11-06T00:00:00Z"
-        }
-    },
-    {
-        "model": "farming.TipoMaquinariaAgricola",
-        "pk": 7,
-        "fields": {
-            "descripcion": "DISTRIBUIDOR",
-            "created": "2023-11-06T00:00:00Z"
-        }
-    },
-    {
-        "model": "farming.TipoMaquinariaAgricola",
         "pk": 8,
+        "model": "farming.TipoMaquinariaAgricola",
         "fields": {
-            "descripcion": "RASTRON",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "FUMIGADORA"
         }
     },
     {
+        "pk": 27,
         "model": "farming.TipoMaquinariaAgricola",
-        "pk": 9,
         "fields": {
-            "descripcion": "NIVELADORA",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "MOTO"
         }
     },
     {
-        "model": "farming.TipoMaquinariaAgricola",
         "pk": 10,
+        "model": "farming.TipoMaquinariaAgricola",
         "fields": {
-            "descripcion": "TRANSPORTADOR DE GRANOS",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "NIVELADORA"
         }
     },
     {
+        "pk": 5,
         "model": "farming.TipoMaquinariaAgricola",
-        "pk": 11,
         "fields": {
-            "descripcion": "TRANSPORTADORA",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "PALAS"
         }
     },
     {
+        "pk": 4,
         "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "PICADORAS"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "PLANTADORA"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "PLATAFORMA"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "PULVERIZADORAS"
+        }
+    },
+    {
         "pk": 12,
+        "model": "farming.TipoMaquinariaAgricola",
         "fields": {
-            "descripcion": "ACOPLADO",
-            "created": "2023-11-06T00:00:00Z"
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "RASTRON"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "ROLLO CHUCILLA"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "ROTATIVAS"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "SEMBRADORA"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "SERVICIO TERCERIZADO"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "SERVICIOS DE GRUA"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "SUBSULADOR"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "TOPADORA"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "TRACTORES"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "TRANSPORTADOR DE GRANOS"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "TRANSPORTADOR DE TIERRA"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "TRANSPORTADORA"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "Transporte de Kakote"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "farming.TipoMaquinariaAgricola",
+        "fields": {
+            "created": "2023-11-13T17:04:11Z",
+            "descripcion": "TRIMMER"
         }
     }
 ]

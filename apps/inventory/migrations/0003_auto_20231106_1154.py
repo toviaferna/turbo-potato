@@ -7,6 +7,9 @@ from django.core.management import call_command
 def load_data(apps, schema_editor):
     call_command('loaddata', 'apps/inventory/fixtures/initial_tipoitem_data.json')
     call_command('loaddata', 'apps/inventory/fixtures/initial_unidadmedida_data.json')
+    call_command('loaddata', 'apps/inventory/fixtures/initial_categoria_data.json')
+    call_command('loaddata', 'apps/inventory/fixtures/initial_marca_data.json')
+    call_command('loaddata', 'apps/inventory/fixtures/initial_deposito_data.json')
 
 class Migration(migrations.Migration):
 

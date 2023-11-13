@@ -1,0 +1,82 @@
+[
+    {
+        "pk": 1,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Campo 8",
+            "es_planta_acopiadora": 0
+        }
+    },
+    {
+        "pk": 2,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Tres Palmas Y Toledo",
+            "es_planta_acopiadora": 0
+        }
+    },
+    {
+        "pk": 3,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Nueva Toledo",
+            "es_planta_acopiadora": 0
+        }
+    },
+    {
+        "pk": 4,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Arroyo Morotí",
+            "es_planta_acopiadora": 0
+        }
+    },
+    {
+        "pk": 5,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Industria Paraguaya De Alcoholes S.A",
+            "es_planta_acopiadora": 1
+        }
+    },
+    {
+        "pk": 6,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Transagro Sa",
+            "es_planta_acopiadora": 1
+        }
+    },
+    {
+        "pk": 7,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Ovetril S.A",
+            "es_planta_acopiadora": 1
+        }
+    },
+    {
+        "pk": 8,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Agrofertil S.A",
+            "es_planta_acopiadora": 1
+        }
+    },
+    {
+        "pk": 9,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Cargil Agropecuaria S.A.c.i",
+            "es_planta_acopiadora": 1
+        }
+    },
+    {
+        "pk": 10,
+        "model": "inventory.deposito",
+        "fields": {
+            "descripcion": "Diagro S.A",
+            "es_planta_acopiadora": 1
+        }
+    }
+]

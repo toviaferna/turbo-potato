@@ -9,6 +9,7 @@ def load_data(apps, schema_editor):
     call_command('loaddata', 'apps/finance/fixtures/initial_departamento_data.json')
     call_command('loaddata', 'apps/finance/fixtures/initial_distrito_data.json')
     call_command('loaddata', 'apps/finance/fixtures/initial_localidad_data.json')
+    call_command('loaddata', 'apps/finance/fixtures/initial_banco_data.json')
 
 class Migration(migrations.Migration):
 

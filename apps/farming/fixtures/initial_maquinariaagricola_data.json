@@ -1,0 +1,1730 @@
+[
+    {
+        "pk": 1,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALMET 88",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 2,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR DEUTZ FAHR AGROTRAC150",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 3,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR JOHN DEERE 6165J 4WD DUAL",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 4,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 350000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR CATERPILLAR D6E",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 5,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR JOHN DEERE 7195J4WD-DUAL",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 6,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR JOHN DEERE 6165J 4WD CON CAB",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 7,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALTRA1280 R4X4",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 8,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALMET 78/1991",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 9,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR DEUTZ FAHR AGROLUX95/2010",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 10,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALTRA BM100 4X4 DUAL",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 11,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALTRA 785 4X4/2007",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 12,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALTRA BL77 4X4/2005",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 13,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALTRA BM120 4X4",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 14,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALMET 118",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 15,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 100000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALTRA BH165 4X4/2008",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 16,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALMET 885",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 17,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALTRA BT210/2015",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 18,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 660000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PICADORA DE FORRAJE CLASS JAGUAR960/2014",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 4
+        }
+    },
+    {
+        "pk": 19,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 300000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PALA CARGADORA CATERPILLAR 924HZ/2012",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 5
+        }
+    },
+    {
+        "pk": 20,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": " STARA ARMANDO IMPERADOR3100",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 3
+        }
+    },
+    {
+        "pk": 21,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PULVERIZADOR JOHNDEERE 4730C/CABINA",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 3
+        }
+    },
+    {
+        "pk": 22,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 525000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "COSECHADORA SLC7500",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 23,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "COSECHADORA JOHN DEERE 1550/2004",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 24,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 525000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "COSECHADORA JOHN DEERE S680 DUSL CSBINA CLIM",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 25,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTADOR JOHN DEERE 21-17L",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 26,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 525000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SERVICIOS TERCERIZADO",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 7
+        }
+    },
+    {
+        "pk": 27,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "FUMIGADORA JACTO2500 C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 8
+        }
+    },
+    {
+        "pk": 28,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "FUMIGADORA JACTO2500 KM60",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 8
+        }
+    },
+    {
+        "pk": 29,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PULVERIZADOR STARA IMPERADOR3100 ARROYO",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 3
+        }
+    },
+    {
+        "pk": 30,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 50000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "NIVELADORA",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 31,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SEMBRADORA KUHN -29 lineas",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 11
+        }
+    },
+    {
+        "pk": 32,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 150000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "RASTRON BALDAN 28 DISCO TOLEDO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 12
+        }
+    },
+    {
+        "pk": 33,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SUBSOLADOR STARA 7 DIENTES",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 13
+        }
+    },
+    {
+        "pk": 34,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "REBOQUE 33000",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 35,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 15000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "JAN 10500",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 36,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 150000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR VALMET 1280",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 37,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SEMBRADORA SPD5000 C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 11
+        }
+    },
+    {
+        "pk": 38,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SEMBRADORA SPD5000 A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 11
+        }
+    },
+    {
+        "pk": 39,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTADORA BALDAN 12 Lineas TOLEDO",
+            "es_implemento": true,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 40,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTADORA PP SOLO 2003 C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 41,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTADORA PP SOLO A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 42,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SEMBRADORA JOHN DEERE ",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 11
+        }
+    },
+    {
+        "pk": 43,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "RASTRON 14D C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 12
+        }
+    },
+    {
+        "pk": 44,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "RASTRON 14D A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 12
+        }
+    },
+    {
+        "pk": 45,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "RASTRON 28DISC. A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 12
+        }
+    },
+    {
+        "pk": 46,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 50000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TROTATIVA C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 15
+        }
+    },
+    {
+        "pk": 47,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 50000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "ROTATIVA A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 15
+        }
+    },
+    {
+        "pk": 48,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 50000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRAILA BALDAN",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 16
+        }
+    },
+    {
+        "pk": 49,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 15000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "JAN 10000",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 50,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "GTS TERRUS C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 13
+        }
+    },
+    {
+        "pk": 51,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "GTS TERRUS A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 13
+        }
+    },
+    {
+        "pk": 52,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 525000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "CLASS LEXION 740",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 53,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTADORA KUHN 15L ARROYO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 54,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTADORA KUHN 15L N2",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 55,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTADORA KUHN 17L",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 56,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "OMBU 22T",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 57,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 15000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "REBOQUE016T Stara",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 58,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 50000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "NIVELADORA BRAUN C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 59,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 50000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "NIVELADORA BRAUN A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 60,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "JAM 7DIENTES",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 13
+        }
+    },
+    {
+        "pk": 61,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISTRIBUIDOR DE CALCAREO TATU AZUL",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 17
+        }
+    },
+    {
+        "pk": 62,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISTRIBUIDOR DE CALCAREO IPACOL A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 17
+        }
+    },
+    {
+        "pk": 63,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISTRIBUIDOR DE ABONO STARA TORNAD C8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 18
+        }
+    },
+    {
+        "pk": 64,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISTRIBUIDOR DE ABONO STARA TORNAD A°",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 18
+        }
+    },
+    {
+        "pk": 65,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR JHON DEERE 7200",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 66,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISCO NIVELADORA 44",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 67,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 300000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "FUMIGADORA JACTO 2500 C8",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 8
+        }
+    },
+    {
+        "pk": 68,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 150000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SERVICIO DE SIEMBRA T.P-BERTAL",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 69,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR 6145 JD DUAL",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 71,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "FUMIGADORA 3PUNTOS CAMPO 8",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 8
+        }
+    },
+    {
+        "pk": 72,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 30000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISTRIBIDOR DE ABONO STARA TOLEDO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 18
+        }
+    },
+    {
+        "pk": 73,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 15000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "MAC DON 40 PIES",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 19
+        }
+    },
+    {
+        "pk": 74,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "MAC DON 35 PIES",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 19
+        }
+    },
+    {
+        "pk": 75,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "JACTO 600 CAÑON",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 8
+        }
+    },
+    {
+        "pk": 76,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "COSECHADORA CLAAS 740  00124",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 77,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "CLAAS 570",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 78,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 375000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "VALMET 1280 3 P TOLEDO",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 79,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "s550 y 1175 cosecha ricardo",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 80,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 175000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA ROJO CCT313 R 124L-470",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 81,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "VOLVO BLANCO ABP648 N-10 ",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 82,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 375000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA AMARILLO CEP386 P114-340",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 83,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "VOLVO BLANCO AEV451 340- NL10",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 84,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA GRIS-AZUL CFL 973 R420",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 85,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA AZUL CFP973 P 114-340",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 86,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA AMARILLO KAF812 SCANIAP380",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 87,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA BLANCO KAB857 113-380 ",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 88,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA ROJO CDD925 G124",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 89,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA BLANCO BLB075",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 90,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 7500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "John Deere 1175 Heinrich Braun",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 91,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "BLG-793 SCANIA ROJO 94      360",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 92,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "CFL-972 SCANIA GRUA BLANCO C 8",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 21
+        }
+    },
+    {
+        "pk": 93,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 412500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "RASTRON BALDAN CRSG 20 DISCOS",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 12
+        }
+    },
+    {
+        "pk": 94,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 487500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISTRIBUIDR DE CALCAREO ALDAN 8000",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 17
+        }
+    },
+    {
+        "pk": 95,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "CLAAS LEXION 760 ORUGA",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 96,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "STARA BRAVA + 17 LIÑOS TOLEDO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 19
+        }
+    },
+    {
+        "pk": 97,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SERVICIO DE SILAJA AJENO",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 20
+        }
+    },
+    {
+        "pk": 98,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLATAFORMA MAIZ ALLIOCHIS 15 L",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 19
+        }
+    },
+    {
+        "pk": 99,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 457500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Corpidora Baldan 2019  C 8 Rotativa",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 15
+        }
+    },
+    {
+        "pk": 100,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 450000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Stara Brava 17linea Arroyo",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 19
+        }
+    },
+    {
+        "pk": 102,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 450000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Niveladora Madera Toledo",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 103,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "CISCO LLIVIANO 56 DISC",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 104,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 30000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Lata Kakote Toledo",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 22
+        }
+    },
+    {
+        "pk": 105,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 52500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "FUMIGADORA MANUAL JACTO",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 8
+        }
+    },
+    {
+        "pk": 106,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Tractor 8270R Dual ",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 107,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Baldan Niveladora Arroyo 44disco",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 108,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 225000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Jacto Duster 600 arro",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 3
+        }
+    },
+    {
+        "pk": 109,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 412500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Cosechadora New Holland 5070 cabrera",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 110,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 15000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "S 550",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 111,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR JOHN DEERE CABRERA PLANTACION",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 112,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "EMUTIDORA CANAVECIO",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 23
+        }
+    },
+    {
+        "pk": 113,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA 114-340ROJA CCT317",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 114,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA P380 AAEI323 NARANJA",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 115,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 30000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "KUHN 24LINEA 2020 PLANTADORA",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 6
+        }
+    },
+    {
+        "pk": 116,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Massey 5650 Peter Klassen",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 117,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Cosechadora Martin Harder 1550y1175",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 2
+        }
+    },
+    {
+        "pk": 118,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 150000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Distribuidor de Calcario Tatu amarillo ",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 17
+        }
+    },
+    {
+        "pk": 119,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "M4030 FUMIGADOR JOHN DEERE",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 3
+        }
+    },
+    {
+        "pk": 120,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 15000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Emutidora Bergtal",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 23
+        }
+    },
+    {
+        "pk": 121,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 30000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "CHIMANGO 5020 JOHN DEERE",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 122,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 90000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "distribidor de abono y semilla",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 18
+        }
+    },
+    {
+        "pk": 123,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA P410 GRIS AAJB682",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 124,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 30000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA P410 GRIS AAJB683",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 125,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 30000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "J D 7230 CHACO",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 126,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 30000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "RASTRON 32 DISCOS CHACO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 12
+        }
+    },
+    {
+        "pk": 127,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "ROLLO CHUCILLA",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 24
+        }
+    },
+    {
+        "pk": 128,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 300000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SUBSOLADOR CHACO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 13
+        }
+    },
+    {
+        "pk": 129,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 157500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA P410 VERDE AAJB681",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 130,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 300000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "NIVELADORA CHACO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 131,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "M4030 JOHN DEERE EXACT APPLY",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 3
+        }
+    },
+    {
+        "pk": 132,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "LATA P KOKOTES CHACO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 22
+        }
+    },
+    {
+        "pk": 133,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TOPADORA",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 25
+        }
+    },
+    {
+        "pk": 134,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "DISCO LIVIANO CHACO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 10
+        }
+    },
+    {
+        "pk": 135,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 187500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "STIHL TRIMMER",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 26
+        }
+    },
+    {
+        "pk": 136,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 375000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "7230 TOLEDO",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    },
+    {
+        "pk": 137,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 0,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Honda 150    362-HES",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 27
+        }
+    },
+    {
+        "pk": 138,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "JERSON TOLEDO",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 14
+        }
+    },
+    {
+        "pk": 139,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "CORTE Y CURA",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 26
+        }
+    },
+    {
+        "pk": 140,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 112500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Sembradora Planticenter 31000",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 11
+        }
+    },
+    {
+        "pk": 141,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 75000.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "PLANTICENTER 31000 ARROYO",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 11
+        }
+    },
+    {
+        "pk": 142,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 37500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "SCANIA P94 CDD932 GRUA AZUL",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 21
+        }
+    },
+    {
+        "pk": 143,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "Grua Toledo CEN 037",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 21
+        }
+    },
+    {
+        "pk": 144,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 22500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "LIMPIEZA DE ALAMBRADO",
+            "es_implemento": false,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 26
+        }
+    },
+    {
+        "pk": 145,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 397500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "VENCE TUDO Plataforma maiz 17linea",
+            "es_implemento": true,
+            "admite_implemento": false,
+            "tipo_maquinaria_agricola": 19
+        }
+    },
+    {
+        "pk": 146,
+        "model": "farming.MaquinariaAgricola",
+        "fields": {
+            "precio": 487500.000,
+            "created": "2023-11-13T17:28:43Z",
+            "descripcion": "TRACTOR JOHN DEERE 7200  2023 C8",
+            "es_implemento": false,
+            "admite_implemento": true,
+            "tipo_maquinaria_agricola": 1
+        }
+    }
+]
