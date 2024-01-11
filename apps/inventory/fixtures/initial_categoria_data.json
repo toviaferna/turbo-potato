@@ -1,130 +1,410 @@
 [
     {
-        "pk": 1,
+        "pk": 7,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Soja"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "inventory.categoria",
-        "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Trigo"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "inventory.categoria",
-        "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Maiz"
-        }
-    },
-    {
-        "pk": 4,
-        "model": "inventory.categoria",
-        "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Navo Y Avena"
-        }
-    },
-    {
-        "pk": 5,
-        "model": "inventory.categoria",
-        "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Gastos Maquinas  C"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ACEITE 85-140"
         }
     },
     {
         "pk": 6,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Gastos Varios C"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ACEITE P/ CAJA"
         }
     },
     {
-        "pk": 7,
+        "pk": 5,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Personal C"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ACEITE 1540 P/MOTOR"
+        }
+    },
+    {
+        "pk": 33,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "FLUIDO"
+        }
+    },
+    {
+        "pk": 34,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SINTETICO"
+        }
+    },
+    {
+        "pk": 35,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "GRASA"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "EP"
+        }
+    },
+    {
+        "pk": 40,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ACEITES"
+        }
+    },
+    {
+        "pk": 53,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "HIDRAULICO"
+        }
+    },
+    {
+        "pk": 57,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ALQUILER"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "COMBUSTIBLE"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "CUBIERTAS"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "CUBIERTAS RECAPADO"
+        }
+    },
+    {
+        "pk": 51,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SELLADOR"
+        }
+    },
+    {
+        "pk": 36,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "PLANTAS"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ZAFRA"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ZAFRIÑA"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "GENERAL"
         }
     },
     {
         "pk": 8,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Girasol"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "FUNGICIDA"
         }
     },
     {
         "pk": 9,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Abono"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "INSECTICIDA"
         }
     },
     {
         "pk": 10,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Insecticida"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "HERBICIDA"
         }
     },
     {
         "pk": 11,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Semilla"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "INOCULANTE"
         }
     },
     {
         "pk": 12,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Herbicida"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "COAJUVANTE"
         }
     },
     {
         "pk": 13,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Adherente"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ABONO"
         }
     },
     {
         "pk": 14,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Cal Y Otros Correctores"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ABONO FOLIAR"
         }
     },
     {
         "pk": 15,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Funguicida"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SEMILLA DE MAIZ"
         }
     },
     {
         "pk": 16,
         "model": "inventory.categoria",
         "fields": {
-            "created": "2023-11-13T11:28:49Z",
-            "descripcion": "Combustible"
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SEMILLA DE SOJA"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "CAL AGRICOLA"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SEMILLA DE TRIGO"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "TRATAMIENTO DE SEMILLA"
+        }
+    },
+    {
+        "pk": 39,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SEMILLA SOLVO"
+        }
+    },
+    {
+        "pk": 41,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SEMILLA PASTO"
+        }
+    },
+    {
+        "pk": 42,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "AVENA"
+        }
+    },
+    {
+        "pk": 49,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "VENENO P/ HORMIGA"
+        }
+    },
+    {
+        "pk": 52,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SEMILLA DE AVENA"
+        }
+    },
+    {
+        "pk": 55,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "PASTO"
+        }
+    },
+    {
+        "pk": 56,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SEMILLA DE CANOLA"
+        }
+    },
+    {
+        "pk": 44,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "LLANTAS"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "RULEMAN"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "BOMBIN"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "REP AUX"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "RETENES"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "FILTROS ACEIT"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "FILTRO COMB."
+        }
+    },
+    {
+        "pk": 46,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "CAMARA"
+        }
+    },
+    {
+        "pk": 50,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "BALANCEOS"
+        }
+    },
+    {
+        "pk": 54,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "REPUESTOS VARIOS"
+        }
+    },
+    {
+        "pk": 45,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "ZAFRIÑA"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SERVICIOS"
+        }
+    },
+    {
+        "pk": 43,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "SILAGE"
+        }
+    },
+    {
+        "pk": 58,
+        "model": "inventory.categoria",
+        "fields": {
+            "created": "2024-01-11T16:32:18Z",
+            "descripcion": "TUBOS"
         }
     }
 ]

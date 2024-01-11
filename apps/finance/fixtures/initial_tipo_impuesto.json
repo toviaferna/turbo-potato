@@ -1,0 +1,32 @@
+[
+    {
+        "pk": 1,
+        "model": "finance.tipoimpuesto",
+        "fields": {
+            "es_iva": true,
+            "created": "2024-01-11T16:54:22Z",
+            "porcentaje": 0,
+            "descripcion": "EXENTA"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "finance.tipoimpuesto",
+        "fields": {
+            "es_iva": true,
+            "created": "2024-01-11T16:54:22Z",
+            "porcentaje": 5,
+            "descripcion": "IVA 5%"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "finance.tipoimpuesto",
+        "fields": {
+            "es_iva": true,
+            "created": "2024-01-11T16:54:22Z",
+            "porcentaje": 10,
+            "descripcion": "IVA 10%"
+        }
+    }
+]

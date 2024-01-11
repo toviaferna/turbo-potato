@@ -3,64 +3,64 @@
         "pk": 1,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "tnl",
-            "descripcion": "Tonelada"
+            "simbolo": "TNL",
+            "descripcion": "TONELADA"
         }
     },
     {
         "pk": 2,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "kg",
-            "descripcion": "Kilogramos"
+            "simbolo": "KG",
+            "descripcion": "KILOGRAMOS"
         }
     },
     {
         "pk": 3,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "lts",
-            "descripcion": "Litros"
+            "simbolo": "LTS",
+            "descripcion": "LITROS"
         }
     },
     {
         "pk": 4,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "ha",
-            "descripcion": "Hectareas"
+            "simbolo": "HA",
+            "descripcion": "HECTAREAS"
         }
     },
     {
         "pk": 5,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "m2",
-            "descripcion": "Metros2"
+            "simbolo": "M2",
+            "descripcion": "METROS2"
         }
     },
     {
         "pk": 6,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "hs",
-            "descripcion": "Horas"
+            "simbolo": "HS",
+            "descripcion": "HORAS"
         }
     },
     {
         "pk": 7,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "un",
-            "descripcion": "Unidad"
+            "simbolo": "UN",
+            "descripcion": "UNIDAD"
         }
     },
     {
         "pk": 8,
         "model": "inventory.unidadmedida",
         "fields": {
-            "simbolo": "dosis",
-            "descripcion": "Dosis"
+            "simbolo": "DOSIS",
+            "descripcion": "DOSIS"
         }
     }
 ]
