@@ -1,7 +1,8 @@
-from apps.finance.models import Cuenta, Persona
-from apps.inventory.models import Deposito, Item
 from django.db import models
 from django.utils.html import format_html
+
+from apps.finance.models import Cuenta, Persona
+from apps.inventory.models import Deposito, Item
 
 
 # Create your models here.
@@ -22,9 +23,9 @@ class PedidoCompra(models.Model):
 
     def __str__(self):
         return (
-            self.proveedor.razon_social + " - " + ""
+            self.proveedor.razon_social
             if not self.observacion
-            else self.observacion
+            else f"{self.fecha_documento} - {self.proveedor.razon_social} - {self.observacion}"
         )
 
     @property

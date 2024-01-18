@@ -1,17 +1,21 @@
+import django_tables2 as tables
+from django.urls.base import reverse
+from django.utils.html import format_html
+from django_tables2.utils import Accessor
+
 from apps.supplies import models
 from core.tables import AccionTable, DetailTable
 from core.tables.columns import (BooleanColumn, NumericColumn,
                                  TotalNumericColumn)
-from django.urls.base import reverse
-from django.utils.html import format_html
 
 
 class PedidoCompraTable(AccionTable):
     es_vigente = BooleanColumn()
-
+    #id = tables.Column(verbose_name='ID', accessor=Accessor('pk'))
     class Meta:
         model = models.PedidoCompra
         fields = (
+            "pk",
             "proveedor",
             "fecha_documento",
             "fecha_vencimiento",
