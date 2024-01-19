@@ -1,7 +1,5 @@
-import django_tables2 as tables
 from django.urls.base import reverse
 from django.utils.html import format_html
-from django_tables2.utils import Accessor
 
 from apps.supplies import models
 from core.tables import AccionTable, DetailTable
@@ -22,18 +20,17 @@ class PedidoCompraTable(AccionTable):
             "es_vigente",
         )
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
-
+        order_by = "-fecha_documento"
 
 class OrdenCompraTable(AccionTable):
     es_vigente = BooleanColumn()
-    total = TotalNumericColumn(verbose_name="Total")
+    total = NumericColumn(verbose_name="Total")
 
     class Meta:
         model = models.OrdenCompra
         fields = ("proveedor", "fecha_documento", "total", "es_vigente")
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
         order_by = "-fecha_documento"
-
 
 class CompraTable(AccionTable):
     es_credito = BooleanColumn()

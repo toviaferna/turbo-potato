@@ -1,11 +1,13 @@
 from apps.supplies import forms, inlines, models, tables
-from apps.supplies.filters import CompraFilter, LibroCompraFilter
+from apps.supplies.filters import (CompraFilter, LibroCompraFilter,
+                                   OrdenCompraFilter, PedidoCompraFilter)
 from core import views
 
 
 class PedidoCompraListView(views.ListView):
     model = models.PedidoCompra
     table_class = tables.PedidoCompraTable
+    filterset_class = PedidoCompraFilter
     search_fields = [
         "proveedor__razon_social",
     ]
@@ -26,15 +28,24 @@ class PedidoCompraUpdateView(views.UpdateView):
     inlines = [inlines.PedidoCompraDetalleInline]
     list_url = "pedido_compra_list"
 
+class OrdenCompraUpdateView(views.UpdateView):
+    model = models.OrdenCompra
+    form_class = forms.OrdenCompraForm
+    inlines = [inlines.OrdenCompraDetalleInline]
+    list_url = "orden_compra_list"
+    
+
 
 class OrdenCompraListView(views.ListView):
     model = models.OrdenCompra
     table_class = tables.OrdenCompraTable
+    filterset_class = OrdenCompraFilter
     search_fields = [
         "proveedor__razon_social",
     ]
     delete_url = "orden_compra_delete"
     create_url = "orden_compra_create"
+    update_url = "orden_compra_update"
 
 
 class OrdenCompraCreateView(views.CreateView):
