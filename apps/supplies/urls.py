@@ -1,5 +1,6 @@
-from apps.supplies import views
 from django.urls import path
+
+from apps.supplies import views
 
 urlpatterns = [
     path(
@@ -56,6 +57,16 @@ urlpatterns = [
         "orden-compra/add",
         views.OrdenCompraCreateView.as_view(),
         name="orden_compra_create",
+    ),
+    path(
+        "orden-compra/add",
+        views.OrdenCompraCreateView.as_view(),
+        name="orden_compra_create",
+    ),
+    path(
+        "orden-compra/<int:pk>/update",
+        views.OrdenCompraUpdateView.as_view(),
+        name="orden_compra_update",
     ),
     path(
         "orden-compra/", views.OrdenCompraListView.as_view(), name="orden_compra_list"

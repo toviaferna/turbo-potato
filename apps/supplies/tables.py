@@ -1,9 +1,10 @@
+from django.urls.base import reverse
+from django.utils.html import format_html
+
 from apps.supplies import models
 from core.tables import AccionTable, DetailTable
 from core.tables.columns import (BooleanColumn, NumericColumn,
                                  TotalNumericColumn)
-from django.urls.base import reverse
-from django.utils.html import format_html
 
 
 class PedidoCompraTable(AccionTable):
@@ -18,18 +19,17 @@ class PedidoCompraTable(AccionTable):
             "es_vigente",
         )
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
-
+        order_by = "-fecha_documento"
 
 class OrdenCompraTable(AccionTable):
     es_vigente = BooleanColumn()
-    total = TotalNumericColumn(verbose_name="Total")
+    total = NumericColumn(verbose_name="Total")
 
     class Meta:
         model = models.OrdenCompra
         fields = ("proveedor", "fecha_documento", "total", "es_vigente")
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
         order_by = "-fecha_documento"
-
 
 class CompraTable(AccionTable):
     es_credito = BooleanColumn()

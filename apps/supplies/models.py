@@ -1,7 +1,8 @@
-from apps.finance.models import Cuenta, Persona
-from apps.inventory.models import Deposito, Item
 from django.db import models
 from django.utils.html import format_html
+
+from apps.finance.models import Cuenta, Persona
+from apps.inventory.models import Deposito, Item
 
 
 # Create your models here.
