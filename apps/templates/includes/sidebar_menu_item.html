@@ -9,8 +9,8 @@
     <li class="nav-item 
     {% if item.children %} has-treeview {% endif %} {% if item.children %}{% for menuitem in item.children %}{% if menuitem.visible %}{% if menuitem.selected %} menu-open {% endif %}{% endif %}{% endfor %}{% endif %}">
         
-        <a href="{{ item.url }}" class="nav-link 
-        {% if item.selected %} active {% endif %}  {% if item.children %}{% for menuitem in item.children %}{% if menuitem.visible %}{% if menuitem.selected %} active {% endif %}{% endif %}{% endfor %}{% endif %}">
+        <a href="{% if item.title == 'Ayuda' %}{% url 'documentation:mkdocs' index.html %}{% else %}{{ item.url }}{% endif %}" class="nav-link 
+        {% if item.selected %} active {% endif %}  {% if item.children %}{% for menuitem in item.children %}{% if menuitem.visible %}{% if menuitem.selected %} active {% endif %}{% endif %}{% endfor %}{% endif %}" target="{{item.link_attrs.target}}">
             {% if item.icon %}
                 <i class="nav-icon {{ item.icon }}"></i>
             {% endif %}

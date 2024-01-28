@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'apps.supplies',
     'apps.sales',
     'apps.reports',
+    'apps.documentation',
     'crispy_forms',
     'extra_views',
     'dal',
@@ -162,6 +163,18 @@ EXPORT_PDF_CSS = {
     "invoice_css":os.path.join(STATICFILES_DIRS[0],"assets/css/export_pdf/invoice.css"),
     "invoice_img":os.path.join(STATICFILES_DIRS[0],"assets/img/logo.png"),
 }
+
+DOCUMENTATION_ROOT = os.path.join(BASE_DIR, 'docs')
+DOCUMENTATION_HTML_ROOT = os.path.join(CORE_DIR, 'site')
+DOCUMENTATION_ACCESS_FUNCTION = lambda user: user.is_active
+
+print(DOCUMENTATION_HTML_ROOT)
+
+# Django-mkdocs assumes an Nginx server is used by default to serve the documentation. 
+# DOCUMENTATION_XSENDFILE is set to true by default. If you are not using Nginx, expect
+# a very small number of users, and understand the consequences of using django.views.static.serve,
+# set the following flag to False:
+DOCUMENTATION_XSENDFILE = False
 
 EMPRESA = {
     "nombre":"Agro Atardecer",

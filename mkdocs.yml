@@ -1,0 +1,18 @@
+site_name: Manual de Usuario
+theme:
+  name: "readthedocs"
+  language: es
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+nav:
+    - 'index.md'
+    - 'accesoSistema.md'
+    - 'menuPrincipalOpciones.md'
+    - 'funcionesBasicasRegistros.md'
+    - 'mantenimientoUsuario.md'
+    - 'funcionesBasicasMovimientos.md'
+    - 'funcionesBasicaInforme.md'
