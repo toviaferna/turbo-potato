@@ -42,7 +42,6 @@ class MaquinariaCustomSelect(forms.Select):
     
     def __init__(self, attrs=None, choices=(), modify_choices=()):
         super().__init__(attrs, choices=choices)
-        # set data
         self.modify_choices = modify_choices
 
     def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):

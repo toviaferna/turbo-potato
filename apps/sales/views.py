@@ -1,15 +1,16 @@
 import datetime
 
-from apps.finance.models import Persona
-from apps.sales import filters, forms, inlines, models, tables
-from core import views
-from core.utils import link_callback
 from django.conf import settings
 from django.db import transaction
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from num2words import num2words
 from xhtml2pdf import pisa
+
+from apps.finance.models import Persona
+from apps.sales import filters, forms, inlines, models, tables
+from core import views
+from core.utils import link_callback
 
 
 # Create your views here.

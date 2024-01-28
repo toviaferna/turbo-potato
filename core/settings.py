@@ -185,13 +185,13 @@ EMPRESA = {
     "fax":"0528 222123",
     "pais":"PARAGUAY",
     "departamento":"CAAGUAZU",
-    "localidad":"SAN MIGUEL",
+    "localidad":"SAN MIGUELANGELO",
     "direccion":"RUTA PY13 - KM 40,5",
     "timbrado":{
-        "numero":"12332145",
-        "fecha_inicio":"01/01/2022",
-        "fecha_fin":"31/12/2022",
-        "autorizacion":"350050010670"
+        "numero":"16645212",
+        "fecha_inicio":"31/12/2023",
+        "fecha_fin":"31/12/2024",
+        "autorizacion":"350010008649"
     }
 }
 

@@ -2,18 +2,10 @@
 
 ## Objetivos
 
-Establecer los pasos específicos para el registro el uso y la gestión del Sistema 
-“Agro Amanecer”, con el fin de enseñar e implementar el uso de la herramienta 
-a los usuarios.
+El propósito principal de esta documentación es proporcionar una guía detallada sobre los pasos específicos para el registro, uso y gestión del Sistema "Agro Atardecer". Esta guía está diseñada para enseñar e implementar el uso de la herramienta de manera efectiva a los usuarios.
 
 ## Definiciones
 
-Sistema Informático Agro Amanecer: Es una aplicación que facilita el uso diario
-de las diferentes actividades y gestiones realizadas por el agricultor, ya sea en el campo 
-o en el ámbito de los negocios post producción. Permitiendo llevar una herramienta consigo que facilitara todos sus procesos realizados.
+**Sistema Informático Agro Atardecer:** Es una aplicación diseñada para facilitar las actividades diarias y gestiones realizadas por los agricultores, ya sea en el campo o en el ámbito de los negocios post-producción. Permite llevar una herramienta consigo que simplifica todos los procesos involucrados.
 
-
- ![Principal](assets/images/logo.png)
-
-
-
+<img src="assets/images/logo.png" alt="Logo Agro Amanecer" width="300" height="300">

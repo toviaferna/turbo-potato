@@ -1,13 +1,13 @@
 # Acceso
 
-## Logueo
+## Inicio de Sesión
 
-El usuario accede a la pantalla de Acceso del Usuario, procede a insertar su “Usuario” y la “Contraseña” para poder acceder al sistema. 
+Para ingresar al sistema, el usuario debe dirigirse a la pantalla de Acceso del Usuario. Una vez allí, procederá a ingresar su "Nombre de Usuario" y "Contraseña".
 
-![Principal](assets/images/1.png)
+![Pantalla de Acceso](assets/images/1.png)
 
-## Menu Principal
+## Menú Principal
 
-Si toda la información fue correctamente insertada, se procede a acceder al menú principal o página principal del sistema.
+Si la información de inicio de sesión es ingresada correctamente, el usuario accederá al Menú Principal o página principal del sistema.
 
-![Principal](assets/images/2.png)
+![Menú Principal](assets/images/2.png)

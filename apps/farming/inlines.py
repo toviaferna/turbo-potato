@@ -1,7 +1,8 @@
-from apps.farming import forms, models
-from core.widgets import AutocompleteSelect, DateInput, MaquinariaCustomSelect
 from django.forms import widgets
 from extra_views import InlineFormSetFactory
+
+from apps.farming import forms, models
+from core.widgets import AutocompleteSelect, DateInput, MaquinariaCustomSelect
 
 
 class PlanActividadZafraDetalleInline(InlineFormSetFactory):

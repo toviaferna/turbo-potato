@@ -1,12 +1,14 @@
-from apps.farming import models
-from apps.finance.models import Persona
-from apps.inventory.models import Deposito, Item
-from core import layouts, widgets
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (HTML, ButtonHolder, Column, Fieldset, Layout,
                                  Row)
 from django.forms import BooleanField, CharField, DateField, DecimalField
 from django.forms.models import ModelForm
+
+from apps.farming import models
+from apps.finance.models import Persona
+from apps.inventory.models import Deposito, Item
+from core import layouts, widgets
+from core.layouts import FormActions, Formset
 
 
 class FincaForm(ModelForm):
@@ -326,6 +328,25 @@ class AcopioCalificacionForm(ModelForm):
         fields = ["acopio", "calificacion_agricola", "grado", "porcentaje", "peso"]
         # widgets = {'grado':DecimalMaskInput,'porcentaje':DecimalMaskInput,'peso':DecimalMaskInput}
 
+class ActividadAgricolaItemDetalleForm(ModelForm):
+    subtotal_item = DecimalField(
+        widget=widgets.FormulaInput("costo*cantidad"), label="SubTotal"
+    )
+
+    class Meta:
+        model = models.ActividadAgricolaItemDetalle
+        fields = [
+            "item",
+            "deposito",
+            "dosis",
+            "costo",
+            "cantidad",
+            "porcentaje_impuesto",
+            "subtotal_item",
+        ]
+        # widgets = {'dosis':DecimalMaskInput,'costo':DecimalMaskInput,'cantidad':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'subtotalItem':DecimalMaskInput}
+
+
 
 class ActividadAgricolaForm(ModelForm):
     total_maquinaria = DecimalField(
@@ -389,10 +410,10 @@ class ActividadAgricolaForm(ModelForm):
             "es_servicio_contratado",
             Fieldset(
                 "Detalles",
-                layouts.Formset(
+                Formset(
                     "ActividadAgricolaMaquinariaDetalleInline"  # , stacked=True
                 ),
-                layouts.Formset(
+                Formset(
                     "ActividadAgricolaItemDetalleInline",  # , stacked=True
                 ),
             ),
@@ -424,24 +445,6 @@ class ActividadAgricolaMaquinariaDetalleForm(ModelForm):
         fields = ["maquinaria", "ha_trabajada", "precio", "subtotal_maquinaria"]
         # widgets = {'haTrabajada':DecimalMaskInput,'precio':DecimalMaskInput,'subtotalMaquinaria':DecimalMaskInput}
 
-
-class ActividadAgricolaItemDetalleForm(ModelForm):
-    subtotal_item = DecimalField(
-        widget=widgets.FormulaInput("costo*cantidad"), label="SubTotal"
-    )
-
-    class Meta:
-        model = models.ActividadAgricolaItemDetalle
-        fields = [
-            "item",
-            "deposito",
-            "dosis",
-            "costo",
-            "cantidad",
-            "porcentaje_impuesto",
-            "subtotal_item",
-        ]
-        # widgets = {'dosis':DecimalMaskInput,'costo':DecimalMaskInput,'cantidad':DecimalMaskInput,'porcentajeImpuesto':DecimalMaskInput,'subtotalItem':DecimalMaskInput}
 
 
 class LiquidacionAgricolaSelectionForm(ModelForm):
