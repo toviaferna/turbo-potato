@@ -1,34 +1,34 @@
-# Mantenimiento Usuarios
+# Mantenimiento de Usuarios
 
-## Listado Base.
+## Listado Base
 
-Si el usuario posee los permisos de acceso, puede crear nuevos usuarios, accediendo a la opción de “Usuarios” que está ubicado en la barra del menú principal.
+Si el usuario cuenta con los permisos adecuados, puede crear nuevos usuarios accediendo a la opción "Usuarios" en la barra del menú principal.
 
-Una vez accedido visualizará esta pantalla 
+Una vez dentro, se desplegará la siguiente pantalla:
 
 !!! Info
-    Funciona de la misma manera que los puntos vistos anteriormente
+    El funcionamiento es similar a los puntos mencionados anteriormente.
 
-![Principal](assets/images/13.png)
+![Listado de Usuarios](assets/images/13.png)
 
-## Registrando Usuario.
+## Registro de Nuevo Usuario
 
-Oprima Añadir y visualizará esta pantalla, cargue todas las informaciones y guarde el registro, con esto tendrá un nuevo usuario dentro del sistema.
+Seleccione "Añadir" para acceder a la pantalla de registro. Complete todos los campos requeridos y guarde la información para agregar exitosamente un nuevo usuario al sistema.
 
-![Principal](assets/images/14.png)
+![Registro de Usuario](assets/images/14.png)
 
-## Actualizando Usuario.
+## Actualización de Información de Usuario
 
-Al acceder al modo Actualización (oprimiendo el botón editar), podrá modificar varias informaciones; excepto la de contraseña.
+En el modo de actualización (al presionar el botón de editar), podrá modificar varias informaciones del usuario, con excepción de la contraseña.
 
-![Principal](assets/images/15.png)
+![Actualización de Usuario](assets/images/15.png)
 
-## Resetear Contraseña 
+## Restablecimiento de Contraseña
 
-Acceda a la opción de que está ubicada en el menú con el nombre del usuario actual y oprima la opción de “Cambiar contraseña”
+Diríjase a la opción en el menú con el nombre del usuario actual y seleccione "Cambiar Contraseña".
 
-![Principal](assets/images/16.png)
+![Restablecimiento de Contraseña](assets/images/16.png)
 
-Una vez dentro, se le pedirá que cargue la contraseña antigua y la nueva para poder confirmar el cambio.
+Dentro de esta sección, se le pedirá que ingrese tanto la contraseña antigua como la nueva para confirmar el cambio.
 
-![Principal](assets/images/17.png)
+![Confirmación de Cambio de Contraseña](assets/images/17.png)

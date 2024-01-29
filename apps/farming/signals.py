@@ -1,8 +1,9 @@
+from django.db.models.signals import post_save, pre_delete, pre_save
+from django.dispatch import receiver
+
 from apps.farming.models import (AcopioDetalle, ActividadAgricolaItemDetalle,
                                  CierreZafra, CierreZafraDetalle, Zafra)
 from apps.inventory.models import Item, ItemMovimiento
-from django.db.models.signals import post_save, pre_delete, pre_save
-from django.dispatch import receiver
 
 
 @receiver(post_save, sender=AcopioDetalle)
@@ -31,8 +32,8 @@ def signal_actividad_agricola_item_guardado(sender, instance, created, **kwargs)
         item_movimiento.cantidad = instance.cantidad
         item_movimiento.costo = instance.costo
         item_movimiento.precio = 0
-        item_movimiento.fecha_documento = instance.actividadAgricola.fechaDocumento
-        item_movimiento.secuencia_origen = instance.actividadAgricola.pk
+        item_movimiento.fecha_documento = instance.actividad_agricola.fecha_documento
+        item_movimiento.secuencia_origen = instance.actividad_agricola.pk
         item_movimiento.detalle_secuencia_origen = instance.pk
         item_movimiento.es_vigente = True
         item_movimiento.tipo_movimiento = "AA"

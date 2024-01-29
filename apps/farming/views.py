@@ -1,6 +1,7 @@
+from django.db.models import F, Sum
+
 from apps.farming import filters, forms, inlines, models, tables
 from core import views
-from django.db.models import F, Sum
 
 
 # FINCA
@@ -224,7 +225,7 @@ class ContratoListView(views.ListView):
     model = models.Contrato
     table_class = tables.ContratoTable
     search_fields = ["descripcion", "item__descripcion"]
-    update_url = "contrato_update"
+    #update_url = "contrato_update"
     delete_url = "contrato_delete"
     create_url = "contrato_create"
 
@@ -345,7 +346,7 @@ class ActividadAgricolaCreateView(views.CreateView):
 
 class ActividadAgricolaAnnulledView(views.AnnulledView):
     model = models.ActividadAgricola
-    template_name = "inventory/anular.html"
+    #template_name = "inventory/anular.html"
     list_url = "actividad_agricola_list"
     mensaje_anulacion = "La Actividad Agrícola ya fue anulado."
 
@@ -411,7 +412,7 @@ class LiquidacionAgricolaCreateView(views.CreateView):
                     "precio": precio,
                     "secuencia_origen": x.pk,
                     "check": False,
-                    "movimiento": x.tipoActividadAgricola.descripcion,
+                    "movimiento": x.tipo_actividad_agricola.descripcion,
                     "finca": x.finca,
                     "lote": x.lote,
                     "cantidad": x.cantidad_trabajada,

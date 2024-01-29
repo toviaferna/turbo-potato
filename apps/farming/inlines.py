@@ -106,14 +106,14 @@ class ActividadAgricolaItemDetalleInline(InlineFormSetFactory):
     factory_kwargs = {
         "extra": 1,
         "widgets": {
-            "item": AutocompleteSelect(
-                url="producto_autocomplete",
-                attrs={
-                    "data-placeholder": "Buscar por descripcion, categoria, marca.",
-                    "wrapper_class": "col-sm-4",
-                    "data-item-select": True,
-                },
-            ),
+            # "item": AutocompleteSelect(
+            #     url="producto_autocomplete",
+            #     attrs={
+            #         "data-placeholder": "Buscar por descripcion, categoria, marca.",
+            #         "wrapper_class": "col-sm-4",
+            #         "data-item-select": True,
+            #     },
+            # ),
             "porcentaje_impuesto": widgets.NumberInput(
                 attrs={
                     "class": "text-right item-porcentaje-impuesto",
