@@ -72,10 +72,15 @@ urlpatterns = [
         "orden-compra/", views.OrdenCompraListView.as_view(), name="orden_compra_list"
     ),
     path(
-        "pedido-compra/<int:pk>/update/",
-        views.PedidoCompraUpdateView.as_view(),
-        name="pedido_compra_update",
+        "pedido-compra/<int:pk>/delete/",
+        views.PedidoCompraAnnulledView.as_view(),
+        name="pedido_compra_delete",
     ),
+    #path(
+    #    "pedido-compra/<int:pk>/update/",
+    #    views.PedidoCompraUpdateView.as_view(),
+    #    name="pedido_compra_update",
+    #),
     path(
         "pedido-compra/add",
         views.PedidoCompraCreateView.as_view(),

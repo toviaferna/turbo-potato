@@ -11,7 +11,8 @@ class PedidoCompraListView(views.ListView):
     search_fields = [
         "proveedor__razon_social",
     ]
-    update_url = "pedido_compra_update"
+    delete_url = "pedido_compra_delete"
+    #update_url = "pedido_compra_update"
     create_url = "pedido_compra_create"
 
 
@@ -26,6 +27,10 @@ class PedidoCompraUpdateView(views.UpdateView):
     model = models.PedidoCompra
     form_class = forms.PedidoCompraForm
     inlines = [inlines.PedidoCompraDetalleInline]
+    list_url = "pedido_compra_list"
+
+class PedidoCompraAnnulledView(views.AnnulledView):
+    model = models.PedidoCompra
     list_url = "pedido_compra_list"
 
 class OrdenCompraUpdateView(views.UpdateView):
