@@ -1,5 +1,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/js/jquery.overlayScrollbars.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/js/jquery.overlayScrollbars.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
 {% include 'includes/jquery_formset.html' %}
+<script>
+    const toggleButton = document.querySelector('.sidebar-toggle');
+    toggleButton.addEventListener('click', function () {
+        $('body').one('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function () {
+            const isSidebarOpen = $('body').hasClass('sidebar-collapse');
+            localStorage.setItem('sidebarState', !isSidebarOpen);
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        const sidebarState = localStorage.getItem('sidebarState');
+        console.log("state: "+sidebarState);
+
+        if (sidebarState === 'true') {
+            $('body').removeClass('sidebar-collapse');
+        } else {
+            $('body').addClass('sidebar-collapse');
+        }
+    });
+
+</script>
