@@ -604,7 +604,7 @@ class CierreZafraCreateView(views.CreateView):
                 )
             )
             costo_liquidacion = models.LiquidacionAgricolaDetalle.objects.annotate(
-                i_sum=Sum(F("cantidad") * F("liquidacion_agricola__precioUnitario"))
+                i_sum=Sum(F("cantidad") * F("liquidacion_agricola__precio_unitario"))
             ).filter(
                 liquidacion_agricola__es_vigente=True,
                 liquidacion_agricola__zafra=zafra_digitada,
