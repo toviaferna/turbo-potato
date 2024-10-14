@@ -57,8 +57,7 @@ class TableExport(export.TableExport):
 
     def get_dataset_as_html(self):
         template = get_template("django_tables2/export_pdf.html")
-        for column in self.table.columns:
-            print(column.column.exclude_from_export)
+        
         html = template.render(
             {
                 "table_columns": self.table.columns,
@@ -71,6 +70,7 @@ class TableExport(export.TableExport):
                 "orientation": self.page_orientation,
                 "report_title": self.report_title,
                 "css_dir": settings.EXPORT_PDF_CSS.get(self.page_orientation),
+                "filter": self.table.filter
             }
         )
         return html

@@ -109,7 +109,13 @@ class ListView(LoginRequiredMixin,SearchViewMixin, ExportMixin, SingleTableMixin
         if not self.filterset_class:
             context['filter'] = None
         return context
-
+    
+    def get_table(self, **kwargs):
+        table = super().get_table(**kwargs)
+        if self.filterset_class:
+            self.filterset = self.filterset_class(self.request.GET, queryset=self.get_queryset())
+            table.filter = self.filterset
+        return table
 
 class CreateView(LoginRequiredMixin, FormsetInlinesMetaMixin, CreateWithInlinesView, metaclass=widgets.MediaDefiningClass):
     template_name = 'generic/edit.html'

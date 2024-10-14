@@ -2,53 +2,81 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" href="{{css_dir}}">
-    </head>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="{{css_dir}}">
+</head>
 
-    <body>
+<body>
 
-        <div id="header_content">
-            <p>
-                <p><span style="font-size: large;">{{empresa.razon_social}}</span></p>
-                <p><span>{{ today | date:"d/m/Y H:i" }}</span></p>
-                <p><span style="font-size: larger;font-weight: bold;">{{title}}</span></p> 
-            </p>
+    <div id="header_content">
 
-            <table>
-                <thead>
+        <table width="100%">
+            <tr>
+                <td align="left" style="font-size: large;">{{ empresa.razon_social }}</td>
+                <td align="right">{{ today | date:"d/m/Y H:i" }}</td>
+            </tr>
+        </table>
+
+        {% if filter %}
+            <strong>Filtros aplicados:</strong><br>
+            {% for field in filter.form %}
+                {% if field.value %}
+                    <b>{{ field.label }}:</b>
+                    {% if field.field.queryset %}
+                        {% for obj in field.field.queryset %}
+                            {% if obj.pk|stringformat:"s" == field.value|stringformat:"s" %}
+                                {{ obj.pk }} - {{ obj }}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {{ field.value|default:"" }}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <p><span style="font-size: larger; font-weight: bold;">{{ title }}</span></p>
+    </div>
+
+    <div id="content_frame">
+        <table>
+            <thead>
                 {% for column in table_columns %}
                     {% if not column.column.exclude_from_export %}
-                        <th {{ column.attrs.th.as_html }} >
-                            {{column.header}}
+                        <th {{ column.attrs.th.as_html }}>
+                            {{ column.header }}
                         </th>
                     {% endif %}
                 {% endfor %}
-                </thead>
-            </table>
-        </div>
+            </thead>
+            <tbody>
+                {% for row in table_rows %}
+                    <tr {{ row.attrs.as_html }}>
+                        {% for column, cell in row.items %}
+                            {% if not column.column.exclude_from_export %}
+                                <td {{ column.attrs.td.as_html }}>
+                                    {% if column.localize == None %}
+                                        {{ cell }}
+                                    {% else %}
+                                        {% if column.localize %}
+                                            {{ cell|localize }}
+                                        {% else %}
+                                            {{ cell|unlocalize }}
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-        <div id="content_frame">
-            <table>
-                <tbody>
-                    {% for row in table_rows %}
-                        <tr {{ row.attrs.as_html }}>
-                            {% for column, cell in row.items %}
-                                {% if not column.column.exclude_from_export %}
-                                    <td {{ column.attrs.td.as_html }}>{% if column.localize == None %}{{ cell }}{% else %}{% if column.localize %}{{ cell|localize }}{% else %}{{ cell|unlocalize }}{% endif %}{% endif %}</td>
-                                {% endif %}
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <div id="footer_content" style="width: 100%; text-align: center;">
+        página <pdf:pagenumber> de <pdf:pagecount>
+    </div>
 
-        <div id="footer_content" style="width: 100%; text-align: center;">
-            página <pdf:pagenumber> de <pdf:pagecount>
-        </div>
-
-    </body>
-
+</body>
 </html>
