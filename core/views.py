@@ -22,6 +22,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView, metaclass=widgets.MediaDef
     template_name = 'generic/remove.html'
     page_title = None
     page_subtitle = None
+    button_text = "Eliminar"
 
     def get_success_url(self):
         return reverse_lazy(self.list_url)
@@ -36,7 +37,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView, metaclass=widgets.MediaDef
         context['title'] = "Eliminar "+self.model._meta.verbose_name.title() if self.page_title is None else self.page_title
         context['subtitle'] = f"Desea eliminar: {self.object}?" if self.page_subtitle is None else self.page_subtitle
         context['error'] = self.error
-        context['delete_button_text'] = "Eliminar"
+        context['delete_button_text'] = self.button_text
         context['media'] = self.media
         return context
 
@@ -58,6 +59,7 @@ class DeleteView(LoginRequiredMixin, edit.DeleteView, metaclass=widgets.MediaDef
 
 class AnnulledView(DeleteView):
     mensaje_anulado = "Ya fue anulado!"
+    button_text = "Anular"
     @transaction.atomic
     def delete(self, request, *args, **kwargs):
         success_url = self.get_success_url()
