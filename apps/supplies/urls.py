@@ -49,6 +49,11 @@ urlpatterns = [
         name="nota_debito_recibida_list",
     ),
     path(
+        "orden-compra/<int:pk>/detail/",
+        views.OrdenCompraDetailView.as_view(),
+        name="orden_compra_detail",
+    ),
+    path(
         "orden-compra/<int:pk>/delete/",
         views.OrdenCompraAnnulledView.as_view(),
         name="orden_compra_delete",
@@ -70,6 +75,11 @@ urlpatterns = [
     ),
     path(
         "orden-compra/", views.OrdenCompraListView.as_view(), name="orden_compra_list"
+    ),
+    path(
+        "pedido-compra/<int:pk>/detail/",
+        views.PedidoCompraDetailView.as_view(),
+        name="pedido_compra_detail",
     ),
     path(
         "pedido-compra/<int:pk>/delete/",
