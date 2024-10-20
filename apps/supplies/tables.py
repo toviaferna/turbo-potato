@@ -10,6 +10,13 @@ from core.tables.columns import (BooleanColumn, NumericColumn,
 class PedidoCompraTable(AccionTable):
     es_vigente = BooleanColumn()
     #id = tables.Column(verbose_name='ID', accessor=Accessor('pk'))
+
+    def render_proveedor(self, value, record):
+        return format_html(
+            '<a href="{}">{}</a>',
+            reverse("pedido_compra_detail", kwargs={"pk": record.pk}),
+            value,
+        )
     class Meta:
         model = models.PedidoCompra
         fields = (
@@ -25,10 +32,16 @@ class PedidoCompraTable(AccionTable):
 class OrdenCompraTable(AccionTable):
     es_vigente = BooleanColumn()
     total = NumericColumn(verbose_name="Total")
+    def render_proveedor(self, value, record):
+        return format_html(
+            '<a href="{}">{}</a>',
+            reverse("orden_compra_detail", kwargs={"pk": record.pk}),
+            value,
+        )
 
     class Meta:
         model = models.OrdenCompra
-        fields = ("proveedor", "fecha_documento", "total", "es_vigente")
+        fields = ("pk","proveedor", "fecha_documento", "total", "es_vigente")
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
         order_by = "-fecha_documento"
 
@@ -144,4 +157,32 @@ class LibroCompraTable(DetailTable):
             "imponible5",
             "imponible10",
             "total",
+        )
+
+class PedidoCompraDetalleTable(DetailTable):
+    cantidad = NumericColumn()
+
+    class Meta:
+        model = models.PedidoCompraDetalle
+        fields = (
+            "item__pk",
+            "item__descripcion",
+            "cantidad",
+        )
+
+class OrdenCompraDetalleTable(DetailTable):
+    cantidad = NumericColumn()
+    precio = NumericColumn()
+    descuento = NumericColumn()
+    subtotal = NumericColumn()
+
+    class Meta:
+        model = models.OrdenCompraDetalle
+        fields = (
+            "item__pk",
+            "item__descripcion",
+            "cantidad",
+            "precio",
+            "descuento",
+            "subtotal"
         )
