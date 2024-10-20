@@ -33,6 +33,17 @@ class PedidoCompraAnnulledView(views.AnnulledView):
     model = models.PedidoCompra
     list_url = "pedido_compra_list"
 
+class PedidoCompraDetailView(views.DetailView):
+    model = models.PedidoCompra
+    list_url = "pedido_compra_list"
+    template_name = "supplies/detail_pedido_compra.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pedido_compra_detalle = models.PedidoCompraDetalle.objects.filter(pedido_compra=self.object)
+        context["pedido_compra_detalle"] = tables.PedidoCompraDetalleTable(pedido_compra_detalle)
+        return context
+
 class OrdenCompraUpdateView(views.UpdateView):
     model = models.OrdenCompra
     form_class = forms.OrdenCompraForm
@@ -64,8 +75,18 @@ class OrdenCompraAnnulledView(views.AnnulledView):
     model = models.OrdenCompra
     list_url = "orden_compra_list"
 
+class OrdenCompraDetailView(views.DetailView):
+    model = models.OrdenCompra
+    list_url = "orden_compra_list"
+    template_name = "supplies/detail_orden_compra.html"
 
-class CompraListView(views.ListView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        orden_compra_detalle = models.OrdenCompraDetalle.objects.filter(orden_compra=self.object)
+        context["orden_compra_detalle"] = tables.OrdenCompraDetalleTable(orden_compra_detalle)
+        return context
+
+class CompraListView(views.ListView): 
     model = models.Compra
     table_class = tables.CompraTable
     filterset_class = CompraFilter
