@@ -76,13 +76,13 @@ class CompraFilter(FilterSet):
 class LibroCompraFilter(FilterSet):
     fecha_desde = django_filters.DateFilter(
         widget=DateInput(attrs={"placeholder": "1970-01-01"}),
-        field_name="fechaDocumento",
+        field_name="fecha_documento",
         lookup_expr="gte",
         label="Desde",
     )
     fecha_hasta = django_filters.DateFilter(
         widget=DateInput(),
-        field_name="fechaDocumento",
+        field_name="fecha_documento",
         lookup_expr="lte",
         label="Hasta",
     )
