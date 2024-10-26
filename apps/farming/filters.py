@@ -38,6 +38,11 @@ class ZafraFilter(FilterSet):
 
 
 class PlanActividadZafraFilter(FilterSet):
+    fecha = django_filters.DateFilter(
+        widget=DateInput(),
+        field_name="fecha",
+        label="Doc.",
+    )
     # falta agregar filtros de fecha
     class Meta:
         model = models.PlanActividadZafra
