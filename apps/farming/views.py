@@ -297,6 +297,7 @@ class AcopioAnnulledView(views.AnnulledView):
 class ActividadAgricolaListView(views.ListView):
     model = models.ActividadAgricola
     table_class = tables.ActividadAgricolaTable
+    filterset_class = filters.ActividadAgricolaFilter
     search_fields = [
         "zafra__descripcion",
         "finca__descripcion",
