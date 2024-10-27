@@ -7,6 +7,9 @@
         {% else %}
             <a class="btn btn-sm btn-primary" href="{% url update_url record.id %}"><i class="fas fa-pen"></i></a>
         {% endif %}
+        {% if not record.es_vigente and request.path == "/sales/timbrado/" %}
+            <a class="btn btn-sm btn-primary" href="{% url update_url record.id %}"><i class="fas fa-pen"></i></a>
+        {% endif %}
     {% endif %}
     {%  if delete_url  %}
         {% if record %}
