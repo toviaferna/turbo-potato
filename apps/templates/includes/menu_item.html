@@ -13,7 +13,7 @@
             <p>{{ menuitem.title }}</p> {% if menuitem.children %}<i class="right fas fa-angle-left"></i>{% endif %}
         </a>
         {% if menuitem.children %}
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview ml-2">
                 {% for child in menuitem.children %}
                     {% include "includes/menu_item.html" with menuitem=child %}
                 {% endfor %}
