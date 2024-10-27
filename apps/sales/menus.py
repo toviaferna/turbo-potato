@@ -1,6 +1,34 @@
 from django.shortcuts import reverse
 from menu import Menu, MenuItem
 
+referencial = (
+    MenuItem(
+        "Establecimientos",
+        reverse("establecimiento_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Puntos de Expedicion",
+        reverse("punto_expedicion_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Tipos de Documento",
+        reverse("tipo_documento_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Tipos de Documento",
+        reverse("tipo_documento_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Timbrados",
+        reverse("timbrado_list"),
+        icon="far fa-circle",
+    ),
+)
+
 children = (
     MenuItem(
         "Apertura/Cierre de cajas",
@@ -37,30 +65,11 @@ children = (
         reverse("cobro_list"),
         icon="far fa-circle",
     ),
-    MenuItem(
-        "Establecimientos",
-        reverse("establecimiento_list"),
+        MenuItem(
+        "Referenciales",
+        "#",
         icon="far fa-circle",
-    ),
-    MenuItem(
-        "Puntos de Expedicion",
-        reverse("punto_expedicion_list"),
-        icon="far fa-circle",
-    ),
-    MenuItem(
-        "Tipos de Documento",
-        reverse("tipo_documento_list"),
-        icon="far fa-circle",
-    ),
-    MenuItem(
-        "Tipos de Documento",
-        reverse("tipo_documento_list"),
-        icon="far fa-circle",
-    ),
-    MenuItem(
-        "Timbrados",
-        reverse("timbrado_list"),
-        icon="far fa-circle",
+        children=referencial
     ),
 )
 
