@@ -82,8 +82,8 @@ class VentaTable(AccionTable):
 class VentaDetalleTable(DetailTable):
     cantidad = NumericColumn()
     precio = NumericColumn()
-    subtotal = TotalNumericColumn(verbose_name="Subtotal")
-    subtotal_iva = TotalNumericColumn(verbose_name="Subtotal IVA")
+    subtotal = NumericColumn(verbose_name="Subtotal")
+    subtotal_iva = NumericColumn(verbose_name="Subtotal IVA")
     porcentaje_impuesto = NumericColumn()
 
     class Meta:
@@ -100,7 +100,7 @@ class VentaDetalleTable(DetailTable):
 
 
 class CuotaVentaTable(DetailTable):
-    monto = TotalNumericColumn()
+    monto = NumericColumn()
 
     class Meta:
         model = models.CuotaVenta

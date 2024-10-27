@@ -3,8 +3,7 @@ from django.utils.html import format_html
 
 from apps.supplies import models
 from core.tables import AccionTable, DetailTable
-from core.tables.columns import (BooleanColumn, NumericColumn,
-                                 TotalNumericColumn)
+from core.tables.columns import BooleanColumn, NumericColumn
 
 
 class PedidoCompraTable(AccionTable):
@@ -48,7 +47,7 @@ class OrdenCompraTable(AccionTable):
 class CompraTable(AccionTable):
     es_credito = BooleanColumn()
     es_vigente = BooleanColumn()
-    total = TotalNumericColumn(verbose_name="Total")
+    total = NumericColumn(verbose_name="Total")
 
     def render_comprobante(self, value, record):
         if record.es_vigente:
@@ -77,8 +76,8 @@ class CompraTable(AccionTable):
 class CompraDetalleTable(DetailTable):
     cantidad = NumericColumn()
     costo = NumericColumn()
-    subtotal = TotalNumericColumn(verbose_name="Subtotal")
-    subtotal_iva = TotalNumericColumn(verbose_name="Subtotal IVA")
+    subtotal = NumericColumn(verbose_name="Subtotal")
+    subtotal_iva = NumericColumn(verbose_name="Subtotal IVA")
     porcentaje_impuesto = NumericColumn()
 
     class Meta:
@@ -95,7 +94,7 @@ class CompraDetalleTable(DetailTable):
 
 
 class CuotaCompraTable(DetailTable):
-    monto = TotalNumericColumn()
+    monto = NumericColumn()
 
     class Meta:
         model = models.CuotaCompra
@@ -103,7 +102,7 @@ class CuotaCompraTable(DetailTable):
 
 
 class NotaDebitoRecibidaTable(AccionTable):
-    total = TotalNumericColumn()
+    total = NumericColumn()
     es_vigente = BooleanColumn()
 
     class Meta:
@@ -120,7 +119,7 @@ class NotaDebitoRecibidaTable(AccionTable):
 
 
 class NotaCreditoRecibidaTable(AccionTable):
-    total = TotalNumericColumn()
+    total = NumericColumn()
     es_vigente = BooleanColumn()
 
     class Meta:

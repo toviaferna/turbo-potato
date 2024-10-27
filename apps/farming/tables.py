@@ -54,7 +54,7 @@ class LoteTable(AccionTable):
 
 
 class PlanActividadZafraTable(AccionTable):
-    total = TotalNumericColumn(verbose_name="Total")
+    total = NumericColumn(verbose_name="Total")
 
     class Meta:
         model = models.Lote
