@@ -1,7 +1,9 @@
 import datetime
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import transaction
+from django.db.models import Max
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template.loader import get_template
 from num2words import num2words
@@ -127,6 +129,63 @@ class VentaCreateView(views.CreateView):
 
     class Media:
         js = ("assets/js/widgets.js",)
+
+    def get_initial(self):
+
+        initial = super().get_initial()
+        
+        # Obtener el timbrado vigente
+        timbrado_vigente = models.Timbrado.objects.filter(
+            es_vigente=True,
+            tipo_documento=1
+        ).first()
+        
+        if timbrado_vigente:
+            # Obtener el último número de comprobante para este timbrado
+            ultimo_comprobante = self.model.objects.filter(
+                comprobante__startswith=(
+                    f"{timbrado_vigente.punto_expedicion.establecimiento.numero}-"
+                    f"{timbrado_vigente.punto_expedicion.numero}"
+                )
+            ).aggregate(
+                Max('comprobante')
+            )['comprobante__max']
+            
+            if ultimo_comprobante:
+                # Extraer el último número y aumentarlo en 1
+                ultimo_numero = int(ultimo_comprobante.split('-')[2])
+                siguiente_numero = ultimo_numero + 1
+            else:
+                # Si no hay comprobantes previos, comenzar desde el número inicial del timbrado
+                siguiente_numero = timbrado_vigente.numero_inicial
+                
+            # Formar el nuevo número de comprobante
+            nuevo_comprobante = (
+                f"{timbrado_vigente.punto_expedicion.establecimiento.numero}-"
+                f"{timbrado_vigente.punto_expedicion.numero}-"
+                f"{str(siguiente_numero).zfill(7)}"
+            )
+            
+            initial['comprobante'] = nuevo_comprobante
+            
+        return initial
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Verificar si hay un timbrado vigente
+        timbrado_vigente = models.Timbrado.objects.filter(
+            es_vigente=True,
+            tipo_documento=1
+        ).first()
+
+        # Si no hay timbrado vigente, agregar un mensaje de error en el contexto
+        if not timbrado_vigente:
+            context['error_message'] = "No hay un timbrado vigente disponible. No se pueden crear ventas."
+        
+        return context
+
+
 
     def run_form_extra_validation_form_master(self, form):
         apertura_caja = (
