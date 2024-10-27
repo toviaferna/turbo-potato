@@ -276,6 +276,47 @@ class TransferenciaCuenta(models.Model):
         verbose_name = "Transferencia de cuenta"
         verbose_name_plural = "Transferencias de cuentas"
 
+class Establecimiento(models.Model):
+    descripcion = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.descripcion
+    
+    @property
+    def numero(self):
+        return str(self.pk).zfill(3)
+
+class PuntoExpedicion(models.Model):
+    descripcion = models.CharField(max_length=45)
+    establecimiento = models.ForeignKey(Establecimiento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.descripcion
+    
+    @property
+    def numero(self):
+        return str(self.pk).zfill(3)
+
+
+class TipoDocumento(models.Model):
+    descripcion = models.CharField(max_length=45)
+
+    def __str__(self):
+        return self.descripcion
+
+class Timbrado(models.Model):
+    timbrado = models.AutoField(primary_key=True)
+    tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
+    numero_inicial = models.IntegerField()
+    numero_final = models.IntegerField()
+    inicio_vigencia = models.DateField() 
+    fin_vigencia = models.DateField()
+    estado = models.IntegerField() 
+    punto_expedicion = models.ForeignKey(PuntoExpedicion, on_delete=models.CASCADE)  
+
+    def __str__(self):
+        return str(self.timbrado)
+
 from .signals import (signal_cobro_anulado, signal_cobro_detalle_save,
                       signal_cobro_pre_guardado,
                       signal_nota_credito_emitida_guardado,

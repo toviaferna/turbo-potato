@@ -370,3 +370,25 @@ class LibroVentaListView(views.ListView):
     search_fields = ['comprobante','cliente__razon_social','deposito__descripcion'] #context?
     page_title = "Libro de ventas"
     export_page_orientation = "landscape"
+
+class EstablecimientoListView(views.ListView):
+    model = models.Establecimiento
+    table_class = tables.EstablecimientoTable
+    search_fields = ['descripcion']
+    update_url = 'establecimiento_update'
+    delete_url = 'establecimiento_delete'
+    create_url = 'establecimiento_create'
+
+class EstablecimientoCreateView(views.CreateView):
+    form_class = forms.EstablecimientoForm
+    model = models.Establecimiento
+    list_url = "establecimiento_list"
+
+class EstablecimientoUpdateView(views.UpdateView):
+    form_class = forms.EstablecimientoForm
+    model = models.Establecimiento
+    list_url = "establecimiento_list"
+
+class EstablecimientoDeleteView(views.DeleteView):
+    model = models.Establecimiento
+    list_url = "establecimiento_list"

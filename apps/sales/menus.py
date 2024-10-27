@@ -37,6 +37,11 @@ children = (
         reverse("cobro_list"),
         icon="far fa-circle",
     ),
+    MenuItem(
+        "Establecimientos",
+        reverse("establecimiento_list"),
+        icon="far fa-circle",
+    ),
 )
 
 Menu.add_item("ventas", MenuItem("Ventas","#",icon='fa fa-cart-shopping',weight=7, children=children))

@@ -1,5 +1,6 @@
-from apps.sales import views
 from django.urls import path
+
+from apps.sales import views
 
 urlpatterns = [
     path(
@@ -89,4 +90,9 @@ urlpatterns = [
     ),
     path("cobro", views.CobroListView.as_view(), name="cobro_list"),
     path("libro-venta", views.LibroVentaListView.as_view(), name="libro_venta_list"),
+    
+    path("establecimiento/<int:pk>/delete/", views.EstablecimientoDeleteView.as_view(), name="establecimiento_delete"),
+    path("establecimiento/<int:pk>/update/", views.EstablecimientoUpdateView.as_view(), name="establecimiento_update"),
+    path("establecimiento/add", views.EstablecimientoCreateView.as_view(), name="establecimiento_create"),
+    path("establecimiento/",  views.EstablecimientoListView.as_view(), name="establecimiento_list"),
 ]

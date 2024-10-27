@@ -207,3 +207,8 @@ class LibroVentaTable(DetailTable):
             "imponible10",
             "total",
         )
+
+class EstablecimientoTable(AccionTable):
+    class Meta:
+        model = models.Establecimiento
+        fields = ("id", "descripcion")

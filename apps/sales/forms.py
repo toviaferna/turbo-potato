@@ -1,11 +1,13 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
+from django import forms
+from django.forms import (BooleanField, CharField, DecimalField, HiddenInput,
+                          ModelForm)
+
 from apps.finance.models import Persona
 from apps.sales import models
 from core import widgets
 from core.layouts import FormActions, Formset
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
-from django.forms import (BooleanField, CharField, DecimalField, HiddenInput,
-                          ModelForm)
 
 
 class AperturaCajaCreateForm(ModelForm):
@@ -543,3 +545,16 @@ class CobroMedioForm(ModelForm):
         model = models.CobroMedio
         fields = ["numero", "comprobante", "medio_cobro", "observacion", "monto"]
         # widgets = {'cancelacion':DecimalMaskInput}
+
+class EstablecimientoForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            "descripcion",
+            FormActions()
+        )
+    class Meta:
+        model = models.Establecimiento
+        fields = ["descripcion",]
