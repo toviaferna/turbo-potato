@@ -392,3 +392,70 @@ class EstablecimientoUpdateView(views.UpdateView):
 class EstablecimientoDeleteView(views.DeleteView):
     model = models.Establecimiento
     list_url = "establecimiento_list"
+
+class PuntoExpedicionListView(views.ListView):
+    model = models.PuntoExpedicion
+    table_class = tables.PuntoExpedicionTable
+    search_fields = ['descripcion',]
+    update_url = 'punto_expedicion_update'
+    delete_url = 'punto_expedicion_delete'
+    create_url = 'punto_expedicion_create'
+
+class PuntoExpedicionCreateView(views.CreateView):
+    form_class = forms.PuntoExpedicionForm
+    model = models.PuntoExpedicion
+    list_url = "punto_expedicion_list"
+
+class PuntoExpedicionUpdateView(views.UpdateView):
+    form_class = forms.PuntoExpedicionForm
+    model = models.PuntoExpedicion
+    list_url = "punto_expedicion_list"
+
+class PuntoExpedicionDeleteView(views.DeleteView):
+    model = models.PuntoExpedicion
+    list_url = "punto_expedicion_list"
+
+class TipoDocumentoListView(views.ListView):
+    model = models.TipoDocumento
+    table_class = tables.TipoDocumentoTable
+    search_fields = ['descripcion',]
+    update_url = 'tipo_documento_update'
+    delete_url = 'tipo_documento_delete'
+    create_url = 'tipo_documento_create'
+
+class TipoDocumentoCreateView(views.CreateView):
+    form_class = forms.TipoDocumentoForm
+    model = models.TipoDocumento
+    list_url = "tipo_documento_list"
+
+class TipoDocumentoUpdateView(views.UpdateView):
+    form_class = forms.TipoDocumentoForm
+    model = models.TipoDocumento
+    list_url = "tipo_documento_list"
+
+class TipoDocumentoDeleteView(views.DeleteView):
+    model = models.TipoDocumento
+    list_url = "tipo_documento_list"
+
+class TimbradoListView(views.ListView):
+    model = models.Timbrado
+    table_class = tables.TimbradoTable
+    search_fields = ['numero',]
+    update_url = 'timbrado_update'
+    delete_url = 'timbrado_delete'
+    create_url = 'timbrado_create'
+
+class TimbradoCreateView(views.CreateView):
+    form_class = forms.TimbradoForm
+    model = models.Timbrado
+    list_url = "timbrado_list"
+
+class TimbradoUpdateView(views.UpdateView):
+    form_class = forms.TimbradoForm
+    model = models.Timbrado
+    list_url = "timbrado_list"
+
+class TimbradoDeleteView(views.DeleteView):
+    model = models.Timbrado
+    list_url = "timbrado_list"
+

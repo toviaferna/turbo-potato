@@ -546,6 +546,19 @@ class CobroMedioForm(ModelForm):
         fields = ["numero", "comprobante", "medio_cobro", "observacion", "monto"]
         # widgets = {'cancelacion':DecimalMaskInput}
 
+class TipoDocumentoForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            "descripcion",
+            FormActions()
+        )
+    class Meta:
+        model = models.TipoDocumento
+        fields = ["descripcion",]
+
 class EstablecimientoForm(ModelForm):
     
     def __init__(self, *args, **kwargs):
@@ -558,3 +571,47 @@ class EstablecimientoForm(ModelForm):
     class Meta:
         model = models.Establecimiento
         fields = ["descripcion",]
+
+class PuntoExpedicionForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            "establecimiento",
+            "descripcion",
+            FormActions()
+        )
+    class Meta:
+        model = models.PuntoExpedicion
+        fields = ["establecimiento", "descripcion",]
+
+class TimbradoForm(ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column("numero"),
+                Column("tipo_documento"),
+                Column("punto_expedicion"),
+            ),
+            Row(
+                Column("inicio_vigencia"),
+                Column("fin_vigencia"),
+            ),
+            Row(
+                Column("numero_inicial"),
+                Column("numero_final"),
+                Column("es_vigente"),
+            ),
+            FormActions()
+        )
+    class Meta:
+        model = models.Timbrado
+        fields = ["numero","tipo_documento","punto_expedicion","inicio_vigencia","fin_vigencia","numero_inicial","numero_final","es_vigente",]
+        widgets = {
+            "inicio_vigencia": widgets.DateInput,
+            "fin_vigencia": widgets.DateInput,
+        }

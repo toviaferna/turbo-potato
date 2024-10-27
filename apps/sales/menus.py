@@ -42,6 +42,26 @@ children = (
         reverse("establecimiento_list"),
         icon="far fa-circle",
     ),
+    MenuItem(
+        "Puntos de Expedicion",
+        reverse("punto_expedicion_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Tipos de Documento",
+        reverse("tipo_documento_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Tipos de Documento",
+        reverse("tipo_documento_list"),
+        icon="far fa-circle",
+    ),
+    MenuItem(
+        "Timbrados",
+        reverse("timbrado_list"),
+        icon="far fa-circle",
+    ),
 )
 
 Menu.add_item("ventas", MenuItem("Ventas","#",icon='fa fa-cart-shopping',weight=7, children=children))

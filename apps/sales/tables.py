@@ -212,3 +212,18 @@ class EstablecimientoTable(AccionTable):
     class Meta:
         model = models.Establecimiento
         fields = ("id", "descripcion")
+
+class TipoDocumentoTable(AccionTable):
+    class Meta:
+        model = models.TipoDocumento
+        fields = ("id", "descripcion")
+
+class PuntoExpedicionTable(AccionTable):
+    class Meta:
+        model = models.PuntoExpedicion
+        fields = ("id", "establecimiento", "descripcion")
+
+class TimbradoTable(AccionTable):
+    class Meta:
+        model = models.Timbrado
+        fields = ("id", "numero","tipo_documento", "punto_expedicion", "inicio_vigencia", "fin_vigencia","es_vigente")

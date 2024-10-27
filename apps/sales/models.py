@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
 
@@ -280,7 +281,7 @@ class Establecimiento(models.Model):
     descripcion = models.CharField(max_length=45)
 
     def __str__(self):
-        return self.descripcion
+        return f"{self.numero} - {self.descripcion}"
     
     @property
     def numero(self):
@@ -291,7 +292,7 @@ class PuntoExpedicion(models.Model):
     establecimiento = models.ForeignKey(Establecimiento, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.descripcion
+        return f"{self.establecimiento.numero}-{self.numero}-{self.descripcion}"
     
     @property
     def numero(self):
@@ -305,13 +306,28 @@ class TipoDocumento(models.Model):
         return self.descripcion
 
 class Timbrado(models.Model):
-    timbrado = models.AutoField(primary_key=True)
+    numero = models.IntegerField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(99999999)  # Para 8 dígitos
+        ]
+    )
     tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
-    numero_inicial = models.IntegerField()
-    numero_final = models.IntegerField()
-    inicio_vigencia = models.DateField() 
-    fin_vigencia = models.DateField()
-    estado = models.IntegerField() 
+    numero_inicial = models.IntegerField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(9999999)  # Para 7 dígitos
+        ]
+    )
+    numero_final = models.IntegerField(
+        validators=[
+            MinValueValidator(0),
+            MaxValueValidator(9999999)  # Para 7 dígitos
+        ]
+    )
+    inicio_vigencia = models.DateField(verbose_name="Inicio Vigencia") 
+    fin_vigencia = models.DateField(verbose_name="Fin Vigencia")
+    es_vigente = models.BooleanField(verbose_name="Vigente?",default=True)
     punto_expedicion = models.ForeignKey(PuntoExpedicion, on_delete=models.CASCADE)  
 
     def __str__(self):
