@@ -2,6 +2,7 @@ site_name: Manual de Usuario
 theme:
   name: "readthedocs"
   language: es
+  custom_dir: docs/overrides
 
 markdown_extensions:
   - admonition
@@ -16,3 +17,24 @@ nav:
     - 'mantenimientoUsuario.md'
     - 'funcionesBasicasMovimientos.md'
     - 'funcionesBasicaInforme.md'
+plugins:
+  - search
+  - print-site:
+      add_to_navigation: false
+      print_page_title: 'Agroatardecer'
+      add_print_site_banner: true
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: 'Tabla de Contenido'
+      toc_depth: 6
+      # Content-related
+      add_full_urls: false
+      enumerate_headings: true
+      enumerate_figures: true
+      add_cover_page: true
+      cover_page_template: "docs/assets/template/cover_page.tpl"
+      path_to_pdf: ""
+      include_css: true
+      enabled: true
+      exclude:
+      path_to_pdf: "docs/assets/Manual de Usuario.pdf"
