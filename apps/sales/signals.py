@@ -4,8 +4,9 @@ from django.dispatch import receiver
 
 from apps.inventory.models import ItemMovimiento
 from apps.sales.models import (AperturaCaja, Cobro, CobroDetalle, CuotaVenta,
-                               NotaCreditoEmitidaDetalle, Timbrado,
-                               TransferenciaCuenta, Venta, VentaDetalle)
+                               NotaCreditoEmitida, NotaCreditoEmitidaDetalle,
+                               Timbrado, TransferenciaCuenta, Venta,
+                               VentaDetalle)
 
 
 @receiver(pre_save, sender = Venta)
@@ -13,6 +14,10 @@ def signal_venta_pre_guardado(sender, instance, **kwargs):
     apertura_caja = AperturaCaja.objects.filter(esta_cerrado = False).order_by('-pk')[:1].first()
     instance.apertura_caja = apertura_caja
     instance.timbrado = Timbrado.objects.filter(es_vigente = True, tipo_documento=1).first().numero
+
+@receiver(pre_save, sender = NotaCreditoEmitida)
+def signal_nota_credito_emitida_pre_guardado(sender, instance, **kwargs):
+    instance.timbrado = Timbrado.objects.filter(es_vigente = True, tipo_documento=2).first().numero
 
 @receiver(pre_save, sender = TransferenciaCuenta)
 def signal_transferencia_cuenta_pre_guardado(sender, instance, **kwargs):
@@ -40,7 +45,7 @@ def signal_venta_guardado(sender, instance, created, **kwargs):
         item_movimiento.save()
 
 @receiver(post_save, sender = NotaCreditoEmitidaDetalle)
-def signal_nota_credito_emitida_guardado(sender, instance, created, **kwargs):
+def signal_nota_credito_emitida_detalle_guardado(sender, instance, created, **kwargs):
     if created:
         item_movimiento = ItemMovimiento()
         item_movimiento.item = instance.item

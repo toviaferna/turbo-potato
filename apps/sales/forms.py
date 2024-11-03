@@ -226,7 +226,7 @@ class NotaCreditoEmitidaForm(ModelForm):
             "fecha_documento",
             "es_credito",
             "comprobante",
-            "timbrado",
+            #"timbrado",
             "cliente",
             "cuenta",
             "deposito",
@@ -257,9 +257,6 @@ class NotaCreditoEmitidaForm(ModelForm):
                 ),
                 Column(
                     "comprobante",
-                ),
-                Column(
-                    "timbrado",
                 ),
                 Column(
                     "es_credito",

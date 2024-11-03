@@ -335,7 +335,8 @@ class Timbrado(models.Model):
 
 from .signals import (signal_cobro_anulado, signal_cobro_detalle_save,
                       signal_cobro_pre_guardado,
-                      signal_nota_credito_emitida_guardado,
+                      signal_nota_credito_emitida_detalle_guardado,
+                      signal_nota_credito_emitida_pre_guardado,
                       signal_pre_guardado_cuota_venta,
                       signal_transferencia_cuenta_pre_guardado,
                       signal_venta_detalle_pre_guardado, signal_venta_guardado,
