@@ -294,12 +294,77 @@ class NotaCreditoEmitidaCreateView(views.CreateView):
     inlines = [inlines.NotaCreditoEmitidaDetalleInline]
     list_url = "nota_credito_emitida_list"
 
+    def get_initial(self):
+
+        initial = super().get_initial()
+        
+        # Obtener el timbrado vigente
+        timbrado_vigente = models.Timbrado.objects.filter(
+            es_vigente=True,
+            tipo_documento=2
+        ).first()
+        
+        if timbrado_vigente:
+            # Obtener el último número de comprobante para este timbrado
+            ultimo_comprobante = self.model.objects.filter(
+                comprobante__startswith=(
+                    f"{timbrado_vigente.punto_expedicion.establecimiento.numero}-"
+                    f"{timbrado_vigente.punto_expedicion.numero}"
+                )
+            ).aggregate(
+                Max('comprobante')
+            )['comprobante__max']
+            
+            if ultimo_comprobante:
+                # Extraer el último número y aumentarlo en 1
+                ultimo_numero = int(ultimo_comprobante.split('-')[2])
+                siguiente_numero = ultimo_numero + 1
+            else:
+                # Si no hay comprobantes previos, comenzar desde el número inicial del timbrado
+                siguiente_numero = timbrado_vigente.numero_inicial
+                
+            # Formar el nuevo número de comprobante
+            nuevo_comprobante = (
+                f"{timbrado_vigente.punto_expedicion.establecimiento.numero}-"
+                f"{timbrado_vigente.punto_expedicion.numero}-"
+                f"{str(siguiente_numero).zfill(7)}"
+            )
+            
+            initial['comprobante'] = nuevo_comprobante
+            
+        return initial
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Verificar si hay un timbrado vigente
+        timbrado_vigente = models.Timbrado.objects.filter(
+            es_vigente=True,
+            tipo_documento=1
+        ).first()
+
+        # Si no hay timbrado vigente, agregar un mensaje de error en el contexto
+        if not timbrado_vigente:
+            context['error_message'] = "No hay un timbrado vigente disponible. No se pueden crear ventas."
+        
+        return context
+
 
 class NotaCreditoEmitidaAnnulledView(views.AnnulledView):
     model = models.NotaCreditoEmitida
     list_url = "nota_credito_emitida_list"
     mensaje_anulacion = "La Nota de Crédito ya fue anulado."
 
+class NotaCreditoEmitidaDetailView(views.DetailView):
+    model = models.NotaCreditoEmitida
+    list_url = "nota_credito_emitida_list"
+    template_name = "sales/detail_nota_credito.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        nota_credito_detalle = models.NotaCreditoEmitidaDetalle.objects.filter(nota_credito_emitida=self.object)
+        context["nota_credito_detalle"] = tables.NotaCreditoDetalleTable(nota_credito_detalle)
+        return context
 
 class NotaDebitoEmitidaListView(views.ListView):
     model = models.NotaDebitoEmitida

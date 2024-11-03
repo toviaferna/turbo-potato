@@ -225,6 +225,10 @@ class NotaCreditoEmitidaDetalle(models.Model):
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo/Descuento")
     es_devolucion = models.BooleanField(verbose_name="Es Devolución?",default=False)
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
+
+    @property
+    def subtotal(self):
+        return round(self.valor * self.cantidad)
 class Cobro(models.Model):
     cobrador = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Cobrador",related_name='cobrador')
     cuenta = models.ForeignKey(Cuenta, on_delete=models.DO_NOTHING,verbose_name="Cuenta")

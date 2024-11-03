@@ -50,6 +50,11 @@ urlpatterns = [
     path("venta/add", views.VentaCreateView.as_view(), name="venta_create"),
     path("venta", views.VentaListView.as_view(), name="venta_list"),
     path(
+        "nota-credito-emitida/<int:pk>/detail/",
+        views.NotaCreditoEmitidaDetailView.as_view(),
+        name="nota_credito_emitida_detail",
+    ),
+    path(
         "nota-credito-emitida/<int:pk>/delete",
         views.NotaCreditoEmitidaAnnulledView.as_view(),
         name="nota_credito_emitida_delete",

@@ -59,14 +59,12 @@ class VentaTable(AccionTable):
     es_vigente = BooleanColumn()
     
     def render_comprobante(self, value, record):
-        if record.es_vigente:
-            return format_html(
-                '<a href="{}">{}</a>',
-                reverse("venta_detail", kwargs={"pk": record.pk}),
-                value,
-            )
-        else:
-            return value
+        return format_html(
+            '<a href="{}">{}</a>',
+            reverse("venta_detail", kwargs={"pk": record.pk}),
+            value,
+        )
+
     class Meta:
         model = models.Venta
         fields = (
@@ -98,6 +96,21 @@ class VentaDetalleTable(DetailTable):
             "subtotal_iva",
         )
 
+class NotaCreditoDetalleTable(DetailTable):
+    cantidad = NumericColumn()
+    valor = NumericColumn()
+    subtotal = NumericColumn(verbose_name="Subtotal")
+
+    class Meta:
+        model = models.NotaCreditoEmitidaDetalle
+        fields = (
+            "item__pk",
+            "cantidad",
+            "item__descripcion",
+            "valor",
+            "subtotal",
+        )
+
 
 class CuotaVentaTable(DetailTable):
     monto = NumericColumn()
@@ -107,6 +120,13 @@ class CuotaVentaTable(DetailTable):
         fields = ("fecha_vencimiento", "monto")
         
 class NotaCreditoEmitidaTable(AccionTable):
+
+    def render_comprobante(self, value, record):
+        return format_html(
+            '<a href="{}">{}</a>',
+            reverse("nota_credito_emitida_detail", kwargs={"pk": record.pk}),
+            value,
+        )
 
     total = NumericColumn(
         verbose_name="Total",
