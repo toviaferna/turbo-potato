@@ -24,3 +24,4 @@ pip-tools
 num2words
 django-autocomplete-light
 mkdocs-material
+mkdocs-print-site-plugin
