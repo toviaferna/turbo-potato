@@ -22,6 +22,7 @@ class AperturaCajaTable(AccionTable):
             "monto_inicio",
             "esta_cerrado",
         )
+        order_by = ("-fecha_hora_registro",)
 
 
 class ArqueoTable(AccionTable):
