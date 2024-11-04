@@ -1,10 +1,15 @@
 import django_filters
+from django_filters import FilterSet
+
 from apps.sales import models
 from core.widgets import DateInput
-from django_filters import FilterSet
 
 
 class AperturaCajaFilter(FilterSet):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters["empleado"].queryset = models.Persona.objects.filter(es_empleado=True)
     class Meta:
         model = models.AperturaCaja
         fields = [
