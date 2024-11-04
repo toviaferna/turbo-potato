@@ -89,7 +89,8 @@ class Venta(models.Model):
         return self.iva5+self.iva10
 
     def __str__(self):
-        return self.comprobante+" - "+self.timbrado
+        fecha_formateada = self.fecha_documento.strftime("%d/%m/%Y")
+        return f"{self.cliente.razon_social}({self.comprobante} - {fecha_formateada})"
 
 class VentaDetalle(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.DO_NOTHING)
@@ -186,6 +187,14 @@ class NotaDebitoEmitida(models.Model):
         verbose_name = "Nota de débito emitida"
         verbose_name_plural = "Notas de débito emitidas"
     
+    def get_es_vigente_display(self):
+        value = "fa-check" if self.es_vigente else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
+
+    def get_es_credito_display(self):
+        value = "fa-check" if self.es_credito else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
+
     @property
     def total(self):
         return sum(round(x.valor * x.cantidad)  for x in self.notadebitoemitidadetalle_set.all())
@@ -196,6 +205,10 @@ class NotaDebitoEmitidaDetalle(models.Model):
     cantidad = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Cantidad")
     valor = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="Costo/Descuento")
     porcentaje_impuesto = models.DecimalField(max_digits=15, decimal_places=2,verbose_name="% Impuesto")
+
+    @property
+    def subtotal(self):
+        return round(self.valor * self.cantidad)
 
 class NotaCreditoEmitida(models.Model):
     cliente = models.ForeignKey(Persona, on_delete=models.DO_NOTHING,verbose_name="Cliente")
@@ -213,6 +226,14 @@ class NotaCreditoEmitida(models.Model):
     class Meta:
         verbose_name = "Nota de crédito emitida"
         verbose_name_plural = "Notas de crédito emitidas"
+
+    def get_es_vigente_display(self):
+        value = "fa-check" if self.es_vigente else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
+
+    def get_es_credito_display(self):
+        value = "fa-check" if self.es_credito else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
 
     @property
     def total(self):
@@ -341,6 +362,7 @@ from .signals import (signal_cobro_anulado, signal_cobro_detalle_save,
                       signal_cobro_pre_guardado,
                       signal_nota_credito_emitida_detalle_guardado,
                       signal_nota_credito_emitida_pre_guardado,
+                      signal_nota_debito_emitida_pre_guardado,
                       signal_pre_guardado_cuota_venta,
                       signal_transferencia_cuenta_pre_guardado,
                       signal_venta_detalle_pre_guardado, signal_venta_guardado,

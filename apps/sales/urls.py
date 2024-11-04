@@ -70,6 +70,11 @@ urlpatterns = [
         name="nota_credito_emitida_list",
     ),
     path(
+        "nota-debito-emitida/<int:pk>/detail/",
+        views.NotaDebitoEmitidaDetailView.as_view(),
+        name="nota_debito_emitida_detail",
+    ),
+    path(
         "nota-debito-emitida/<int:pk>/delete",
         views.NotaDebitoEmitidaAnnulledView.as_view(),
         name="nota_debito_emitida_delete",

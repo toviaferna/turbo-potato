@@ -3,7 +3,6 @@ from django.utils.html import format_html
 
 from apps.finance.models import Persona
 from apps.sales import models
-from apps.supplies.models import NotaDebitoRecibida
 from core.tables import AccionTable, DetailTable
 from core.tables.columns import (BooleanColumn, NumericColumn,
                                  TotalNumericColumn)
@@ -112,6 +111,21 @@ class NotaCreditoDetalleTable(DetailTable):
             "subtotal",
         )
 
+class NotaDebitoDetalleTable(DetailTable):
+    cantidad = NumericColumn()
+    valor = NumericColumn()
+    subtotal = NumericColumn(verbose_name="Subtotal")
+
+    class Meta:
+        model = models.NotaDebitoEmitidaDetalle
+        fields = (
+            "item__pk",
+            "cantidad",
+            "item__descripcion",
+            "valor",
+            "subtotal",
+        )
+
 
 class CuotaVentaTable(DetailTable):
     monto = NumericColumn()
@@ -150,8 +164,15 @@ class NotaDebitoEmitidaTable(AccionTable):
 
     total = NumericColumn(verbose_name="Total")
     es_vigente = BooleanColumn()
+    
+    def render_comprobante(self, value, record):
+        return format_html(
+            '<a href="{}">{}</a>',
+            reverse("nota_debito_emitida_detail", kwargs={"pk": record.pk}),
+            value,
+        )
     class Meta:
-        model = NotaDebitoRecibida
+        model = models.NotaDebitoEmitida
         fields = (
             "fecha_documento",
             "comprobante",
@@ -160,7 +181,7 @@ class NotaDebitoEmitidaTable(AccionTable):
             "es_vigente",
         )
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
-        order_by = "-fecha_documento"
+        order_by = ("-fecha_documento", "-comprobante")
 
 
 class CobroTable(AccionTable):

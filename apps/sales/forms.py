@@ -346,7 +346,6 @@ class NotaDebitoEmitidaForm(ModelForm):
             "fecha_documento",
             "es_credito",
             "comprobante",
-            "timbrado",
             "cliente",
             "cuenta",
             "deposito",
@@ -380,9 +379,6 @@ class NotaDebitoEmitidaForm(ModelForm):
                     "comprobante",
                 ),
                 Column(
-                    "timbrado",
-                ),
-                Column(
                     "es_credito",
                 ),
             ),
@@ -398,7 +394,7 @@ class NotaDebitoEmitidaForm(ModelForm):
                 ),
             ),
             Row(
-                Column("venta", css_class="col-sm-4"),
+                Column("venta", css_class="col-sm-6"),
                 Column(
                     "observacion",
                 ),

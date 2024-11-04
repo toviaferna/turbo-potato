@@ -167,6 +167,7 @@ class VentaCreateView(views.CreateView):
             )
             
             initial['comprobante'] = nuevo_comprobante
+            initial['fecha_documento'] = datetime.date.today()
             
         return initial
     
@@ -331,6 +332,7 @@ class NotaCreditoEmitidaCreateView(views.CreateView):
             )
             
             initial['comprobante'] = nuevo_comprobante
+            initial['fecha_documento'] = datetime.date.today()
             
         return initial
     
@@ -340,12 +342,12 @@ class NotaCreditoEmitidaCreateView(views.CreateView):
         # Verificar si hay un timbrado vigente
         timbrado_vigente = models.Timbrado.objects.filter(
             es_vigente=True,
-            tipo_documento=1
+            tipo_documento=2
         ).first()
 
         # Si no hay timbrado vigente, agregar un mensaje de error en el contexto
         if not timbrado_vigente:
-            context['error_message'] = "No hay un timbrado vigente disponible. No se pueden crear ventas."
+            context['error_message'] = "No hay un timbrado vigente disponible. No se pueden crear nota de credito."
         
         return context
 
@@ -384,6 +386,62 @@ class NotaDebitoEmitidaCreateView(views.CreateView):
     form_class = forms.NotaDebitoEmitidaForm
     inlines = [inlines.NotaDebitoEmitidaDetalleInline]
     list_url = "nota_debito_emitida_list"
+    
+    def get_initial(self):
+
+        initial = super().get_initial()
+        
+        # Obtener el timbrado vigente
+        timbrado_vigente = models.Timbrado.objects.filter(
+            es_vigente=True,
+            tipo_documento=3
+        ).first()
+        
+        if timbrado_vigente:
+            # Obtener el último número de comprobante para este timbrado
+            ultimo_comprobante = self.model.objects.filter(
+                comprobante__startswith=(
+                    f"{timbrado_vigente.punto_expedicion.establecimiento.numero}-"
+                    f"{timbrado_vigente.punto_expedicion.numero}"
+                )
+            ).aggregate(
+                Max('comprobante')
+            )['comprobante__max']
+            
+            if ultimo_comprobante:
+                # Extraer el último número y aumentarlo en 1
+                ultimo_numero = int(ultimo_comprobante.split('-')[2])
+                siguiente_numero = ultimo_numero + 1
+            else:
+                # Si no hay comprobantes previos, comenzar desde el número inicial del timbrado
+                siguiente_numero = timbrado_vigente.numero_inicial
+                
+            # Formar el nuevo número de comprobante
+            nuevo_comprobante = (
+                f"{timbrado_vigente.punto_expedicion.establecimiento.numero}-"
+                f"{timbrado_vigente.punto_expedicion.numero}-"
+                f"{str(siguiente_numero).zfill(7)}"
+            )
+            
+            initial['comprobante'] = nuevo_comprobante
+            initial['fecha_documento'] = datetime.date.today()
+            
+        return initial
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Verificar si hay un timbrado vigente
+        timbrado_vigente = models.Timbrado.objects.filter(
+            es_vigente=True,
+            tipo_documento=3
+        ).first()
+
+        # Si no hay timbrado vigente, agregar un mensaje de error en el contexto
+        if not timbrado_vigente:
+            context['error_message'] = "No hay un timbrado vigente disponible. No se pueden crear nota de credito."
+        
+        return context
 
 
 class NotaDebitoEmitidaAnnulledView(views.AnnulledView):
@@ -391,6 +449,16 @@ class NotaDebitoEmitidaAnnulledView(views.AnnulledView):
     list_url = "nota_debito_emitida_list"
     mensaje_anulacion = "La Nota de Débito ya fue anulado."
 
+class NotaDebitoEmitidaDetailView(views.DetailView):
+    model = models.NotaDebitoEmitida
+    list_url = "nota_debito_emitida_list"
+    template_name = "sales/detail_nota_debito.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        nota_debito_detalle = models.NotaDebitoEmitidaDetalle.objects.filter(nota_debito_emitida=self.object)
+        context["nota_debito_detalle"] = tables.NotaDebitoDetalleTable(nota_debito_detalle)
+        return context
 
 class CobroListView(views.ListView):
     model = models.Cobro
