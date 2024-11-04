@@ -1,4 +1,18 @@
 {% extends 'layouts/base.html' %}
+
+{% block head %}
+  <style  type="text/css" media="print">
+    .print-only {
+      display: none;
+    }
+    @media print {
+      .print-only {
+        display: block;
+      }
+    }
+  </style>
+{% endblock  %}
+  
 {% block title %}{{title}}{% endblock %}
 {% block body_class %} sidebar-mini pace-secondary {% endblock body_class %}
 {% load render_table from django_tables2 %}
@@ -21,13 +35,14 @@
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col col-lg-12">
+        <div class="col col-sm-12">
           <div class="card card-solid">
+            <h5 class="card-header d-none d-print-block">{{title}}</h5>
             <div class="card-body">
               <div class="row">
                 {% for field_name, value in object_data %}
-                <dt class="col-lg-3">{{field_name}}:</dt>
-                <dd class="col-lg-3">{{value}}</dd>
+                <dt class="col-sm-2">{{field_name}}:</dt>
+                <dd class="col-sm-4">{{value}}</dd>
                 {% endfor %}
 
                 {% block extra-detail %}{% endblock extra-detail %}
