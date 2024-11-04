@@ -14,6 +14,7 @@ class AperturaCajaCreateForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.fields["empleado"].queryset = Persona.objects.filter(es_empleado=True)
         self.helper.layout = Layout(
             Row(
                 Column("empleado"),
