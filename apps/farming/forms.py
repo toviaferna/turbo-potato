@@ -237,7 +237,16 @@ class ContratoForm(ModelForm):
     class Meta:
         model = models.Contrato
         fields = ["fecha", "zafra", "persona", "descripcion", "costo_pactado"]
-        widgets = {"fecha": widgets.DateInput}
+        widgets = {
+            "fecha": widgets.DateInput,
+            "persona": widgets.AutocompleteSelect(
+                url="proveedor_autocomplete",
+                attrs={
+                    "data-placeholder": "Buscar por razon social, número de documento.",
+                },
+            ),
+        
+        }
 
 
 class AcopioForm(ModelForm):
