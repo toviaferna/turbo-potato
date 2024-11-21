@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 
 
-from apps.authentication import models
-from core.layouts import CancelButton, FormActions, SaveButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder, Column, Layout, Row
 from django.contrib.auth import forms
 from django.forms import CharField, Form, PasswordInput, TextInput
+
+from apps.authentication import models
+from core.layouts import CancelButton, FormActions, SaveButton
 
 
 class LoginForm(Form):
@@ -32,15 +33,39 @@ class CustomUserCreationForm(forms.UserCreationForm):
         self.fields["first_name"].widget.attrs["autofocus"] = True
         self.helper = FormHelper()
         self.helper.form_show_labels = True
+        self.fields[
+            "email"
+        ].help_text = "Ingrese una dirección de correo electrónico válida."
+        self.fields[
+            "username"
+        ].help_text = "Únicamente letras, dígitos y @/./+/-/_"
+        self.fields[
+            "first_name"
+        ].help_text = "Ingrese su nombre."
+        self.fields[
+            "last_name"
+        ].help_text = "Ingrese su apellido.",
+        self.helper.row_class = {"class": "form-row"}
         self.helper.layout = Layout(
-            Row(Column("first_name"), Column("last_name"), Column("document")),
+            Row(
+                Column("first_name"), 
+                Column("last_name"), 
+                Column("document")
+            ),
             Row(
                 Column("username"),
                 Column("email"),
                 Column("phone"),
             ),
-            Row(Column("password1"), Column("password2"), Column()),
-            "is_active",
+            Row(
+                Column("password1"), 
+                Column("password2"), 
+                Column(),
+            ),
+            Row(
+                Column("is_superuser"), 
+                Column("is_active"),
+            ),
             FormActions()
         )
 
@@ -53,6 +78,7 @@ class CustomUserCreationForm(forms.UserCreationForm):
             "is_active",
             "document",
             "phone",
+            "is_superuser"
         )
         labels = {"first_name": "Nombres"}
 
@@ -63,11 +89,20 @@ class CustomUserChangeForm(forms.UserChangeForm):
         self.helper = FormHelper()
         self.helper.form_show_labels = True
         self.fields[
-            "password"
-        ].help_text = "Las contraseñas no se almacenan en bruto, así que no hay manera de ver la contraseña del usuario."
+            "email"
+        ].help_text = "Ingrese una dirección de correo electrónico válida."
+        self.fields[
+            "username"
+        ].help_text = "Únicamente letras, dígitos y @/./+/-/_"
+        self.fields[
+            "first_name"
+        ].help_text = "Ingrese su nombre."
+        self.fields[
+            "last_name"
+        ].help_text = "Ingrese su apellido."
         self.helper.layout = Layout(
             Row(
-                Column("first_name", help_text="help_text="),
+                Column("first_name"),
                 Column("last_name"),
                 Column("document"),
             ),
@@ -76,8 +111,11 @@ class CustomUserChangeForm(forms.UserChangeForm):
                 Column("email"),
                 Column("phone"),
             ),
-            Row(Column("password"), Column(), Column()),
-            "is_active",
+            Row(
+                Column("is_superuser"), 
+                Column("is_active"),
+                css_class="mb-5"
+            ),
             FormActions()
         )
 
@@ -90,8 +128,6 @@ class CustomUserChangeForm(forms.UserChangeForm):
             "is_active",
             "document",
             "phone",
+            "is_superuser"
         )
         labels = {"first_name": "Nombres"}
-        # help_texts = {
-        #    "first_name":""
-        # }
