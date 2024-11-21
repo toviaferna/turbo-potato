@@ -1,8 +1,9 @@
 # -*- encoding: utf-8 -*-
-from apps.authentication import filters, forms, models, tables
-from core import views
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
+
+from apps.authentication import filters, forms, models, tables
+from core import mixins, views
 
 
 def login_view(request):
@@ -23,7 +24,7 @@ def login_view(request):
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
-class UserListView(views.ListView):
+class UserListView(mixins.SuperUserRequiredMixin, views.ListView):
     model = models.User
     filterset_class = filters.UserFilter
     table_class =  tables.UserTable
@@ -33,19 +34,19 @@ class UserListView(views.ListView):
     delete_url = "user_delete"
     page_title = "Usuarios"
 
-class UserCreateView(views.CreateView):
+class UserCreateView(mixins.SuperUserRequiredMixin, views.CreateView):
     model = models.User
     form_class = forms.CustomUserCreationForm
     list_url = 'user_list'
     page_title = 'Agregar usuario'
 
-class UserUpdateView(views.UpdateView):
+class UserUpdateView(mixins.SuperUserRequiredMixin, views.UpdateView):
     model = models.User
     form_class = forms.CustomUserChangeForm
     list_url = 'user_list'
     page_title = 'Actualizar usuario'
 
-class UserDeleteView(views.DeleteView): 
+class UserDeleteView(mixins.SuperUserRequiredMixin, views.DeleteView): 
     model = models.User
     list_url = "user_list"
     page_title = "Eliminar usuario"

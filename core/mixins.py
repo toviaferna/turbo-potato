@@ -3,8 +3,11 @@ import json
 from dal_select2 import widgets
 from django import forms
 from django.conf import settings
-from django.core.exceptions import FieldDoesNotExist
+from django.contrib import messages
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.exceptions import FieldDoesNotExist, PermissionDenied
 from django.db.models import Q
+from django.shortcuts import redirect
 
 
 class SearchViewMixin:
@@ -177,3 +180,13 @@ class Select2WidgetMixin(widgets.Select2WidgetMixin):
                 ),
             },
         )
+
+class SuperUserRequiredMixin(UserPassesTestMixin):
+   
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            return redirect('home')
+        return super().handle_no_permission()

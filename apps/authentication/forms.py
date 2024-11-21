@@ -44,7 +44,7 @@ class CustomUserCreationForm(forms.UserCreationForm):
         ].help_text = "Ingrese su nombre."
         self.fields[
             "last_name"
-        ].help_text = "Ingrese su apellido.",
+        ].help_text = "Ingrese su apellido."
         self.helper.row_class = {"class": "form-row"}
         self.helper.layout = Layout(
             Row(
@@ -65,6 +65,7 @@ class CustomUserCreationForm(forms.UserCreationForm):
             Row(
                 Column("is_superuser"), 
                 Column("is_active"),
+                css_class="mb-5"
             ),
             FormActions()
         )
