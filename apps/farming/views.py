@@ -351,6 +351,18 @@ class ActividadAgricolaAnnulledView(views.AnnulledView):
     list_url = "actividad_agricola_list"
     mensaje_anulacion = "La Actividad Agrícola ya fue anulado."
 
+class ActividadAgricolaDetailView(views.DetailView):
+    model = models.ActividadAgricola
+    list_url = "actividad_agricola_list"
+    template_name = "farming/detail_actividad_agricola.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        maquinaria_detalle = models.ActividadAgricolaMaquinariaDetalle.objects.filter(actividad_agricola=self.object)
+        item_detalle = models.ActividadAgricolaItemDetalle.objects.filter(actividad_agricola=self.object)
+        context["actividad_agricola_maquinaria_detalle"] = tables.ActividadAgricolaMaquinariaDetalleTable(maquinaria_detalle)
+        context["actividad_agricola_item_detalle"] = tables.ActividadAgricolaItemDetalleTable(item_detalle)
+        return context
 
 class LiquidacionAgricolaListView(views.ListView):
     model = models.LiquidacionAgricola

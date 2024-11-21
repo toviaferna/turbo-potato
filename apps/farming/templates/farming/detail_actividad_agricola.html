@@ -1,0 +1,24 @@
+{% extends 'generic/detail.html' %}
+{% load render_table from django_tables2 %}
+
+{% block extra-detail %}
+    
+    {% if actividad_agricola_maquinaria_detalle %}
+        <div class="col-lg-12">
+            <fieldset>
+                <legend>Maquinarias</legend>
+                {% render_table actividad_agricola_maquinaria_detalle %}
+            </fieldset>
+        </div>
+    {% endif %}
+
+    {% if  actividad_agricola_item_detalle  %}
+        <div class="col-lg-12">
+            <fieldset>
+                <legend>Items</legend>
+                {% render_table actividad_agricola_item_detalle %}
+            </fieldset>
+        </div>
+    {% endif %}
+
+{% endblock extra-detail %}

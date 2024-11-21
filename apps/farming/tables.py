@@ -1,5 +1,8 @@
+from django.urls.base import reverse
+from django.utils.html import format_html
+
 from apps.farming import models
-from core.tables import AccionTable
+from core.tables import AccionTable, DetailTable
 from core.tables.columns import NumericColumn, TotalNumericColumn
 
 
@@ -97,6 +100,13 @@ class ActividadAgricolaTable(AccionTable):
     cantidad_trabajada = NumericColumn()
     total = NumericColumn()
 
+    def render_tipo_actividad_agricola(self, value, record):
+        return format_html(
+            '<a href="{}">{}</a>',
+            reverse("actividad_agricola_detail", kwargs={"pk": record.pk}),
+            value,
+        )
+
     class Meta:
         model = models.ActividadAgricola
         fields = (
@@ -113,6 +123,31 @@ class ActividadAgricolaTable(AccionTable):
         row_attrs = {"es-vigente": lambda record: record.es_vigente}
         order_by = "-fecha_documento"
 
+class ActividadAgricolaMaquinariaDetalleTable(DetailTable):
+    class Meta:
+        model = models.ActividadAgricolaMaquinariaDetalle
+        fields = (
+            "maquinaria__pk",
+            "maquinaria__descripcion",
+            "ha_trabajada",
+            "precio",
+            "total"
+        )
+
+class ActividadAgricolaItemDetalleTable(DetailTable):
+
+    class Meta:
+        model = models.ActividadAgricolaItemDetalle
+        fields = (
+            "item__pk",
+            "item__descripcion",
+            "deposito__pk",
+            "deposito__descripcion",
+            "costo",
+            "cantidad",
+            "porcentaje_impuesto",
+            "dosis",
+        )
 
 class LiquidacionAgricolaTable(AccionTable):
     total = NumericColumn()

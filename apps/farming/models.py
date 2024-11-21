@@ -1,7 +1,8 @@
-from apps.finance.models import Persona
-from apps.inventory.models import Deposito, Item
 from django.db import models
 from django.utils.html import format_html
+
+from apps.finance.models import Persona
+from apps.inventory.models import Deposito, Item
 
 
 class Finca(models.Model):
@@ -302,6 +303,10 @@ class ActividadAgricolaMaquinariaDetalle(models.Model):
     precio = models.DecimalField(
         max_digits=15, decimal_places=2, verbose_name="Precio HA"
     )
+
+    @property
+    def total(self):
+        return self.ha_trabajada * self.precio
 
 
 class ActividadAgricolaItemDetalle(models.Model):
