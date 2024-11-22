@@ -510,7 +510,7 @@ class CierreZafraSelectionView(views.SelectionFormView):
     list_url = "cierre_zafra_list"
     next_url = "cierre_zafra_create"
     back_url = "cierre_zafra_list"
-    title = "Complete los filtros para continuar"
+    selection_title = "Complete los filtros para continuar"
     params_name = "zafra"
 
 
