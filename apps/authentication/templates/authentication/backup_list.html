@@ -1,0 +1,65 @@
+
+
+
+
+{% extends 'layouts/base.html' %}
+{% block title %}{{title}}{% endblock %} 
+{% block body_class %} sidebar-mini pace-secondary {% endblock body_class %}
+{% load render_table from django_tables2 %}
+
+
+{% block stylesheets %}
+  <style>
+    tr[es-vigente='False'] {
+        background-color: #343a40!important;
+        color: white; 
+        text-decoration: line-through;
+    }
+  </style>
+{% endblock stylesheets %}
+  
+
+{% block content %}
+
+<div class="content-wrapper">
+
+  <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-10">
+            <h1>Listado de Copias de Seguridad</h1>
+          </div>
+          <div class="col-sm-2 text-right">
+            
+              <a href="{% url 'database_backup' %}" class="btn btn-primary"><i class="fa fa-plus"></i> Realizar Backup</a>
+            
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="{% if filter  %}col-sm-10{% else %}col-sm-12{% endif %}">
+            <div class="card card-solid">  
+                <div class="card-body p-0">
+                {% if backups %}
+                  {% render_table table %} 
+                  {% else %}
+            <div class="alert alert-info">
+                No hay backups disponibles.
+            </div>
+        {% endif %}
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+
+
+{% endblock %}

@@ -15,3 +15,14 @@ Menu.add_item(
         check=is_superuser
     ),
 )
+
+Menu.add_item(
+    "backup",
+    MenuItem(
+        "Copias de Seguridad", 
+        reverse("database_backup_list"), 
+        icon="fas fa-shield", 
+        weight=0,
+        check=is_superuser
+    ),
+)
