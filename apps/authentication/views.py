@@ -166,6 +166,6 @@ class BackupListView(mixins.SuperUserRequiredMixin, SingleTableMixin,  generic.L
                 backups.append({
                     'name': file,
                     'size': f"{stats.st_size / 1024:.2f} KB",
-                    'date': datetime.fromtimestamp(stats.st_mtime)
+                    'date': datetime.fromtimestamp(stats.st_mtime).strftime('%d/%m/%Y %H:%M:%S')
                 })
         return sorted(backups, key=lambda x: x['date'], reverse=True)
