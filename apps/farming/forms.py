@@ -267,6 +267,9 @@ class AcopioForm(ModelForm):
             "es_transportadora_propia",
             "observacion",
         ]
+        widgets = {
+            "fecha": widgets.DateInput,
+        }
         # widgets = {'fecha':DateInput,'pBruto':DecimalMaskInput,'pTara':DecimalMaskInput,'pDescuento':DecimalMaskInput,'pBonificacion':DecimalMaskInput}
 
     def __init__(self, *args, **kwargs):
@@ -275,6 +278,9 @@ class AcopioForm(ModelForm):
         self.helper.form_tag = False
         self.fields["deposito"].queryset = Deposito.objects.filter(
             es_planta_acopiadora=True
+        )
+        self.fields["conductor"].queryset = Persona.objects.filter(
+            es_empleado=True
         )
         self.helper.layout = Layout(
             Row(
@@ -342,6 +348,7 @@ class ActividadAgricolaItemDetalleForm(ModelForm):
         widget=widgets.FormulaInput("costo*cantidad"), label="SubTotal"
     )
 
+
     class Meta:
         model = models.ActividadAgricolaItemDetalle
         fields = [
@@ -380,6 +387,9 @@ class ActividadAgricolaForm(ModelForm):
         ]
         widgets = {
             "fecha_documento": widgets.DateInput,
+            "empleado": widgets.AutocompleteSelect(
+                url="empleado_autocomplete",
+            ),
         }  #'cantidadTrabajada': DecimalMaskInput}
 
     def __init__(self, *args, **kwargs):
@@ -448,7 +458,6 @@ class ActividadAgricolaMaquinariaDetalleForm(ModelForm):
     subtotal_maquinaria = DecimalField(
         widget=widgets.FormulaInput("precio*ha_trabajada"), label="SubTotal"
     )
-
     class Meta:
         model = models.ActividadAgricolaMaquinariaDetalle
         fields = ["maquinaria", "ha_trabajada", "precio", "subtotal_maquinaria"]

@@ -30,3 +30,4 @@ class InventarioDepositoInformeTable(DetailTable):
     class Meta:
         model = ItemMovimiento
         fields = ("fecha_documento","deposito","item","tipo_movimiento","cantidad")
+        order_by = ('-fecha_documento',)

@@ -76,6 +76,10 @@ class OrdenCompraDetalle(models.Model):
         max_digits=15, decimal_places=2, verbose_name="Descuento"
     )
 
+    @property
+    def subtotal(self):
+        return round(self.cantidad * self.precio) - self.descuento
+
 
 class Compra(models.Model):
     proveedor = models.ForeignKey(

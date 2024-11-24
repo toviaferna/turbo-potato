@@ -6,7 +6,8 @@ from core.tables.columns import BooleanColumn
 class PersonaTable(AccionTable):
     class Meta:
         model = models.Persona
-        fields = ("razon_social","documento","celular")
+        fields = ("pk","razon_social","documento","celular", "es_cliente", "es_proveedor", "es_empleado")
+        order_by = ("-pk",)
 
 class BancoTable(AccionTable):
     class Meta:

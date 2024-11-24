@@ -124,6 +124,9 @@ class ActividadAgricolaTable(AccionTable):
         order_by = "-fecha_documento"
 
 class ActividadAgricolaMaquinariaDetalleTable(DetailTable):
+    ha_trabajada = NumericColumn()
+    precio = NumericColumn()
+    total = NumericColumn()
     class Meta:
         model = models.ActividadAgricolaMaquinariaDetalle
         fields = (
@@ -135,7 +138,10 @@ class ActividadAgricolaMaquinariaDetalleTable(DetailTable):
         )
 
 class ActividadAgricolaItemDetalleTable(DetailTable):
-
+    costo = NumericColumn()
+    cantidad = NumericColumn()
+    porcentaje_impuesto = NumericColumn()
+    dosis = NumericColumn()
     class Meta:
         model = models.ActividadAgricolaItemDetalle
         fields = (

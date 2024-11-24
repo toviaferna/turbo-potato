@@ -260,14 +260,22 @@ class AcopioCreateView(views.CreateView):
         acopio_detalle = inlines[0]
         total_peso = 0
         existe_registro = False
+        print(form.cleaned_data.get("peso_bruto"))
+        print(form.cleaned_data.get("peso_bonificacion"))
+        print(form.cleaned_data.get("peso_descuento"))
+        print(form.cleaned_data.get("peso_tara"))
         peso_encabezado = (
             form.cleaned_data.get("peso_bruto")
             + form.cleaned_data.get("peso_bonificacion")
         ) - (
             form.cleaned_data.get("peso_tara") + form.cleaned_data.get("peso_descuento")
         )
+        print("llego aqui?")
+        print(acopio_detalle==None)
 
         for f in acopio_detalle:
+            print("koape")
+            print(f==None)
             total_peso = total_peso + f.cleaned_data.get("peso")
             existe_registro = True
 

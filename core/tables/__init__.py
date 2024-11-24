@@ -1,5 +1,6 @@
 import django_tables2 as tables
 
+
 class BaseTable(tables.Table):
     def __init__(self, *args, **kwargs):
         kwargs['empty_text']  =  "Sin resultados." 
@@ -13,7 +14,7 @@ class SingleTable(BaseTable):
 class DetailTable(SingleTable):
     def __init__(self, *args, **kwargs):
         kwargs['attrs'] = {"class":"table table-sm table-striped", }
-        kwargs['orderable'] = False
+        kwargs['orderable'] = True
         super().__init__(*args, **kwargs) 
     
 class AccionTable(BaseTable):

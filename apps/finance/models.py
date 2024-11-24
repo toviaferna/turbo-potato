@@ -73,6 +73,7 @@ class Persona(models.Model):
     es_cliente = models.BooleanField(verbose_name="Es Cliente?",default=False,help_text="La persona será tratada como un cliente")
     es_proveedor = models.BooleanField(verbose_name="Es Proveedor?",default=False,help_text="La persona será tratada como un proveedor")
     es_empleado = models.BooleanField(verbose_name="Es Empleado?",default=False,help_text="La persona será tratada como un empleado de la empresa")
-    
+
+
     def __str__(self):
         return self.razon_social
