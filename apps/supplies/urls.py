@@ -17,6 +17,7 @@ urlpatterns = [
         name="compra_delete",
     ),
     path("compra/add", views.CompraCreateView.as_view(), name="compra_create"),
+    path('compra/add/<int:orden_pk>/', views.CompraCreateView.as_view(), name='compra_create_orden'),
     path("compra/", views.CompraListView.as_view(), name="compra_list"),
     path(
         "nota-credito-recibida/<int:pk>/delete/",

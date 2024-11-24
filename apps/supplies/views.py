@@ -1,3 +1,7 @@
+from django.db import transaction
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+
 from apps.supplies import forms, inlines, models, tables
 from apps.supplies.filters import (CompraFilter, LibroCompraFilter,
                                    OrdenCompraFilter, PedidoCompraFilter)
@@ -84,6 +88,7 @@ class OrdenCompraDetailView(views.DetailView):
         context = super().get_context_data(**kwargs)
         orden_compra_detalle = models.OrdenCompraDetalle.objects.filter(orden_compra=self.object)
         context["orden_compra_detalle"] = tables.OrdenCompraDetalleTable(orden_compra_detalle)
+        context["orden"] = self.object
         return context
 
 class CompraListView(views.ListView): 
@@ -108,6 +113,21 @@ class CompraCreateView(views.CreateView):
 
     class Media:
         js = ("assets/js/widgets.js",)
+
+    def get_initial(self):
+        initial = super().get_initial()
+        orden_compra = self.get_orden_compra()
+        if orden_compra:
+            initial['proveedor'] = orden_compra.proveedor
+            initial['fecha_documento'] = orden_compra.fecha_documento
+            initial['observacion'] = f"Compra generada desde Orden de Compra Nro. {orden_compra.pk}"
+        return initial
+
+    def get_orden_compra(self):
+        orden_pk = self.kwargs.get('orden_pk')
+        if orden_pk:
+            return get_object_or_404(models.OrdenCompra, pk=orden_pk)
+        return None
 
     def run_form_extra_validation(self, form, inlines):
         """ejecutar validaciones adicionales de formularios"""

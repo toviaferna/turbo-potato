@@ -58,6 +58,11 @@ class OrdenCompra(models.Model):
         verbose_name = "Orden de compra"
         verbose_name_plural = "Ordenes de compras"
 
+    def get_es_vigente_display(self):
+        value = "fa-check" if self.es_vigente else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
+
+    
     @property
     def total(self):
         return sum(

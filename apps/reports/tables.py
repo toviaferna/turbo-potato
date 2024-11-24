@@ -30,4 +30,5 @@ class InventarioDepositoInformeTable(DetailTable):
     class Meta:
         model = ItemMovimiento
         fields = ("fecha_documento","deposito","item","tipo_movimiento","cantidad_signo")
+        row_attrs = {"es-vigente": lambda record: record.es_vigente}
         order_by = ('-fecha_documento',)

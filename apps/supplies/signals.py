@@ -1,8 +1,32 @@
-from apps.inventory.models import Item, ItemMovimiento
-from apps.supplies.models import CompraDetalle, NotaCreditoRecibidaDetalle
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 
+from apps.inventory.models import Item, ItemMovimiento
+from apps.supplies.models import (Compra, CompraDetalle,
+                                  NotaCreditoRecibidaDetalle)
+
+
+@receiver(post_save, sender=Compra)
+def signal_compra_guardado(sender, instance, created, **kwargs):
+    if created:
+        pass
+    else:
+        if not instance.es_vigente:
+            
+            item_movimientos = ItemMovimiento.objects.filter(
+                tipo_movimiento="CM",
+                secuencia_origen=instance.pk
+            )
+            
+            for item_movimiento in item_movimientos:
+                item_movimiento.es_vigente = False
+                item_movimiento.save()
+
+                # Opcionalmente, reestablecer valores del item
+                item = Item.objects.get(pk=item_movimiento.item.pk)
+                item.ultimo_costo = item_movimiento.costo
+                item.costo = item_movimiento.costo
+                item.save()
 
 @receiver(pre_save, sender=CompraDetalle)
 def signal_compra_detalle_preguardado(sender, instance, **kwargs):
@@ -29,6 +53,9 @@ def signal_compra_guardado(sender, instance, created, **kwargs):
         item.ultimo_costo = instance.costo
         item.costo = instance.costo
         item.save()
+
+
+            
 
 
 @receiver(post_save, sender=NotaCreditoRecibidaDetalle)

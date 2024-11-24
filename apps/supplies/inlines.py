@@ -1,7 +1,8 @@
-from apps.supplies import forms, models
-from core.widgets import AutocompleteSelect
 from django.forms import NumberInput, widgets
 from extra_views import InlineFormSetFactory
+
+from apps.supplies import forms, models
+from core.widgets import AutocompleteSelect
 
 
 class PedidoCompraDetalleInline(InlineFormSetFactory):
@@ -39,6 +40,45 @@ class OrdenCompraDetalleInline(InlineFormSetFactory):
 
 
 class CompraDetalleInline(InlineFormSetFactory):
+
+    def __init__(self, *args, **kwargs):
+        self.view = kwargs.pop('view', None)  # Extraemos la vista de kwargs
+        super().__init__(*args, **kwargs)
+
+    def get_initial(self):
+        initial = []
+        if self.view:
+            orden_compra = self.view.get_orden_compra()
+            if orden_compra:
+                # Imprime para debug
+                print(f"Orden de compra encontrada: {orden_compra.pk}")
+                detalles = orden_compra.ordencompradetalle_set.all()
+                print(f"Cantidad de detalles: {detalles.count()}")
+                
+                for item in detalles:
+                    initial.append({
+                        "item": item.item,
+                        "cantidad": item.cantidad,
+                        "costo": item.precio,
+                        "porcentaje_impuesto": item.item.tipo_impuesto.porcentaje,
+                    })
+        
+        print(f"Initial data: {initial}")  # Debug
+        return initial
+    
+    def get_factory_kwargs(self):
+        kwargs = super().get_factory_kwargs()
+        initial_data = self.get_initial()
+        if initial_data:
+            # Configuramos el número exacto de formularios basado en los datos iniciales
+            kwargs.update({
+                'extra': 0,
+                'min_num': len(initial_data),
+                #'max_num': len(initial_data),
+                #'absolute_max': len(initial_data) + 10,  # Por si necesitas añadir más después
+            })
+        return kwargs
+
     model = models.CompraDetalle
     form_class = forms.CompraDetalleForm
     factory_kwargs = {

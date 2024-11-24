@@ -9,6 +9,7 @@
                 <legend>Detalles</legend>
                 {% render_table orden_compra_detalle %}
             </fieldset>
+            <a href="{% url 'compra_create_orden' orden_pk=object.pk %}" class="btn btn-secondary">Registrar en Compra</a>
         </div>
     {% endif %}
 
