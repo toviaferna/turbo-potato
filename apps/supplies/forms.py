@@ -1,12 +1,13 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
+from django import forms
+from django.forms.models import ModelForm
+
 from apps.inventory.models import Deposito, Item
 from apps.supplies import models
 from core.layouts import FormActions, Formset
 from core.widgets import (AutocompleteSelect, DateInput, FormulaInput,
                           InvoiceNumberMaskInput, SumInput)
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import HTML, Column, Fieldset, Layout, Row
-from django import forms
-from django.forms.models import ModelForm
 
 
 class PedidoCompraDetalleForm(ModelForm):
@@ -109,6 +110,7 @@ class OrdenCompraForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.fields["total"].label = False
+        self.fields["pedido_compra"].queryset = models.PedidoCompra.objects.filter(es_vigente=True).order_by('-fecha_documento')
         self.helper.layout = Layout(
             Row(
                 Column("pedido_compra", css_class="col-sm-5"),
