@@ -259,6 +259,9 @@ class ActividadAgricola(models.Model):
         verbose_name = "Actividad agricola"
         verbose_name_plural = "Actividades agricolas"
 
+    def __str__(self):
+        return f"{self.tipo_actividad_agricola} - {self.fecha_documento} - {self.zafra}"
+
     @property
     def total_maquinaria(self):
         retorno = sum(
@@ -268,6 +271,14 @@ class ActividadAgricola(models.Model):
         if retorno is None:
             retorno = 0
         return retorno
+
+    def get_es_vigente_display(self):
+        value = "fa-check" if self.es_vigente else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
+
+    def get_es_servicio_contratado_display(self):
+        value = "fa-check" if self.es_servicio_contratado else "fa-xmark"
+        return format_html(f"<i class='fa-solid {value}'></i>")
 
     @property
     def total_item(self):
