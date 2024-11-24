@@ -3,7 +3,12 @@ $(document).ready(function () {
     function checkMaquinaria($maquinaria) {
       let $detalleContainer = $maquinaria.closest("tr");
       let $maquinariaPrecio = $detalleContainer.find(".precio-ha");
-      let $precioHa = $maquinaria.find('option:selected').attr('data-precio-ha');
+      let $precioHa = $($maquinaria.find('option:selected').text()).data('precio-ha');
+
+      console.log($detalleContainer)
+      console.log($maquinariaPrecio)
+      console.log($precioHa)
+
       $maquinariaPrecio.val($precioHa);
     }
 

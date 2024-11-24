@@ -1,8 +1,9 @@
 from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 
-from apps.farming.models import (AcopioDetalle, ActividadAgricolaItemDetalle,
-                                 CierreZafra, CierreZafraDetalle, Zafra)
+from apps.farming.models import (AcopioDetalle, ActividadAgricola,
+                                 ActividadAgricolaItemDetalle, CierreZafra,
+                                 CierreZafraDetalle, Zafra)
 from apps.inventory.models import Item, ItemMovimiento
 
 
@@ -22,6 +23,20 @@ def signal_acopio_guardado(sender, instance, created, **kwargs):
         item_movimiento.tipo_movimiento = "AC"
         item_movimiento.save()
 
+
+@receiver(post_save, sender=ActividadAgricola)
+def signal_actividad_agricola_guardado(sender, instance, created, **kwargs):
+    if created:
+        pass
+    else:
+        if not instance.es_vigente:
+            item_movimientos = ItemMovimiento.objects.filter(
+                tipo_movimiento="AA",
+                secuencia_origen=instance.pk
+            )
+            for item_movimiento in item_movimientos:
+                item_movimiento.es_vigente = False
+                item_movimiento.save()
 
 @receiver(post_save, sender=ActividadAgricolaItemDetalle)
 def signal_actividad_agricola_item_guardado(sender, instance, created, **kwargs):

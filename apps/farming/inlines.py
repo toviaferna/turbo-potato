@@ -84,8 +84,10 @@ class ActividadAgricolaMaquinariaDetalleInline(InlineFormSetFactory):
     factory_kwargs = {
         "extra": 1,
         "widgets": {
-            "maquinaria": MaquinariaCustomSelect(
+            "maquinaria": AutocompleteSelect(
+                url="maquinaria_autocomplete",
                 attrs={
+                    "data-placeholder": "Buscar por descripcion.",
                     "wrapper_class": "col-sm-4",
                     "data-maquinaria-select": True,
                 }

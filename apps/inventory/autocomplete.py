@@ -1,8 +1,9 @@
-from apps.inventory import models
 from dal import autocomplete
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.db.models import Q
 from django.utils.html import format_html
+
+from apps.inventory import models
 
 
 class ProductoAutocomplete(autocomplete.Select2QuerySetView):

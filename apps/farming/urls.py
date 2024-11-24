@@ -1,6 +1,7 @@
+from django.conf.urls import url
 from django.urls import path
 
-from apps.farming import views
+from apps.farming import autocomplete, views
 
 urlpatterns = [
     path(
@@ -196,5 +197,11 @@ urlpatterns = [
     ),
     path(
         "cierre-zafra/", views.CierreZafraListView.as_view(), name="cierre_zafra_list"
+    ),
+
+    url(
+        r"^maquinaria-autocomplete/$",
+        autocomplete.MaquinariaAutocomplete.as_view(),
+        name="maquinaria_autocomplete",
     ),
 ]
