@@ -26,8 +26,8 @@ class ProduccionAgricolaInformeTable(DetailTable):
         fields = ("fecha_documento","tipo_actividad_agricola","zafra","finca","lote","total_maquinaria","total_item","total")
 
 class InventarioDepositoInformeTable(DetailTable):   
-    cantidad = columns.NumericColumn(verbose_name='Cantidad')
+    cantidad_signo = columns.NumericColumn(verbose_name='Cantidad')
     class Meta:
         model = ItemMovimiento
-        fields = ("fecha_documento","deposito","item","tipo_movimiento","cantidad")
+        fields = ("fecha_documento","deposito","item","tipo_movimiento","cantidad_signo")
         order_by = ('-fecha_documento',)

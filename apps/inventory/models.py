@@ -78,7 +78,14 @@ class ItemMovimiento(models.Model):
     secuencia_origen = models.IntegerField()
     detalle_secuencia_origen = models.IntegerField()
     es_vigente = models.BooleanField(verbose_name="Vigente?",default=True) 
-    tipo_movimiento = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Tipo Mov.") 
+    tipo_movimiento = models.CharField(max_length=50,choices=VALORESENUMTIPMOV,verbose_name="Tipo Mov.")
+
+    @property
+    def cantidad_signo(self):
+        if self.tipo_movimiento in ('VT', 'A-', 'DC', 'AA'):
+            return -self.cantidad
+        else:
+            return self.cantidad
 
 
 class AjusteStock(models.Model):
