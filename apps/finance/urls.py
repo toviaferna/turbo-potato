@@ -1,6 +1,7 @@
-from apps.finance import autocomplete, views
 from django.conf.urls import url
 from django.urls import path
+
+from apps.finance import autocomplete, views
 
 urlpatterns = [
     path("impuesto/<int:pk>/delete/", views.TipoImpuestoDeleteView.as_view(), name="impuesto_delete"),
@@ -31,6 +32,7 @@ urlpatterns = [
     path("persona/<int:pk>/update/", views.PersonaUpdateView.as_view(), name="persona_update"),
     path("persona/add", views.PersonaCreateView.as_view(), name="persona_create"),
     path("persona/",  views.PersonaListView.as_view(), name="persona_list"),
+    url(r'^localidad-autocomplete/$', autocomplete.LocalidadAutocomplete.as_view(), name='localidad_autocomplete',),
     url(r'^persona-autocomplete/$', autocomplete.PersonaAutocomplete.as_view(), name='persona_autocomplete',),
     url(r'^proveedor-autocomplete/$', autocomplete.PersonaAutocomplete.as_view(es_proveedor=True), name='proveedor_autocomplete',),
     url(r'^cliente-autocomplete/$', autocomplete.PersonaAutocomplete.as_view(es_cliente=True), name='cliente_autocomplete',),

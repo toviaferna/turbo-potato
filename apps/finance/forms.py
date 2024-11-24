@@ -1,9 +1,11 @@
 
-from apps.finance import models
-from core.layouts import CancelButton, FormActions, SaveButton
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import ButtonHolder, Column, Layout, Row
 from django.forms.models import ModelForm
+
+from apps.finance import models
+from core import widgets
+from core.layouts import CancelButton, FormActions, SaveButton
 
 
 class PersonaForm(ModelForm):
@@ -34,7 +36,11 @@ class PersonaForm(ModelForm):
     class Meta:
         model = models.Persona
         fields = ["razon_social","documento","celular","pais","localidad","direccion","es_cliente","es_proveedor","es_empleado"]
-
+        widgets = {
+            "localidad": widgets.AutocompleteSelect(
+                url="localidad_autocomplete",
+            ),
+        }
 class BancoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

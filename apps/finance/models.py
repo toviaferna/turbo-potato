@@ -61,7 +61,7 @@ class Localidad(models.Model):
         verbose_name_plural = "Localidades"
     
     def __str__(self):
-        return f"Dpto: {self.distrito.departamento.descripcion}, Distrito: {self.distrito.descripcion}, Localidad: {self.descripcion}"
+        return f"{self.descripcion}"
 
 class Persona(models.Model):
     pais = models.ForeignKey(Pais, on_delete=models.DO_NOTHING, verbose_name="Pais")

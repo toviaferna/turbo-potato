@@ -1,5 +1,9 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Column, Field, Layout, Row
+from django_filters import FilterSet, ModelChoiceFilter
+
 from apps.finance import models
-from django_filters import FilterSet
+from core.widgets import AutocompleteSelect
 
 
 class DistritoFilter(FilterSet):
@@ -18,6 +22,12 @@ class CuentaFilter(FilterSet):
         fields = ["es_banco",]
 
 class PersonaFilter(FilterSet):
+    # localidad = ModelChoiceFilter(
+    #     queryset=models.Localidad.objects.all(),
+    #     widget= AutocompleteSelect(
+    #         url="localidad_autocomplete",
+    #     )
+    # )
     class Meta:
         model = models.Persona
-        fields = ["es_cliente","es_proveedor","es_empleado","pais","localidad"]
+        fields = ["es_cliente","es_proveedor","es_empleado","pais"]

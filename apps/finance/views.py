@@ -146,6 +146,7 @@ class PersonaListView(views.ListView):
     delete_url = 'persona_delete'
     create_url = 'persona_create'
 
+
 class PersonaCreateView(views.CreateView):
     form_class = forms.PersonaForm
     model = models.Persona
