@@ -221,6 +221,7 @@ class ContratoForm(ModelForm):
         self.helper = FormHelper()
         self.helper.form_tag = False
         # self.fields['costoPactado'].widget = DecimalMaskInput()
+        self.fields["zafra"].queryset = models.Zafra.objects.filter(esta_cerrado=False)
         self.helper.layout = Layout(
             Row(
                 Column("fecha", css_class="col-sm-3"),
@@ -282,6 +283,7 @@ class AcopioForm(ModelForm):
         self.fields["conductor"].queryset = Persona.objects.filter(
             es_empleado=True
         )
+        self.fields["zafra"].queryset = models.Zafra.objects.filter(esta_cerrado=False)
         self.helper.layout = Layout(
             Row(
                 Column("fecha", css_class="col-sm-3"),
@@ -401,6 +403,7 @@ class ActividadAgricolaForm(ModelForm):
         self.fields["total_item"].label = False
         # self.fields['totalItem'].widget = DecimalMaskInput()
         self.fields["empleado"].queryset = Persona.objects.filter(es_empleado=True)
+        self.fields["zafra"].queryset = models.Zafra.objects.filter(esta_cerrado=False)
         self.helper.layout = Layout(
             Row(
                 Column("fecha_documento", css_class="col-sm-3"),
@@ -479,6 +482,7 @@ class LiquidacionAgricolaSelectionForm(ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
+        self.fields["zafra"].queryset = models.Zafra.objects.filter(esta_cerrado=False)
         self.helper.layout = Layout(
             Row(
                 Column(
@@ -529,6 +533,7 @@ class LiquidacionAgricolaForm(ModelForm):
         self.fields["total"].label = False
         # self.fields['total'].widget = DecimalMaskInput()
         self.fields["proveedor"].queryset = Persona.objects.filter(es_proveedor=True)
+        self.fields["zafra"].queryset = models.Zafra.objects.filter(esta_cerrado=False)
         self.helper.layout = Layout(
             Row(
                 Column("fecha_documento", css_class="col-sm-3"),
