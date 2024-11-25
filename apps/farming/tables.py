@@ -175,7 +175,7 @@ class LiquidacionAgricolaTable(AccionTable):
 class CierreZafraTable(AccionTable):
     total_acopiado = NumericColumn(verbose_name="KG Acopiado")
     total_cultivado = NumericColumn(verbose_name="HA Cultivada")
-    total_costo_unit = NumericColumn(
+    total_costo_unitario = NumericColumn(
         verbose_name="Costo Unit",
     )
     total_costo_ha = NumericColumn(verbose_name="Costo HA")

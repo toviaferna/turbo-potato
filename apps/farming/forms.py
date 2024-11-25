@@ -469,7 +469,11 @@ class LiquidacionAgricolaSelectionForm(ModelForm):
     class Meta:
         model = models.LiquidacionAgricola
         fields = ["tipo", "zafra", "proveedor", "precio_unitario"]
-        # widgets = {'precioUnitario':DecimalMaskInput}
+        widgets = {
+            "proveedor": widgets.AutocompleteSelect(
+                url="proveedor_autocomplete",
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

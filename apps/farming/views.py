@@ -276,7 +276,7 @@ class AcopioCreateView(views.CreateView):
         for f in acopio_detalle:
             print("koape")
             print(f==None)
-            total_peso = total_peso + f.cleaned_data.get("peso")
+            total_peso = total_peso + (f.cleaned_data.get("peso") or 0)
             existe_registro = True
 
         if existe_registro == False or total_peso == 0 or total_peso is None:
@@ -668,6 +668,7 @@ class CierreZafraCreateView(views.CreateView):
 
                 costo_unit = round(costo_total / acopios)
 
+
             if costo_total != 0 or acopios != 0 or hectareas_cultivadas != 0:
                 initial += [
                     {
@@ -678,7 +679,7 @@ class CierreZafraCreateView(views.CreateView):
                         "rendimiento": round(rendimiento_kg),
                         "costo_total": round(costo_total),
                         "costo_ha": round(costo_ha),
-                        "costo_unit": round(costo_unit),
+                        "costo_unitario": round(costo_unit),
                     }
                 ]
 

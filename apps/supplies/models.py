@@ -363,5 +363,5 @@ class NotaDebitoRecibidaDetalle(models.Model):
     )
 
 
-from .signals import (signal_compra_guardado,
+from .signals import (signal_compra_guardado, signal_compra_guardado_v2,
                       signal_nota_credito_recibida_guardado)

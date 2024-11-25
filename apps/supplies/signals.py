@@ -7,7 +7,7 @@ from apps.supplies.models import (Compra, CompraDetalle,
 
 
 @receiver(post_save, sender=Compra)
-def signal_compra_guardado(sender, instance, created, **kwargs):
+def signal_compra_guardado_v2(sender, instance, created, **kwargs):
     if created:
         pass
     else:

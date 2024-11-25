@@ -378,6 +378,10 @@ class LiquidacionAgricola(models.Model):
         verbose_name = "Liquidación agricola"
         verbose_name_plural = "Liquidaciones agricolas"
 
+
+    def __str__(self):
+        return f"{self.fecha_documento} - {self.tipo} - {self.zafra} - {self.proveedor} - {self.precio_unitario}"
+
     @property
     def total(self):
         return sum(
@@ -409,6 +413,9 @@ class CierreZafra(models.Model):
         verbose_name = "Cierre de zafra"
         verbose_name_plural = "Cierres de zafras"
 
+    def __str__(self):
+        return f"{self.fecha} - {self.zafra} - {self.observacion}"
+
     @property
     def total_costo(self):
         return sum(round(x.costo_total) for x in self.cierrezafradetalle_set.all())
@@ -432,7 +439,7 @@ class CierreZafra(models.Model):
         return round(self.total_costo / self.total_ha)
 
     @property
-    def total_costo_unit(self):
+    def total_costo_unitario(self):
         return round(self.total_costo / self.total_acopiado)
 
     def __str__(self):
@@ -463,6 +470,8 @@ class CierreZafraDetalle(models.Model):
 
 
 from .signals import signal_acopio_guardado  # signal_cierre_zafra_borrar
-from .signals import (signal_actividad_agricola_item_guardado,
+from .signals import (signal_acopio_guardado_v2,
+                      signal_actividad_agricola_guardado,
+                      signal_actividad_agricola_item_guardado,
                       signal_cierre_zafra_detalle_guardado,
                       signal_cierre_zafra_save)
